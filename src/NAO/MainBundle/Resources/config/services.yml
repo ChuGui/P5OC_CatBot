@@ -1,0 +1,4 @@
+services:
+#    nao_main.example:
+#        class: NAO\MainBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

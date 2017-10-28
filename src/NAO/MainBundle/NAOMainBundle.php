@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle;
+namespace NAO\MainBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AppBundle extends Bundle
+class NAOMainBundle extends Bundle
 {
 }
