@@ -1,7 +1,7 @@
 <?php
 // src/OC/UserBundle/DataFixtures/ORM/LoadUser.php
 
-namespace OC\UserBundle\DataFixtures\ORM;
+namespace NAO\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
