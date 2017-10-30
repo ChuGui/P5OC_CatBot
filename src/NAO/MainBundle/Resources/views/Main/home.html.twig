@@ -2,11 +2,19 @@
 
 {% block title %}Welcome!{% endblock %}
 {% block stylesheets %}
+
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/naomain/css/home.css') }}">
+
 {% endblock %}
 
 {% block body %}
-    Hello World!
+
+    <div class="well" id="contain">
+        <h1>PAGE D'ACCUEIL</h1>
+        <p><a href="{{ path('login') }}">Connexion</a></p>
+        <p><a href="#">Inscription</a></p>
+    </div>
 
 {% endblock %}
 

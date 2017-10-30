@@ -1,3 +1,7 @@
 nao_main_homepage:
     path:     /
-    defaults: { _controller: NAOMainBundle:Main:index }
+    defaults: { _controller: NAOMainBundle:Main:home }
+
+nao_main_observation:
+    path: /observation
+    defaults: {_controller: NAOMainBundle:Main:observation }
