@@ -2,3 +2,14 @@ nao_main:
     resource: "@NAOMainBundle/Resources/config/routing.yml"
     prefix:   /
 
+login:
+    path: /login
+    defaults:
+        _controller: NAOUserBundle:Security:login
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
