@@ -31,6 +31,28 @@ class LoadUser implements FixtureInterface
             $manager->persist($user);
         }
 
+        $listNaturalistesNames = array ('Eric', "Antoine");
+
+        foreach ($listNaturalistesNames as $naturalistesName)
+        {
+            $userNat = new User();
+            $userNat->setUsername($naturalistesName);
+            $userNat->setPassword($naturalistesName);
+            $userNat->setSalt('');
+            $userNat->setRoles(array('ROLE_NATURALISTE'));
+
+            $manager->persist($userNat);
+        }
+
+        $admin = 'admin';
+        $userAdmin = new User();
+        $userAdmin->setUsername($admin);
+        $userAdmin->setPassword($admin);
+        $userAdmin->setSalt('');
+        $userAdmin->setRoles(array('ROLE_ADMIN'));
+
+         $manager->persist($userAdmin);
+
         // On déclenche l'enregistrement
         $manager->flush();
     }

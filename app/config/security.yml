@@ -9,8 +9,7 @@ security:
                     class: NAO\UserBundle\Entity\User
                     property: username
     encoders:
-            Symfony\Component\Security\Core\User\User: plaintext
-            NAO\USERBUndle\Entity\User: plaintext
+            NAO\USERBUndle\Entity\User: sha512
 
     role_hierarchy:
         ROLE_ADMIN: [ROLE_NATURALISTE, ROLE_USER]
@@ -27,11 +26,14 @@ security:
             anonymous: true
             provider: mainProvider
             form_login:
-                login_path: login
-                check_path: login_check
+                login_path: security_login_form
+                check_path: security_login_check
+                csrf_provider: security.csrf.token_manager
+                default_target_path: user_dashboard
+                always_use_default_target_path: true
             logout:
-                path: logout
-                target: login
+                path: /security_logout
+                target: /
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -42,3 +44,5 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/account/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/account, roles: ROLE_USER }
