@@ -5,3 +5,7 @@ nao_main_homepage:
 nao_main_observation:
     path: /observation
     defaults: {_controller: NAOMainBundle:Main:observation }
+
+nao_main_admin:
+    path: /admin
+    defaults: {_controller: NAOMainBundle:Main:admin}

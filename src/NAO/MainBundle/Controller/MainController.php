@@ -3,6 +3,7 @@
 namespace NAO\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -22,5 +23,10 @@ class MainController extends Controller
         }else{
             return $this->render('NAOMainBundle:Main:observation.html.twig');
         }
+    }
+
+    public function adminAction()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
     }
 }
