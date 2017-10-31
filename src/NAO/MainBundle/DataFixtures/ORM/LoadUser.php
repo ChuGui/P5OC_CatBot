@@ -5,10 +5,12 @@ namespace NAO\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use NAO\UserBundle\Entity\User;
+use NAO\MainBundle\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class LoadUser implements FixtureInterface
 {
+
     public function load(ObjectManager $manager)
     {
         // Les noms d'utilisateurs à créer
@@ -18,12 +20,18 @@ class LoadUser implements FixtureInterface
             // On crée l'utilisateur
             $user = new User;
 
+            //On encode le mot de pass en pour l'encodage bcrypt
+            /*$plainPassword = $name;
+            $encoder = new UserPasswordEncoder();
+            $encoded = $encoder->encodePassword($user, $plainPassword);*/
+
             // Le nom d'utilisateur et le mot de passe sont identiques pour l'instant
             $user->setUsername($name);
             $user->setPassword($name);
+            $user->setEmail($name . '@test.com');
 
             // On ne se sert pas du sel pour l'instant
-            $user->setSalt('');
+            /*$user->setSalt('');*/
             // On définit uniquement le role ROLE_USER qui est le role de base
             $user->setRoles(array('ROLE_USER'));
 
@@ -38,7 +46,8 @@ class LoadUser implements FixtureInterface
             $userNat = new User();
             $userNat->setUsername($naturalistesName);
             $userNat->setPassword($naturalistesName);
-            $userNat->setSalt('');
+            /*$userNat->setSalt('');*/
+            $userNat->setEmail($naturalistesName . '@test.com');
             $userNat->setRoles(array('ROLE_NATURALISTE'));
 
             $manager->persist($userNat);
@@ -48,7 +57,8 @@ class LoadUser implements FixtureInterface
         $userAdmin = new User();
         $userAdmin->setUsername($admin);
         $userAdmin->setPassword($admin);
-        $userAdmin->setSalt('');
+        /*$userAdmin->setSalt('');*/
+        $userAdmin->setEmail($admin . '@test.com');
         $userAdmin->setRoles(array('ROLE_ADMIN'));
 
          $manager->persist($userAdmin);
