@@ -4,12 +4,10 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-            in_memory:
-                memory:
-                    users:
-                        user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                        naturaliste: { password: naturalistepass, roles: ["ROLE_NATURALISTE"]}
-                        admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+            mainProvider:
+                entity:
+                    class: NAO\UserBundle\Entity\User
+                    property: username
     encoders:
             Symfony\Component\Security\Core\User\User: plaintext
             NAO\USERBUndle\Entity\User: plaintext
@@ -27,6 +25,7 @@ security:
         mainFireWall:
             pattern: ^/
             anonymous: true
+            provider: mainProvider
             form_login:
                 login_path: login
                 check_path: login_check
