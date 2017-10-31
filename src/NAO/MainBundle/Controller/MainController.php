@@ -27,6 +27,6 @@ class MainController extends Controller
 
     public function adminAction()
     {
-        return new Response('<html><body>Admin page!</body></html>');
+        return $this->render('NAOMainBundle:Main:admin.html.twig');
     }
 }
