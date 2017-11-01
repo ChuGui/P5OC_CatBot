@@ -1,0 +1,4 @@
+MainBundle\Entity\User:
+    user_{1..10}:
+        username: <lastname()>
+        email: testuser+<current()>gmail.com

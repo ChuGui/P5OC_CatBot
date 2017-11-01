@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        {% endblock %}
+
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+        <div class="container">
+            <div class="navbar-header col-md-1 pull-left" id="navbar-header">
+                <a class="navbar-brand" href="#" id="logo">
+                    {% if is_granted('ROLE_USER') %}
+                    {{ app.user.username }}
+                        {% else %}
+                            Non connecté
+                    {% endif %}</a>
+            </div>
+            <div id="balises" class="container col-md-10">
+                <ul class="nav nav-pills" role="tablist">
+                    <li role="presentation" class="col-md-2" id="selectionBalise"><a href="#">Observations  </a></li>
+                    <li role="presentation"  class="col-md-2"  ><a href="#">Oiseaux</a></li>
+                    <li role="presentation" class="col-md-2" id="confirmationBalise" ><a href="#">A propos</a></li>
+                    <li role="presentation" class="col-md-2" id="confirmationBalise" ><a href="#">Contact</a></li>
+                    <li role="presentation" class="col-md-2" id="confirmationBalise" ><a href="#">Profil</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

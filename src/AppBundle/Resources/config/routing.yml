@@ -1,0 +1,12 @@
+homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Main:home }
+
+observation:
+    path: /observation
+    defaults: {_controller: AppBundle:Main:observation }
+
+admin:
+    path: /admin
+    defaults: {_controller: AppBundle:Main:admin}
+
