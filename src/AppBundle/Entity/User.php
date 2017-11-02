@@ -2,239 +2,116 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
-
-
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * User
- *
+ * @ORM\Entity
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity(fields={"email"}, message="On dirait que vous avez déjà un compte!")
  */
 class User implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=25, unique=true)
-     */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=60, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     * @ORM\Column(type="string", unique=true)
      */
     private $email;
 
     /**
-     * @var string
+     * The encoded password
      *
-     * @ORM\Column(name="password", type="string", length=64)
+     * @ORM\Column(type="string")
      */
     private $password;
 
     /**
-     * @var bool
+     * A non-persisted field that's used to create the encoded password.
+     * @Assert\NotBlank(groups={"Registration"})
      *
-     * @ORM\Column(name="isActive", type="boolean")
+     * @var string
      */
-    private $isActive;
+    private $plainPassword;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="roles", type="array")
+     * @ORM\Column(type="json_array")
      */
-    private $roles;
+    private $roles = [];
 
-    public function __construct()
-    {
-        $this->isActive = true;
-    }
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
+    // needed by the security system
     public function getUsername()
     {
-        return $this->username;
+        return $this->email;
     }
 
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
+    public function getRoles()
     {
-        $this->password = $password;
+        $roles = $this->roles;
 
-        return $this;
+        // give everyone ROLE_USER!
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return $roles;
     }
 
-    /**
-     * Get password
-     *
-     * @return string
-     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
+    public function getSalt()
     {
-        $this->email = $email;
-
-        return $this;
+        // leaving blank - I don't need/have a password!
     }
 
-    /**
-     * Get email
-     *
-     * @return string
-     */
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
+    }
+
     public function getEmail()
     {
         return $this->email;
     }
 
-    public function setSalt($salt)
+    public function setEmail($email)
     {
-        $this->salt = $salt;
-
-        return $this;
+        $this->email = $email;
     }
 
-    /**
-     * Get salt
-     *
-     * @return string
-     */
-    public function getSalt()
+    public function setPassword($password)
     {
-        return $this->salt;
+        $this->password = $password;
     }
 
-    /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     *
-     * @return User
-     */
-    public function setIsActive($isActive)
+    public function getPlainPassword()
     {
-        $this->isActive = $isActive;
-
-        return $this;
+        return $this->plainPassword;
     }
 
-    /**
-     * Get isActive
-     *
-     * @return bool
-     */
-    public function getIsActive()
+    public function setPlainPassword($plainPassword)
     {
-        return $this->isActive;
-    }
-
-    /**
-     * Set roles
-     *
-     * @param array $roles
-     *
-     * @return User
-     */
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * Get roles
-     *
-     * @return array
-     */
-    public function getRoles()
-    {
-        return $this->roles;
-    }
-
-    /** @see \Serializable::serialize() */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-        ));
-    }
-
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-            ) = unserialize($serialized);
-    }
-
-    public function eraseCredentials()
-    {
+        $this->plainPassword = $plainPassword;
+        // forces the object to look "dirty" to Doctrine. Avoids
+        // Doctrine *not* saving this entity, if only plainPassword changes
+        $this->password = null;
     }
 }
-

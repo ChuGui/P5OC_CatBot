@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class MainController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="homepage")
      */
     public function homeAction()
     {

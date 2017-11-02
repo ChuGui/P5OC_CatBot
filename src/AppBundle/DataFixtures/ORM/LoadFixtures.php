@@ -2,10 +2,10 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Genus;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\User;
-
+use Nelmio\Alice\Fixtures;
 
 class LoadFixtures implements FixtureInterface
 {
