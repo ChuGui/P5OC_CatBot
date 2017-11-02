@@ -3,14 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 
 
 /**
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="NAO\MainBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
 class User implements UserInterface
 {
@@ -33,16 +35,16 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=64)
+     * @ORM\Column(name="email", type="string", length=60, unique=true)
      */
-    private $password;
+    private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=60, unique=true)
+     * @ORM\Column(name="password", type="string", length=64)
      */
-    private $email;
+    private $password;
 
     /**
      * @var bool
