@@ -10,6 +10,9 @@ security:
     encoders:
         AppBundle\Entity\User: bcrypt
 
+    role_hierarchy:
+        ROLE_NATURALISTE: [ROLE_USER]
+
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -24,6 +27,7 @@ security:
 
             logout:
                 path: /logout
+                target: /
             # activate different ways to authenticate
 
             # http_basic: ~
@@ -31,3 +35,6 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - {path: ^/profil, roles: ROLE_USER }
+
