@@ -1,6 +1,13 @@
 AppBundle\Entity\User:
-    user_{1..10}:
-        email: guillaume+<current()>@gmail.com
+    user_{1..5}:
+        username: naturaliste<current()>
+        email: naturaliste<current()>@gmail.com
+        plainPassword: naturaliste
+        roles: ['ROLE_NATURALISTE']
+    user_{6..20}:
+        username: guillaume<current()>
+        email: guillaume<current()>@gmail.com
         plainPassword: guillaume
-        roles: ['ROLE_ADMIN']
+        roles: ['ROLE_USER']
+    
 

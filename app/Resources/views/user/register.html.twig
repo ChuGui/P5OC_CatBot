@@ -1,0 +1,31 @@
+{% extends 'base.html.twig'%}
+
+{% block body%}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Inscription</h1>
+
+                {{ form_start(form) }}
+                    {{ form_row(form.username,{
+                       'label' : 'Pseudo'
+                    }) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.plainPassword.first, {
+                        'label' : 'Mot de pass'
+                    }) }}
+                    {{ form_row(form.plainPassword.second, {
+                        'label' : 'Confirmez votre mot de pass'
+                    }) }}
+
+                    <button type="submit" class="btn btn-primary" formnovalidate>Inscription</button>
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

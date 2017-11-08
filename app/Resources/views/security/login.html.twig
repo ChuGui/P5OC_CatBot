@@ -21,17 +21,18 @@
                         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     </div>
                 {% endif %}
-                {% for flashMessage in app.session.flashbag.get('needLogin') %}
+                {% for message in app.flashes('notice') %}
                     <div class="alert alert-danger">
-                        <div>{{ flashMessage }}</div>
+                        <div>{{ message }}</div>
                     </div>
                 {% endfor %}
                 {{ form_start(form) }}
                     {{ form_row(form._username) }}
                     {{ form_row(form._password) }}
-                    {{ form_row(form._roles) }}
 
                     <button type="submit" class="btn btn-success">Connexion <span class="fa fa-lock"></span></button>
+                    &nbsp;
+                    <a href="{{ path('user_register') }}">S'inscrire</a>
                 {{ form_end(form) }}
             </div>
         </div>
