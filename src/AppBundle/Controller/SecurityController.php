@@ -52,4 +52,6 @@ class SecurityController extends Controller
         throw new \Exception('Ceci ne devrait pas être atteint');
     }
 
+
+
 }

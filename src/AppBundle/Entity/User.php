@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"email"}, message="On dirait que vous avez déjà un compte! :)")
  * @UniqueEntity(fields={"username"}, message="Ce pseudo a déjà été choisi" )
  */
-class User implements UserInterface
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -62,6 +63,11 @@ class User implements UserInterface
      */
     private $token;
 
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
 
     /**
      * @ORM\Column(type="json_array")
@@ -70,6 +76,7 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->isActive = true;
         $this->token = hash('sha512', uniqid());
     }
     // needed by the security system
@@ -97,10 +104,6 @@ class User implements UserInterface
     {
         $roles = $this->roles;
 
-        // give everyone ROLE_USER!
-        if (!in_array('ROLE_USER', $roles)) {
-            $roles[] = 'ROLE_USER';
-        }
 
         return $roles;
     }
@@ -187,4 +190,76 @@ class User implements UserInterface
     {
         return $this->token;
     }
+
+
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
+    }
+
 }

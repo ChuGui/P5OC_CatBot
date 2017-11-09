@@ -23,7 +23,7 @@ class MainController extends Controller
     /**
      * @Route("/observation", name="observation")
      */
-    public function observationAction(Request $request, Security $security)
+    public function observationAction(Request $request)
     {
 
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
@@ -56,25 +56,5 @@ class MainController extends Controller
          }
         return $this->render('main/validation.html.twig');
      }
-
-    /**
-     * @Route("/activate", name="activate")
-     */
-    public function activateAction(Request $request) {
-        $params = array();
-        $token = $request->query->get("activate_token");
-        var_dump($token);
-        /*$em = $this->container->get("doctrine.orm.default_entity_manager");
-        $user = $em->getRepository("NamespaceMyBundle:User")->findOneBy(array("token" => $token));
-        if ($user != null) {
-            $user->setEnabled(true);
-            $em->persist($user);
-            $em->flush();
-            $params["activate"] = true;
-        } else {
-            $params["activate"] = false;
-        }*/
-        return $this->render('main/home.html.twig');
-    }
 }
 
