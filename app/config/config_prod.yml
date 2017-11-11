@@ -20,3 +20,10 @@ monolog:
         console:
             type: console
             process_psr_3_messages: false
+
+swiftmailer:
+    transport: %dev_mailer_transport%
+    host: %dev_mailer_host%
+    username: %dev_mailer_username%
+    password: %dev_mailer_password%
+    spool: { type: memory }

@@ -42,3 +42,9 @@ services:
         autowire: true
         tags:
             - { name: doctrine.event_subscriber }
+
+    app.mail.send_register_confirmation_mail:
+        class: AppBundle\Service\SendRegisterConfirmationMail
+        arguments: ['@mailer']
+        public: true
+

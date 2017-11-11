@@ -33,17 +33,8 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-
-            $message = (new \Swift_Message('Confirmation de votre compte NAO'));
-            /*$logoUrl = $message->embed(\Swift_Image::fromPath('bundles/louvreticket/img/louvreLogo.jpg'));*/
-            $message
-                ->setFrom(array('chugustudio@gmail.com' => "NAO"))
-                ->setTo($userEmail)
-                ->setCharset('utf-8')
-                ->setContentType('text/html')
-                ->setBody($this->renderView('mail/registerValidation.html.twig', array(
-                    'token' => $token,
-                )), 'text/html');
+            $sendConfirmationMail = $this->get('app.mail.send_register_confirmation_mail');
+            $sendConfirmationMail->sendRegisterConfirmationMail($userEmail, $token);
 
             $this->addFlash('notice', "Un email de confirmation vous à été envoyé.");
             return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess(
