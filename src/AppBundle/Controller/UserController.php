@@ -51,7 +51,6 @@ class UserController extends Controller
      */
      public function activateUserAction(Request $request)
      {
-         $params = array();
          $token = $request->query->get("token");
          $em = $this->getDoctrine()->getManager();
          $user = $em->getRepository('AppBundle:User')->findOneBy(array('token' => $token));
@@ -68,13 +67,10 @@ class UserController extends Controller
                  $this->get('app.security.login_form_authenticator'),
                  'main'
              );
+
          }else{
              $this->addFlash('notice', "Ce compte n'éxiste pas ou plus.");
-             $this->redirectToRoute('homepage');
+             return $this->redirectToRoute('homepage');
          }
-
-         return $this->render('security/activate.html.twig');
-
-
      }
 }

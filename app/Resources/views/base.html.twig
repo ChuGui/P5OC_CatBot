@@ -53,16 +53,18 @@
                     </li>
                     {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">PROFIL</a>
+                            <a class="nav-link" href="{{ path('profil') }}">PROFIL</a>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_USER') %}
-                        <a href="{{ path('security_logout') }}">DÉCONNEXION</a>
+                        <a href="{{ path('security_logout') }}">
+                            <a class="btn  btn-outline" href="{{ path('security_logout') }}"><i
+                                        class="fa fa-user"></i>DÉCONNEXION</a>
                     {% else %}
-                        <a class="btn btn-outline-white btn-outline" href="{{ path('security_login') }}"><i
+                        <a class="btn  btn-outline" href="{{ path('security_login') }}"><i
                                     class="fa fa-user"></i> CONNEXION
                         </a>
-                        <a class="btn btn-outline-white btn-outline" href="{{ path('user_register') }}"><i
+                        <a class="btn  btn-outline" href="{{ path('user_register') }}"><i
                                     class="fa fa-user"></i> INSCRITPION
                         </a>
 
@@ -110,7 +112,7 @@
     <div class="card text-center" id="footer">
         <div class="card-body">
             <h4 class="card-title">LOGO</h4>
-            <p class="card-text">Réseaux soiciaux</p>
+            <p class="card-text">Réseaux sociaux</p>
             <ul class="nav justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">A propos</a>

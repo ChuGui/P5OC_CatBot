@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/profil.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="card text-center" id="footer">
+        <div class="card-body">
+            <h4 class="card-title">LOGO</h4>
+            <p class="card-text">Réseaux sociaux</p>
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Récompenses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mes observations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Paramètres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Validations</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <h1 class="text-center">Titre</h1>
+        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
+    </div>
+
+{% endblock %}

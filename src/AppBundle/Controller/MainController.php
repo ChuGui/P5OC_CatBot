@@ -39,9 +39,12 @@ class MainController extends Controller
         return $this->render('NAOMainBundle:Main:admin.html.twig');
     }
 
+    /**
+     * @Route("/profil", name="profil")
+     */
     public function profilAction()
     {
-        return $this->render('main/profile.html.twig');
+        return $this->render('main/profil.html.twig');
     }
 
     /**

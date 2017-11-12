@@ -12,17 +12,9 @@ body
 ------------------
 ------------------*/
 
-header
-{
-
-}
-
-.navbar-trans {
-    background: transparent; }
-
 a.navbar-brand, a.logo {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #fff !important;
+    color: #46484a !important;
     font-size: 2rem;
     font-weight: bold;
     margin-top: 0; }
@@ -34,8 +26,11 @@ li.nav-item .btn {
     margin-top: .2rem;
     margin-left: .4rem; }
 li.nav-item .btn-black {
-    color: #46484a; }
-
+    color: #6E6E6E; }
+.btn-outline {
+    border-color: #6E6E6E;
+    margin-left:5px ;
+}
 a
 {
     color: #564747;
