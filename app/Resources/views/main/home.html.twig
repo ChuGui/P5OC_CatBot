@@ -4,7 +4,7 @@
 {% block stylesheets %}
 
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('bundles/main/css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/home.css') }}">
 
 {% endblock %}
 
@@ -18,5 +18,7 @@
 
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
 

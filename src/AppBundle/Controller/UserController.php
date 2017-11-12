@@ -24,7 +24,7 @@ class UserController extends Controller
         {
             /** @var User $user*/
             $user = $form->getData();
-            $user->setRoles(['ROLE_USER']);
+
             $user->setIsActive(false);
             $userEmail = $user->getEmail();
             $token = $user->getToken();
@@ -36,13 +36,9 @@ class UserController extends Controller
             $sendConfirmationMail = $this->get('app.mail.send_register_confirmation_mail');
             $sendConfirmationMail->sendRegisterConfirmationMail($userEmail, $token);
 
-            $this->addFlash('notice', "Un email de confirmation vous à été envoyé.");
-            return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $this->get('app.security.login_form_authenticator'),
-                'main'
-            );
+            $this->addFlash('notice', "Un email de confirmation vous à été envoyé à l'adresse " . $userEmail);
+            return $this->redirectToRoute('user_register');
+
         }
 
         return $this->render('user/register.html.twig', array(
@@ -66,7 +62,12 @@ class UserController extends Controller
              $em->flush();
 
              $this->addFlash('notice', 'Votre compte à bien été validé');
-             $this->redirectToRoute('observation');
+             return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess(
+                 $user,
+                 $request,
+                 $this->get('app.security.login_form_authenticator'),
+                 'main'
+             );
          }else{
              $this->addFlash('notice', "Ce compte n'éxiste pas ou plus.");
              $this->redirectToRoute('homepage');

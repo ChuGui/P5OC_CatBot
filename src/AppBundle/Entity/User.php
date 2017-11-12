@@ -78,6 +78,7 @@ class User implements AdvancedUserInterface, \Serializable
     {
         $this->isActive = true;
         $this->token = hash('sha512', uniqid());
+        $this->roles = ['ROLE_USER'];
     }
     // needed by the security system
 
