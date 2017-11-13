@@ -9,8 +9,8 @@
 
     <div class="card text-center" id="footer">
         <div class="card-body">
-            <h4 class="card-title">LOGO</h4>
-            <p class="card-text">Réseaux sociaux</p>
+            <h4 class="card-title">PROFIL</h4>
+            <br>
             <ul class="nav nav-tabs justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Récompenses</a>
@@ -32,5 +32,23 @@
         <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <img src="{{ asset('bundles/app/img/anonyme.png') }}" id="profilImg">
+                    </div>
+                        <div class="col">
+                             <h6>NOM UTILISATEUR</h6>
+                            <p>Niveau X : lorem ipsum</p>
+                        </div>
+                </div>
+            </div>
+            <div class="col">
+                <h6>PROCHAIN NIVEAU</h6>
+                <img src="{{ asset('bundles/app/img/progression.png') }}" alt="">
+            </div>
+        </div>
 
 {% endblock %}

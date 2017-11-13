@@ -57,20 +57,20 @@
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_USER') %}
-                        <a href="{{ path('security_logout') }}">
-                            <a class="btn  btn-outline" href="{{ path('security_logout') }}"><i
-                                        class="fa fa-user"></i>DÉCONNEXION</a>
-                    {% else %}
-                        <a class="btn  btn-outline" href="{{ path('security_login') }}"><i
-                                    class="fa fa-user"></i> CONNEXION
-                        </a>
-                        <a class="btn  btn-outline" href="{{ path('user_register') }}"><i
-                                    class="fa fa-user"></i> INSCRITPION
-                        </a>
+                    <a href="{{ path('security_logout') }}">
+                        <a class="btn  btn-outline" href="{{ path('security_logout') }}"><i
+                                    class="fa fa-user"></i>DÉCONNEXION</a>
+                        {% else %}
+                            <a class="btn  btn-outline" href="{{ path('security_login') }}"><i
+                                        class="fa fa-user"></i> CONNEXION
+                            </a>
+                            <a class="btn  btn-outline" href="{{ path('user_register') }}"><i
+                                        class="fa fa-user"></i> INSCRITPION
+                            </a>
 
-                    {% endif %}
-                    <li class="nav-item">
-                    </li>
+                        {% endif %}
+                        <li class="nav-item">
+                        </li>
                 </ul>
             </div>
         </div>
@@ -97,14 +97,18 @@
 <div class="footer">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <div class="input-group">
-                <h2>SOUSCRIRE</h2>
-                <br/>
-                <p>à notre newsletter</p>
-                <input type="text" class="form-control" placeholder="mon@adresse.com" aria-label="souscription">
-                <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Ok!</button>
+            <div class="row">
+                <div class="col">
+                    <h2>SOUSCRIRE</h2>
+                    <br/>
+                    <p>à notre newsletter</p>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="mon@adresse.com" aria-label="souscription">
+                    <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button">Ok!</button>
                 </span>
+                </div>
             </div>
         </div>
 
