@@ -23,10 +23,11 @@ AppBundle\Entity\User:
         level: condor
         roles: ['ROLE_ADMIN']
 
-    article_{1..10}:
+AppBundle\Entity\Article:
+     article_{1..9}:
         title: titre<current()>
         content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque ex sit amet diam lobortis, lobortis cursus nisl consectetur. Aenean molestie bibendum mauris eu pharetra.
-
+        updateAt: <(new DateTime("NOW"))>
 
     
 
