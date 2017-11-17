@@ -79,11 +79,11 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $level;
 
+
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
-
 
     /**
      * @ORM\Column(type="json_array")

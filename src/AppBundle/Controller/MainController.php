@@ -49,7 +49,7 @@ class MainController extends Controller
     public function profilAction()
     {
         $level = $this->getUser()->getLevel();
-        var_dump($level);
+
         return $this->render('main/profil.html.twig', array(
             'niveau' => $level
         ));
