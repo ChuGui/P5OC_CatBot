@@ -3,11 +3,16 @@ AppBundle\Entity\User:
         username: naturaliste<current()>
         email: naturaliste<current()>@gmail.com
         plainPassword: naturaliste
+        profilPicture: bundles/Appbundle/img/anonyme.png
+        level: aigle royal
         roles: ['ROLE_NATURALISTE']
+
     user_{6..20}:
         username: guillaume<current()>
         email: guillaume<current()>@gmail.com
         plainPassword: guillaume
+        profilPicture: bundles/Appbundle/img/anonyme.png
+        level: moineau
         roles: ['ROLE_USER']
     
 

@@ -7,50 +7,96 @@
 
 {% block body %}
 
-    <div class="card text-center" id="footer">
+    <div class="card text-center">
+        <div class="card-title" id="titlePicture">
+            <h1>PROFIL</h1>
+        </div>
         <div class="card-body">
-            <h4 class="card-title">PROFIL</h4>
             <br>
-            <ul class="nav nav-tabs justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Récompenses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Mes observations</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Paramètres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Validations</a>
-                </li>
-            </ul>
+            <div class="container-fluid">
+
+
+                <ul class="nav nav-tabs justify-content-center" id="userTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile"
+                           aria-selected="true">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="awards-tab" data-toggle="tab" href="#awards" aria-selected="false">Récompenses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="observations-tab" data-toggle="tab" href="#observations"
+                           aria-selected="false">Mes
+                            observations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" aria-selected="false">Mes
+                            paramètres</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="container-fluid">
-        <h1 class="text-center">Titre</h1>
-        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <img src="{{ asset('bundles/app/img/anonyme.png') }}" id="profilImg">
-                    </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="container-fluid">
+                    <h1 class="text-center">Titre</h1>
+                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
+                </div>
+                <div class="container">
+                    <div class="row">
                         <div class="col">
-                             <h6>NOM UTILISATEUR</h6>
-                            <p>Niveau X : lorem ipsum</p>
+                            <div class="row">
+                                <div class="col">
+                                    <img src="{{ asset('bundles/app/img/anonyme.png') }}" id="profilImg">
+                                </div>
+                                <div class="col">
+                                    <h6>NOM UTILISATEUR</h6>
+                                    <p>Niveau X : lorem ipsum</p>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col">
+                            <h6>NIVEAU ACTUEL: {{ niveau | capitalize }}</h6>
+                            <div class="progress">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                                     style="width: 77%">77%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <h6>NIVEAU ACTUEL: {{ niveau }}</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 77%">77%</div>
+            <div class="tab-pane" id="awards" role="tabpanel" aria-labelledby="awards-tab">
+                <div class="card">
+                    <div class="card-title"><h1>Récompenses</h1></div>
+                    <div class="card-body">
+                        <h3>Voici toutes mes récompenses</h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="awards-tab">
+                <div class="card">
+                    <div class="card-title"><h1>Mes Observations</h1></div>
+                    <div class="card-body">
+                        <h3>Voici toutes mes observations</h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                <div class="card">
+                    <div class="card-title"><h1>Paramètres</h1></div>
+                    <div class="card-body">
+                        <h3>Ici se trouve tous mes paramètres</h3>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+
+
+
 
 {% endblock %}

@@ -9,3 +9,9 @@ img.separateur
 {
     border-radius: 50%;
 }
+
+#titlePicture{
+    background: url("../img/profile_birds.jpg") no-repeat center;
+    background-size: cover;
+    height: 200px;
+}
