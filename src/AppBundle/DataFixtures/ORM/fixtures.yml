@@ -28,6 +28,7 @@ AppBundle\Entity\Article:
         title: titre<current()>
         content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque ex sit amet diam lobortis, lobortis cursus nisl consectetur. Aenean molestie bibendum mauris eu pharetra.
         updateAt: <(new DateTime("NOW"))>
+        articleImage: bird.jpg
 
     
 

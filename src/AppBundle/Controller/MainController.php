@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,7 +61,11 @@ class MainController extends Controller
      */
     public function actualiteAction()
     {
+        $em = $this->getDoctrine()->getManager();
+       $articles = $em->getRepository(Article::class)->findAll();
+
         return $this->render('main/actualite.html.twig', array(
+            'articles' => $articles
         ));
     }
 
