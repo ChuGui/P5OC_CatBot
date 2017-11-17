@@ -34,8 +34,12 @@ class MainController extends Controller
 
     }
 
+    /**
+     * @Route("/admin", name="admin")
+     */
     public function adminAction()
     {
+
         return $this->render('NAOMainBundle:Main:admin.html.twig');
     }
 
@@ -59,5 +63,8 @@ class MainController extends Controller
          }
         return $this->render('main/validation.html.twig');
      }
+
+
+
 }
 

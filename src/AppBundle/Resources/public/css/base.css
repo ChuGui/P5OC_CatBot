@@ -1,13 +1,27 @@
-@font-face{
+/* latin-ext */
+@font-face {
     font-family: 'Roboto';
-    src: url("../font/Roboto");
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+
+/* latin-ext */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/yQiAaD56cjx1AooMTSghGfY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
 
 body
 {
-    font-family: "Roboto","Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Arial, sans-serif;
     font-size: 16px;
-    background-color: #fffef9;
+    background-color: #fffdf8;
     color: #46484a;
 }
 
@@ -16,34 +30,6 @@ body
 ------HEADER------
 ------------------
 ------------------*/
-
-a.navbar-brand, a.logo {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #46484a !important;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 0; }
-
-a.logo:hover, a.logo:active, a.logo:focus {
-    text-decoration: none; }
-
-li.nav-item .btn {
-    margin-top: .2rem;
-    margin-left: .4rem; }
-li.nav-item .btn-black {
-    color: #6E6E6E; }
-.btn-outline {
-    border-color: #6E6E6E;
-    margin-left:5px ;
-}
-a
-{
-    color: #564747;
-}
-
-
-
-#footer
-{
-    background-color: #a5a5a5;
+.navbar-brand{
+    font-family: "Raleway";
 }

@@ -1,8 +1,6 @@
 #contain
 {
-    margin-top: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-
+    background: url("../img/bg_oiseau.jpg") no-repeat center fixed;
+    background-size: cover;
+    height: 500px;
 }

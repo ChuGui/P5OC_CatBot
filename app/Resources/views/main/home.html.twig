@@ -10,10 +10,19 @@
 
 {% block body %}
 
-    <div class="well" id="contain">
-        <h1>PAGE D'ACCUEIL</h1>
-        <p><a href="{{ path('security_login') }}">Connexion</a></p>
-        <p><a href="{{ path('user_register') }}">Inscription</a></p>
+    <div class="container-fluid" id="contain">
+        <div class="card  border-none text-center mx-auto bg-transparent" style="width: 75%">
+            <div class="card-title mt-5 text-white">
+                <h1>NOS AMIS LES OISEAUX</h1>
+            </div>
+            <div class="card-body text-white">
+                    <h6>Lorem ipsum dolor sit amet, consectetur.</h6>
+
+            </div>
+            <div class="card-footer">
+                <a href="{{ path('observation') }}"><button class="btn btn-primary">COMMENCER</button></a>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
