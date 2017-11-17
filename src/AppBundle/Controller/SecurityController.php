@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -116,19 +117,32 @@ class SecurityController extends Controller
 
     /**
      * @Route("/change", name="change")
-     * @Secure(roles="IS_AUTHENTICATED_FULLY")
+     *
      */
     public function changeAction(Request $request)
     {
 
-        $params = $request->request->all();
-        if (!array_key_exists("current", $params)
-            || !array_key_exists("new", $params)
-            || !array_key_exists("new2", $params))
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER'))
         {
-            return array("error" => "S'il vous plaît, veuillez renseigner tous les champs");
+            $message = "Vous devez être connecté pour accéder à cette page";
+            return $this->render('error/accessDenied.html.twig',array(
+                'message'=>$message,
+            ));
+        }else{
+            $params = $request->request->all();
+            if (!array_key_exists("current", $params)
+                || !array_key_exists("new", $params)
+                || !array_key_exists("new2", $params))
+            {
+                return array("error" => "S'il vous plaît, veuillez renseigner tous les champs");
+            }else{
+
+            }
+            $em = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+
         }
-        $em = $this->get('manager');
+
 
     }
 

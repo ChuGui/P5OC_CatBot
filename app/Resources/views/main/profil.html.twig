@@ -46,8 +46,10 @@
                 </div>
             </div>
             <div class="col">
-                <h6>PROCHAIN NIVEAU</h6>
-                <img src="{{ asset('bundles/app/img/progression.png') }}" alt="">
+                <h6>NIVEAU ACTUEL: {{ niveau }}</h6>
+                <div class="progress">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 77%">77%</div>
+                </div>
             </div>
         </div>
 

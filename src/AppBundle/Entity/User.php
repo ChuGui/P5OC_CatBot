@@ -73,6 +73,13 @@ class User implements AdvancedUserInterface, \Serializable
     private $token;
 
     /**
+     * The level of the user
+     *
+     * @ORM\Column(type="string")
+     */
+    private $level;
+
+    /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
@@ -272,4 +279,52 @@ class User implements AdvancedUserInterface, \Serializable
             ) = unserialize($serialized);
     }
 
+
+    /**
+     * Set profilPicture
+     *
+     * @param string $profilPicture
+     *
+     * @return User
+     */
+    public function setProfilPicture($profilPicture)
+    {
+        $this->profilPicture = $profilPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get profilPicture
+     *
+     * @return string
+     */
+    public function getProfilPicture()
+    {
+        return $this->profilPicture;
+    }
+
+    /**
+     * Set level
+     *
+     * @param string $level
+     *
+     * @return User
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return string
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
 }
