@@ -67,8 +67,23 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %dev_mailer_transport%
-    host: %dev_mailer_host%
-    username: %dev_mailer_username%
-    password: %dev_mailer_password%
+    transport: %mailer_transport%
+    host: %mailer_host%
+    username: %mailer_user%
+    password: %mailer_password%
     spool: { type: memory }
+
+ivory_ck_editor:
+    configs:
+        full_config:
+            jquery: true
+            height: '900px'
+            language: fr
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
+            extraPlugins: 'lineutils,widget,dialog,codesnippet,widgetselection'
+        basic_config:
+            jquery: true
+            heihgt: '250px'
+            language: fr
+            toolbar: basic

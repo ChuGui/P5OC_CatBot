@@ -56,6 +56,20 @@ class MainController extends Controller
     }
 
     /**
+     * @Route("/actualite", name="actualite")
+     */
+    public function actualiteAction()
+    {
+        return $this->render('main/actualite.html.twig', array(
+        ));
+    }
+
+    /**
+     * @Route("/actualite/add", name="addActualite")
+     */
+
+
+    /**
      * @Route("/validation", name="validation")
      */
      public function validationAction()

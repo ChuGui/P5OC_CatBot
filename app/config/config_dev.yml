@@ -38,8 +38,8 @@ monolog:
         #    level: info
 
 swiftmailer:
-    transport: %dev_mailer_transport%
-    host: %dev_mailer_host%
-    username: %dev_mailer_username%
-    password: %dev_mailer_password%
+    transport: %mailer_transport%
+    host: %mailer_host%
+    username: %mailer_user%
+    password: %mailer_password%
     spool: { type: memory }

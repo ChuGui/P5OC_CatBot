@@ -1,0 +1,6 @@
+#headContainer
+{
+    background: url("../img/actualite.png") no-repeat center;
+    background-size: cover;
+    height: 200px;
+}

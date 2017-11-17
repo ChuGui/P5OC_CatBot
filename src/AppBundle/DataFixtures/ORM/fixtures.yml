@@ -14,5 +14,19 @@ AppBundle\Entity\User:
         profilPicture: bundles/Appbundle/img/anonyme.png
         level: moineau
         roles: ['ROLE_USER']
+
+    user:
+        username: admin
+        email: admin@admin.com
+        plainPassword: admin
+        profilPicture: bundles/Appbundle/img/anonyme.png
+        level: condor
+        roles: ['ROLE_ADMIN']
+
+    article_{1..10}:
+        title: titre<current()>
+        content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque ex sit amet diam lobortis, lobortis cursus nisl consectetur. Aenean molestie bibendum mauris eu pharetra.
+
+
     
 

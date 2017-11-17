@@ -12,6 +12,7 @@ security:
 
     role_hierarchy:
         ROLE_NATURALISTE: [ROLE_USER]
+        ROLE_ADMIN: [ROLE_USER, ROLE_NATURALISTE, ROLE_ALLOWED_TO_SWITCH]
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
