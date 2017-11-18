@@ -9,10 +9,13 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use AppBundle\Form\LoginForm;
 use Symfony\Component\HttpFoundation\Session\Session;
-
+use AppBundle\Entity\User;
+use Symfony\Component\Security\Guard\GuardAuthenticatorInterface;
 class SecurityController extends Controller
 {
 
@@ -30,8 +33,7 @@ class SecurityController extends Controller
         //On verifie que l'url de redirection provient de observation pour envoyer un flash message à login.html.twig
         $session = new Session();
         $attribute = $session->all();
-        if (isset($attribute['sf_redirect']['route']) && ($attribute['sf_redirect']['route'] === 'observation'))
-        {
+        if (isset($attribute['sf_redirect']['route']) && ($attribute['sf_redirect']['route'] === 'observation')) {
             $this->addFlash('notice', 'Pour ajouter une obsevation, vous devez être connecté.');
         }
 
@@ -59,12 +61,11 @@ class SecurityController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $form =  $this->createForm(UserRegistrationForm::class);
+        $form = $this->createForm(UserRegistrationForm::class);
 
         $form->handleRequest($request);
-        if($form->isValid())
-        {
-            /** @var User $user*/
+        if ($form->isValid()) {
+            /** @var User $user */
             $user = $form->getData();
 
             $user->setIsActive(false);
@@ -96,8 +97,7 @@ class SecurityController extends Controller
         $token = $request->query->get("token");
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:User')->findOneBy(array('token' => $token));
-        if(!$user == null)
-        {
+        if (!$user == null) {
             $user->setIsActive(true);
             $em->persist($user);
             $em->flush();
@@ -110,43 +110,103 @@ class SecurityController extends Controller
                 'main'
             );
 
-        }else{
+        } else {
             $this->addFlash('notice', "Ce compte n'éxiste pas ou plus.");
             return $this->redirectToRoute('homepage');
         }
     }
 
     /**
-     * @Route("/change", name="change")
+     *
+     * @Route("/change/email", name="changeEmail")
      *
      */
-    public function changeAction(Request $request)
+    public function changeEmailAction(Request $request)
     {
 
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER'))
-        {
+        /*if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             $message = "Vous devez être connecté pour accéder à cette page";
-            return $this->render('error/accessDenied.html.twig',array(
-                'message'=>$message,
+            return $this->render('error/accessDenied.html.twig', array(
+                'message' => $message,
             ));
-        }else{
+        } else {
+            $params = $request->request->all();
+            if (!array_key_exists("password", $params)
+                || !array_key_exists("newEmail", $params)
+                || !array_key_exists("repeatEmail", $params)) {
+                return array("error" => "S'il vous plaît, veuillez renseigner tous les champs");
+            } else {
+
+            }*/
+            /*$em = $this->getDoctrine()->getManager();*/
+            $user = $this->getUser();
+            $password = $user->getPlainPassword();
+            var_dump($password);
+            return $this->render('main/home.html.twig');
+
+    }
+
+    /**
+     * @Method({"POST"})
+     * @Route("/changePassword", name="changePassword")
+     *
+     */
+    public function changePasswordAction(Request $request)
+    {
+
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            $message = "Vous devez être connecté pour accéder à cette page";
+            return $this->render('error/accessDenied.html.twig', array(
+                'message' => $message,
+            ));
+        } else {
             $params = $request->request->all();
             if (!array_key_exists("current", $params)
                 || !array_key_exists("new", $params)
-                || !array_key_exists("new2", $params))
-            {
+                || !array_key_exists("new2", $params)) {
                 return array("error" => "S'il vous plaît, veuillez renseigner tous les champs");
-            }else{
+            } else {
 
             }
             $em = $this->getDoctrine()->getManager();
             $user = $this->getUser();
 
         }
-
-
     }
 
+    /**
+     * @Method({"POST"})
+     * @Route("/reset", name="reset")
+     */
+    public function resetNowAction(Request $request)
+    {
+        $params = $request->request->all();
+        if (!array_key_exists("username", $params)) {
+            throw new \Exception("Aucun pseudo donnée");
+        }
+
+        $username = &$params["username"];
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:User')->findOneBy(array("username" => $username));
+        if($user == null)
+        {
+            $this->addFlash('error', "Ce pseudo est inconnu.");
+            return $this->redirectToRoute('security_login');
+        }
+        $length = 10;
+        $randomString = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+        $randomPassword = hash('crc32',$randomString);
+        $user->setPlainPassword($randomPassword);
+
+        $em->persist($user);
+        $em->flush();
+
+        $userEmail = $user->getEmail();
+        $sendResetPasswordMail = $this->get('app.mail.send_reset_password_mail');
+        $sendResetPasswordMail->sendResetPasswordMail($userEmail, $randomPassword);
+        $this->addFlash('notice', "Un email avec votre nouveau mot de passe vous à été envoyé à l'adresse " . $user->getEmail());
+        return $this->redirectToRoute('security_login');
+    }
 
 
 }

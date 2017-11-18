@@ -59,11 +59,8 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Ajouter une image jpg")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
-    private $profilPicture;
+    private $profilePicture;
 
     /**
      * The encoded token
@@ -79,6 +76,12 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $level;
 
+    /**
+     * number of observations
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $nbObservations;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
@@ -95,6 +98,8 @@ class User implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
         $this->token = hash('sha512', uniqid());
         $this->roles = ['ROLE_USER'];
+        $this->profilePicture = 'anonyme.png';
+        $this->level= 'moineau';
     }
     // needed by the security system
 
@@ -281,27 +286,27 @@ class User implements AdvancedUserInterface, \Serializable
 
 
     /**
-     * Set profilPicture
+     * Set profilePicture
      *
-     * @param string $profilPicture
+     * @param string $profilePicture
      *
      * @return User
      */
-    public function setProfilPicture($profilPicture)
+    public function setProfilePicture($profilePicture)
     {
-        $this->profilPicture = $profilPicture;
+        $this->profilePicture = $profilePicture;
 
         return $this;
     }
 
     /**
-     * Get profilPicture
+     * Get profilePicture
      *
      * @return string
      */
-    public function getProfilPicture()
+    public function getProfilePicture()
     {
-        return $this->profilPicture;
+        return $this->profilePicture;
     }
 
     /**
@@ -326,5 +331,30 @@ class User implements AdvancedUserInterface, \Serializable
     public function getLevel()
     {
         return $this->level;
+    }
+
+
+    /**
+     * Set nbObservations
+     *
+     * @param integer $nbObservations
+     *
+     * @return User
+     */
+    public function setNbObservations($nbObservations)
+    {
+        $this->nbObservations = $nbObservations;
+
+        return $this;
+    }
+
+    /**
+     * Get nbObservations
+     *
+     * @return integer
+     */
+    public function getNbObservations()
+    {
+        return $this->nbObservations;
     }
 }

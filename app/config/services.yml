@@ -48,3 +48,8 @@ services:
         arguments: ['@mailer']
         public: true
 
+    app.mail.send_reset_password_mail:
+        class: AppBundle\Service\SendResetPasswordMail
+        arguments: ['@mailer']
+        public: true
+

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Article;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,19 +41,18 @@ class MainController extends Controller
      */
     public function adminAction()
     {
-
         return $this->render('NAOMainBundle:Main:admin.html.twig');
     }
 
     /**
-     * @Route("/profil", name="profil")
+     * @Route("/profile", name="profile")
      */
     public function profilAction()
     {
-        $level = $this->getUser()->getLevel();
+        $user = $this->getUser();
 
-        return $this->render('main/profil.html.twig', array(
-            'niveau' => $level
+        return $this->render('main/profile.html.twig', array(
+            'user' => $user
         ));
     }
 

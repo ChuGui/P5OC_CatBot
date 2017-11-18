@@ -12,29 +12,73 @@
 
 {% block body %}
 
-    <div class="container" id="form">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1>Connexion!</h1>
-                {% if error %}
-                    <div class="alert alert-danger">
-                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    </div>
-                {% endif %}
-                {% for message in app.flashes('notice') %}
-                    <div class="alert alert-danger">
-                        <div>{{ message }}</div>
-                    </div>
-                {% endfor %}
-                {{ form_start(form) }}
-                    {{ form_row(form._username, {'label' : 'Pseudo'}) }}
-                    {{ form_row(form._password, {'label' : 'Mot de passe'}) }}
+    <div class="container row" id="form">
+        <div class="col">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Connexion!</h1>
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        </div>
+                    {% endif %}
+                    {% for message in app.flashes('notice') %}
+                        <div class="alert alert-info">
+                            <div>{{ message }}</div>
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">
+                            <div>{{ message }}</div>
+                        </div>
+                    {% endfor %}
+                    {{ form_start(form) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.plainPassword.first, {
+                        'label' : 'Mot de passe'
+                    }) }}
+                    {{ form_row(form.plainPassword.second, {
+                        'label' : 'Confirmez votre mot de passe'
+                    }) }}
 
-                    <button type="submit" class="btn btn-success">Connexion <span class="fa fa-lock"></span></button>
-                    &nbsp;
-                    <a href="{{ path('user_register') }}">S'inscrire</a>
-                {{ form_end(form) }}
+                    <button type="submit" class="btn btn-primary" formnovalidate>Inscription</button>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-warning" data-toggle="modal" data-target="#forgetPassModal">Mot de passe oublié</button>
+            <div class="modal" id="forgetPassModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">J'ai oublié mon mot de pass</h5>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Un nouveau mot de passe vous sera envoyé par email</p>
+                            <form action="{{ path('reset') }}" method="POST">
+                                <div class="form-group">
+                                    <label for="username">Pseudo</label>
+                                    <input type="text" name="username" class="form-control">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">Envoyer</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    {#J'ai perdu mon mdp modal#}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundle/app/js/login.js') }}"></script>
 {% endblock %}

@@ -48,7 +48,7 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
-                                    <img src="{{ asset('bundles/app/img/anonyme.png') }}" id="profilImg">
+                                    <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" id="profilImg">
                                 </div>
                                 <div class="col">
                                     <h6>NOM UTILISATEUR</h6>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <h6>NIVEAU ACTUEL: {{ niveau | capitalize }}</h6>
+                            <h6>NIVEAU ACTUEL: {{ user.level | capitalize }}</h6>
                             <div class="progress">
                                 <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
                                      style="width: 77%">77%
@@ -85,11 +85,44 @@
 
                 </div>
             </div>
+            {#PARTIE PARAMETRE DU COMPTE#}
             <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <div class="card">
                     <div class="card-title"><h1>Paramètres</h1></div>
                     <div class="card-body">
                         <h3>Ici se trouve tous mes paramètres</h3>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}">
+                        </div>
+
+                        <div class="col">
+                            <form action="{{ path('changeMail') }}" method="POST">
+                                <div class="form-group">
+                                    <label for="password">Mot de passe</label>
+                                    <input type="password" name="oldPassword" class="form-control">
+                                    <label for="newEmail">Nouvel email</label>
+                                    <input type="text" name="newEmail" class="form-control">
+                                    <label for="repeatEmail">Répétez nouveau mot de passe</label>
+                                    <input type="text" name="repeatEmail" class="form-control">
+                                    <button type="submit" class="btn btn-danger">Changer de mot de passe</button>
+                                </div>
+                            </form>
+                            <form action="{{ path('change') }}" method="POST">
+                                <div class="form-group">
+                                    <label for="oldPassword">Ancien mot de passe</label>
+                                    <input type="password" name="oldPassword" class="form-control">
+                                    <label for="newPassword">Nouveau mot de passe</label>
+                                    <input type="password" name="newPassword" class="form-control">
+                                    <label for="repeatNewPassword">Répétez nouveau mot de passe</label>
+                                    <input type="password" name="repeatNewPassword" class="form-control">
+                                    <button type="submit" class="btn btn-danger">Changer de mot de passe</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

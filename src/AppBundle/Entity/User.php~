@@ -59,11 +59,8 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Ajouter une image jpg")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
-    private $profilPicture;
+    private $profilePicture;
 
     /**
      * The encoded token
@@ -80,10 +77,17 @@ class User implements AdvancedUserInterface, \Serializable
     private $level;
 
     /**
+     * number of observations
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $nbObservations;
+
+
+    /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
-
 
     /**
      * @ORM\Column(type="json_array")
@@ -95,6 +99,8 @@ class User implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
         $this->token = hash('sha512', uniqid());
         $this->roles = ['ROLE_USER'];
+        $this->profilePicture = 'anonyme.png';
+        $this->level= 'moineau';
     }
     // needed by the security system
 
@@ -277,6 +283,55 @@ class User implements AdvancedUserInterface, \Serializable
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);
+    }
+
+
+    /**
+     * Set profilePicture
+     *
+     * @param string $profilePicture
+     *
+     * @return User
+     */
+    public function setProfilePicture($profilePicture)
+    {
+        $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    /**
+     * Get profilePicture
+     *
+     * @return string
+     */
+    public function getProfilePicture()
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * Set level
+     *
+     * @param string $level
+     *
+     * @return User
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return string
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 
 }
