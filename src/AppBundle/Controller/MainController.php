@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Article;
+use AppBundle\Form\ChangeEmailForm;
+use AppBundle\Form\ChangePasswordForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Response;
@@ -47,12 +49,18 @@ class MainController extends Controller
     /**
      * @Route("/profile", name="profile")
      */
-    public function profilAction()
+    public function profileAction()
     {
         $user = $this->getUser();
+        $formChangePassword = $this->createForm(ChangePasswordForm::class);
+        $formChangeEmail = $this->createForm(ChangeEmailForm::class);
+
+
 
         return $this->render('main/profile.html.twig', array(
-            'user' => $user
+            'formChangePassword' => $formChangePassword->createView(),
+            'formChangeEmail' => $formChangeEmail->createView(),
+            'user' => $user,
         ));
     }
 
@@ -68,10 +76,6 @@ class MainController extends Controller
             'articles' => $articles
         ));
     }
-
-    /**
-     * @Route("/actualite/add", name="addActualite")
-     */
 
 
     /**
