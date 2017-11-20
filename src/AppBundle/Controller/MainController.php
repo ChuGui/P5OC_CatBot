@@ -49,11 +49,17 @@ class MainController extends Controller
     /**
      * @Route("/profile", name="profile")
      */
-    public function profileAction()
+    public function profileAction(Request $request)
     {
         $user = $this->getUser();
         $formChangePassword = $this->createForm(ChangePasswordForm::class);
         $formChangeEmail = $this->createForm(ChangeEmailForm::class);
+        $formChangeEmail->handleRequest($request);
+        if($formChangeEmail->isValid()){
+            $userNewEmail = $formChangeEmail['email']->getData();
+            var_dump($userNewEmail);
+            return $this->render('main/profile.html.twig');
+        }
 
 
 

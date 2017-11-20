@@ -1,4 +1,4 @@
-{% extends "base.html.twig"  %}
+{% extends "base.html.twig" %}
 
 {% block title %}Welcome!{% endblock %}
 {% block stylesheets %}
@@ -8,19 +8,105 @@
 {% block body %}
 
     <div class="container-fluid" id="contain">
-        <div class="card  border-none text-center mx-auto bg-transparent" style="width: 75%">
-            <div class="card-title mt-5 text-white">
-                <h1>NOS AMIS LES OISEAUX</h1>
-            </div>
-            <div class="card-body text-white">
-                    <h6>Lorem ipsum dolor sit amet, consectetur.</h6>
+        <div class="container">
+            <div class="card  text-center mx-auto bg-transparent" style="width: 75%">
+                <div class="card-title mt-5 text-white">
+                    <h1>NOS AMIS LES OISEAUX</h1>
+                </div>
+                <div class="card-body text-white">
+                    <h6>D'AUCUNS ONT DES AVENTURES...VOUS ÊTES UNE AVENTURE!</h6>
 
-            </div>
-            <div class="card-footer">
-                <a href="{{ path('observation') }}"><button class="btn btn-primary">COMMENCER</button></a>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('observation') }}" class="btn btn-primary">COMMENCER
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="container mt-5">
+            <div class="card bg-transparent text-center mx-auto">
+                <div class="card-title">
+                    <h1>3 ÉTAPES</h1>
+                </div>
+                <div class="card-body">
+                    <p>POUR BIEN COMMENCER VOTRE AVENTURE !</p>
+                </div>
+            </div>
+            <div class="media">
+                <img class="d-flex mr-3" src="{{ asset('bundles/app/img/computer.png') }}">
+                <div class="media-body">
+                    <h5 class="mt-0">CRÉER UN COMPTE NAO</h5>
+                    <p>Inscrivez-vous sur notre site, connectez-vous et profitez de l'ensemble des fonctionnalités proposées
+                        par
+                        l'association Nos Amis Les Animaux</p>
+                </div>
+            </div>
+            <div class="container" id="path1">
+
+            </div>
+            <div class="media">
+                <div class="media-body">
+                    <h5 class="mt-0">OBSERVEZ AUTOUR DE VOUS</h5>
+                    <p>Utilisez l'application pour visualiser les oiseaux qui ont été observés autour de vous et tenter à
+                        votre
+                        tour de les retrouver!<br>
+                        Contemplez également les photos des autres utilisateurs ! </p>
+                </div>
+                <img class="d-flex mr-3" src="{{ asset('bundles/app/img/cam.png') }}">
+            </div>
+        <div class="container" id="path2">
+
+        </div>
+        <div class="media">
+            <img class="d-flex mr-3" src="{{ asset('bundles/app/img/book.png') }}">
+            <div class="media-body">
+
+                <h5 class="mt-0">PARTAGEZ VOTRE EXPÉRIENCE</h5>
+                <p>Vous venez de prendre en photo un oiseau magnifique ? Partagez votre chez-d'oeuvre en saisissant
+                    votre observation depuis votre smartphone ou depuis chez vous et en permettant ainsi à la communauté
+                    d'en profiter !</p>
+            </div>
+        </div>
+        <div class="container text-center mt-3"><a href="{{ path('observation') }}" class="btn btn-primary mx-auto">COMMENCER
+            </a>
+        </div>
+    </div>
+
+
+    {#POURQUOI?#}
+    <div class="container-fluid mt-5">
+        <div class="card bg-transparent text-center mx-auto">
+            <div class="card-title">
+                <h1>POURQUOI ?</h1>
+            </div>
+            <div class="card-body">
+                <p>PARCE QU'EN S'AMUSANT, ON PEUT AUSSI AIDER LA RECHERCHE !</p>
+            </div>
+        </div>
+        <div class="row justify-content-around mt-5">
+            <div class="col-3">
+                <h3>L'OISEAU, UNE IDÉE DANS L'AIR</h3>
+                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda aut culpa cumque expedita
+                    harum iusto libero neque quos sunt!</p>
+            </div>
+            <div class="col-3">
+                <img src="{{ asset('bundles/app/img/protected_bird.png') }}" alt="hiboux_trop_choux"
+                     id="hiboux_trop_choux">
+            </div>
+            <div class="col-3">
+                <h3>SOUTENEZ NOUS EN VOUS DIVERTISSANT</h3>
+                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum harum illo incidunt iusto obcaecati
+                    qui quibusdam quisquam quo tenetur voluptatum.</p>
+            </div>
+        </div>
+    </div>
+
+
+    </div>{#Container mt-5#}
+    </div>{#Container-fluid#}
+
 
 {% endblock %}
 

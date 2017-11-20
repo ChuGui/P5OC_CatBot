@@ -13,9 +13,9 @@ class SendResetPasswordMail
         $this->twig = $twig;
     }
 
-    public function sendResetPasswordMail($userEmail, $password)
+    public function sendResetPasswordMail($userEmail, $password, $token)
     {
-        $message = (new \Swift_Message('Votre mot de passe'));
+        $message = (new \Swift_Message('Votre nouveau mot de passe'));
         /*$logoUrl = $message->embed(\Swift_Image::fromPath('bundles/louvreticket/img/louvreLogo.jpg'));*/
         $message
             ->setFrom(array('chugustudio@gmail.com' => "NAO"))
@@ -24,6 +24,7 @@ class SendResetPasswordMail
             ->setContentType('text/html')
             ->setBody($this->twig->render('mail/resetPassword.html.twig', array(
                 'password' => $password,
+                'token' => $token
             )), 'text/html');
         return $this->mailer->send($message);
     }

@@ -154,31 +154,14 @@ class SecurityController extends Controller
     public function changePasswordAction(Request $request)
     {
 
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            $message = "Vous devez être connecté pour accéder à cette page";
-            return $this->render('error/accessDenied.html.twig', array(
-                'message' => $message,
-            ));
-        } else {
-            $params = $request->request->all();
-            if (!array_key_exists("current", $params)
-                || !array_key_exists("new", $params)
-                || !array_key_exists("new2", $params)) {
-                return array("error" => "S'il vous plaît, veuillez renseigner tous les champs");
-            } else {
 
-            }
-            $em = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
-
-        }
     }
 
     /**
      * @Method({"POST"})
      * @Route("/reset", name="reset")
      */
-    public function resetNowAction(Request $request)
+    public function resetAction(Request $request)
     {
         $params = $request->request->all();
         if (!array_key_exists("username", $params)) {
@@ -196,16 +179,35 @@ class SecurityController extends Controller
         $length = 10;
         $randomString = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
         $randomPassword = hash('crc32',$randomString);
-        $user->setPlainPassword($randomPassword);
-
-        $em->persist($user);
-        $em->flush();
-
+        $userToken = $user->getToken();
         $userEmail = $user->getEmail();
         $sendResetPasswordMail = $this->get('app.mail.send_reset_password_mail');
-        $sendResetPasswordMail->sendResetPasswordMail($userEmail, $randomPassword);
+        $sendResetPasswordMail->sendResetPasswordMail($userEmail, $randomPassword, $userToken);
         $this->addFlash('notice', "Un email avec votre nouveau mot de passe vous à été envoyé à l'adresse " . $user->getEmail());
         return $this->redirectToRoute('security_login');
+    }
+
+    /**
+     * @Route("/reset/now", name="reset_now")
+     */
+    public function resetNowAction(Request $request)
+    {
+        $token = $request->query->get("token");
+        $newPassword = $request->query->get("password");
+        if($token=null || $newPassword=null)
+        {
+            $this->render('error/error.html.twig'
+            );
+        }
+        return $this->render('main/home.html.twig');
+        /*$em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository()->findOneBy(array('token'=>$token));
+        $user->setPassword($newPassword);
+        $em->persist($user);
+        $em->flush();
+        $this->addFlash('notice', 'Vos informations on été mises à jours');
+
+        return $this->RedirectToRoute('security_login');*/
     }
 
 

@@ -7,8 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('bundles/app/css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome/css/font-awesome.min.css') }}">
     <title>{% block title %}Bienvenue!{% endblock %}</title>
     {% block stylesheets %}
+
     {% endblock %}
 
 </head>
@@ -89,10 +91,10 @@
 ------------------
 ------------------#}
 <div class="footer">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col">
+    <div class="container-fluid" id="footerNewsletter">
+        <div class="container p-5">
+            <div class="row" >
+                <div class="col" id="souscrire">
                     <h2>SOUSCRIRE</h2>
                     <br/>
                     <p>à notre newsletter</p>
@@ -109,27 +111,30 @@
         </div>
 
     </div>
-    <div class="card text-center" id="footer">
-        <div class="card-body">
-            <h4 class="card-title">LOGO</h4>
-            <p class="card-text">Réseaux sociaux</p>
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">A propos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">FAQ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Copyright</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Mentions légales</a>
-                </li>
-            </ul>
+    <div class="container-fluid" id="footer">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-3">
+                    <h1 style="color: #999999">NAO</h1>
+                    <br>
+                    <i class="fa fa-facebook-official fa-3x mx-2" aria-hidden="true" style="color: #999999"></i>
+                    <i class="fa fa-instagram fa-3x mx-2" aria-hidden="true" style="color: #999999"></i>
+                    <i class="fa fa-twitter fa-3x mx-2" aria-hidden="true" style="color: #999999"></i>
+
+                </div>
+                <div class="col-3">
+                    <img src="{{ asset('bundles/app/img/logo.png') }}" alt="NAO_LOGO" style="width: 150px ">
+                </div>
+                <div class="col-3">
+                    <ul class="nav flex-column" style="color: #999999;">
+                        <li class="nav-item"><a href="#" class="nav-link">A propos</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Copyright</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Mentions légales</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 

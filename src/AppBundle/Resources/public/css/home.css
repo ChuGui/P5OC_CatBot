@@ -1,6 +1,33 @@
 #contain
 {
-    background: url("../img/bg_oiseau.jpg") no-repeat center fixed;
+    background: url("../img/bg_oiseau.jpg") no-repeat center;
     background-size: cover;
     height: 500px;
+}
+
+#path1
+{
+    background: url("../img/path1.png") no-repeat center;
+    background-size: cover;
+    height: 200px;
+}
+
+#path2
+{
+    background: url("../img/path2.png") no-repeat center;
+    background-size: cover;
+    height: 200px;
+}
+
+#hiboux_trop_choux
+{
+    border-radius: 25px;
+}
+#pourquoi
+{
+    background-color: #C9C9C9;
+}
+
+.card{
+    border: hidden;
 }
