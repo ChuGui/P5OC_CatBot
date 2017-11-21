@@ -2,7 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Article;
+use AppBundle\Entity\Actualite;
+use AppBundle\Entity\User;
 use AppBundle\Form\ChangeEmailForm;
 use AppBundle\Form\ChangePasswordForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Routing\Annotation;
+
 
 
 class MainController extends Controller
@@ -36,6 +39,34 @@ class MainController extends Controller
         }
         return $this->render('main/observation.html.twig');
 
+    }
+    /**
+     * @Route("/actualites", name="actualites")
+     */
+    public function actualitesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $actualites = $em->getRepository(Actualite::class)->findAll();
+
+        return $this->render('main/actualites.html.twig', array(
+            'actualites' => $actualites
+        ));
+    }
+
+    /**
+     * @Route("/actualite/{id}", name="actualite", requirements={"id" = "\d+"})
+     */
+    public function actualiteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $actualite = $em->getRepository(Actualite::class)->findOneBy(array('id'=>$id));
+        $authorId = $actualite->getAuthor();
+        $author = $em->getRepository(User::class)->findOneBy(array('id' => $authorId));
+
+        return $this->render('main/actualite.html.twig', array(
+            'actualite' => $actualite,
+            'author' => $author
+        ));
     }
 
     /**
@@ -70,18 +101,7 @@ class MainController extends Controller
         ));
     }
 
-    /**
-     * @Route("/actualite", name="actualite")
-     */
-    public function actualiteAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-       $articles = $em->getRepository(Article::class)->findAll();
 
-        return $this->render('main/actualite.html.twig', array(
-            'articles' => $articles
-        ));
-    }
 
 
     /**

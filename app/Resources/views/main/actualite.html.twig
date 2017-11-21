@@ -5,23 +5,26 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid" id="headContainer">
-            <h1 class="text-center pt-5 text-white">ACTUALITÉS</h1>
-</div>
+    <div class="container-fluid" id="headContainer">
+        <img src="{{ asset('bundles/app/img/logo.png') }}" alt="logo_nao" id="logo">
+        <h1 class="text-center">{{ actualite.title|upper }}</h1>
+        <p class="text-center">Accueil>>Actualités>>>{{ actualite.title|capitalize }}</p>
+    </div>
+    <div class="container">
 
-<div class="container">
-   <div class="d-flex flex-wrap justify-content-between row-h1">
-       {% for article in articles %}
-       <div class="card p-2 m-2 item-h1" style="width: 20rem">
-           <img src="{{ asset('bundles/app/img/'~ article.articleImage) }}" alt="image_article" class="card-img-top" style="width: 200px">
-           <div class="card-title p4"><h1>{{ article.title }}</h1></div>
-           <div class="card-body p4">{{ article.content }}</div>
-           <div class="card-footer p4"><a href="#"><button class="btn btn-success">Lire la suite</button></a></div>
-       </div>
-       {% endfor %}
-               
-   </div>
+        <div class="media">
+            <img src="{{ asset('bundles/app/img/'~ author.profilePicture) }}" alt="" class="d-flex mr-3 profilePicture">
+            <div class="media-body"><p class="text-center"></p>{{ author.username|capitalize }}</div>
+        </div>
+        <p class="text-center">{{ actualite.updateAt|localizeddate('full', 'none')|upper }}</p>
+        <div class="media">
+            <img src="{{ asset('bundles/app/img/'~actualite.actualiteImage) }}" alt="" class="d-flex mr-3 imgActualite">
 
-</div>
+            <div class="media-body">
+                <h1>{{ actualite.title|upper }}</h1>
+                <p class="text-justify">{{ actualite.content }}</p>
+            </div>
 
+        </div>
+    </div>
 {% endblock %}

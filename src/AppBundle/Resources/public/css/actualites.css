@@ -4,6 +4,15 @@
     background-color: #f7f3f0;
 }
 
+.card{
+    border-radius: 25px;
+}
+
+.card-img-top{
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
 #logo
 {
     display: block;
@@ -12,13 +21,3 @@
     margin-right: auto;
 }
 
-.profilePicture
-{
-    border-radius: 50%;
-    height: 50px;
-}
-
-.imgActualite
-{
-    border-radius: 25px;
-}

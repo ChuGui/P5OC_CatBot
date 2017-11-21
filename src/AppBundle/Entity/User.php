@@ -42,6 +42,7 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $email;
 
+
     /**
      * The encoded password
      *
@@ -100,6 +101,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->roles = ['ROLE_USER'];
         $this->profilePicture = 'anonyme.png';
         $this->level= 'moineau';
+        $this->nbObservations=0;
     }
     // needed by the security system
 
@@ -357,4 +359,5 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->nbObservations;
     }
+
 }

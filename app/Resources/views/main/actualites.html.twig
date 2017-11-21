@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/actualites.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" id="headContainer">
+    <img src="{{ asset('bundles/app/img/logo.png') }}" alt="logo_nao" id="logo">
+    <h1 class="text-center">ACTUALITÉS</h1>
+    <p class="text-center">Accueil>>Actualités</p>
+</div>
+
+<div class="container">
+   <div class="row">
+       {% for actualite in actualites %}
+           <div class="col">
+               <div class="card p-0 m-2" style="width: 20rem;">
+                   <img class="card-img-top" src="{{ asset('bundles/app/img/'~ actualite.actualiteImage) }}" alt="image_actualite" >
+
+                   <div class="card-title p4">
+                       <p class="text-center">{{ actualite.updateAt|localizeddate('full', 'none')|upper }}</p>
+                       <h3 class="text-center"><a href="{{ path('actualite', {'id': actualite.id}) }}">{{ actualite.title|upper }}</a></h3></div>
+                   <div class="card-body p4 text-justify"><p class="">{{ actualite.content|truncate(100,false,'...') }}</p></div>
+           </div>
+
+
+       </div>
+       {% endfor %}
+               
+   </div>
+
+</div>
+
+{% endblock %}

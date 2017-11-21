@@ -2,15 +2,17 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Article
+ * Actualite
  *
- * @ORM\Table(name="article")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
+ * @ORM\Table(name="actualite")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ActualiteRepository")
  */
-class Article
+class Actualite
 {
     /**
      * @var int
@@ -45,10 +47,16 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="article_image", nullable=true, type="string", length=255)
+     * @ORM\Column(name="actualite_image", nullable=true, type="string", length=255)
      */
-    private $articleImage;
+    private $actualiteImage;
 
+    /**
+     * One Actualite has One User.
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $author;
 
     /**
      * Get id
@@ -65,7 +73,7 @@ class Article
      *
      * @param string $title
      *
-     * @return Article
+     * @return Actualite
      */
     public function setTitle($title)
     {
@@ -89,7 +97,7 @@ class Article
      *
      * @param string $content
      *
-     * @return Article
+     * @return Actualite
      */
     public function setContent($content)
     {
@@ -113,7 +121,7 @@ class Article
      *
      * @param \DateTime $updateAt
      *
-     * @return Article
+     * @return Actualite
      */
     public function setUpdateAt($updateAt)
     {
@@ -133,27 +141,27 @@ class Article
     }
 
     /**
-     * Set articleImage
+     * Set actualiteImage
      *
-     * @param string $articleImage
+     * @param string $actualiteImage
      *
-     * @return Article
+     * @return Actualite
      */
-    public function setArticleImage($articleImage)
+    public function setActualiteImage($actualiteImage)
     {
-        $this->articleImage = $articleImage;
+        $this->actualiteImage = $actualiteImage;
 
         return $this;
     }
 
     /**
-     * Get articleImage
+     * Get actualiteImage
      *
      * @return string
      */
-    public function getArticleImage()
+    public function getActualiteImage()
     {
-        return $this->articleImage;
+        return $this->actualiteImage;
     }
 }
 

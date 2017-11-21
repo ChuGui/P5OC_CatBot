@@ -43,6 +43,18 @@ class User implements AdvancedUserInterface, \Serializable
     private $email;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", unique=false, nullable=true, length=50 )
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", unique=false, nullable=true, type="string", length=50)
+     */
+    private $firstname;
+
+    /**
      * The encoded password
      *
      * @ORM\Column(type="string")
@@ -83,7 +95,6 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $nbObservations;
 
-
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
@@ -101,6 +112,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->roles = ['ROLE_USER'];
         $this->profilePicture = 'anonyme.png';
         $this->level= 'moineau';
+        $this->nbObservations=0;
     }
     // needed by the security system
 
@@ -334,4 +346,28 @@ class User implements AdvancedUserInterface, \Serializable
         return $this->level;
     }
 
+
+    /**
+     * Set nbObservations
+     *
+     * @param integer $nbObservations
+     *
+     * @return User
+     */
+    public function setNbObservations($nbObservations)
+    {
+        $this->nbObservations = $nbObservations;
+
+        return $this;
+    }
+
+    /**
+     * Get nbObservations
+     *
+     * @return integer
+     */
+    public function getNbObservations()
+    {
+        return $this->nbObservations;
+    }
 }

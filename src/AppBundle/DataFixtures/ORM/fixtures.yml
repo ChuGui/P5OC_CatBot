@@ -1,9 +1,17 @@
 AppBundle\Entity\User:
-    user_{1..5}:
+    user:
+        username: admin
+        email: admin@admin.com
+        plainPassword: admin
+        profilePicture: anonyme.png
+        level: condor
+        roles: ['ROLE_ADMIN']
+
+    user_{2..5}:
         username: naturaliste<current()>
         email: naturaliste<current()>@gmail.com
         plainPassword: naturaliste
-        profilPicture: bundles/Appbundle/img/anonyme.png
+        profilePicture: anonyme.png
         level: aigle royal
         roles: ['ROLE_NATURALISTE']
 
@@ -11,24 +19,18 @@ AppBundle\Entity\User:
         username: guillaume<current()>
         email: guillaume<current()>@gmail.com
         plainPassword: guillaume
-        profilPicture: bundles/Appbundle/img/anonyme.png
-        level: moineau
+        profilePicture: anonyme.png
         roles: ['ROLE_USER']
 
-    user:
-        username: admin
-        email: admin@admin.com
-        plainPassword: admin
-        profilPicture: bundles/Appbundle/img/anonyme.png
-        level: condor
-        roles: ['ROLE_ADMIN']
 
-AppBundle\Entity\Article:
+AppBundle\Entity\Actualite:
      article_{1..9}:
         title: titre<current()>
-        content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque ex sit amet diam lobortis, lobortis cursus nisl consectetur. Aenean molestie bibendum mauris eu pharetra.
+        content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, cum, dolor ea est, ipsa mollitia non nulla officiis placeat quos veritatis voluptatum? Exercitationem modi, nobis? Animi dolorem modi nam non recusandae! Ad alias amet asperiores autem dicta dignissimos dolorem eos error est facilis illo in, ipsa laborum magnam maiores minus mollitia natus nihil nobis, nostrum omnis quasi quisquam repellendus reprehenderit saepe sit ullam vero. Ab adipisci eligendi ex, exercitationem, facilis fuga hic illo incidunt iste nisi nobis omnis perferendis perspiciatis quam quas quia ratione recusandae unde veritatis voluptate. Distinctio dolores excepturi facilis molestias mollitia necessitatibus quod vitae. Autem, minima modi?
         updateAt: <(new DateTime("NOW"))>
-        articleImage: bird.jpg
+        actualiteImage: bird.jpg
+
+
 
     
 
