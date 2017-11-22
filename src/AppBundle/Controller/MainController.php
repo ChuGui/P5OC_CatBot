@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Comment;
 use AppBundle\Form\ChangeEmailForm;
 use AppBundle\Form\ChangePasswordForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -60,12 +61,16 @@ class MainController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $actualite = $em->getRepository(Actualite::class)->findOneBy(array('id'=>$id));
-        $authorId = $actualite->getAuthor();
-        $author = $em->getRepository(User::class)->findOneBy(array('id' => $authorId));
+        $userId = $actualite->getUserId();
+        $user = $em->getRepository(User::class)->findOneBy(array('id' => $userId));
+        $actualiteId = $actualite->getId();
+        $comments = $em->getRepository(Comment::class)->findByActualiteId($actualiteId);
+
 
         return $this->render('main/actualite.html.twig', array(
             'actualite' => $actualite,
-            'author' => $author
+            'user' => $user,
+            'comments' => $comments
         ));
     }
 

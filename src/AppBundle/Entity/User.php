@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Comment;
 
 
 /**
@@ -90,6 +92,13 @@ class User implements AdvancedUserInterface, \Serializable
     private $isActive;
 
     /**
+     * One User has Many Comments.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="user")
+     */
+    private $comments;
+
+
+    /**
      * @ORM\Column(type="json_array")
      */
     private $roles = [];
@@ -102,6 +111,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->profilePicture = 'anonyme.png';
         $this->level= 'moineau';
         $this->nbObservations=0;
+        $this->comments = new ArrayCollection();
     }
     // needed by the security system
 
@@ -360,4 +370,39 @@ class User implements AdvancedUserInterface, \Serializable
         return $this->nbObservations;
     }
 
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }

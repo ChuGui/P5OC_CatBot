@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->orderBy('c.updateAt','DESC');
+        return $qb->getQuery()->getResult();
+    }
+    public function findByActualiteId($actualiteId)
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb
+            ->where('c.actualiteId = :actualiteId')->setParameter('actualiteId', $actualiteId)
+            ->orderBy('c.updateAt','DESC');
+        return $qb->getQuery()->getResult();
+    }
 }

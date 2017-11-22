@@ -15,5 +15,6 @@ parameters:
     mailer_user: ~
     mailer_password: ~
     facebook_secret: ~
+    local: fr
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt

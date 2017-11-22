@@ -142,28 +142,27 @@ class Comment
         return $this->user;
     }
 
-
     /**
-     * Set actualiteId
+     * Set actualite
      *
-     * @param integer $actualiteId
+     * @param integer $actualite
      *
      * @return Comment
      */
-    public function setActualiteId($actualiteId)
+    public function setActualite($actualite)
     {
-        $this->actualiteId = $actualiteId;
+        $this->actualite = $actualite;
 
         return $this;
     }
 
     /**
-     * Get actualiteId
+     * Get actualite
      *
      * @return integer
      */
-    public function getActualiteId()
+    public function getActualite()
     {
-        return $this->actualiteId;
+        return $this->actualite;
     }
 }

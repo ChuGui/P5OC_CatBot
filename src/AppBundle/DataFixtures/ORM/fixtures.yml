@@ -22,15 +22,22 @@ AppBundle\Entity\User:
         profilePicture: anonyme.png
         roles: ['ROLE_USER']
 
-
 AppBundle\Entity\Actualite:
      article_{1..9}:
         title: titre<current()>
         content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, cum, dolor ea est, ipsa mollitia non nulla officiis placeat quos veritatis voluptatum? Exercitationem modi, nobis? Animi dolorem modi nam non recusandae! Ad alias amet asperiores autem dicta dignissimos dolorem eos error est facilis illo in, ipsa laborum magnam maiores minus mollitia natus nihil nobis, nostrum omnis quasi quisquam repellendus reprehenderit saepe sit ullam vero. Ab adipisci eligendi ex, exercitationem, facilis fuga hic illo incidunt iste nisi nobis omnis perferendis perspiciatis quam quas quia ratione recusandae unde veritatis voluptate. Distinctio dolores excepturi facilis molestias mollitia necessitatibus quod vitae. Autem, minima modi?
-        updateAt: <(new DateTime("NOW"))>
+        updateAt: <dateTimeBetween("-30 days", "-10 days")>
         actualiteImage: bird.jpg
+        userId: <current()>
+
+AppBundle\Entity\Comment:
+    comment_{1..9}:
+        content: <text(20)>
+        user: '@user_<numberBetween(2,9)>'
+        actualiteId: <numberBetween(1,3)>
+        updateAt: <dateTimeBetween("-10 days", "now")>
 
 
 
-    
+
 

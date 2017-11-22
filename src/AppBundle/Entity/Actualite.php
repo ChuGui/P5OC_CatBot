@@ -57,7 +57,7 @@ class Actualite
      * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $author;
+    private $userId;
 
     public function __construct()
     {
@@ -170,27 +170,28 @@ class Actualite
         return $this->actualiteImage;
     }
 
+
     /**
-     * Set author
+     * Set userId
      *
-     * @param \AppBundle\Entity\User $author
+     * @param integer $userId
      *
      * @return Actualite
      */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
+    public function setUserId($userId)
     {
-        $this->author = $author;
+        $this->userId = $userId;
 
         return $this;
     }
 
     /**
-     * Get author
+     * Get userId
      *
-     * @return \AppBundle\Entity\User
+     * @return integer
      */
-    public function getAuthor()
+    public function getUserId()
     {
-        return $this->author;
+        return $this->userId;
     }
 }

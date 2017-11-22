@@ -53,10 +53,16 @@ class Actualite
 
     /**
      * One Actualite has One User.
+     * @ORM\Column(type="integer", length=32, unique=false, nullable=true)
      * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $author;
+    private $userId;
+
+    public function __construct()
+    {
+        $this->author = 1;
+    }
 
     /**
      * Get id
@@ -163,5 +169,29 @@ class Actualite
     {
         return $this->actualiteImage;
     }
-}
 
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Actualite
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+}

@@ -18,7 +18,33 @@
     height: 50px;
 }
 
+.imgComment
+{
+    border-radius: 50%;
+    height: 40px;
+}
+
 .imgActualite
 {
+    border-radius: 25px;
+}
+
+.comments{
+    margin-top: 20px;
+    height: 200px;
+    overflow: scroll;
+    border: 2px solid #dbd6d0;
+    border-radius: 25px;
+}
+
+
+.form-control{
+    border: none;
+}
+
+.addComment
+{
+    margin-top: 20px;
+    border: 2px solid #dbd6d0;
     border-radius: 25px;
 }
