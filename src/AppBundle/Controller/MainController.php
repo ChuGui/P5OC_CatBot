@@ -7,9 +7,11 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\ChangeEmailForm;
 use AppBundle\Form\ChangePasswordForm;
+use AppBundle\Form\CommentForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -57,20 +59,23 @@ class MainController extends Controller
     /**
      * @Route("/actualite/{id}", name="actualite", requirements={"id" = "\d+"})
      */
-    public function actualiteAction($id)
+    public function actualiteAction(Actualite $actualite, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $actualite = $em->getRepository(Actualite::class)->findOneBy(array('id'=>$id));
         $userId = $actualite->getUserId();
         $user = $em->getRepository(User::class)->findOneBy(array('id' => $userId));
         $actualiteId = $actualite->getId();
         $comments = $em->getRepository(Comment::class)->findByActualiteId($actualiteId);
-
+        $comment = New Comment();
+        $comment->setActualiteId($actualiteId);
+        $formComment = $this->createForm(CommentForm::class, $comment, array('action' => $this->generateUrl('addComment', array('id' => $actualiteId))));
+        $formComment->handleRequest($request);
 
         return $this->render('main/actualite.html.twig', array(
             'actualite' => $actualite,
             'user' => $user,
-            'comments' => $comments
+            'comments' => $comments,
+            'formComment' => $formComment->CreateView()
         ));
     }
 
@@ -93,7 +98,6 @@ class MainController extends Controller
         $formChangeEmail->handleRequest($request);
         if($formChangeEmail->isValid()){
             $userNewEmail = $formChangeEmail['email']->getData();
-            var_dump($userNewEmail);
             return $this->render('main/profile.html.twig');
         }
 
@@ -121,6 +125,52 @@ class MainController extends Controller
          }
         return $this->render('main/validation.html.twig');
      }
+
+     /**
+      * @Route("add/comment/{id}", requirements={"id" = "\d+"}, name="addComment")
+      * @Method({"POST"})
+      */
+      public function addCommentAction(Request $request, $id)
+      {
+          $user = $this->getUser;
+          if($request->isXmlHttpRequest()) {
+              $response = new Response();
+              $response->headers->set('Content-Type', 'application/json');
+              if($user === null) {
+
+                  $response->headers->set('Status', '404');
+                  $content = json_encode('Vous devez être connecté pour ajouter un commentaire');
+                  $response->setContent($content);
+
+              } else {
+
+                  $em = $this->getDoctrine()->getManager();
+                  $comment = new Comment();
+                  $formComment = $this->createForm(CommentForm::class, $comment);
+                  $formComment->handleRequest($request);
+                  if($formComment->isValid()) {
+                      $em->persist($comment);
+                      $em->flush();
+                      $content = json_encode('Félicitations');
+                      $response->setContent($content);
+
+                  } else {
+
+                  }
+
+
+              }
+
+
+
+              return $response;
+
+          } else {
+              throw $this->createNotFoundException('Mauvaise Route!');
+          }
+      }
+
+
 
 
 

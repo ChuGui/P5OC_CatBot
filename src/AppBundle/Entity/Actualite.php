@@ -52,16 +52,20 @@ class Actualite
     private $actualiteImage;
 
     /**
-     * One Actualite has One User.
-     * @ORM\Column(type="integer", length=32, unique=false, nullable=true)
-     * @ORM\OneToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="actualites")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $userId;
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="actualite")
+     */
+    private $comments;
 
     public function __construct()
     {
         $this->author = 1;
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -170,28 +174,26 @@ class Actualite
         return $this->actualiteImage;
     }
 
-
     /**
-     * Set userId
-     *
-     * @param integer $userId
-     *
-     * @return Actualite
+     * @return mixed
      */
-    public function setUserId($userId)
+    public function getUser()
     {
-        $this->userId = $userId;
-
-        return $this;
+        return $this->user;
     }
 
     /**
-     * Get userId
-     *
-     * @return integer
+     * @param mixed $user
      */
-    public function getUserId()
+    public function setUser(User $user)
     {
-        return $this->userId;
+        $this->user = $user;
+    }
+
+    /**
+     * @return ArrayCollection|Comment[]
+     */
+    public function getComments() {
+        return $this->comments;
     }
 }

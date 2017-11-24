@@ -48,10 +48,10 @@ class Comment
 
     /**
      * Many comments has one Actualite.
-     * @ORM\Column(type="integer", length=32, unique=false, nullable=true)
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Actualite")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Actualite", inversedBy="comments")
+     * @ORM\JoinColumn(name="actualite_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $actualiteId;
+    private $actualite;
 
 
     public function __construct()
@@ -142,27 +142,5 @@ class Comment
         return $this->user;
     }
 
-    /**
-     * Set actualite
-     *
-     * @param integer $actualite
-     *
-     * @return Comment
-     */
-    public function setActualite($actualite)
-    {
-        $this->actualite = $actualite;
 
-        return $this;
-    }
-
-    /**
-     * Get actualite
-     *
-     * @return integer
-     */
-    public function getActualite()
-    {
-        return $this->actualite;
-    }
 }

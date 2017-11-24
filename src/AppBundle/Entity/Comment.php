@@ -40,18 +40,16 @@ class Comment
 
 
     /**
-     * Many comments have one User.
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * Many comments has one Actualite.
-     * @ORM\Column(type="integer", length=32, unique=false, nullable=true)
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Actualite")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Actualite", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $actualiteId;
+    private $actualite;
 
 
     public function __construct()
@@ -119,51 +117,20 @@ class Comment
     }
 
     /**
-     * Set user
-     *
-     * @param integer $user
-     *
-     * @return Comment
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return integer
+     * @return mixed
      */
     public function getUser()
     {
         return $this->user;
     }
 
-
     /**
-     * Set actualiteId
-     *
-     * @param integer $actualiteId
-     *
-     * @return Comment
+     * @return mixed
      */
-    public function setActualiteId($actualiteId)
+    public function getActualite()
     {
-        $this->actualiteId = $actualiteId;
-
-        return $this;
+        return $this->actualite;
     }
 
-    /**
-     * Get actualiteId
-     *
-     * @return integer
-     */
-    public function getActualiteId()
-    {
-        return $this->actualiteId;
-    }
+
 }

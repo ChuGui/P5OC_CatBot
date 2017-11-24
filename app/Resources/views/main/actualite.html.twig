@@ -27,7 +27,7 @@
         </div>
 
         {#PARTIE COMMENTAIRES#}
-        <div class="comments">
+        <div id="commentsContainer">
             {% for comment in comments %}
                 <div class="media">
                     <img src="{{ asset('bundles/app/img/'~comment.user.profilePicture) }}" alt="" class="d-flex mr-3 imgComment">
@@ -45,10 +45,17 @@
                 </div>
             {% endfor %}
         </div>
+
+        {#-------------------#}
+        {#FORMUALAIRE COMMENT#}
+        {#-------------------#}
+
         <div class="row mt-5">
 
             <div class="col-7 addComment d-flex" >
-                <input type="text" class="form-control" placeholder="Commentaire..."><a href="#" class="mt-2"><i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i></a>
+                {{ form_start(formComment, {'attr': {'id' : 'commentForm'}}) }}
+                {{ form_row (formComment.content, {"attr" : {"placeholder" : "Ajouter un commentaire...", }}) }}
+                {{ form_end(formComment) }}
             </div>
             <div class="col-3 ml-auto">
                 <i class="fa fa-facebook-official fa-3x mx-2" aria-hidden="true" style="color: #999999"></i>
@@ -61,4 +68,8 @@
 
 
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/actualite.js') }}"></script>
 {% endblock %}

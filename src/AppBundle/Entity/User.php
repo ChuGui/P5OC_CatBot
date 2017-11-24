@@ -14,7 +14,7 @@ use AppBundle\Entity\Comment;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  * @UniqueEntity(fields={"email"}, message="On dirait que vous avez déjà un compte! :)")
  * @UniqueEntity(fields={"username"}, message="Ce pseudo a déjà été choisi" )
@@ -79,12 +79,6 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $level;
 
-    /**
-     * number of observations
-     *
-     * @ORM\Column(type="integer")
-     */
-    private $nbObservations;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
@@ -92,10 +86,22 @@ class User implements AdvancedUserInterface, \Serializable
     private $isActive;
 
     /**
-     * One User has Many Comments.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     * @ORM\OrderBy({"updateAt","DESC"})
      */
     private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Observation", mappedBy="user")
+     * @ORM\OrderBy({"updateAt","DESC"})
+     */
+    private $observations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Actualite", mappedBy="user")
+     * @ORM\OrderBy({"updateAt","DESC"})
+     */
+    private $actualites;
 
 
     /**
@@ -112,6 +118,8 @@ class User implements AdvancedUserInterface, \Serializable
         $this->level= 'moineau';
         $this->nbObservations=0;
         $this->comments = new ArrayCollection();
+        $this->actualites = new ArrayCollection();
+        $this->obeservations = new ArrayCollection();
     }
     // needed by the security system
 
@@ -345,64 +353,27 @@ class User implements AdvancedUserInterface, \Serializable
         return $this->level;
     }
 
-
     /**
-     * Set nbObservations
-     *
-     * @param integer $nbObservations
-     *
-     * @return User
-     */
-    public function setNbObservations($nbObservations)
-    {
-        $this->nbObservations = $nbObservations;
-
-        return $this;
-    }
-
-    /**
-     * Get nbObservations
-     *
-     * @return integer
-     */
-    public function getNbObservations()
-    {
-        return $this->nbObservations;
-    }
-
-
-    /**
-     * Add comment
-     *
-     * @param \AppBundle\Entity\Comment $comment
-     *
-     * @return User
-     */
-    public function addComment(\AppBundle\Entity\Comment $comment)
-    {
-        $this->comments[] = $comment;
-
-        return $this;
-    }
-
-
-    /**
-     * Remove comment
-     *
-     * @param \AppBundle\Entity\Comment $comment
-     */
-    public function removeComment(\AppBundle\Entity\Comment $comment)
-    {
-        $this->comments->removeElement($comment);
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection|Comment[]
      */
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * @return ArrayCollection|Observation[]
+     */
+    public function getObservations()
+    {
+        return $this->observations;
+    }
+
+    /**
+     * @return ArrayCollection|Actualite[]
+     */
+    public function getActualite()
+    {
+        return $this->actualites;
     }
 }
