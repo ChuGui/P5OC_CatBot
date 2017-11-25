@@ -1,9 +1,9 @@
 AppBundle\Entity\User:
-    user:
+    user_1:
         username: admin
         email: admin@admin.com
         plainPassword: admin
-        profilePicture: anonyme.png
+        profilePicture: admin.png
         level: condor
         roles: ['ROLE_ADMIN']
 
@@ -11,31 +11,34 @@ AppBundle\Entity\User:
         username: naturaliste<current()>
         email: naturaliste<current()>@gmail.com
         plainPassword: naturaliste
-        profilePicture: anonyme.png
+        profilePicture: 'naturaliste<numberBetween($min = 1, $max = 4)>.jpeg'
         level: aigle royal
         roles: ['ROLE_NATURALISTE']
 
     user_{6..20}:
-        username: guillaume<current()>
-        email: guillaume<current()>@gmail.com
-        plainPassword: guillaume
-        profilePicture: anonyme.png
+        username: <userName()>
+        email: <email()>
+        plainPassword: user
+        profilePicture: user<numberBetween($min = 1, $max = 10)>.jpeg
         roles: ['ROLE_USER']
+        level: moineau
 
 AppBundle\Entity\Actualite:
-     article_{1..9}:
-        title: titre<current()>
-        content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, cum, dolor ea est, ipsa mollitia non nulla officiis placeat quos veritatis voluptatum? Exercitationem modi, nobis? Animi dolorem modi nam non recusandae! Ad alias amet asperiores autem dicta dignissimos dolorem eos error est facilis illo in, ipsa laborum magnam maiores minus mollitia natus nihil nobis, nostrum omnis quasi quisquam repellendus reprehenderit saepe sit ullam vero. Ab adipisci eligendi ex, exercitationem, facilis fuga hic illo incidunt iste nisi nobis omnis perferendis perspiciatis quam quas quia ratione recusandae unde veritatis voluptate. Distinctio dolores excepturi facilis molestias mollitia necessitatibus quod vitae. Autem, minima modi?
-        updateAt: <dateTimeBetween("-30 days", "-10 days")>
-        actualiteImage: bird.jpg
-        userId: <current()>
+     actualite_{1..9}:
+        title: <sentence($nbWords = 4, $variableNbWords = true)>
+        content: <paragraph($nbSentences = 10, $variableNbSentences = true)>
+        updateAt: <dateTimeBetween("-3 months", "-20 days")>
+        actualiteImage: actualite<numberBetween($min = 1, $max = 4)>.jpeg
+        user: '@user_1'
 
 AppBundle\Entity\Comment:
-    comment_{1..9}:
-        content: <text(20)>
-        user: '@user_<numberBetween(2,9)>'
-        actualiteId: <numberBetween(1,3)>
-        updateAt: <dateTimeBetween("-10 days", "now")>
+    comment_{1..20}:
+        content: <sentence($nbWords = 6, $variableNbWords = true)>
+        updateAt: <dateTimeBetween("-19 days", "now")>
+        user: '@user_*'
+        actualite: '@actualite_*'
+
+
 
 
 

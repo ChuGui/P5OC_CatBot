@@ -62,13 +62,11 @@ class MainController extends Controller
     public function actualiteAction(Actualite $actualite, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $userId = $actualite->getUserId();
-        $user = $em->getRepository(User::class)->findOneBy(array('id' => $userId));
-        $actualiteId = $actualite->getId();
-        $comments = $em->getRepository(Comment::class)->findByActualiteId($actualiteId);
+        $user = $actualite->getUser();
+        $comments = $actualite->getComments();
         $comment = New Comment();
-        $comment->setActualiteId($actualiteId);
-        $formComment = $this->createForm(CommentForm::class, $comment, array('action' => $this->generateUrl('addComment', array('id' => $actualiteId))));
+        $comment->setActualite($actualite);
+        $formComment = $this->createForm(CommentForm::class, $comment);
         $formComment->handleRequest($request);
 
         return $this->render('main/actualite.html.twig', array(

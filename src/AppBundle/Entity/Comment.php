@@ -127,9 +127,25 @@ class Comment
     /**
      * @return mixed
      */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getActualite()
     {
         return $this->actualite;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setActualite(Actualite $actualite)
+    {
+        $this->actualite = $actualite;
     }
 
 
