@@ -11,7 +11,7 @@ AppBundle\Entity\User:
         username: naturaliste<current()>
         email: naturaliste<current()>@gmail.com
         plainPassword: naturaliste
-        profilePicture: 'naturaliste<numberBetween($min = 1, $max = 4)>.jpeg'
+        profilePicture: 'naturaliste<numberBetween($min = 1, $max = 4)>.jpg'
         level: aigle royal
         roles: ['ROLE_NATURALISTE']
 
@@ -19,7 +19,7 @@ AppBundle\Entity\User:
         username: <userName()>
         email: <email()>
         plainPassword: user
-        profilePicture: user<numberBetween($min = 1, $max = 10)>.jpeg
+        profilePicture: user<numberBetween($min = 1, $max = 10)>.jpg
         roles: ['ROLE_USER']
         level: moineau
 
@@ -28,7 +28,7 @@ AppBundle\Entity\Actualite:
         title: <sentence($nbWords = 4, $variableNbWords = true)>
         content: <paragraph($nbSentences = 10, $variableNbSentences = true)>
         updateAt: <dateTimeBetween("-3 months", "-20 days")>
-        actualiteImage: actualite<numberBetween($min = 1, $max = 4)>.jpeg
+        actualiteImage: actualite<numberBetween($min = 1, $max = 4)>.jpg
         user: '@user_1'
 
 AppBundle\Entity\Comment:
