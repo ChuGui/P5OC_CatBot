@@ -52,9 +52,10 @@
 
         <div class="row mt-5">
 
-            <div class="col-7 addComment d-flex" >
-                {{ form_start(formComment, {'attr': {'id' : 'commentForm'}}) }}
-                {{ form_row (formComment.content, {"attr" : {"placeholder" : "Ajouter un commentaire...", }}) }}
+            <div class="col-7 d-flex" id="addComment" >
+                {{ form_start(formComment, {'attr': {'id' : 'commentForm', 'class' : 'd-flex flex-row justify-content-between'}}) }}
+                {{ form_row (formComment.content, {"attr" : {"placeholder" : "Ajouter un commentaire..."}}) }}
+                <button role="submit" class="btn btn-primary btn-comment">Envoyé</button>
                 {{ form_end(formComment) }}
             </div>
             <div class="col-3 ml-auto">
