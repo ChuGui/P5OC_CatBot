@@ -19,7 +19,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation;
 
 
-
 class MainController extends Controller
 {
     /**
@@ -43,6 +42,7 @@ class MainController extends Controller
         return $this->render('main/observation.html.twig');
 
     }
+
     /**
      * @Route("/actualites", name="actualites")
      */
@@ -78,6 +78,56 @@ class MainController extends Controller
     }
 
     /**
+     * @Route("add/comment/{id}", requirements={"id" = "\d+"}, name="addComment")
+     * @Method({"POST"})
+     */
+    public function addCommentAction(Request $request, $id)
+    {
+        $user = $this->getUser();
+        /*if($request->request->get('content')) {
+            $arrData = array(
+                'output' => 'contenu est ' . $request->get('content'),
+                'id' => $id
+            ) ;
+            return new JsonResponse($arrData);
+        }
+        $this->redirectToRoute('actualites');*/
+        if ($request->isXmlHttpRequest()) {
+            if ($user === null || !$request->request->get('content')) {
+                throw $this->createNotFoundException("Vous n'avez rien à faire ici. Du balais!");
+
+            } else {
+
+                /*$em = $this->getDoctrine()->getManager();
+                $comment = new Comment();
+                $formComment = $this->createForm(CommentForm::class, $comment);
+                $formComment->handleRequest($request);
+                dump($formComment);
+                if ($formComment->isValid()) {
+                    $em->persist($comment);
+                    $em->flush();
+                    $content = json_encode('Félicitations');
+                    $response->setContent($content);*/
+                $content = $request->request->get('content');
+                $em = $this->getDoctrine()->getManager();
+                $comment = new Comment();
+                $comment->setContent($content);
+                $comment->setUser($user);
+                $actualite = $em->getRepository(Actualite::class)->findOneBy(array('id' => $id));
+                $comment->setActualite($actualite);
+                $em->persist($comment);
+                $em->flush();
+                return new JsonResponse(array('comment' => $comment));
+
+            }
+
+        } else {
+
+            throw $this->createNotFoundException("Ce n'est pas du XML");
+        }
+    }
+
+    /**
      * @Route("/admin", name="admin")
      */
     public function adminAction()
@@ -94,11 +144,10 @@ class MainController extends Controller
         $formChangePassword = $this->createForm(ChangePasswordForm::class);
         $formChangeEmail = $this->createForm(ChangeEmailForm::class);
         $formChangeEmail->handleRequest($request);
-        if($formChangeEmail->isValid()){
+        if ($formChangeEmail->isValid()) {
             $userNewEmail = $formChangeEmail['email']->getData();
             return $this->render('main/profile.html.twig');
         }
-
 
 
         return $this->render('main/profile.html.twig', array(
@@ -109,67 +158,17 @@ class MainController extends Controller
     }
 
 
-
-
     /**
      * @Route("/validation", name="validation")
      */
-     public function validationAction()
-     {
-         if (!$this->get('security.authorization_checker')->isGranted('ROLE_NATURALISTE'))
-         {
-             $this->addFlash('notice', 'Vous devez-être connecté en tant que "Naturaliste" pour acceder à cette page.');
-             return $this->redirectToRoute('security_login');
-         }
+    public function validationAction()
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_NATURALISTE')) {
+            $this->addFlash('notice', 'Vous devez-être connecté en tant que "Naturaliste" pour acceder à cette page.');
+            return $this->redirectToRoute('security_login');
+        }
         return $this->render('main/validation.html.twig');
-     }
-
-     /**
-      * @Route("add/comment/{id}", requirements={"id" = "\d+"}, name="addComment")
-      * @Method({"POST"})
-      */
-      public function addCommentAction(Request $request, $id)
-      {
-          $user = $this->getUser;
-          if($request->isXmlHttpRequest()) {
-              $response = new Response();
-              $response->headers->set('Content-Type', 'application/json');
-              if($user === null) {
-
-                  $response->headers->set('Status', '404');
-                  $content = json_encode('Vous devez être connecté pour ajouter un commentaire');
-                  $response->setContent($content);
-
-              } else {
-
-                  $em = $this->getDoctrine()->getManager();
-                  $comment = new Comment();
-                  $formComment = $this->createForm(CommentForm::class, $comment);
-                  $formComment->handleRequest($request);
-                  if($formComment->isValid()) {
-                      $em->persist($comment);
-                      $em->flush();
-                      $content = json_encode('Félicitations');
-                      $response->setContent($content);
-
-                  } else {
-
-                  }
-
-
-              }
-
-
-
-              return $response;
-
-          } else {
-              throw $this->createNotFoundException('Mauvaise Route!');
-          }
-      }
-
-
-
+    }
 
 
 }

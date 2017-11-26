@@ -43,7 +43,7 @@ class Habitat
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Observation", mappedBy="Habitat")
+     * @ORM\OneToMany(targetEntity="Observation", mappedBy="habitat")
      * @ORM\JoinColumn(nullable=true)
      */
     private $observations;

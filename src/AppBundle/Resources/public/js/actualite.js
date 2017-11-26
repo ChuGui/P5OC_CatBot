@@ -1,19 +1,24 @@
 $(document).ready(function() {
     $('#commentForm').on('submit', function(e) {
         e.preventDefault();
-        $form = $(this);
-        var url = $form.attr('action');
-        /*var data = $('#appbundle_comment_content').val();*/
+        var $form = $(e.currentTarget);
+        var content = $('#content').val();
+        console.log(content);
+
+
         $.ajax({
-            url: url,
+            url: $form.data('url'),
             type: "POST",
-            data: new FormData($form[0]),
-            success: function(data, status) {
-                 console.log(data);
-                 console.log(status);
-            },
-            error: function(jqXHR, satus, Throw){
-                console.log(satus);
+            dataType: "json",
+            data: {content : content},
+            success:function(data) {
+                console.log(data)
+            }
+
+            ,
+            error: function(jqXHR){
+                var errorData = JSON.parse(jqXHR.responseText);
+                console.log('erreurData :' + errorData);
             }
         })
 

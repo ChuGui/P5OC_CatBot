@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use AppBundle\Entity\Comment;
 
 
 /**
@@ -354,6 +353,14 @@ class User implements AdvancedUserInterface, \Serializable
     public function getLevel()
     {
         return $this->level;
+    }
+
+    /**
+     * @param mixed $comments
+     */
+    public function setComments(Comment $comments)
+    {
+        $this->comments = $comments;
     }
 
     /**
