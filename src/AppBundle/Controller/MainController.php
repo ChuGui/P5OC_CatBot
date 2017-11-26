@@ -17,6 +17,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+
 
 
 class MainController extends Controller
@@ -93,31 +95,26 @@ class MainController extends Controller
         }
         $this->redirectToRoute('actualites');*/
         if ($request->isXmlHttpRequest()) {
-            if ($user === null || !$request->request->get('content')) {
+            if ($user === null) {
                 throw $this->createNotFoundException("Vous n'avez rien à faire ici. Du balais!");
 
             } else {
 
-                /*$em = $this->getDoctrine()->getManager();
-                $comment = new Comment();
-                $formComment = $this->createForm(CommentForm::class, $comment);
-                $formComment->handleRequest($request);
-                dump($formComment);
-                if ($formComment->isValid()) {
-                    $em->persist($comment);
-                    $em->flush();
-                    $content = json_encode('Félicitations');
-                    $response->setContent($content);*/
-                $content = $request->request->get('content');
                 $em = $this->getDoctrine()->getManager();
                 $comment = new Comment();
-                $comment->setContent($content);
+                $comment->setContent($request->get('content'));
                 $comment->setUser($user);
                 $actualite = $em->getRepository(Actualite::class)->findOneBy(array('id' => $id));
                 $comment->setActualite($actualite);
                 $em->persist($comment);
                 $em->flush();
-                return new JsonResponse(array('comment' => $comment));
+
+                $commentArray = $comment->toArray();
+                $jsonComment = json_encode($commentArray);
+                $response = new Response();
+                $response->headers->set('Content-Type', 'application/json');
+                $response->setContent($comment);
+                return $response;
 
             }
 

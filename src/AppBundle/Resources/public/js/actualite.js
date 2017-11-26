@@ -5,20 +5,17 @@ $(document).ready(function() {
         var content = $('#content').val();
         console.log(content);
 
-
         $.ajax({
             url: $form.data('url'),
             type: "POST",
-            dataType: "json",
+            dataType: "application/json",
             data: {content : content},
-            success:function(data) {
+            success: function(data) {
                 console.log(data)
-            }
+            },
+            error: function(){
 
-            ,
-            error: function(jqXHR){
-                var errorData = JSON.parse(jqXHR.responseText);
-                console.log('erreurData :' + errorData);
+                console.log('erreurData ');
             }
         })
 
