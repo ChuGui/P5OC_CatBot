@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
@@ -93,19 +94,31 @@ class MainController extends Controller
 
             } else {
 
+                $comment = New Comment;
+                $form = $this->createForm(CommentForm::class, $comment);
+                $form->handleRequest();
 
-                $em = $this->getDoctrine()->getManager();
-                $repository = $em->getRepository("AppBundle:Actualite");
-                $actualite = $repository->find(3);
-                $comment = new Comment();
-                $comment->setContent('un jkhgjkhgkjgkj');
-                $comment->setUser($user);
-                $comment->setActualite($actualite);
-                $em->persist($comment);
-                $em->flush();
+                if($form->isValid()){
+                    $em = $this->getDoctrine()->getManager();
+                    $repository = $em->getRepository("AppBundle:Actualite");
+                    $actualite = $repository->find($id);
+                    $comment->setUser($user);
+                    $comment->setActualite($actualite);
+                    $em->persist($comment);
+                    $em->flush();
 
-                return new JsonResponse(array('data' => $comment));
+                    return new JsonResponse(array('message' => "Succes"), 200);
+                }
 
+                $response =  new JsonResponse(
+                    array(
+                    'message' => "Une erreur",
+                    'form' => $this->renderView('AppBundle:main:actualite.html.twig',
+                        array(
+                            'comment' => $comment,
+                            'form' => $form->CreateView(),
+                        ))), 400);
+                return $response;
             }
 
         } else {

@@ -1,17 +1,22 @@
 $(document).ready(function() {
+
     $('#commentForm').on('submit', function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        var content = JSON.stringify($($form).serializeArray());
-        console.log(content);
+        /*// always makes sense to signal user that something is happening
+        $('#loadingSpinner').show();
+
+        // simple approach avoid submitting multiple times
+        $('#mySubmitButton').hide();*/
+        console.log(data);
 
         $.ajax({
             url: $form.data('url'),
             type: "POST",
             dataType: "application/json",
-            data: content,
+            data: $(this).serialize(),
             success: function(data) {
-                console.log(data)
+                console.log(JSON.stringify(data))
             },
             error: function(){
 
