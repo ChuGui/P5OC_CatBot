@@ -86,21 +86,21 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
-     * @ORM\OrderBy({"updateAt","DESC"})
+     * @ORM\OrderBy({"updateAt" = "DESC"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $comments;
 
     /**
      * @ORM\OneToMany(targetEntity="Observation", mappedBy="user")
-     * @ORM\OrderBy({"updateAt","DESC"})
+     * @ORM\OrderBy({"updateAt" = "DESC"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $observations;
 
     /**
      * @ORM\OneToMany(targetEntity="Actualite", mappedBy="user")
-     * @ORM\OrderBy({"updateAt","DESC"})
+     * @ORM\OrderBy({"updateAt" = "DESC"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $actualites;

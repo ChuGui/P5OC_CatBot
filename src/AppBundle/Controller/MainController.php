@@ -86,35 +86,25 @@ class MainController extends Controller
     public function addCommentAction(Request $request, $id)
     {
         $user = $this->getUser();
-        /*if($request->request->get('content')) {
-            $arrData = array(
-                'output' => 'contenu est ' . $request->get('content'),
-                'id' => $id
-            ) ;
-            return new JsonResponse($arrData);
-        }
-        $this->redirectToRoute('actualites');*/
+
         if ($request->isXmlHttpRequest()) {
             if ($user === null) {
                 throw $this->createNotFoundException("Vous n'avez rien à faire ici. Du balais!");
 
             } else {
 
+                $content =
                 $em = $this->getDoctrine()->getManager();
+                $repository = $em->getRepository("AppBundle:Actualite");
+                $actualite = $repository->find(3);
                 $comment = new Comment();
-                $comment->setContent($request->get('content'));
+                $comment->setContent('un jkhgjkhgkjgkj');
                 $comment->setUser($user);
-                $actualite = $em->getRepository(Actualite::class)->findOneBy(array('id' => $id));
                 $comment->setActualite($actualite);
                 $em->persist($comment);
                 $em->flush();
 
-                $commentArray = $comment->toArray();
-                $jsonComment = json_encode($commentArray);
-                $response = new Response();
-                $response->headers->set('Content-Type', 'application/json');
-                $response->setContent($comment);
-                return $response;
+                return new JsonResponse(array('data' => $comment));
 
             }
 
