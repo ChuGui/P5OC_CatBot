@@ -1,19 +1,21 @@
 $(document).ready(function() {
     $('#commentForm').on('submit', function(e) {
         e.preventDefault();
-        $form = $(this);
-        var url = $form.attr('action');
-        /*var data = $('#appbundle_comment_content').val();*/
+        var $form = $(e.currentTarget);
+        var content = JSON.stringify($($form).serializeArray());
+        console.log(content);
+
         $.ajax({
-            url: url,
+            url: $form.data('url'),
             type: "POST",
-            data: new FormData($form[0]),
-            success: function(data, status) {
-                 console.log(data);
-                 console.log(status);
+            dataType: "application/json",
+            data: content,
+            success: function(data) {
+                console.log(data)
             },
-            error: function(jqXHR, satus, Throw){
-                console.log(satus);
+            error: function(){
+
+                console.log('erreurData ');
             }
         })
 
