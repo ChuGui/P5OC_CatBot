@@ -159,7 +159,7 @@ h4 {
   color: #262626;
   letter-spacing: 2.5px;
   line-height: 19px;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 h6 {
@@ -220,8 +220,14 @@ input {
     background: #FFFEF9;
 }
 
-input, input[placeholder], [placeholder], *[placeholder] {
+input[placeholder], [placeholder], *[placeholder], textarea[placeholder] {
     margin-left: 30px;
+}
+textarea[placeholder] {
+    padding: 15px;
+}
+textarea {
+  resize: none;
 }
 
 .input-group-icon {
@@ -232,6 +238,7 @@ input, input[placeholder], [placeholder], *[placeholder] {
     border-radius: 50px !important;
     background: #FFFFFF;
     border: 2px solid #DED5CD;
+    margin-bottom: 30px;
 }
 
 .input-group-addon {
@@ -246,3 +253,4 @@ input, input[placeholder], [placeholder], *[placeholder] {
   background: none;
   border: none;
 }
+
