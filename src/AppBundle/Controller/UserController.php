@@ -136,4 +136,18 @@ class UserController extends Controller
 
         return $this->RedirectToRoute('security_login');*/
     }
+
+    /**
+     * @Method({"POST"})
+     * @Route("/change/pseudo", name="changePseudo")
+     */
+    public function changePseudoAction(Request $request) {
+        $pseudo = $request->request->get('pseudo');
+        $user = $this->getUser();
+        $user->setPseudo($pseudo);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+        return $this->redirectToRoute('profile');
+    }
 }

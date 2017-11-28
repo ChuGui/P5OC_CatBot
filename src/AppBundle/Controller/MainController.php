@@ -8,6 +8,7 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\ChangeEmailForm;
 use AppBundle\Form\ChangePasswordForm;
+use AppBundle\Form\ChangePseudoForm;
 use AppBundle\Form\CommentForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -141,12 +142,30 @@ class MainController extends Controller
     public function profileAction(Request $request)
     {
         $user = $this->getUser();
-        $formChangePassword = $this->createForm(ChangePasswordForm::class);
-        $formChangeEmail = $this->createForm(ChangeEmailForm::class);
+        $formChangePseudo = $this->createForm(ChangePseudoForm::class, $user);
+        $formChangePassword = $this->createForm(ChangePasswordForm::class, $user);
+        $formChangeEmail = $this->createForm(ChangeEmailForm::class, $user);
         $formChangeEmail->handleRequest($request);
         if ($formChangeEmail->isValid()) {
-            $userNewEmail = $formChangeEmail['email']->getData();
-            return $this->render('main/profile.html.twig');
+            $newEmail = $request->request->get('email');
+            $user = $this->getUser();
+            $user->setEmail($newEmail);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            $this->addFlash('notice','Votre Email à bien été modifié :)');
+            return $this->redirectToRoute('profile');
+        }
+        $formChangePseudo->handleRequest($request);
+        if($formChangePseudo->isValid()) {
+            $newPseudo = $request->request->get('username');
+            $user = $this->getUser();
+            $user->setPseudo($newPseudo);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            $this->addFlash('notice','Votre Pseudo à bien été modifié :)');
+            return $this->redirectToRoute('profile');
         }
 
         $observations = $user->getObservations();
@@ -156,6 +175,7 @@ class MainController extends Controller
         return $this->render('main/profile.html.twig', array(
             'formChangePassword' => $formChangePassword->createView(),
             'formChangeEmail' => $formChangeEmail->createView(),
+            'formChangePseudo' => $formChangePseudo->createView(),
             'user' => $user,
             'observations' => $observations,
         ));

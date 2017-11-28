@@ -105,6 +105,11 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $actualites;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $newsletter;
+
 
     /**
      * @ORM\Column(type="json_array")
@@ -343,6 +348,22 @@ class User implements AdvancedUserInterface, \Serializable
         $this->level = $level;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNewsletter()
+    {
+        return $this->newsletter;
+    }
+
+    /**
+     * @param mixed $newsletter
+     */
+    public function setNewsletter($newsletter)
+    {
+        $this->newsletter = $newsletter;
     }
 
     /**

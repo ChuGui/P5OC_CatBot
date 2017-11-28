@@ -5,6 +5,7 @@ AppBundle\Entity\User:
         plainPassword: admin
         profilePicture: admin.png
         level: condor
+        newsletter: <boolean($chanceOfGettingTrue = 50)>
         roles: ['ROLE_ADMIN']
 
     user_{2..5}:
@@ -14,6 +15,7 @@ AppBundle\Entity\User:
         profilePicture: 'naturaliste<numberBetween($min = 1, $max = 4)>.jpg'
         level: aigle royal
         roles: ['ROLE_NATURALISTE']
+        newsletter: <boolean($chanceOfGettingTrue = 50)>
 
     user_{6..20}:
         username: <userName()>
@@ -22,6 +24,7 @@ AppBundle\Entity\User:
         profilePicture: user<numberBetween($min = 1, $max = 10)>.jpg
         roles: ['ROLE_USER']
         level: moineau
+        newsletter: <boolean($chanceOfGettingTrue = 50)>
 
 AppBundle\Entity\Actualite:
      actualite_{1..9}:
@@ -58,10 +61,10 @@ AppBundle\Entity\Observation:
 
 AppBundle\Entity\Bird:
      bird_{1..20}:
-         name: <firstNameFemale>
-         cdName: <word>
-         lbName: <word>
-         url: <url>
+         name: <firstNameFemale()>
+         cdName: <word()>
+         lbName: <word()>
+         url: <url()>
          birdImage: <imageUrl($width = 640, $height = 480, 'cats')>
 
 

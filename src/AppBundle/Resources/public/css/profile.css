@@ -5,7 +5,7 @@ img.separateur
     margin-right: auto;
 }
 
-#profilImg
+.profileImg
 {
     border-radius: 50%;
 }
@@ -18,5 +18,10 @@ img.separateur
 
 .observationPicture{
     height: 10em;
+    border-radius: 25px;
+}
+
+.observation{
+    background: #f7f3f0;
     border-radius: 25px;
 }

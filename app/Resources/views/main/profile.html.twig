@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/profil.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/profile.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -22,16 +22,13 @@
                            aria-selected="true">Récompenses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="observations-tab" data-toggle="tab" href="#observations"
+                        <a class="nav-link text-uppercase" id="observations-tab" data-toggle="tab" href="#observations"
                            aria-selected="false">Mes
                             observations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" data-toggle="tab" href="#" aria-selected="false">Récompenses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" aria-selected="false">Mes
-                            paramètres</a>
+                        <a class="nav-link text-uppercase" id="settings-tab" data-toggle="tab" href="#settings" aria-selected="false">
+                            Paramètres</a>
                     </li>
                 </ul>
             </div>
@@ -53,15 +50,15 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
-                                    <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" id="profilImg">
+                                    <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" class="profileImg">
                                 </div>
-                                <div class="col">
-                                    <h6>NOM UTILISATEUR</h6>
+                                <div class="col text-left">
+                                    <h3>{{ user.username }}</h3>
                                     <p>Niveau X : lorem ipsum</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col text-left">
                             <h6>NIVEAU ACTUEL: {{ user.level | capitalize }}</h6>
                             <div class="progress">
                                 <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
@@ -97,21 +94,30 @@
                 </div>
                 <div class="container">
                     <div class="d-flex flex-row justify-content-between row-h1">
+                        <div class="row">
+
+
                         {% for observation in observations  %}
-                            <div class="p-2 m-3">
+                            <div class="col-6">
+                            <div class="p-2 m-1 item-h1 observation">
                                 <div class="row">
                                     <div class="col-3">
                                         <img src="{{ observation.picture }}" alt="prise par {{ user.username }}" class="observationPicture">
                                     </div>
-                                    <col-9>
+                                    <div class="col-9">
                                         <div class="text-right">
-                                            <p class="text-muted">fgsfdgsdfggit st</p>
+                                            <p class="text-muted">Observé il y a {{ observation.updateAt | ago }}</p>
                                         </div>
+                                        <h3>{{ observation.bird.name | capitalize }}</h3>
+                                        <p>{{ observation.bird.cdName }}</p>
+                                        <p class="text-right"><i class="fa fa-heart fa-3x" aria-hidden="true"><span class="badge badge-primary">{{ observation.vote }}</span></i></p>
+                                    </div>
 
-                                    </col-9>
                                 </div>
                             </div>
+                            </div>
                         {% endfor %}
+                        </div>
                     </div>
 
                 </div>
@@ -122,29 +128,26 @@
             {#----PARAMETRES-------#}
             {#---------------------#}
             <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                <div class="card">
-                    <div class="card-title"><h1>Paramètres</h1></div>
-                    <div class="card-body">
-                        <h3>Ici se trouve tous mes paramètres</h3>
-                    </div>
+                <div class="container-fluid">
+                    <h2 class="text-center text-uppercase">Paramètre</h2>
+                    <p class="text-center text-uppercase">Libre comme l'air, N'hésitez pas à modifier vos informations à votre guise</p>
+                    <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}">
+                            <a href="#"><img class="profileImg" src="{{ asset('bundles/app/img/'~ user.profilePicture) }}"></a>
+                            <p><a href="#">Changer la photo de profil</a></p>
+
                         </div>
 
                         <div class="col">
-                                    {{ form_start(formChangeEmail) }}
-                                    {{ form_row(formChangeEmail._password,{
-                                        'label' : 'Mot de passe'
-                                    }) }}
-                                    {{ form_row(formChangeEmail.email, {
-                                        'label' : 'Nouvel email'
-                                    }) }}
-                                    <button type="submit" class="btn btn-primary" formnovalidate>Changer d'email</button>
-                                    {{ form_end(formChangeEmail) }}
-
+                            <div class="col">
+                                {{ form_start(formChangePseudo) }}
+                                {{ form_row(formChangePseudo.username) }}
+                                <button type="submit" class="btn btn-primary text-uppercase" formnovalidate>Modifier</button>
+                                {{ form_end(formChangePseudo) }}
+                            </div>
                         </div>
                         <div class="col">
                             {{ form_start(formChangePassword) }}
