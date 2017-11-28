@@ -93,7 +93,7 @@ class MainController extends Controller
 
             } else {
 
-                $content =
+
                 $em = $this->getDoctrine()->getManager();
                 $repository = $em->getRepository("AppBundle:Actualite");
                 $actualite = $repository->find(3);
