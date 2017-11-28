@@ -142,7 +142,7 @@ h2 {
   text-transform: uppercase;
 }
 
-h3 {
+h3, h3 > a {
   font-family: Raleway-Regular;
   font-size: 18px;
   color: #262626;
@@ -156,6 +156,15 @@ h4 {
   font-size: 16px;
   color: #262626;
   letter-spacing: 2.5px;
+  line-height: 19px;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 12px;
+  color: #262626;
+  letter-spacing: 2px;
   line-height: 19px;
   text-transform: uppercase;
 }
@@ -231,4 +240,3 @@ input[placeholder], [placeholder], *[placeholder] {
     border-radius: 50px !important;
     margin-right: 6px;
 }
-

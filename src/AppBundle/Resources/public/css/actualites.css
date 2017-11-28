@@ -1,25 +1,20 @@
-#headContainer
-{
-    height: 200px;
-    background-color: #f7f3f0;
-}
-
-.card{
+.card {
+	border: 2px solid #DED5CD;
     border-radius: 25px;
+    background: #FFFFFF;
 }
 
 .card-img-top{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     max-height: 100px;
+    object-fit: cover
 }
 
-#logo
-{
-    display: block;
-    height: 75px;
-    margin-left: auto;
-    margin-right: auto;
+/* A BOUGER DANS UN TEMPLATE */
+.heading-page {
+    background-color: #F7F3F1;
+    height: 200px;
+  	margin-top: -80px;
+  	padding-top: 100px;
 }
-
-.object-fit_cover { object-fit: cover }
