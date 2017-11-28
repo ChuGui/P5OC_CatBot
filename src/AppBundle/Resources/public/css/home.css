@@ -34,10 +34,12 @@
 }
 
 .home-heading {
+    margin-bottom: 160px;
+}
+.home-title {
     color: #FFFEF9;
     font-size: 60px;
 }
-
 .home-baseline {
     font-family: "Roboto", Arial, sans-serif;
     color: #FFFEF9;
