@@ -5,70 +5,82 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid" id="headContainer">
-        <img src="{{ asset('bundles/app/img/logo.png') }}" alt="logo_nao" id="logo">
-        <h1 class="text-center">{{ actualite.title|upper }}</h1>
-        <p class="text-center">Accueil>>Actualités>>>{{ actualite.title|capitalize }}</p>
+    <div class="container-fluid heading-page">
+        <h1 class="text-center">Titre actualité</h1>
+        <p class="text-center">Accueil >> Titre actualité</p>
     </div>
-    <div class="container">
-        {#----------------#}
-        {#PARTIE ACTUALITE#}
-        {#----------------#}
-        <div class="media">
-            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="" class="d-flex mr-3 profilePicture">
-            <div class="media-body"><p class="text-center"></p>{{ user.username|capitalize }}</div>
-        </div>
-        <p class="text-center">{{ actualite.updateAt|localizeddate('full', 'none')|upper }}</p>
-        <div class="media">
-            <img src="{{ asset('bundles/app/img/'~actualite.actualiteImage) }}" alt="" class="d-flex mr-3 imgActualite">
+    <img src="{{ asset('bundles/app/img/template/wave-driedwood.svg') }}" alt="vague" style="width: 100%">
 
-            <div class="media-body">
-                <h1>{{ actualite.title|upper }}</h1>
-                <p class="text-justify">{{ actualite.content }}</p>
+
+
+    <section class="my-5">
+        <div class="container">
+            {#----------------#}
+            {#PARTIE ACTUALITE#}
+            {#----------------#}
+            <div class="media">
+                <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="" class="d-flex mr-3 profilePicture">
+                <div class="media-body"><p class="text-center"></p>{{ user.username|capitalize }}</div>
+            </div>
+
+            <h6 class="text-center mb-4">{{ actualite.updateAt|localizeddate('full', 'none')|upper }}</h6>
+            
+            <div class="media align-items-center">
+                <img class="col-4 rounded mr-4 p-0" src="{{ asset('bundles/app/img/'~actualite.actualiteImage) }}" alt="image d'actualité">
+
+                <div class="media-body">
+                    <h3 class="mt-0">{{ actualite.title|upper }}</h3>
+                    <p class="text-justify">{{ actualite.content }}</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        {#-------------------#}
-        {#PARTIE COMMENTAIRES#}
-        {#-------------------#}
-        <section id="commentSection">
-            <div id="commentsContainer">
-                {% for comment in comments %}
-                    <div class="media">
-                        <img src="{{ asset('bundles/app/img/'~comment.user.profilePicture) }}" alt="" class="d-flex mr-3 imgComment">
-                        <div class="row">
-                            <div class="media-body col-5">
-                                <p><strong>{{ comment.user.username|capitalize }}</strong><br>
-                                    <span class="text-muted">{{ comment.updateAt|ago }}</span></p>
 
-                            </div>
-                            <div class="media-body col-7">
-                                <p>{{ comment.content|capitalize }}</p>
-                            </div>
+    {#-------------------#}
+    {#PARTIE COMMENTAIRES#}
+    {#-------------------#}
+    <section id="commentSection">
+        <div class="container">
+            {% for comment in comments %}
+                <div class="media">
+                    <img src="{{ asset('bundles/app/img/'~comment.user.profilePicture) }}" alt="" class="d-flex mr-3 imgComment">
+                    <div class="row justify-content-start">
+                        <div class="media-body">
+                            <p><strong>{{ comment.user.username|capitalize }}</strong><br>
+                                <span class="text-muted">{{ comment.updateAt|ago }}</span></p>
+
                         </div>
-
+                        <div class="media-body">
+                            <p>{{ comment.content|capitalize }}</p>
+                        </div>
                     </div>
-                {% endfor %}
-            </div>
 
-            {#-------------------#}
-            {#FORMUALAIRE COMMENT#}
-            {#-------------------#}
+                </div>
+            {% endfor %}
 
-            <div class="row mt-5">
-
-                <div class="col-7 d-flex addComment" id="addComment" >
+        {#-------------------#}
+        {#FORMULAIRE COMMENT#}
+        {#-------------------#}
+            <div class="row mt-5 align-items-center">
+                <div class="col-12 col-md-9" id="addComment" >
                     {% include 'form/commentForm.html.twig' %}
                 </div>
-                <div class="col-3 ml-auto">
-                    <i class="fa fa-facebook-official fa-3x mx-2" aria-hidden="true" style="color: #999999"></i>
-                    <i class="fa fa-instagram fa-3x mx-2" aria-hidden="true" style="color: #999999"></i>
-                    <i class="fa fa-twitter fa-3x mx-2" aria-hidden="true" style="color: #999999"></i>
+                <div class="col-12 col-md-3 social-comment d-flex justify-content-end">
+                    <i class="fa fa-facebook-official fa-3x mx-2" aria-hidden="true"></i>
+                    <i class="fa fa-instagram fa-3x mx-2" aria-hidden="true"></i>
+                    <i class="fa fa-twitter fa-3x mx-2" aria-hidden="true"></i>
                 </div>
-
-
             </div>
-        </section>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row justify-content-between align-items-center mt-5">
+            <a href="{{ path('observation') }}" class="text-center btn btn-outline">précédent</a>
+            <a href="{{ path('observation') }}" class="text-center btn btn-outline">suivant</a>
+        </div>
+    </div>
 
 
 

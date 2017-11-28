@@ -1,9 +1,7 @@
 <div class="form_error"></div>
 <form name="appbundle_comment" method="POST" id="commentForm" class="d-flex flex-row justify-content-between" data-url="{{ path('addComment', {'id' : actualite.id} ) }}">
-    <div class="form-group">
-        <input type="text" id="content" name="content" required="required" placeholder="Ajouter un commentaire..." class="form-control" />
-    </div>
-
-    <button role="submit" class="btn btn-primary btn-comment ml-auto">Envoyé</button>
-
+    <div class="input-group align-items-center">
+	    <input type="text" id="content" name="content" required="required" placeholder="Ajouter un commentaire..." class="form-control" />
+	    <button role="submit" class="input-group-addon text-center" href="#"><span class="fa fa-envelope input-group-icon"></span></button>
+	</div>
 </form>
