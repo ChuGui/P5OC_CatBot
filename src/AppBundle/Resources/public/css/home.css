@@ -1,33 +1,46 @@
-#contain
-{
-    background: url("../img/bg_oiseau.jpg") no-repeat center;
-    background-size: cover;
-    height: 500px;
+
+.banner {
+  background: linear-gradient(-225deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%), url("../img/bg_oiseau.jpg");
+  color: white;
+  text-align: center;
+  height: 100vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -200px;
+  margin-top: -80px;
 }
 
-#path1
-{
-    background: url("../img/path1.png") no-repeat center;
-    background-size: cover;
-    height: 200px;
+#explication {
+    background-color: #FFFEF9;
+    padding: 60px 0 60px 0;
 }
 
-#path2
-{
-    background: url("../img/path2.png") no-repeat center;
-    background-size: cover;
-    height: 200px;
+#explication .media {
+    margin: 30px;
 }
 
-#hiboux_trop_choux
-{
+#hiboux_trop_choux {
     border-radius: 25px;
-}
-#pourquoi
-{
-    background-color: #C9C9C9;
+    width: 100%;
 }
 
-.card{
-    border: hidden;
+#pourquoi {
+    background-color: #F7F3F1;
+    padding: 60px 0 200px 0;
+    margin-bottom: -200px;
+}
+
+.home-heading {
+    color: #FFFEF9;
+    font-size: 60px;
+}
+
+.home-baseline {
+    font-family: "Roboto", Arial, sans-serif;
+    color: #FFFEF9;
+    font-size: 12px;
+    text-transform: uppercase;
 }
