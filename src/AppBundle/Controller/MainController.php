@@ -157,6 +157,24 @@ class MainController extends Controller
         return $this->render('main/validation.html.twig');
     }
 
+    /**
+     * @Route("/apropos", name="aPropos")
+     */
+    public function aProposAction()
+    {
+
+        return $this->render('main/apropos.html.twig');
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction()
+    {
+
+        return $this->render('main/contact.html.twig');
+    }
+
 
 }
 
