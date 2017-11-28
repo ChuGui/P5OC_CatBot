@@ -18,16 +18,16 @@
 
                 <ul class="nav nav-tabs justify-content-center" id="userTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile"
-                           aria-selected="true">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="awards-tab" data-toggle="tab" href="#awards" aria-selected="false">Récompenses</a>
+                        <a class="nav-link active text-uppercase" id="awards-tab" data-toggle="tab" href="#awards"
+                           aria-selected="true">Récompenses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="observations-tab" data-toggle="tab" href="#observations"
                            aria-selected="false">Mes
                             observations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="" data-toggle="tab" href="#" aria-selected="false">Récompenses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" aria-selected="false">Mes
@@ -37,9 +37,14 @@
             </div>
         </div>
         <div class="tab-content">
-            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+            {#---------------------#}
+            {#------Onglet---------#}
+            {#----Récompenses------#}
+            {#---------------------#}
+            <div class="tab-pane active" id="awards" role="tabpanel" aria-labelledby="awards-tab">
                 <div class="container-fluid">
-                    <h1 class="text-center">Titre</h1>
+                    <h2 class="text-center text-uppercase">Récompenses</h2>
                     <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
                 </div>
@@ -66,26 +71,56 @@
                         </div>
                     </div>
                 </div>
+                <div class="container">
+                    <h3 class="text-center text-uppercase">Récompenses</h3>
+                    <div class="d-flex flex-row justify-content-between row-h1">
+                        <img class="p-4 item-h1" src="{{ asset('bundles/app/img/awards.jpg')}}" alt="récompense1" style="height: 10em">
+                        <img class="p-4 item-h1" src="{{ asset('bundles/app/img/awards.jpg')}}" alt="récompense2" style="height: 10em">
+                        <img class="p-4 item-h1" src="{{ asset('bundles/app/img/awards.jpg')}}" alt="récompense3" style="height: 10em">
+                        <img class="p-4 item-h1" src="{{ asset('bundles/app/img/awards.jpg')}}" alt="récompense4" style="height: 10em; opacity: 0.5;">
+                        <img class="p-4 item-h1" src="{{ asset('bundles/app/img/awards.jpg')}}" alt="récompense5" style="height: 10em; opacity: 0.5;">
+                        <img class="p-4 item-h1" src="{{ asset('bundles/app/img/awards.jpg')}}" alt="récompense6" style="height: 10em; opacity: 0.5;">
+
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane" id="awards" role="tabpanel" aria-labelledby="awards-tab">
-                <div class="card">
-                    <div class="card-title"><h1>Récompenses</h1></div>
-                    <div class="card-body">
-                        <h3>Voici toutes mes récompenses</h3>
+
+            {#---------------------#}
+            {#------Onglet---------#}
+            {#----Mes OBSERVATIONS-#}
+            {#---------------------#}
+            <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="observations-tab">
+                <div class="container-fluid">
+                    <h2 class="text-center text-uppercase">Mes observations</h2>
+                    <p class="text-center">Retrouvez vos meilleurs captures et vos plus belles rencontres</p>
+                    <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
+                </div>
+                <div class="container">
+                    <div class="d-flex flex-row justify-content-between row-h1">
+                        {% for observation in observations  %}
+                            <div class="p-2 m-3">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="{{ observation.picture }}" alt="prise par {{ user.username }}" class="observationPicture">
+                                    </div>
+                                    <col-9>
+                                        <div class="text-right">
+                                            <p class="text-muted">fgsfdgsdfggit st</p>
+                                        </div>
+
+                                    </col-9>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
 
                 </div>
             </div>
-            <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="awards-tab">
-                <div class="card">
-                    <div class="card-title"><h1>Mes Observations</h1></div>
-                    <div class="card-body">
-                        <h3>Voici toutes mes observations</h3>
-                    </div>
 
-                </div>
-            </div>
-            {#PARTIE PARAMETRE DU COMPTE#}
+            {#---------------------#}
+            {#------Onglet---------#}
+            {#----PARAMETRES-------#}
+            {#---------------------#}
             <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <div class="card">
                     <div class="card-title"><h1>Paramètres</h1></div>
@@ -129,6 +164,15 @@
                     </div>
                 </div>
             </div>
+
+            {#---------------------#}
+            {#------Onglet---------#}
+            {#----VALIDATIONS-------#}
+            {#---------------------#}
+            <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="awards-tab">
+
+            </div>
+
         </div>
     </div>
 

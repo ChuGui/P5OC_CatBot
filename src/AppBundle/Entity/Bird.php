@@ -49,12 +49,10 @@ class Bird
      */
     private $url;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="Habitat")
+     * @ORM\Column(type="string")
      */
-    private $habitat;
-
+    private $birdImage;
 
     /**
      * @ORM\OneToMany(targetEntity="Observation", mappedBy="bird" )
@@ -167,18 +165,19 @@ class Bird
     /**
      * @return mixed
      */
-    public function getHabitat()
+    public function getBirdImage()
     {
-        return $this->habitat;
+        return $this->birdImage;
     }
 
     /**
-     * @param mixed $habitat
+     * @param mixed $birdImage
      */
-    public function setHabitat(Habitat $habitat)
+    public function setBirdImage($birdImage)
     {
-        $this->habitat = $habitat;
+        $this->birdImage = $birdImage;
     }
+
 
     /**
      * @return ArrayCollection|Observation[]

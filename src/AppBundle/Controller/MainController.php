@@ -90,11 +90,11 @@ class MainController extends Controller
 
         if ($request->isXmlHttpRequest()) {
             if ($user === null) {
-                throw $this->createNotFoundException("Vous n'avez rien à faire ici. Du balais!");
+                throw $this->createNotFoundException("Ce doit être une requete Xml");
 
             } else {
 
-                $comment = New Comment;
+                $comment = New Comment();
                 $form = $this->createForm(CommentForm::class, $comment);
                 $form->handleRequest();
 
@@ -149,11 +149,15 @@ class MainController extends Controller
             return $this->render('main/profile.html.twig');
         }
 
+        $observations = $user->getObservations();
+
+
 
         return $this->render('main/profile.html.twig', array(
             'formChangePassword' => $formChangePassword->createView(),
             'formChangeEmail' => $formChangeEmail->createView(),
             'user' => $user,
+            'observations' => $observations,
         ));
     }
 

@@ -15,3 +15,8 @@ img.separateur
     background-size: cover;
     height: 200px;
 }
+
+.observationPicture{
+    height: 10em;
+    border-radius: 25px;
+}
