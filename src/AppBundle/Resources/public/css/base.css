@@ -43,6 +43,7 @@ body {
     text-transform: uppercase;
     line-height: 17px;
     letter-spacing: 1px;
+    display: inline-block;
 }
 
 .btn {
@@ -86,6 +87,11 @@ body {
     font-family: "Raleway";
 }
 
+.navbar .btn{
+  font-size: 12px;
+  padding: 7px 12px;
+}
+
 .heading-page {
     background-color: #F7F3F1;
     height: 200px;
@@ -98,16 +104,16 @@ body {
 ------FOOTER------
 ------------------
 ------------------*/
-.footer {
+#footer {
     margin-top: 70px;
 }
 #footerNewsletter {
     background: #c1b7ab;
 }
 
-#footer {
+#footerLinks {
     background: #53399e;
-    height: 400px;
+    min-height: 400px;
     color: rgba(255, 254, 249, 0.7);
 }
 
@@ -115,7 +121,7 @@ body {
     color: rgba(255, 254, 249, 0.7);
 }
 
-#footer li>a {
+#footerLinks li>a {
     font-size: 14px;
     text-transform: none;
     color: rgba(255, 254, 249, 0.7);

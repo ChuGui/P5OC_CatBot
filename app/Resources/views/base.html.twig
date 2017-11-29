@@ -21,27 +21,29 @@
 ---HEADER NAVBAR---
 -------------------
 -------------------#}
-        <nav class="navbar navbar-expand-sm navbar-light bg-transparent d-flex justify-content-between">
-            <a class="navbar-brand" href="{{ path('homepage') }}">NAO</a>
-            <ul class="navbar-nav mt-sm-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('homepage') }}">ACCUEIL</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('observation') }}">OBSERVATIONS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">OISEAUX</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('actualites') }}">ACTUALITÉS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('aPropos') }}">A PROPOS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('contact') }}">CONTACT</a>
-                </li>
+        <nav class="navbar navbar-expand-sm navbar-light bg-transparent d-flex">
+            <a class="col-3 navbar-brand" href="{{ path('homepage') }}">NAO</a>
+            <ul class=" col-6 navbar-nav mt-sm-0 justify-content-center">
+                <div class="row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('homepage') }}">ACCUEIL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('observation') }}">OBSERVATIONS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">OISEAUX</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('actualites') }}">ACTUALITÉS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('aPropos') }}">A PROPOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('contact') }}">CONTACT</a>
+                    </li>
+                </div>
             </ul>
             {% if is_granted('ROLE_USER') %}
                 <li class="nav-item">
@@ -54,9 +56,9 @@
                 </li>
 
             {% else %}
-                <div class="login-tools">
-                    <a class="btn btn-outline" href="{{ path('security_login') }}">CONNEXION</a>
-                    <a class="btn  btn-primary" href="{{ path('user_register') }}">INSCRIPTION</a>
+                <div class="col-3 d-flex justify-content-end">
+                    <a class="btn btn-outline mx-1" href="{{ path('security_login') }}">CONNEXION</a>
+                    <a class="btn btn-primary mx-1" href="{{ path('user_register') }}">INSCRIPTION</a>
                 </div>
             {% endif %}
         </nav>
@@ -91,16 +93,16 @@
 -----FOOTER-------
 ------------------ 
 ------------------#}
-<div class="footer">
+<div id="footer">
     <img src="{{ asset('bundles/app/img/footer/wave-brown.svg') }}" alt="vague" style="width: 100%">
     <div class="container-fluid" id="footerNewsletter">
-        <div class="container p-5">
+        <div class="container py-5 px-3 px-lg-5">
             <div class="row justify-content-center align-items-center" >
-                <div class="col-3 text-center" id="souscrire">
+                <div class="col-12 col-md-4 text-center" id="souscrire">
                     <h2>SOUSCRIRE</h2>
                     <p>à notre newsletter</p>
                 </div>
-                <div class="col-7">
+                <div class="col-12 col-md-8">
                     <div class="input-group align-items-center mb-0">
                         <input type="text" class="form-control" placeholder="Email address">
                         <a class="input-group-addon text-center" href="#"><span class="fa fa-envelope input-group-icon"></span></a>
@@ -111,8 +113,8 @@
         </div>
     </div>
 
-    <div class="container-fluid d-flex align-items-center justify-content-around" id="footer">
-        <div class="col-3 text-center">
+    <div class="container-fluid d-flex flex-wrap align-items-center justify-content-around" id="footerLinks">
+        <div class="col-12 col-sm-3 text-center my-4 my-md-0">
             <h1 id="footer-title">NAO</h1>
             <br>
             <i class="fa fa-facebook-official fa-2x mx-2" aria-hidden="true"></i>
@@ -122,10 +124,10 @@
             <i class="fa fa-youtube fa-2x mx-2" aria-hidden="true"></i>
             <i class="fa fa-linkedin fa-2x mx-2" aria-hidden="true"></i>
         </div>
-        <div class="col-2">
+        <div class="col-6 col-sm-3 col-lg-2">
             <img src="{{ asset('bundles/app/img/logo.svg') }}" alt="NAO_LOGO">
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-3 my-4 my-md-0">
             <ul class="text-center nav flex-column">
                 <li class="nav-item"><a href="#" class="nav-link">A propos</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>

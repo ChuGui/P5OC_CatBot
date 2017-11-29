@@ -1,11 +1,29 @@
 {% extends 'base.html.twig'%}
 
-{% block body%}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap-social.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.css') }}">
+{% endblock %}
 
-    <div class="container">
+{% block body%}
+    <div class="container-fluid heading-page">
+        <h1 class="text-center">Inscription</h1>
+        <p class="text-center">Accueil >> Inscription</p>
+    </div>
+    <img src="{{ asset('bundles/app/img/template/wave-driedwood.svg') }}" alt="vague" style="width: 100%">
+
+    <div class="container mt-5" id="form">
         <div class="row">
-            <div class="col-xs-12">
-                <h1>Inscription</h1>
+            <div class="col-12 col-lg-6 mx-auto">
+                <div class="heading">
+                    <h2>Foncez !</h2>
+                    <span>L'aventure n'attend pas !</span>
+                </div>
+
+                <h4 class="text-center mb-4">Connectez-vous !</h4>
+                <a href="{{ path('connect_to_facebook') }}" class="btn btn-block btn-social btn-facebook text-center">Se connecter avec Facebook</a>
+                <a href="#" class="btn btn-block btn-social btn-google text-center">Se connecter avec Google</a>
 
                 {% for message in app.flashes('notice') %}
                     <div class="alert alert-info">
@@ -25,10 +43,11 @@
                         'label' : 'Confirmez votre mot de passe'
                     }) }}
 
-                    <button type="submit" class="btn btn-primary" formnovalidate>Inscription</button>
+                    <div class="text-center">
+                        <button role="submit" class="btn btn-primary mx-auto" formnovalidate>S'inscrire</button>
+                    </div>
 
                 {{ form_end(form) }}
-
             </div>
         </div>
     </div>
