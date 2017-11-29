@@ -43,6 +43,7 @@ body {
     text-transform: uppercase;
     line-height: 17px;
     letter-spacing: 1px;
+    display: inline-block;
 }
 
 .btn {
@@ -86,6 +87,11 @@ body {
     font-family: "Raleway";
 }
 
+.navbar .btn{
+  font-size: 12px;
+  padding: 7px 12px;
+}
+
 .heading-page {
     background-color: #F7F3F1;
     height: 200px;
@@ -98,16 +104,17 @@ body {
 ------FOOTER------
 ------------------
 ------------------*/
-.footer {
+#footer {
     margin-top: 70px;
 }
+
 #footerNewsletter {
     background: #c1b7ab;
 }
 
-#footer {
+#footerLinks {
     background: #53399e;
-    height: 400px;
+    min-height: 400px;
     color: rgba(255, 254, 249, 0.7);
 }
 
@@ -115,7 +122,7 @@ body {
     color: rgba(255, 254, 249, 0.7);
 }
 
-#footer li>a {
+#footerLinks li>a {
     font-size: 14px;
     text-transform: none;
     color: rgba(255, 254, 249, 0.7);
@@ -159,7 +166,7 @@ h4 {
   color: #262626;
   letter-spacing: 2.5px;
   line-height: 19px;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 h6 {
@@ -171,12 +178,12 @@ h6 {
   text-transform: uppercase;
 }
 
-p {
+p, span {
     font-size: 14px ;
     line-height: 22px;
 }
 
-span { 
+.heading span { 
   font-family: Raleway-Regular;
   font-size: 12px;
   color: #262626;
@@ -213,15 +220,23 @@ span {
     box-sizing: border-box;
 }
 
-/* BOUTON INPUT */
+/* FORMULAIRE */
 input {
     height: 48px;
     border-radius: 50px !important;
-    background: #FFFEF9;
 }
 
-input, input[placeholder], [placeholder], *[placeholder] {
+input[placeholder], [placeholder], *[placeholder], textarea[placeholder] {
     margin-left: 30px;
+}
+
+textarea {
+  resize: none;
+  border-radius: 50px !important;
+}
+
+textarea[placeholder] {
+    padding: 15px 12px;
 }
 
 .input-group-icon {
@@ -229,20 +244,41 @@ input, input[placeholder], [placeholder], *[placeholder] {
 }
 
 .input-group, .form-group {
-    border-radius: 50px !important;
+    border-radius: 25px !important;
     background: #FFFFFF;
     border: 2px solid #DED5CD;
+    margin-bottom: 30px;
 }
 
 .input-group-addon {
     width: 36px;
     height: 36px;
     background: #6d49d1;
-    border-radius: 50px !important;
+    border-radius: 25px !important;
     margin-right: 6px;
 }
 
 .form-control {
   background: none;
   border: none;
+}
+
+.form-group {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: stretch;
+      align-items: stretch;
+  width: 100%;
+}
+
+.btn-social {
+  margin-bottom: 30px;
+  padding-left: 24px !important;
+}
+
+.comment-avatar {
+  height : 36px;
+  width: 36px;
+  object-fit: cover;
 }

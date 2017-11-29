@@ -25,11 +25,10 @@
 
             <h6 class="text-center mb-4">{{ actualite.updateAt|localizeddate('full', 'none')|upper }}</h6>
             
-            <div class="media align-items-center">
-                <img class="col-4 rounded mr-4 p-0" src="{{ asset('bundles/app/img/'~actualite.actualiteImage) }}" alt="image d'actualité">
-
-                <div class="media-body">
-                    <h3 class="mt-0">{{ actualite.title|upper }}</h3>
+            <div class="row media align-items-center justify-content-center p-0">
+                <img class="col-12 col-md-4 rounded mr-md-1 mr-lg-4 p-0" src="{{ asset('bundles/app/img/'~actualite.actualiteImage) }}" alt="image d'actualité">
+                <div class="media-body col-12 col-md-8">
+                    <h3 class="mt-5 mt-md-0 text-center text-md-left">{{ actualite.title|upper }}</h3>
                     <p class="text-justify">{{ actualite.content }}</p>
                 </div>
             </div>
@@ -42,22 +41,25 @@
     {#-------------------#}
     <section id="commentSection">
         <div class="container">
-            {% for comment in comments %}
-                <div class="media">
-                    <img src="{{ asset('bundles/app/img/'~comment.user.profilePicture) }}" alt="" class="d-flex mr-3 imgComment">
-                    <div class="row justify-content-start">
-                        <div class="media-body">
-                            <p><strong>{{ comment.user.username|capitalize }}</strong><br>
-                                <span class="text-muted">{{ comment.updateAt|ago }}</span></p>
-
+            <div class="row flex-column comm-display flex-nowrap p-0">
+                {% for comment in comments %}
+                    <div class="row media align-items-center justify-content-center p-0 mx-3 my-2 comm">
+                        <div class="col-3 col-sm-4 col-lg-2 mr-3">
+                            <div class="row align-items-center justify-content-start">
+                                    <img src="{{ asset('bundles/app/img/'~comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
+                                <div class="ml-sm-3">
+                                    <p class="mb-1">{{ comment.user.username|capitalize }}</p>
+                                    <span>{{ comment.updateAt|ago }}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="media-body">
-                            <p>{{ comment.content|capitalize }}</p>
+                        <div class="media-body col-9 col-sm-8 col-lg-10">
+                            <p class="text-justify">{{ comment.content|capitalize }}</p>
                         </div>
                     </div>
+                {% endfor %}
 
-                </div>
-            {% endfor %}
+            </div>
 
         {#-------------------#}
         {#FORMULAIRE COMMENT#}

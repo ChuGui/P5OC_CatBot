@@ -22,6 +22,11 @@
     margin: 30px;
 }
 
+#explication .media img {
+    max-height: 200px;
+    max-width: 300px;
+}
+
 #hiboux_trop_choux {
     border-radius: 25px;
     width: 100%;
