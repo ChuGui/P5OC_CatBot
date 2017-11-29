@@ -107,6 +107,7 @@ body {
 #footer {
     margin-top: 70px;
 }
+
 #footerNewsletter {
     background: #c1b7ab;
 }
@@ -177,12 +178,12 @@ h6 {
   text-transform: uppercase;
 }
 
-p {
+p, span {
     font-size: 14px ;
     line-height: 22px;
 }
 
-span { 
+.heading span { 
   font-family: Raleway-Regular;
   font-size: 12px;
   color: #262626;
@@ -243,7 +244,7 @@ textarea[placeholder] {
 }
 
 .input-group, .form-group {
-    border-radius: 50px !important;
+    border-radius: 25px !important;
     background: #FFFFFF;
     border: 2px solid #DED5CD;
     margin-bottom: 30px;
@@ -253,7 +254,7 @@ textarea[placeholder] {
     width: 36px;
     height: 36px;
     background: #6d49d1;
-    border-radius: 50px !important;
+    border-radius: 25px !important;
     margin-right: 6px;
 }
 
@@ -274,4 +275,10 @@ textarea[placeholder] {
 .btn-social {
   margin-bottom: 30px;
   padding-left: 24px !important;
+}
+
+.comment-avatar {
+  height : 36px;
+  width: 36px;
+  object-fit: cover;
 }
