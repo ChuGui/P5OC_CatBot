@@ -10,47 +10,53 @@
 {% endblock %}
 
 
-
-
 {% block body %}
+    <div class="container-fluid heading-page">
+        <h1 class="text-center">CONTACT</h1>
+        <p class="text-center">Accueil >> Contact</p>
+    </div>
+    <img src="{{ asset('bundles/app/img/template/wave-driedwood.svg') }}" alt="vague" style="width: 100%">
 
-    <div class="container row" id="form">
-        <div class="col">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h1>Connexion!</h1>
-                    <a href="{{ path('connect_to_facebook') }}" class="btn btn-block btn-social btn-facebook">
-                        <span class="fa fa-facebook"></span>Connectez-vous avec Facebook</a>
-                    <a href="#" class="btn btn-block btn-social btn-google">
-                        <i class="fa fa-google"></i>Connectez-vous avec Google</a>
-                    {% if error %}
-                        <div class="alert alert-danger">
-                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        </div>
-                    {% endif %}
-                    {% for message in app.flashes('notice') %}
-                        <div class="alert alert-info">
-                            <div>{{ message }}</div>
-                        </div>
-                    {% endfor %}
-                    {% for message in app.flashes('error') %}
-                        <div class="alert alert-danger">
-                            <div>{{ message }}</div>
-                        </div>
-                    {% endfor %}
-                    {{ form_start(form) }}
-                    {{ form_row(form._username) }}
-                    {{ form_row(form._password) }}
-
-                    <button type="submit" class="btn btn-primary" formnovalidate>Connexion</button>
-
-                    {{ form_end(form) }}
+    <div class="container mt-5" id="form">
+        <div class="row">
+            <div class="col-12 col-lg-6 mx-auto">
+                <div class="heading">
+                    <h2>Rentrez !</h2>
+                    <span>Vous êtes ici chez vous !</span>
                 </div>
+                <h4 class="text-center mb-4">Connectez-vous !</h4>
+                <a href="{{ path('connect_to_facebook') }}" class="btn btn-block btn-social btn-facebook text-center">Se connecter avec Facebook</a>
+                <a href="#" class="btn btn-block btn-social btn-google text-center">Se connecter avec Google</a>
+                {% if error %}
+                    <div class="alert alert-danger">
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    </div>
+                {% endif %}
+                {% for message in app.flashes('notice') %}
+                    <div class="alert alert-info">
+                        <div>{{ message }}</div>
+                    </div>
+                {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">
+                        <div>{{ message }}</div>
+                    </div>
+                {% endfor %}
+                {{ form_start(form) }}
+                {{ form_row(form._username) }}
+                {{ form_row(form._password) }}
+
+                <div class="row text-center">
+                    <a class="col-12 col-md-6 mb-4" data-toggle="modal" data-target="#forgetPassModal">Se souvenir de moi</a>
+                    <a class="col-12 col-md-6 mb-4" data-toggle="modal" data-target="#forgetPassModal">Mot de passe oublié</a>
+                </div>
+
+                <div class="text-center">
+                    <button role="submit" class="btn btn-primary mx-auto" formnovalidate>Se connecter</button>
+                </div>
+                {{ form_end(form) }}
             </div>
-        </div>
-        <div class="col">
-            <h1>Vous avez oublié votre mot de passe?</h1>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#forgetPassModal">Mot de passe oublié</button>
+
             <div class="modal" id="forgetPassModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -74,6 +80,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     {#J'ai perdu mon mdp modal#}

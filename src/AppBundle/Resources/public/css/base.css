@@ -213,7 +213,7 @@ span {
     box-sizing: border-box;
 }
 
-/* BOUTON INPUT */
+/* FORMULAIRE */
 input {
     height: 48px;
     border-radius: 50px !important;
@@ -263,4 +263,9 @@ textarea[placeholder] {
   -ms-flex-align: stretch;
       align-items: stretch;
   width: 100%;
-  }
+}
+
+.btn-social {
+  margin-bottom: 30px;
+  padding-left: 24px !important;
+}
