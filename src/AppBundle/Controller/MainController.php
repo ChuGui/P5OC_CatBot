@@ -168,6 +168,7 @@ class MainController extends Controller
         }
 
         $observations = $em->getRepository("AppBundle:Observation")->findAll();
+        $waitingObservations = $em->getRepository("AppBundle:Observation")->findAllWaiting();
         $userObservations = $user->getObservations();
 
         return $this->render('main/profile.html.twig', array(
@@ -177,6 +178,7 @@ class MainController extends Controller
             'user' => $user,
             'userObservations' => $userObservations,
             'observations' => $observations,
+            'waitingObservations' => $waitingObservations
         ));
     }
 
@@ -210,7 +212,6 @@ class MainController extends Controller
 
         return $this->render('main/contact.html.twig');
     }
-
 
 }
 

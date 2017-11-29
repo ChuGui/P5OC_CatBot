@@ -34,6 +34,12 @@
                         <a class="nav-link text-uppercase" id="validations-tab" data-toggle="tab" href="#validations" aria-selected="false">
                             Validations</a>
                     </li>
+                    {% if is_granted('ROLE_NATURALISTE') %}
+                        <li class="nav-item">
+                            <a class="nav-link text-uppercase" id="waiting-tab" data-toggle="tab" href="#waiting" aria-selected="false">
+                                En attente</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -178,7 +184,6 @@
             {#----VALIDATIONS-------#}
             {#---------------------#}
             <div class="tab-pane" id="validations" role="tabpanel" aria-labelledby="validations-tab">
-                <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                     <div class="container-fluid">
                         <h2 class="text-center text-uppercase">Validations</h2>
                         <p class="text-center text-uppercase">On dirait que la recherche à besoin de votre expertise !</p>
@@ -223,10 +228,60 @@
 
 
                 </div>
+
+
+            {#---------------------#}
+            {#------Onglet---------#}
+            {#----En attente-------#}
+            {#---------------------#}
+            <div class="tab-pane" id="waiting" role="tabpanel" aria-labelledby="waiting-tab">
+                    <div class="container-fluid">
+                        <h2 class="text-center text-uppercase">EN ATTENTE</h2>
+                        <p class="text-center text-uppercase">Nous avons besoin de vous pour valider les observations !</p>
+                        <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
+                    </div>
+                    <div class="container waiting mt-2">
+
+                        <div class="d-flex flex-row justify-content-between row-h1">
+                            <div class="row">
+
+
+                                {% for waitingObservation in waitingObservations %}
+                                    <div class="col-6">
+                                        <div class="p-2 m-1 item-h1 observation">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <img src="{{ waitingObservation.picture }}" alt="prise par {{ waitingObservation.user.username }}" class="observationPicture">
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="text-right">
+                                                        <p class="text-muted">Observé il y a {{ waitingObservation.updateAt | ago }}</p>
+                                                    </div>
+                                                    <h3>{{ waitingObservation.bird.name | capitalize }}</h3>
+                                                    <p>{{ waitingObservation.bird.cdName }}
+                                                        <br>
+                                                        Ajouté par <strong>{{ waitingObservation.user.username }}</strong>
+                                                    </p>
+                                                    <a href="#" class="btn btn-success">Valider</a>
+                                                    <a href="#" class="btn btn-danger">Refuser</a>
+                                                    <p class="text-right">
+                                                        <i class="fa fa-heart fa-3x" aria-hidden="true"><span class="badge badge-primary">{{ waitingObservation.vote }}</span></i></p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
 
-        </div>
     </div>
+
 
 
 
