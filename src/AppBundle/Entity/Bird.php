@@ -55,6 +55,11 @@ class Bird
     private $birdImage;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * @ORM\OneToMany(targetEntity="Observation", mappedBy="bird" )
      */
     private $observations;
@@ -194,6 +199,24 @@ class Bird
     {
         $this->observations = $observations;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+
 
 
 }

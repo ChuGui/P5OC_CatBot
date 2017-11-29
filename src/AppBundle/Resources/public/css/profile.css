@@ -25,3 +25,26 @@ img.separateur
     background: #f7f3f0;
     border-radius: 25px;
 }
+.birdImage{
+    width: 200px;
+    border-radius: 25px;
+}
+
+.observationModalSection{
+    background-color: #C9C9C9;
+}
+
+
+.waitingObservationModal{
+    position: absolute;
+    width: 80%;
+    left:50%;
+    transform: translate(-50%,0)!important;
+    background-color: #5eb5e0;
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: inherit;
+    }
+}

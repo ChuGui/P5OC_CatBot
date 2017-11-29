@@ -42,11 +42,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('contact') }}">CONTACT</a>
                 </li>
-                {% if is_granted('ROLE_NATURALISTE') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('validation') }}">VALIDATION</a>
-                    </li>
-                {% endif %}
+
             </ul>
             {% if is_granted('ROLE_USER') %}
                 <li class="nav-item">

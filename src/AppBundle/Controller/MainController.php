@@ -182,19 +182,6 @@ class MainController extends Controller
         ));
     }
 
-
-    /**
-     * @Route("/validation", name="validation")
-     */
-    public function validationAction()
-    {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_NATURALISTE')) {
-            $this->addFlash('notice', 'Vous devez-être connecté en tant que "Naturaliste" pour acceder à cette page.');
-            return $this->redirectToRoute('security_login');
-        }
-        return $this->render('main/validation.html.twig');
-    }
-
     /**
      * @Route("/apropos", name="aPropos")
      */
@@ -209,9 +196,22 @@ class MainController extends Controller
      */
     public function contactAction()
     {
-
         return $this->render('main/contact.html.twig');
     }
+
+    /**
+     * @Route("/observation/denied/{id}",requirements={"id" = "\d+"}, name="observationDenied")
+     * @Method({"POST"})
+     */
+    public function observationDeniedAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $observation = $em->getRepository('AppBundle:Observation')->find($id);
+        $em->remove($observation);
+        $em->flush();
+        return new Response('message', "L'observation a correctement été supprimée");
+    }
+
+
 
 }
 
