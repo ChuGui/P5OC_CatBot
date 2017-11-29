@@ -217,17 +217,19 @@ span {
 input {
     height: 48px;
     border-radius: 50px !important;
-    background: #FFFEF9;
 }
 
 input[placeholder], [placeholder], *[placeholder], textarea[placeholder] {
     margin-left: 30px;
 }
-textarea[placeholder] {
-    padding: 15px;
-}
+
 textarea {
   resize: none;
+  border-radius: 50px !important;
+}
+
+textarea[placeholder] {
+    padding: 15px 12px;
 }
 
 .input-group-icon {
@@ -254,3 +256,11 @@ textarea {
   border: none;
 }
 
+.form-group {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: stretch;
+      align-items: stretch;
+  width: 100%;
+  }
