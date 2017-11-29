@@ -19,6 +19,7 @@
 
 .social-comment {
     color: #6d49d1;
+    padding-right: 0;
 }
 
 .comm-display {
@@ -28,12 +29,37 @@
     margin-bottom: 0;
     height: 200px;
     max-height: 350px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
 .comm {
     min-height: 50px;
 }
+
 .comm span {
     color: #87888C ;
     font-size: 12px;
+}
+
+.comm-display::-webkit-scrollbar { 
+  width: 12px;
+  background-color: #F5F5F5;
+  padding-right: 20px;
+  border-radius: 10px;
+}
+
+.comm-display::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #6d49d1;
+}
+
+#addComment .input-group {
+    margin-bottom: 0;
+}
+
+#addComment {
+    padding-left: 0;
+    padding-right: 0;
 }
