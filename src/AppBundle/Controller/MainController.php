@@ -142,6 +142,7 @@ class MainController extends Controller
     public function profileAction(Request $request)
     {
         $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
         $formChangePseudo = $this->createForm(ChangePseudoForm::class, $user);
         $formChangePassword = $this->createForm(ChangePasswordForm::class, $user);
         $formChangeEmail = $this->createForm(ChangeEmailForm::class, $user);
@@ -150,7 +151,6 @@ class MainController extends Controller
             $newEmail = $request->request->get('email');
             $user = $this->getUser();
             $user->setEmail($newEmail);
-            $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
             $this->addFlash('notice','Votre Email à bien été modifié :)');
@@ -161,22 +161,21 @@ class MainController extends Controller
             $newPseudo = $request->request->get('username');
             $user = $this->getUser();
             $user->setPseudo($newPseudo);
-            $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
             $this->addFlash('notice','Votre Pseudo à bien été modifié :)');
             return $this->redirectToRoute('profile');
         }
 
-        $observations = $user->getObservations();
-
-
+        $observations = $em->getRepository("AppBundle:Observation")->findAll();
+        $userObservations = $user->getObservations();
 
         return $this->render('main/profile.html.twig', array(
             'formChangePassword' => $formChangePassword->createView(),
             'formChangeEmail' => $formChangeEmail->createView(),
             'formChangePseudo' => $formChangePseudo->createView(),
             'user' => $user,
+            'userObservations' => $userObservations,
             'observations' => $observations,
         ));
     }

@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class ObservationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb->orderBy('o.updateAt','DESC');
+        return $qb->getQuery()->getResult();
+    }
 }

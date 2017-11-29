@@ -30,6 +30,10 @@
                         <a class="nav-link text-uppercase" id="settings-tab" data-toggle="tab" href="#settings" aria-selected="false">
                             Paramètres</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" id="validations-tab" data-toggle="tab" href="#validations" aria-selected="false">
+                            Validations</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -97,20 +101,21 @@
                         <div class="row">
 
 
-                        {% for observation in observations  %}
+                        {% for userObservation in userObservations  %}
                             <div class="col-6">
                             <div class="p-2 m-1 item-h1 observation">
                                 <div class="row">
                                     <div class="col-3">
-                                        <img src="{{ observation.picture }}" alt="prise par {{ user.username }}" class="observationPicture">
+                                        <img src="{{ userObservation.picture }}" alt="prise par {{ userObservation.user.username }}" class="observationPicture">
                                     </div>
                                     <div class="col-9">
                                         <div class="text-right">
-                                            <p class="text-muted">Observé il y a {{ observation.updateAt | ago }}</p>
+                                            <p class="text-muted">Observé il y a {{ userObservation.updateAt | ago }}</p>
                                         </div>
-                                        <h3>{{ observation.bird.name | capitalize }}</h3>
-                                        <p>{{ observation.bird.cdName }}</p>
-                                        <p class="text-right"><i class="fa fa-heart fa-3x" aria-hidden="true"><span class="badge badge-primary">{{ observation.vote }}</span></i></p>
+                                        <h3>{{ userObservation.bird.name | capitalize }}</h3>
+                                        <p>{{ userObservation.bird.cdName }}</p>
+                                        <p class="text-right">
+                                            <i class="fa fa-heart fa-3x" aria-hidden="true"><span class="badge badge-primary">{{ userObservation.vote }}</span></i></p>
                                     </div>
 
                                 </div>
@@ -172,8 +177,52 @@
             {#------Onglet---------#}
             {#----VALIDATIONS-------#}
             {#---------------------#}
-            <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="awards-tab">
+            <div class="tab-pane" id="validations" role="tabpanel" aria-labelledby="validations-tab">
+                <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                    <div class="container-fluid">
+                        <h2 class="text-center text-uppercase">Validations</h2>
+                        <p class="text-center text-uppercase">On dirait que la recherche à besoin de votre expertise !</p>
+                        <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
+                    </div>
+                    <div class="container goole-map">
+                        <div class="container" style="height: 400px; border-radius: 20px; background-color: #999999"></div>
+                    </div>
+                    <div class="container last-observations mt-2">
 
+                        <div class="d-flex flex-row justify-content-between row-h1">
+                            <div class="row">
+
+
+                                {% for observation in observations | slice (0,2) %}
+                                    <div class="col-6">
+                                        <div class="p-2 m-1 item-h1 observation">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <img src="{{ observation.picture }}" alt="prise par {{ observation.user.username }}" class="observationPicture">
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="text-right">
+                                                        <p class="text-muted">Observé il y a {{ observation.updateAt | ago }}</p>
+                                                    </div>
+                                                    <h3>{{ observation.bird.name | capitalize }}</h3>
+                                                    <p>{{ observation.bird.cdName }}
+                                                        <br>
+                                                        Ajouté par <strong>{{ observation.user.username }}</strong>
+                                                    </p>
+                                                    <p class="text-right">
+                                                        <i class="fa fa-heart fa-3x" aria-hidden="true"><span class="badge badge-primary">{{ observation.vote }}</span></i></p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
 
         </div>

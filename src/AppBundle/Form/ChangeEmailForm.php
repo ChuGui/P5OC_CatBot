@@ -14,8 +14,6 @@ class ChangeEmailForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->add('_password', PasswordType::class)
             ->add('email', TextType::class)
         ;
     }
