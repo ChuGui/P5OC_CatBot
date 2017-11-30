@@ -55,17 +55,6 @@ class Observation
 
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $vote;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $picture;
-
-
-    /**
      * @ORM\ManyToOne(targetEntity="Bird", inversedBy="observations")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -77,13 +66,18 @@ class Observation
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Habitat", inversedBy="observations")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $habitat;
 
 
     public function __construct()
     {
         $this->IsValidated = false;
         $this->updateAt = new \DateTime();
-        $this->vote = 0;
+
     }
 
     /**
@@ -228,35 +222,18 @@ class Observation
     /**
      * @return mixed
      */
-    public function getVote()
+    public function getHabitat()
     {
-        return $this->vote;
+        return $this->habitat;
     }
 
     /**
-     * @param mixed $vote
+     * @param mixed $habitat
      */
-    public function setVote($vote)
+    public function setHabitat(Habitat $habitat)
     {
-        $this->vote = $vote;
+        $this->habitat = $habitat;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    /**
-     * @param mixed $picture
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-    }
-
 
 
 

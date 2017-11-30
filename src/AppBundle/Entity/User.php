@@ -105,11 +105,6 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $actualites;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $newsletter;
-
 
     /**
      * @ORM\Column(type="json_array")
@@ -351,22 +346,6 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return mixed
-     */
-    public function getNewsletter()
-    {
-        return $this->newsletter;
-    }
-
-    /**
-     * @param mixed $newsletter
-     */
-    public function setNewsletter($newsletter)
-    {
-        $this->newsletter = $newsletter;
-    }
-
-    /**
      * Get level
      *
      * @return string
@@ -393,14 +372,6 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param mixed $observations
-     */
-    public function setObservations(Observation $observations)
-    {
-        $this->observations = $observations;
-    }
-
-    /**
      * @return ArrayCollection|Observation[]
      */
     public function getObservations()
@@ -414,12 +385,5 @@ class User implements AdvancedUserInterface, \Serializable
     public function getActualite()
     {
         return $this->actualites;
-    }
-    /**
-     * @param mixed $actualites
-     */
-    public function setActualites(Observation $actualites)
-    {
-        $this->actualites = $actualites;
     }
 }

@@ -8,7 +8,6 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\ChangeEmailForm;
 use AppBundle\Form\ChangePasswordForm;
-use AppBundle\Form\ChangePseudoForm;
 use AppBundle\Form\CommentForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -91,11 +90,11 @@ class MainController extends Controller
 
         if ($request->isXmlHttpRequest()) {
             if ($user === null) {
-                throw $this->createNotFoundException("Ce doit être une requete Xml");
+                throw $this->createNotFoundException("Vous n'avez rien à faire ici. Du balais!");
 
             } else {
 
-                $comment = New Comment();
+                $comment = New Comment;
                 $form = $this->createForm(CommentForm::class, $comment);
                 $form->handleRequest();
 
@@ -142,44 +141,33 @@ class MainController extends Controller
     public function profileAction(Request $request)
     {
         $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $formChangePseudo = $this->createForm(ChangePseudoForm::class, $user);
-        $formChangePassword = $this->createForm(ChangePasswordForm::class, $user);
-        $formChangeEmail = $this->createForm(ChangeEmailForm::class, $user);
+        $formChangePassword = $this->createForm(ChangePasswordForm::class);
+        $formChangeEmail = $this->createForm(ChangeEmailForm::class);
         $formChangeEmail->handleRequest($request);
         if ($formChangeEmail->isValid()) {
-            $newEmail = $request->request->get('email');
-            $user = $this->getUser();
-            $user->setEmail($newEmail);
-            $em->persist($user);
-            $em->flush();
-            $this->addFlash('notice','Votre Email à bien été modifié :)');
-            return $this->redirectToRoute('profile');
-        }
-        $formChangePseudo->handleRequest($request);
-        if($formChangePseudo->isValid()) {
-            $newPseudo = $request->request->get('username');
-            $user = $this->getUser();
-            $user->setPseudo($newPseudo);
-            $em->persist($user);
-            $em->flush();
-            $this->addFlash('notice','Votre Pseudo à bien été modifié :)');
-            return $this->redirectToRoute('profile');
+            $userNewEmail = $formChangeEmail['email']->getData();
+            return $this->render('main/profile.html.twig');
         }
 
-        $observations = $em->getRepository("AppBundle:Observation")->findAll();
-        $waitingObservations = $em->getRepository("AppBundle:Observation")->findAllWaiting();
-        $userObservations = $user->getObservations();
 
         return $this->render('main/profile.html.twig', array(
             'formChangePassword' => $formChangePassword->createView(),
             'formChangeEmail' => $formChangeEmail->createView(),
-            'formChangePseudo' => $formChangePseudo->createView(),
             'user' => $user,
-            'userObservations' => $userObservations,
-            'observations' => $observations,
-            'waitingObservations' => $waitingObservations
         ));
+    }
+
+
+    /**
+     * @Route("/validation", name="validation")
+     */
+    public function validationAction()
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_NATURALISTE')) {
+            $this->addFlash('notice', 'Vous devez-être connecté en tant que "Naturaliste" pour acceder à cette page.');
+            return $this->redirectToRoute('security_login');
+        }
+        return $this->render('main/validation.html.twig');
     }
 
     /**
@@ -196,29 +184,9 @@ class MainController extends Controller
      */
     public function contactAction()
     {
+
         return $this->render('main/contact.html.twig');
     }
-
-    /**
-     * @Route("/observation/denied/{id}",requirements={"id" = "\d+"}, name="observationDenied")
-     * @Method({"POST"})
-     */
-    public function observationDeniedAction($id) {
-        $em = $this->getDoctrine()->getManager();
-        $observation = $em->getRepository('AppBundle:Observation')->find($id);
-        $em->remove($observation);
-        $em->flush();
-        return new Response('message', "L'observation a correctement été supprimée");
-    }
-
-    /**
-     * @Route("/faq", name="faq")
-     */
-    public function faqAction()
-    {
-        return $this->render('main/faq.html.twig');
-    }
-
 
 
 }

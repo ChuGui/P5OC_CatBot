@@ -5,7 +5,6 @@ AppBundle\Entity\User:
         plainPassword: admin
         profilePicture: admin.png
         level: condor
-        newsletter: <boolean($chanceOfGettingTrue = 50)>
         roles: ['ROLE_ADMIN']
 
     user_{2..5}:
@@ -15,7 +14,6 @@ AppBundle\Entity\User:
         profilePicture: 'naturaliste<numberBetween($min = 1, $max = 4)>.jpg'
         level: aigle royal
         roles: ['ROLE_NATURALISTE']
-        newsletter: <boolean($chanceOfGettingTrue = 50)>
 
     user_{6..20}:
         username: <userName()>
@@ -24,7 +22,6 @@ AppBundle\Entity\User:
         profilePicture: user<numberBetween($min = 1, $max = 10)>.jpg
         roles: ['ROLE_USER']
         level: moineau
-        newsletter: <boolean($chanceOfGettingTrue = 50)>
 
 AppBundle\Entity\Actualite:
      actualite_{1..9}:
@@ -40,35 +37,6 @@ AppBundle\Entity\Comment:
         updateAt: <dateTimeBetween("-19 days", "now")>
         user: '@user_*'
         actualite: '@actualite_*'
-
-AppBundle\Entity\Observation:
-    observation_{1..3}:
-        latitude: <latitude($min = -90, $max = 90)>
-        longitude: <longitude($min = -180, $max = 180)>
-        isValidated: <boolean($chanceOfGettingTrue = 50)>
-        updateAt: <dateTimeBetween("-19 days", "now")>
-        bird: '@bird_*'
-        user: '@user_1'
-        picture: <imageUrl($width = 640, $height = 480, 'cats')>
-    observation_{4..30}:
-        latitude: <latitude($min = -90, $max = 90)>
-        longitude: <longitude($min = -180, $max = 180)>
-        isValidated: <boolean($chanceOfGettingTrue = 50)>
-        updateAt: <dateTimeBetween("-19 days", "now")>
-        bird: '@bird_*'
-        user: '@user_*'
-        picture: <imageUrl($width = 640, $height = 480, 'cats')>
-
-AppBundle\Entity\Bird:
-     bird_{1..20}:
-         name: <firstNameFemale()>
-         url: <url()>
-         picture: <imageUrl($width = 640, $height = 480, 'cats')>
-         description: <sentence($nbWords = 80, $variableNbWords = true)>
-
-
-
-
 
 
 
