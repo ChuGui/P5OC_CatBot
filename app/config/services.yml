@@ -77,3 +77,6 @@ services:
                - "@translator.default"
            tags:
                - { name: twig.extension }
+
+    import.csvtoarray:
+        class: AppBundle\Services\ConvertCsvToArray

@@ -57,23 +57,26 @@ class ImportCommand extends ContainerAwareCommand
         // Processing on each row of data
         foreach($data as $row) {
 
-            $user = $em->getRepository('AcmeAcmeBundle:User')
-                ->findOneByEmail($row['email']);
+            $taxref = $em->getRepository('AppBundle:Taxref')
+                ->findOneByCdNom($row['cd_nom']);
 
             // If the user doest not exist we create one
-            if(!is_object($user)){
-                $user = new User();
-                $user->setEmail($row['email']);
+            if(!is_object($taxref)){
+                $taxref = new Taxref();
+                $taxref->setCdNom($row['cd_nom']);
             }
 
             // Updating info
-            $user->setLastName($row['lastname']);
-            $user->setFirstName($row['firstname']);
+            $taxref->setNomScientifique($row['nom_scientifique']);
+            $taxref->setFamille($row['famille']);
+            $taxref->setOrdre($row['ordre']);
+            $taxref->setFirstObservation($row['first_observation']);
+            $taxref->setLastObservation($row['last_observation']);
 
             // Do stuff here !
 
             // Persisting the current user
-            $em->persist($user);
+            $em->persist($taxref);
 
             // Each 20 users persisted we flush everything
             if (($i % $batchSize) === 0) {
@@ -105,7 +108,7 @@ class ImportCommand extends ContainerAwareCommand
     protected function get(InputInterface $input, OutputInterface $output)
     {
         // Getting the CSV from filesystem
-        $fileName = 'web/uploads/import/users.csv';
+        $fileName = 'web/uploads/import/taxref.csv';
 
         // Using service for converting CSV to PHP Array
         $converter = $this->getContainer()->get('import.csvtoarray');
