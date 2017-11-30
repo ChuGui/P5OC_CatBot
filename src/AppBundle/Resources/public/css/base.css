@@ -18,7 +18,7 @@
 }
 
 body {
-    font-family: "Roboto", Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     font-size: 16px;
     background-color: #fffdf8;
     color: #46484a;
@@ -78,6 +78,7 @@ body {
     background: #FFFEF9;
     position: relative;
     z-index: 999;
+    margin-bottom: -30px;
 }
 
 .navbar-logo {
@@ -97,6 +98,12 @@ body {
 .navbar-svg {
   position: relative;
   z-index: 999;
+}
+
+@media (min-width: 768px){
+  .navbar {
+    margin-bottom: 0;
+  }
 }
 
 .heading-page {
@@ -165,23 +172,12 @@ h2 {
   text-transform: uppercase;
 }
 
-@media (min-width: 576px) {
-  h1 {
-    font-size: 60px;
-  line-height: 70px;
-  }
-  h2 {
-    font-size: 36px;
-    line-height: 39px;
-  }
-}
-
 h3, h3 > a {
   font-family: Raleway-Regular;
-  font-size: 18px;
+  font-size: 14px;
   color: #262626;
   letter-spacing: 3px;
-  line-height: 19px;
+  line-height: 16px;
   text-transform: uppercase;
 }
 
@@ -204,8 +200,31 @@ h6 {
 }
 
 p, span {
+    font-size: 12px ;
+    line-height: 16px;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 60px;
+  line-height: 70px;
+  }
+  h2 {
+    font-size: 36px;
+    line-height: 39px;
+  }
+  p, span {
     font-size: 14px ;
     line-height: 22px;
+  }
+  h3, h3 > a {
+    font-family: Raleway-Regular;
+    font-size: 18px;
+    color: #262626;
+    letter-spacing: 3px;
+    line-height: 19px;
+    text-transform: uppercase;
+  }
 }
 
 .heading span { 
@@ -266,6 +285,7 @@ textarea[placeholder] {
 
 .input-group-icon {
     color: rgba(255, 254, 249, 0.7);
+    margin: -1px;
 }
 
 .input-group, .form-group {
@@ -307,4 +327,3 @@ textarea[placeholder] {
   width: 36px;
   object-fit: cover;
 }
-
