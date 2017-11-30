@@ -10,4 +10,24 @@ namespace AppBundle\Repository;
  */
 class ObservationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb->orderBy('o.updateAt','DESC');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findAllWaiting()
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb->where('o.isValidated = false')->orderBy('o.updateAt','DESC');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findAllValidated()
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb->where('o.isValidated = true')->orderBy('o.updateAt','DESC');
+        return $qb->getQuery()->getResult();
+    }
 }
