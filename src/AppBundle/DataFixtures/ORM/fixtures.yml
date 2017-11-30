@@ -65,7 +65,7 @@ AppBundle\Entity\Bird:
          cdName: <word()>
          lbName: <word()>
          url: <url()>
-         birdImage: <imageUrl($width = 640, $height = 480, 'cats')>
+         picture: <imageUrl($width = 640, $height = 480, 'cats')>
          description: <sentence($nbWords = 80, $variableNbWords = true)>
 
 

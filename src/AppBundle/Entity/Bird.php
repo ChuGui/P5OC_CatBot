@@ -33,18 +33,6 @@ class Bird
     /**
      * @var string
      *
-     * @ORM\Column(name="cdName", type="string", length=255)
-     */
-    private $cdName;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $lbName;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
@@ -52,7 +40,7 @@ class Bird
     /**
      * @ORM\Column(type="string")
      */
-    private $birdImage;
+    private $picture;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -63,6 +51,12 @@ class Bird
      * @ORM\OneToMany(targetEntity="Observation", mappedBy="bird" )
      */
     private $observations;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Taxref")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $taxref;
 
     public function __construct()
     {
@@ -103,45 +97,6 @@ class Bird
         return $this->name;
     }
 
-    /**
-     * Set cdName
-     *
-     * @param string $cdName
-     *
-     * @return Bird
-     */
-    public function setCdName($cdName)
-    {
-        $this->cdName = $cdName;
-
-        return $this;
-    }
-
-    /**
-     * Get cdName
-     *
-     * @return string
-     */
-    public function getCdName()
-    {
-        return $this->cdName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLbName()
-    {
-        return $this->lbName;
-    }
-
-    /**
-     * @param mixed $lbName
-     */
-    public function setLbName($lbName)
-    {
-        $this->lbName = $lbName;
-    }
 
     /**
      * Set url
@@ -170,19 +125,18 @@ class Bird
     /**
      * @return mixed
      */
-    public function getBirdImage()
+    public function getPicture()
     {
-        return $this->birdImage;
+        return $this->picture;
     }
 
     /**
-     * @param mixed $birdImage
+     * @param mixed $picture
      */
-    public function setBirdImage($birdImage)
+    public function setPicture($picture)
     {
-        $this->birdImage = $birdImage;
+        $this->picture = $picture;
     }
-
 
     /**
      * @return ArrayCollection|Observation[]
@@ -216,8 +170,21 @@ class Bird
         $this->description = $description;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTaxref()
+    {
+        return $this->taxref;
+    }
 
-
+    /**
+     * @param mixed $taxref
+     */
+    public function setTaxref(Taxref $taxref)
+    {
+        $this->taxref = $taxref;
+    }
 
 }
 
