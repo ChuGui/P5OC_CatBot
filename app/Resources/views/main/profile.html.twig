@@ -1,1 +1,224 @@
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/profil.css') }}">
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/profile.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid heading-page">
+        <h1 class="text-center">Profil</h1>
+        <p class="text-center">Accueil >> Profil</p>
+    </div>
+    <img class="wave-svg" src="{{ asset('bundles/app/img/template/wave-driedwood.svg') }}" alt="vague" style="width: 100%">
+
+
+    <div class="container">
+        <ul class="nav nav-tabs align-items-end" id="userTab" role="tablist">
+            <li class="text-center col nav-item">
+                <a class="nav-link active pb-3 d-flex align-items-end justify-content-center" id="profile-tab" data-toggle="tab" href="#profile"
+                   aria-selected="true">Récompenses</a>
+            </li>
+            <li class="text-center col nav-item">
+                <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="observations-tab" data-toggle="tab" href="#observations" aria-selected="false">Mes observations</a>
+            </li>
+            <li class="text-center col nav-item">
+                <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="settings-tab" data-toggle="tab" href="#settings" aria-selected="false">Paramètres</a>
+            </li>
+            <li class="text-center col nav-item">
+                <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="validations-tab" data-toggle="tab" href="#validations" aria-selected="false">Validations</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <section class="mt-5 tab-content">
+
+        {#RECOMPENSES#}
+        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="container">
+                <div class="heading">
+                    <h2>Récompenses</h2>
+                    <span>Progressez et devenez un véritable maître dans l'observation des oiseaux</span>
+                </div>
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-start">
+                            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="photo de profil" class="rounded-circle" id="profilImg">
+                            <div class="text-center text-md-left mt-3 ml-sm-3 mt-md-0">
+                                <h3 class="mb-2 mb-md-3">{{ user.username|capitalize }}</h3>
+                                <span>Niveau X : {{ user.level | capitalize }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h3 class="mt-5 mt-md-0 mb-2 mb-md-3 text-center text-md-left">Prochain niveau</h3>
+                        <div class="progress">
+                            <div class="progress-bar"
+                                 style="width: 77%">77%
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-5">
+                    <h3 class="mb-3 text-center">Récompenses</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="observations-tab">
+            <div class="container">
+                <div class="heading">
+                    <h2>Mes observations</h2>
+                    <span>Retrouvez vos meilleures captures et vos plus belles rencontres</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+            <div class="container">
+                <div class="heading">
+                    <h2>Paramètres</h2>
+                    <span>Libre comme l'air, n'hésitez pas à modifier vos informations à votre guise</span>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}">
+                    </div>
+
+                    <div class="col">
+                                {{ form_start(formChangeEmail) }}
+                                {{ form_row(formChangeEmail.email, {
+                                    'label' : 'Nouvel email'
+                                }) }}
+                                <button type="submit" class="btn btn-primary" formnovalidate>Changer d'email</button>
+                                {{ form_end(formChangeEmail) }}
+
+
+                    </div>
+                    <div class="col">
+                        {{ form_start(formChangePassword) }}
+                        {{ form_row(formChangePassword.plainPassword.first, {
+                            'label' : 'Nouveau mot de passe'
+                        }) }}
+                        {{ form_row(formChangePassword.plainPassword.second, {
+                            'label' : 'Confirmez votre mot de passe'
+                        }) }}
+                        <button type="submit" class="btn btn-primary" formnovalidate>Changer de mot de passe</button>
+                        {{ form_end(formChangePassword) }}
+                    </div>
+                </div>
+            </div>
+
+            {#---------------------#}
+            {#------Onglet---------#}
+            {#----VALIDATIONS-------#}
+            {#---------------------#}
+            <div class="tab-pane" id="validations" role="tabpanel" aria-labelledby="validations-tab">
+                <div class="container-fluid">
+                    <h2 class="text-center text-uppercase">Validations</h2>
+                    <p class="text-center text-uppercase">On dirait que la recherche à besoin de votre expertise !</p>
+                    <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
+                </div>
+                <div class="container goole-map">
+                    <div class="container" style="height: 400px; border-radius: 20px; background-color: #999999"></div>
+                </div>
+                <div class="container last-observations mt-2">
+
+                    <div class="d-flex flex-row justify-content-between row-h1">
+                        <div class="row">
+
+
+                            {% for waitingObservation in waitingObservations %}
+                                <div class="col-6 waitingObservations" id="waitingObservation-{{ loop.index }}">
+                                    <div class="p-2 m-1 item-h1 observation">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{ waitingObservation.picture }}"
+                                                     alt="prise par {{ waitingObservation.user.username }}"
+                                                     class="observationPicture">
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="text-right">
+                                                    <p class="text-muted">Observé il y
+                                                        a {{ waitingObservation.updateAt | ago }}</p>
+                                                </div>
+                                                <a href="#" data-toggle="modal" data-target="#waitingObservationModal_{{ loop.index }}"><h3>{{ waitingObservation.bird.name | capitalize }}</h3></a>
+
+                                                    <br>
+                                                    Ajouté par <strong>{{ waitingObservation.user.username }}</strong>
+                                                </p>
+                                                <p class="text-right">
+                                                    <i class="fa fa-heart fa-3x" aria-hidden="true"><span
+                                                                class="badge badge-primary">{{ waitingObservation.vote }}</span></i>
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {#-------------#}
+                                {#----MODALE---#}
+                                {#-OBSERVATION-#}
+                                {#-------------#}
+                                <div id="waitingObservationModal_{{ loop.index }}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog waitingObservationModal">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header text-center">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h2 class="modal-title">{{ waitingObservation.bird.name }}</h2>
+
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="bird">
+                                                    <div class="media">
+                                                        <img src="{{  waitingObservation.bird.picture  }}" alt="" class="d-flex mr-3 birdImage">
+                                                        <div class="media-body"><p class="text-center"></p>{{ waitingObservation.bird.description }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="container-fluid observationModalSection text-center">
+                                                    <h3>OBSERVATION</h3>
+                                                    <div class="media">
+                                                        <img src="{{ asset('bundles/app/img/'~waitingObservation.user.profilePicture) }}" alt="" class="d-flex mr-3 imgComment" style="height: 50px; border-radius: 50px">                 <div class="medai-body">
+                                                            <p><strong>{{ waitingObservation.user.username }}</strong></p>
+                                                            <p>{{ waitingObservation.updateAt | ago }}</p>
+                                                        </div>
+                                                    </div>
+                                                        <div class="media-body"><p class="text-center"></p>{{ waitingObservation.bird.description }}</div>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="validations" role="tabpanel" aria-labelledby="validations-tab">
+            <div class="container">
+                <div class="heading">
+                    <h2>Validations</h2>
+                    <span>On dirait que la recherche à besoin de votre expertise !</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
