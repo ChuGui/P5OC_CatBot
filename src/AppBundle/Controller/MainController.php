@@ -211,6 +211,14 @@ class MainController extends Controller
         return new Response('message', "L'observation a correctement été supprimée");
     }
 
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faqAction()
+    {
+        return $this->render('main/faq.html.twig');
+    }
+
 
 
 }
