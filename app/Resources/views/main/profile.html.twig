@@ -12,6 +12,8 @@
     </div>
     <img class="wave-svg" src="{{ asset('bundles/app/img/template/wave-driedwood.svg') }}" alt="vague" style="width: 100%">
 
+
+    {# PANEL D'ONGLET #}
     <div class="container">
         <ul class="nav nav-tabs align-items-end" id="userTab" role="tablist">
             <li class="text-center col nav-item">
@@ -30,7 +32,9 @@
         </ul>
     </div>
 
+    {# CONTENU TYPE D'UN ONGLET #}
     <section class="mt-5 tab-content">
+        {# RECOMPENSES #}
         <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="container">
                 <div class="heading">
@@ -61,8 +65,8 @@
                 </div>
             </div>
         </div>
-
-
+        
+        {# OBSERVATIONS #}
         <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="observations-tab">
             <div class="container">
                 <div class="heading">
@@ -72,6 +76,7 @@
             </div>
         </div>
 
+        {# PARAMETRES #}
         <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
             <div class="container">
                 <div class="heading">
@@ -79,42 +84,23 @@
                     <span>Libre comme l'air, n'hésitez pas à modifier vos informations à votre guise</span>
                 </div>
 
-
-                <div class="row">
-                    <div class="col">
-                        <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}">
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex flex-column align-items-center">
+                            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="photo de profil" class="rounded-circle" id="profilImg">
+                            <div class="text-center mt-3">
+                                <span>Changer la photo de profil</span>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col">
-                                {{ form_start(formChangeEmail) }}
-                                {{ form_row(formChangeEmail._password,{
-                                    'label' : 'Mot de passe'
-                                }) }}
-                                {{ form_row(formChangeEmail.email, {
-                                    'label' : 'Nouvel email'
-                                }) }}
-                                <button type="submit" class="btn btn-primary" formnovalidate>Changer d'email</button>
-                                {{ form_end(formChangeEmail) }}
-
-                    </div>
-                    <div class="col">
-                        {{ form_start(formChangePassword) }}
-                        {{ form_row(formChangePassword._password,{
-                            'label' : 'Mot de passe'
-                        }) }}
-                        {{ form_row(formChangePassword.plainPassword.first, {
-                            'label' : 'Nouveau mot de passe'
-                        }) }}
-                        {{ form_row(formChangePassword.plainPassword.second, {
-                            'label' : 'Confirmez votre mot de passe'
-                        }) }}
-                        <button type="submit" class="btn btn-primary" formnovalidate>Changer de mot de passe</button>
-                        {{ form_end(formChangePassword) }}
+                    <div class="col-12 col-md-6">
+                        <h4 class="text-center mb-4">Connectez-vous !</h4>
                     </div>
                 </div>
             </div>
         </div>
 
+        {# VALIDATIONS #}
         <div class="tab-pane" id="validations" role="tabpanel" aria-labelledby="validations-tab">
             <div class="container">
                 <div class="heading">
@@ -124,11 +110,5 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
 
 {% endblock %}

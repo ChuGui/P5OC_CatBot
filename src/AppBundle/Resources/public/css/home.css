@@ -35,7 +35,7 @@
 }
 
 .home-heading {
-    margin-bottom: 160px;
+    margin-bottom: 80px;
 }
 .home-title {
     color: #FFFEF9;
@@ -43,6 +43,9 @@
 }
 
 @media (min-width: 576px) {
+  .home-heading {
+      margin-bottom: 160px;
+  }
   h1 {
     font-size: 60px;
   }
