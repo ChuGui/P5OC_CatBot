@@ -18,10 +18,6 @@
     padding: 60px 0 60px 0;
 }
 
-#explication .media {
-    margin: 30px;
-}
-
 #explication .media img {
     max-height: 200px;
     max-width: 300px;
@@ -43,8 +39,15 @@
 }
 .home-title {
     color: #FFFEF9;
-    font-size: 60px;
+    font-size: 40px;
 }
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 60px;
+  }
+}
+
 .home-baseline {
     font-family: "Roboto", Arial, sans-serif;
     color: #FFFEF9;

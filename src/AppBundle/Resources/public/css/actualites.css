@@ -6,8 +6,8 @@
 }
 
 .card-img-top{
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
     max-height: 100px;
     object-fit: cover
 }

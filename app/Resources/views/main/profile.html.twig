@@ -6,131 +6,127 @@
 {% endblock %}
 
 {% block body %}
-
-    <div class="card text-center">
-        <div class="card-title" id="titlePicture">
-            <h1>PROFIL</h1>
-        </div>
-        <div class="card-body">
-            <br>
-            <div class="container-fluid">
-
-
-                <ul class="nav nav-tabs justify-content-center" id="userTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile"
-                           aria-selected="true">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="awards-tab" data-toggle="tab" href="#awards" aria-selected="false">Récompenses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="observations-tab" data-toggle="tab" href="#observations"
-                           aria-selected="false">Mes
-                            observations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" aria-selected="false">Mes
-                            paramètres</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="tab-content">
-            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="container-fluid">
-                    <h1 class="text-center">Titre</h1>
-                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <img src="{{ asset('bundles/app/img/separateur.png') }}" class="separateur"/>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" id="profilImg">
-                                </div>
-                                <div class="col">
-                                    <h6>NOM UTILISATEUR</h6>
-                                    <p>Niveau X : lorem ipsum</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <h6>NIVEAU ACTUEL: {{ user.level | capitalize }}</h6>
-                            <div class="progress">
-                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-                                     style="width: 77%">77%
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="awards" role="tabpanel" aria-labelledby="awards-tab">
-                <div class="card">
-                    <div class="card-title"><h1>Récompenses</h1></div>
-                    <div class="card-body">
-                        <h3>Voici toutes mes récompenses</h3>
-                    </div>
-
-                </div>
-            </div>
-            <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="awards-tab">
-                <div class="card">
-                    <div class="card-title"><h1>Mes Observations</h1></div>
-                    <div class="card-body">
-                        <h3>Voici toutes mes observations</h3>
-                    </div>
-
-                </div>
-            </div>
-            {#PARTIE PARAMETRE DU COMPTE#}
-            <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                <div class="card">
-                    <div class="card-title"><h1>Paramètres</h1></div>
-                    <div class="card-body">
-                        <h3>Ici se trouve tous mes paramètres</h3>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}">
-                        </div>
-
-                        <div class="col">
-                                    {{ form_start(formChangeEmail) }}
-                                    {{ form_row(formChangeEmail._password,{
-                                        'label' : 'Mot de passe'
-                                    }) }}
-                                    {{ form_row(formChangeEmail.email, {
-                                        'label' : 'Nouvel email'
-                                    }) }}
-                                    <button type="submit" class="btn btn-primary" formnovalidate>Changer d'email</button>
-                                    {{ form_end(formChangeEmail) }}
-
-                        </div>
-                        <div class="col">
-                            {{ form_start(formChangePassword) }}
-                            {{ form_row(formChangePassword._password,{
-                                'label' : 'Mot de passe'
-                            }) }}
-                            {{ form_row(formChangePassword.plainPassword.first, {
-                                'label' : 'Nouveau mot de passe'
-                            }) }}
-                            {{ form_row(formChangePassword.plainPassword.second, {
-                                'label' : 'Confirmez votre mot de passe'
-                            }) }}
-                            <button type="submit" class="btn btn-primary" formnovalidate>Changer de mot de passe</button>
-                            {{ form_end(formChangePassword) }}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container-fluid heading-page">
+        <h1 class="text-center">Profil</h1>
+        <p class="text-center">Accueil >> Profil</p>
     </div>
+    <img class="wave-svg" src="{{ asset('bundles/app/img/template/wave-driedwood.svg') }}" alt="vague" style="width: 100%">
+
+    <div class="container">
+        <ul class="nav nav-tabs align-items-end" id="userTab" role="tablist">
+            <li class="text-center col nav-item">
+                <a class="nav-link active pb-3 d-flex align-items-end justify-content-center" id="profile-tab" data-toggle="tab" href="#profile"
+                   aria-selected="true">Récompenses</a>
+            </li>
+            <li class="text-center col nav-item">
+                <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="observations-tab" data-toggle="tab" href="#observations" aria-selected="false">Mes observations</a>
+            </li>
+            <li class="text-center col nav-item">
+                <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="settings-tab" data-toggle="tab" href="#settings" aria-selected="false">Paramètres</a>
+            </li>
+            <li class="text-center col nav-item">
+                <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="validations-tab" data-toggle="tab" href="#validations" aria-selected="false">Validations</a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="mt-5 tab-content">
+        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="container">
+                <div class="heading">
+                    <h2>Récompenses</h2>
+                    <span>Progressez et devenez un véritable maître dans l'observation des oiseaux</span>
+                </div>
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-start">
+                            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="photo de profil" class="rounded-circle" id="profilImg">
+                            <div class="text-center text-md-left mt-3 ml-sm-3 mt-md-0">
+                                <h3 class="mb-2 mb-md-3">{{ user.username|capitalize }}</h3>
+                                <span>Niveau X : {{ user.level | capitalize }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h3 class="mt-5 mt-md-0 mb-2 mb-md-3 text-center text-md-left">Prochain niveau</h3>
+                        <div class="progress">
+                            <div class="progress-bar"
+                                 style="width: 77%">77%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-5">
+                    <h3 class="mb-3 text-center">Récompenses</h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tab-pane" id="observations" role="tabpanel" aria-labelledby="observations-tab">
+            <div class="container">
+                <div class="heading">
+                    <h2>Mes observations</h2>
+                    <span>Retrouvez vos meilleures captures et vos plus belles rencontres</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+            <div class="container">
+                <div class="heading">
+                    <h2>Paramètres</h2>
+                    <span>Libre comme l'air, n'hésitez pas à modifier vos informations à votre guise</span>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}">
+                    </div>
+
+                    <div class="col">
+                                {{ form_start(formChangeEmail) }}
+                                {{ form_row(formChangeEmail._password,{
+                                    'label' : 'Mot de passe'
+                                }) }}
+                                {{ form_row(formChangeEmail.email, {
+                                    'label' : 'Nouvel email'
+                                }) }}
+                                <button type="submit" class="btn btn-primary" formnovalidate>Changer d'email</button>
+                                {{ form_end(formChangeEmail) }}
+
+                    </div>
+                    <div class="col">
+                        {{ form_start(formChangePassword) }}
+                        {{ form_row(formChangePassword._password,{
+                            'label' : 'Mot de passe'
+                        }) }}
+                        {{ form_row(formChangePassword.plainPassword.first, {
+                            'label' : 'Nouveau mot de passe'
+                        }) }}
+                        {{ form_row(formChangePassword.plainPassword.second, {
+                            'label' : 'Confirmez votre mot de passe'
+                        }) }}
+                        <button type="submit" class="btn btn-primary" formnovalidate>Changer de mot de passe</button>
+                        {{ form_end(formChangePassword) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="validations" role="tabpanel" aria-labelledby="validations-tab">
+            <div class="container">
+                <div class="heading">
+                    <h2>Validations</h2>
+                    <span>On dirait que la recherche à besoin de votre expertise !</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 
 
 

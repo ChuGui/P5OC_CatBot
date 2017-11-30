@@ -76,6 +76,8 @@ body {
     height: 50px;
     padding: 0 30px !important;
     background: #FFFEF9;
+    position: relative;
+    z-index: 999;
 }
 
 .navbar-logo {
@@ -92,11 +94,23 @@ body {
   padding: 7px 12px;
 }
 
+.navbar-svg {
+  position: relative;
+  z-index: 999;
+}
+
 .heading-page {
     background-color: #F7F3F1;
     height: 200px;
     margin-top: -80px;
     padding-top: 100px;
+    position: relative;
+    z-index: 998;
+}
+
+.wave-svg {
+  position: relative;
+  z-index: 997;
 }
 
 /*----------------
@@ -135,20 +149,31 @@ body {
 /* Typo */
 h1 {
   font-family: Raleway-Extralight;
-  font-size: 60px;
+  font-size: 36px;
   color: #262626;
   letter-spacing: auto;
-  line-height: 70px;
+  line-height: 40px;
   text-transform: uppercase;
 }
 
 h2 {
   font-family: Raleway-Light;
-  font-size: 36px;
+  font-size: 24px;
   color: #262626;
   letter-spacing: 2px;
-  line-height: 39px;
+  line-height: 28px;
   text-transform: uppercase;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 60px;
+  line-height: 70px;
+  }
+  h2 {
+    font-size: 36px;
+    line-height: 39px;
+  }
 }
 
 h3, h3 > a {
