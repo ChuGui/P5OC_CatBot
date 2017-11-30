@@ -62,8 +62,6 @@ AppBundle\Entity\Observation:
 AppBundle\Entity\Bird:
      bird_{1..20}:
          name: <firstNameFemale()>
-         cdName: <word()>
-         lbName: <word()>
          url: <url()>
          picture: <imageUrl($width = 640, $height = 480, 'cats')>
          description: <sentence($nbWords = 80, $variableNbWords = true)>

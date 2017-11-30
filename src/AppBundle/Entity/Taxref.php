@@ -52,14 +52,14 @@ class Taxref
     /**
      * @var string
      *
-     * @ORM\Column(name="first_observation", type="datetime")
+     * @ORM\Column(name="first_observation", type="string")
      */
     private $firstObservation;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="last_observation", type="datetime")
+     * @ORM\Column(name="last_observation", type="string")
      */
     private $lastObservation;
 

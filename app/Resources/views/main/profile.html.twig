@@ -127,7 +127,6 @@
                                                         a {{ userObservation.updateAt | ago }}</p>
                                                 </div>
                                                 <h3>{{ userObservation.bird.name | capitalize }}</h3>
-                                                <p>{{ userObservation.bird.cdName }}</p>
                                                 <p class="text-right">
                                                     <i class="fa fa-heart fa-3x" aria-hidden="true"><span
                                                                 class="badge badge-primary">{{ userObservation.vote }}</span></i>
@@ -227,7 +226,7 @@
                                                         a {{ waitingObservation.updateAt | ago }}</p>
                                                 </div>
                                                 <a href="#" data-toggle="modal" data-target="#waitingObservationModal_{{ loop.index }}"><h3>{{ waitingObservation.bird.name | capitalize }}</h3></a>
-                                                <p>{{ waitingObservation.bird.cdName }}
+
                                                     <br>
                                                     Ajouté par <strong>{{ waitingObservation.user.username }}</strong>
                                                 </p>
@@ -252,13 +251,13 @@
                                             <div class="modal-header text-center">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h2 class="modal-title">{{ waitingObservation.bird.name }}</h2>
-                                                <h6 class="text-muted">{{ waitingObservation.bird.lbName }}</h6>
+
 
                                             </div>
                                             <div class="modal-body">
                                                 <div class="bird">
                                                     <div class="media">
-                                                        <img src="{{  waitingObservation.bird.birdImage  }}" alt="" class="d-flex mr-3 birdImage">
+                                                        <img src="{{  waitingObservation.bird.picture  }}" alt="" class="d-flex mr-3 birdImage">
                                                         <div class="media-body"><p class="text-center"></p>{{ waitingObservation.bird.description }}</div>
                                                     </div>
                                                 </div>
