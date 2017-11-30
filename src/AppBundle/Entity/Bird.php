@@ -33,33 +33,30 @@ class Bird
     /**
      * @var string
      *
-     * @ORM\Column(name="cdName", type="string", length=255)
-     */
-    private $cdName;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $lbName;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $picture;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Habitat")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $habitat;
-
+    private $description;
 
     /**
      * @ORM\OneToMany(targetEntity="Observation", mappedBy="bird" )
      */
     private $observations;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Taxref")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $taxref;
 
     public function __construct()
     {
@@ -100,45 +97,6 @@ class Bird
         return $this->name;
     }
 
-    /**
-     * Set cdName
-     *
-     * @param string $cdName
-     *
-     * @return Bird
-     */
-    public function setCdName($cdName)
-    {
-        $this->cdName = $cdName;
-
-        return $this;
-    }
-
-    /**
-     * Get cdName
-     *
-     * @return string
-     */
-    public function getCdName()
-    {
-        return $this->cdName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLbName()
-    {
-        return $this->lbName;
-    }
-
-    /**
-     * @param mixed $lbName
-     */
-    public function setLbName($lbName)
-    {
-        $this->lbName = $lbName;
-    }
 
     /**
      * Set url
@@ -167,17 +125,17 @@ class Bird
     /**
      * @return mixed
      */
-    public function getHabitat()
+    public function getPicture()
     {
-        return $this->habitat;
+        return $this->picture;
     }
 
     /**
-     * @param mixed $habitat
+     * @param mixed $picture
      */
-    public function setHabitat(Habitat $habitat)
+    public function setPicture($picture)
     {
-        $this->habitat = $habitat;
+        $this->picture = $picture;
     }
 
     /**
@@ -196,6 +154,37 @@ class Bird
         $this->observations = $observations;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaxref()
+    {
+        return $this->taxref;
+    }
+
+    /**
+     * @param mixed $taxref
+     */
+    public function setTaxref(Taxref $taxref)
+    {
+        $this->taxref = $taxref;
+    }
 
 }
 
