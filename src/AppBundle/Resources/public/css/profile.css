@@ -71,7 +71,7 @@
 }
 
 /* MES OBSERVATIONS */
-.observation{
+.bird-card{
     background: #F7F3F1;
     border-radius: 25px;
 }
@@ -125,13 +125,53 @@
     margin: 0;
     color: #F7F3F1; 
     text-align: center;
-    margin-bottom: .3em;
-    padding-left: 6px;
+    padding-left: 7px;
 }
 
 @media (min-width: 1400px) {
     .col-xxl-5 {
         flex: 0 0 38.6667% !important;
         max-width: 38.6667% !important;
+    }
+    .col-xxl-10 {
+        flex: 0 0 77.3334% !important;
+        max-width: 77.3334% !important;
+    }
+}
+
+/* Spé pour les écrans très petits */
+@media (max-width: 575px) {
+    .bird-card{
+        max-height: 116px;
+    }
+    .bird-card p.text-muted, .bird-card h3 {
+        margin-bottom: 0;
+    }
+    .fa-stack {
+        width: 24Px;
+        height: 24px;
+        padding-right: 15px;
+    }
+    .fa-stack .fa-heart {
+        font-size: 24px;
+    }
+    .heart-text {
+        font-size: 10px;
+        line-height: 12px;
+        padding-top: 2px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .bird-card h3, .bird-card h3 > a {
+      font-family: Raleway-Regular;
+      font-size: 14px;
+      color: #262626;
+      letter-spacing: 1.5px;
+      line-height: 16px;
+      text-transform: uppercase;
+    }
+    p {
+        font-size: 12px ;
+        line-height: 16px;
     }
 }

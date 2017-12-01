@@ -3,7 +3,7 @@
   background: linear-gradient(-225deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%), url("../img/bg_oiseau.jpg");
   color: white;
   text-align: center;
-  height: 110vh;
+  height: 105vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   display: flex;
@@ -46,7 +46,7 @@
   .home-heading {
       margin-bottom: 160px;
   }
-  h1 {
+  .home-title {
     font-size: 60px;
   }
 }

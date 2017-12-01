@@ -174,10 +174,10 @@ h2 {
 
 h3, h3 > a {
   font-family: Raleway-Regular;
-  font-size: 14px;
+  font-size: 18px;
   color: #262626;
   letter-spacing: 3px;
-  line-height: 16px;
+  line-height: 19px;
   text-transform: uppercase;
 }
 
@@ -200,8 +200,8 @@ h6 {
 }
 
 p, span {
-    font-size: 12px ;
-    line-height: 16px;
+  font-size: 14px ;
+  line-height: 22px;
 }
 
 @media (min-width: 576px) {
@@ -212,18 +212,6 @@ p, span {
   h2 {
     font-size: 36px;
     line-height: 39px;
-  }
-  p, span {
-    font-size: 14px ;
-    line-height: 22px;
-  }
-  h3, h3 > a {
-    font-family: Raleway-Regular;
-    font-size: 18px;
-    color: #262626;
-    letter-spacing: 3px;
-    line-height: 19px;
-    text-transform: uppercase;
   }
 }
 
