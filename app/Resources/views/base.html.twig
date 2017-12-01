@@ -44,7 +44,6 @@
                         <a class="nav-link" href="{{ path('contact') }}">CONTACT</a>
                     </li>
                 </div>
-
             </ul>
             {% if is_granted('ROLE_USER') %}
                 <li class="nav-item">
@@ -63,6 +62,7 @@
                 </div>
             {% endif %}
         </nav>
+        {# SVG DE NAVBAR #}
         <div class="navbar-svg d-flex flex-column align-items-center">
             <svg preserveAspectRatio="none" width="100%" height="80px" viewBox="0 0 375 59" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <desc>Aile</desc>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-12 col-md-8">
                     <div class="input-group align-items-center mb-0">
-                        <input type="text" class="form-control" placeholder="Email address">
+                        <input type="text" class="form-control" placeholder="Adresse email">
                         <a class="input-group-addon text-center" href="#"><i class="fa fa-envelope input-group-icon"></i></a>
                     </div>
                     <p class="text-muted">Votre email ne sera pas partagé</p>
@@ -115,10 +115,10 @@
     </div>
 
     <div class="container-fluid d-flex flex-wrap align-items-center justify-content-around" id="footerLinks">
-        <div class="col-6 col-sm-3 col-lg-2 my-4 my-md-0 order-sm-2">
+        <div class="col-6 col-sm-3 col-lg-2 my-5 my-md-0 order-sm-2">
             <img src="{{ asset('bundles/app/img/logo.svg') }}" alt="NAO_LOGO">
         </div>
-        <div class="col-12 col-sm-3 text-center my-4 my-md-0 order-sm-1">
+        <div class="col-12 col-sm-3 text-center mb-5 my-md-0 order-sm-1">
             <h1 class="mb-1" id="footer-title">NAO</h1>
             <i class="fa fa-facebook-official fa-2x m-2" aria-hidden="true"></i>
             <i class="fa fa-instagram fa-2x m-2" aria-hidden="true"></i>
@@ -127,15 +127,16 @@
             <i class="fa fa-youtube fa-2x m-2" aria-hidden="true"></i>
             <i class="fa fa-linkedin fa-2x m-2" aria-hidden="true"></i>
         </div>
-        <div class="col-12 col-sm-3 my-4 my-md-0 order-sm-3">
+        <div class="col-12 col-sm-3 mb-5 my-md-0 order-sm-3">
             <ul class="text-center nav flex-column">
-                <li class="nav-item"><a href="#" class="nav-link">A propos</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">FAQ</a></li>
+                <li class="nav-item"><a href="{{ path('aPropos') }}" class="nav-link">A propos</a></li>
+                <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="{{ path('faq') }}" class="nav-link">FAQ</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Copyright</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Mentions légales</a></li>
             </ul>
         </div>
+        <a href="#" class="scrollToTop"><i class="fa fa-3x fa-angle-up"></i></a>
     </div>
 
 </div>
@@ -144,6 +145,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="{{ asset('bundles/app/js/main.js') }}"></script>
 {% endblock %}
 </body>
 </html>

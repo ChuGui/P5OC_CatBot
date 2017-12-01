@@ -3,8 +3,7 @@
   background: linear-gradient(-225deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%), url("../img/bg_oiseau.jpg");
   color: white;
   text-align: center;
-  height: 100vh;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  height: 105vh;
   background-size: cover !important;
   display: flex;
   align-items: center;
@@ -14,7 +13,7 @@
 }
 
 #explication {
-    background-color: #FFFEF9;
+    background-color: var(--egg-shell);
     padding: 60px 0 60px 0;
 }
 
@@ -29,28 +28,34 @@
 }
 
 #pourquoi {
-    background-color: #F7F3F1;
+    background-color: var(--pampas);
     padding: 60px 0 200px 0;
     margin-bottom: -200px;
 }
 
 .home-heading {
-    margin-bottom: 160px;
+    margin-bottom: 80px;
 }
 .home-title {
-    color: #FFFEF9;
-    font-size: 40px;
+  color: var(--egg-shell);
+  font-size: 60px;
+  line-height: 70px;
+  font-family: var(--hipsterish);
 }
 
-@media (min-width: 576px) {
-  h1 {
-    font-size: 60px;
+@media (min-width: 768px) {
+  .home-heading {
+    margin-bottom: 160px;
+  }
+  .home-title {
+    font-size: 80px;
+    line-height: 90px;
   }
 }
 
 .home-baseline {
-    font-family: "Roboto", Arial, sans-serif;
-    color: #FFFEF9;
+    font-family: var(--roboto);
+    color: var(--egg-shell);
     font-size: 12px;
     text-transform: uppercase;
 }
