@@ -1,5 +1,7 @@
 /* Variables */
 :root {
+
+  /* COULEURS */
   --purple: #6D49D1;
   --darker-purple: #53399E;
 
@@ -17,11 +19,14 @@
 
   --black: #262626;
 
+  /* POLICES */
   --hipsterish: 'Hipsterish', "Helvetica Neue", Helvetica, Arial, sans-serif;
   --raleway: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
   --roboto: Roboto, open-sans, sans-serif;
 }
 
+
+/* DECLARATION DES POLICES */
 /* latin-ext */
 @font-face {
     font-family: 'Roboto';
@@ -45,6 +50,8 @@
           url(fonts/HipsterishFontNormal.ttf);
 }
 
+
+/* TYPO */
 body {
     font-family: var(--roboto);
     font-size: 14px;
@@ -52,158 +59,6 @@ body {
     color: var(--black);
 }
 
-/*----------------
-------------------
-------Custumization de BOOTSTRAp------
-------------------
-------------------*/
-
-.rounded {
-  border-radius: 25px !important;
-}
-
-.card {
-    border: none;
-}
-
-.nav-item {
-    font-size: 12px;
-    text-transform: uppercase;
-    line-height: 17px;
-    letter-spacing: 1px;
-    display: inline-block;
-}
-
-.btn {
-    padding: 14px 24px;
-    border: 0 none;
-    border-radius: 50px;
-    color: white;
-    text-transform: uppercase;
-}
-
-.btn-primary {
-    background: var(--purple);
-}
-
-.btn-outline {
-    border: 2px solid var(--purple);
-    color: var(--purple);
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: var(--darker-purple);
-}
-
-/*----------------
-------------------
-------HEADER------
-------------------
-------------------*/
-.navbar {
-    height: 50px;
-    padding: 0 30px !important;
-    background: var(--var(--egg-shell));
-    position: relative;
-    z-index: 999;
-    margin-bottom: -30px;
-}
-
-.navbar-logo {
-    margin-top: -90px;
-    height: 90px;
-}
-
-.navbar-brand {
-  font-size: 32px;
-  line-height: 36px;
-  font-family: var(--hipsterish);
-  position: relative;
-  z-index: 1000;
-}
-
-@media (min-width: 768px) {
-  .navbar-brand {
-    font-size: 40px;
-    line-height: 46px;
-    padding-top: 15px;
-  }
-}
-
-.navbar .btn{
-  font-size: 12px;
-  padding: 7px 12px;
-}
-
-.navbar-svg {
-  position: relative;
-  z-index: 998;
-}
-
-@media (min-width: 768px){
-  .navbar {
-    margin-bottom: 0;
-  }
-}
-
-.heading-page {
-    background-color: var(--pampas);
-    height: 200px;
-    margin-top: -80px;
-    padding-top: 100px;
-    position: relative;
-    z-index: 997;
-}
-
-.wave-svg {
-  position: relative;
-  z-index: 996;
-}
-
-/*----------------
-------------------
-------FOOTER------
-------------------
-------------------*/
-#footer {
-    margin-top: 70px;
-}
-
-#footerNewsletter {
-    background: var(--lighter-brown);
-}
-
-#footerLinks {
-    background: var(--darker-purple);
-    min-height: 400px;
-    color: var(--lighter-egg-shell);
-}
-
-#footer-title {
-  color: var(--lighter-egg-shell);
-  font-size: 60px;
-  line-height: 70px;
-  font-family: var(--hipsterish);
-}
-
-@media (min-width: 768px) {
-  #footer-title {
-    font-size: 80px;
-    line-height: 90px;
-  }
-}
-
-#footerLinks li>a {
-    font-size: 14px;
-    text-transform: none;
-    color: var(--lighter-egg-shell);
-}
-
-#souscrire {
-    text-transform: uppercase;
-}
-
-/* Typo */
 h1 {
   font-family: Raleway-Extralight;
   font-size: 36px;
@@ -267,12 +122,150 @@ a {
   }
 }
 
-.heading span { 
-  font-family: Raleway-Regular;
+
+/* BOOTSTRAP CUSTOM */
+.rounded {
+  border-radius: 25px !important;
+}
+
+.card {
+    border: none;
+}
+
+.nav-item {
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 17px;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+/* BOUTONS */
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    border-radius: 50px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: var(--purple);
+}
+
+.btn-outline {
+    border: 2px solid var(--purple);
+    color: var(--purple);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: var(--darker-purple);
+}
+
+.btn-social {
+  margin-bottom: 30px;
+  padding-left: 24px !important;
+}
+
+/* NAVBAR */
+.navbar {
+    height: 50px;
+    padding: 0 30px !important;
+    background: var(--var(--egg-shell));
+    position: relative;
+    z-index: 999;
+    margin-bottom: -30px;
+}
+
+.navbar-logo {
+    margin-top: -90px;
+    height: 90px;
+}
+
+.navbar-brand {
+  font-size: 32px;
+  line-height: 36px;
+  font-family: var(--hipsterish);
+  position: relative;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .navbar-brand {
+    font-size: 40px;
+    line-height: 46px;
+    padding-top: 15px;
+  }
+}
+
+.navbar .btn{
   font-size: 12px;
-  letter-spacing: 1px;
-  line-height: 17px;
-  text-transform: uppercase;
+  padding: 7px 12px;
+}
+
+.navbar-svg {
+  position: relative;
+  z-index: 998;
+}
+
+@media (min-width: 768px){
+  .navbar {
+    margin-bottom: 0;
+  }
+}
+
+/* BANNIERE DE TITRE DE PAGE */
+.heading-page {
+    background-color: var(--pampas);
+    height: 200px;
+    margin-top: -80px;
+    padding-top: 100px;
+    position: relative;
+    z-index: 997;
+}
+
+.wave-svg {
+  position: relative;
+  z-index: 996;
+}
+
+/* FOOTER */
+#footer {
+    margin-top: 70px;
+}
+
+#footerNewsletter {
+    background: var(--lighter-brown);
+}
+
+#footerLinks {
+    background: var(--darker-purple);
+    min-height: 400px;
+    color: var(--lighter-egg-shell);
+}
+
+#footer-title {
+  color: var(--lighter-egg-shell);
+  font-size: 60px;
+  line-height: 70px;
+  font-family: var(--hipsterish);
+}
+
+@media (min-width: 768px) {
+  #footer-title {
+    font-size: 80px;
+    line-height: 90px;
+  }
+}
+
+#footerLinks li>a {
+    font-size: 14px;
+    text-transform: none;
+    color: var(--lighter-egg-shell);
+}
+
+#souscrire {
+    text-transform: uppercase;
 }
 
 
@@ -283,6 +276,14 @@ a {
   text-align: center;
   padding-bottom: 10px;
   margin-bottom: 60px;
+}
+
+.heading span { 
+  font-family: Raleway-Regular;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 17px;
+  text-transform: uppercase;
 }
 
 .heading::after {
@@ -355,13 +356,21 @@ textarea[placeholder] {
   width: 100%;
 }
 
-.btn-social {
-  margin-bottom: 30px;
-  padding-left: 24px !important;
-}
-
 .comment-avatar {
   height : 36px;
   width: 36px;
   object-fit: cover;
+}
+
+.scrollToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  background: var(--pampas);
+  color: var(--purple);
+  opacity: 0.5;
+  border-radius: 50%;
+  text-align: center;
 }
