@@ -6,8 +6,8 @@
 
 {% block body %}
     <div class="container-fluid heading-page">
-        <h1 class="text-center">Titre actualité</h1>
-        <p class="text-center">Accueil >> Titre actualité</p>
+        <h1 class="text-center">{{ actualite.title }}</h1>
+        <p class="text-center">Accueil >> {{ actualite.title }}</p>
     </div>
     <div class="wave-svg">
         <svg width="100%" height="100%" viewBox="0 0 1440 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -24,14 +24,13 @@
         </svg>
     </div>
 
-
     <section class="my-5">
         <div class="container">
             {#----------------#}
             {#PARTIE ACTUALITE#}
             {#----------------#}
             <div class="media">
-                <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="" class="d-flex mr-3 profilePicture">
+                <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="Photo {{ user.username|capitalize }}" class="d-flex mr-3 profilePicture">
                 <div class="media-body"><p class="text-center"></p>{{ user.username|capitalize }}</div>
             </div>
 
