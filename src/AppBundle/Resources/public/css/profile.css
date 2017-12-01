@@ -10,13 +10,13 @@
 
 .nav-tabs {
     border: none;
-    background: #6D49D1;
+    background: var(--purple);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     height: 130px;
     margin-top: -80px;
     position: relative;
-    z-index: 996;
+    z-index: 995;
 }
 
 .nav-tabs .nav-item{
@@ -25,16 +25,16 @@
 
 .nav-tabs .nav-link {
     padding: 0;
-    color: rgba(255, 254, 249, 0.7);
+    color: var(--lighter-egg-shell);
     position: relative;
     border: none;
     height: 130px;
 }
 
 .nav-tabs .nav-link.active {
-    background: #53399e;
+    background: var(--darker-purple);
     border: none;
-    color: #F7F3F1;
+    color: var(--pampas);
     margin-bottom: 1px;
 }
 
@@ -54,13 +54,13 @@
 
 /* RECOMPENSES */
 .progress {
-    background: #DED5CD;
+    background: var(--lightest-brown);
     border-radius: 25px;
     height: 25px;
 }
 
 .progress-bar {
-    background: #6D49D1;
+    background: var(--purple);
     height: 25px;
     padding: 5px 0 5px 0;
 }
@@ -72,7 +72,7 @@
 
 /* MES OBSERVATIONS */
 .bird-card{
-    background: #F7F3F1;
+    background: var(--pampas);
     border-radius: 25px;
 }
 
@@ -116,14 +116,14 @@
 
 .fa-heart {
     margin-top: 2px;
-    color: #6D49D1;
+    color: var(--purple);
 }
 .heart-text { 
-    font-family: "Roboto", Arial, Sans-serif;
+    font-family: var(--roboto);
     font-weight: 700;
     font-size: 12px;
     margin: 0;
-    color: #F7F3F1; 
+    color: var(--pampas); 
     text-align: center;
     padding-left: 7px;
 }
@@ -165,7 +165,7 @@
     .bird-card h3, .bird-card h3 > a {
       font-family: Raleway-Regular;
       font-size: 14px;
-      color: #262626;
+      color: var(--black);
       letter-spacing: 1.5px;
       line-height: 16px;
       text-transform: uppercase;
