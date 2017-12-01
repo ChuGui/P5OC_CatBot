@@ -38,7 +38,7 @@ class Bird
     private $url;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $picture;
 
@@ -57,6 +57,26 @@ class Bird
      * @ORM\JoinColumn(nullable=true)
      */
     private $taxref;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $plumage;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $pattes;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $couleurBec;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $formeBec;
 
     public function __construct()
     {
@@ -184,6 +204,70 @@ class Bird
     public function setTaxref(Taxref $taxref)
     {
         $this->taxref = $taxref;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlumage()
+    {
+        return $this->plumage;
+    }
+
+    /**
+     * @param mixed $plumage
+     */
+    public function setPlumage($plumage)
+    {
+        $this->plumage = $plumage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPattes()
+    {
+        return $this->pattes;
+    }
+
+    /**
+     * @param mixed $pattes
+     */
+    public function setPattes($pattes)
+    {
+        $this->pattes = $pattes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCouleurBec()
+    {
+        return $this->couleurBec;
+    }
+
+    /**
+     * @param mixed $couleurBec
+     */
+    public function setCouleurBec($couleurBec)
+    {
+        $this->couleurBec = $couleurBec;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormeBec()
+    {
+        return $this->formeBec;
+    }
+
+    /**
+     * @param mixed $formeBec
+     */
+    public function setFormeBec($formeBec)
+    {
+        $this->formeBec = $formeBec;
     }
 
 }
