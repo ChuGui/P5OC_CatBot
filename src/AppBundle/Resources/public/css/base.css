@@ -1,6 +1,5 @@
 /* Variables */
 :root {
-
   /* COULEURS */
   --purple: #6D49D1;
   --darker-purple: #53399E;
@@ -24,7 +23,6 @@
   --raleway: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
   --roboto: Roboto, open-sans, sans-serif;
 }
-
 
 /* DECLARATION DES POLICES */
 /* latin-ext */
@@ -216,17 +214,17 @@ a {
 
 /* BANNIERE DE TITRE DE PAGE */
 .heading-page {
-    background-color: var(--pampas);
-    min-height: 200px;
-    margin-top: -80px;
-    padding-top: 100px;
-    padding-bottom: 5px;
-    position: relative;
-    z-index: 997;
+  background-color: var(--pampas);
+  min-height: 200px;
+  margin-top: -80px;
+  padding-top: 100px;
+  padding-bottom: 5px;
+  position: relative;
+  z-index: 997;
 }
 
 .heading-page p {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .wave-svg {
@@ -240,13 +238,15 @@ a {
 }
 
 #footerNewsletter {
-    background: var(--lighter-brown);
+  background: var(--lighter-brown);
+  margin-top: -10px;
+  margin-bottom: -10px;
 }
 
 #footerLinks {
-    background: var(--darker-purple);
-    min-height: 400px;
-    color: var(--lighter-egg-shell);
+  background: var(--darker-purple);
+  min-height: 400px;
+  color: var(--lighter-egg-shell);
 }
 
 #footer-title {
@@ -264,9 +264,9 @@ a {
 }
 
 #footerLinks li>a {
-    font-size: 14px;
-    text-transform: none;
-    color: var(--lighter-egg-shell);
+  font-size: 14px;
+  text-transform: none;
+  color: var(--lighter-egg-shell);
 }
 
 #souscrire {
@@ -292,30 +292,30 @@ a {
 }
 
 .heading::after {
-    content: '';
-    width: 16px;
-    height: 1px;
-    background-color: var(--black);
-    position: absolute;
-    left: -webkit-calc(50% - 8px);
-    left: calc(50% - 8px);
-    bottom: 0;
+  content: '';
+  width: 16px;
+  height: 1px;
+  background-color: var(--black);
+  position: absolute;
+  left: -webkit-calc(50% - 8px);
+  left: calc(50% - 8px);
+  bottom: 0;
 }
 
 *:before, *:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* FORMULAIRE */
 input {
-    height: 48px;
-    border-radius: 50px !important;
+  height: 48px;
+  border-radius: 50px !important;
 }
 
 input[placeholder], [placeholder], *[placeholder], textarea[placeholder] {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 textarea {
@@ -324,7 +324,7 @@ textarea {
 }
 
 textarea[placeholder] {
-    padding: 15px 12px;
+  padding: 15px 12px;
 }
 
 .input-group-icon {

@@ -15,6 +15,7 @@
 #explication {
     background-color: var(--egg-shell);
     padding: 60px 0 60px 0;
+    margin-top: -10px;
 }
 
 #explication .media img {
@@ -31,6 +32,7 @@
     background-color: var(--pampas);
     padding: 60px 0 200px 0;
     margin-bottom: -200px;
+    margin-top: -10px;
 }
 
 .home-heading {

@@ -1,25 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1440px" height="80px" viewBox="0 0 1440 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
-    <title>wave-cream</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<svg width="100%" height="100%" viewBox="0 0 1430 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="wave-cream">
-            <g id="Group-2">
-                <g id="Group">
-                    <path d="M0,52 C0,52 153,1.46804748e-14 378.5,0 C604,0 836,52 1005,52 C1174,52 1440,0 1440,0 L1440,80 L0,80 L0,52 Z" id="Rectangle-2-Copy" fill="#F7F3F1"></path>
-                    <path d="M0,78 C0,78 153,26 378.5,26 C604,26 836,78 1005,78 C1174,78 1440,26 1440,26 L1440,80 L0,80 L0,78 Z" id="Rectangle-2-Copy-2" fill="#FFFEF9"></path>
-                </g>
-            </g>
-        </g>
-        <g id="wave-cream">
-            <g id="Group-2">
-                <g id="Group">
-                    <path d="M0,52 C0,52 153,1.46804748e-14 378.5,0 C604,0 836,52 1005,52 C1174,52 1440,0 1440,0 L1440,80 L0,80 L0,52 Z" id="Rectangle-2-Copy" fill="#F7F3F1"></path>
-                    <path d="M0,78 C0,78 153,26 378.5,26 C604,26 836,78 1005,78 C1174,78 1440,26 1440,26 L1440,80 L0,80 L0,78 Z" id="Rectangle-2-Copy-2" fill="#FFFEF9"></path>
-                </g>
-            </g>
+            <path d="M0,52 C0,52 153,1.46804748e-14 378.5,0 C604,0 836,52 1005,52 C1174,52 1440,0 1440,0 L1440,80 L0,80 L0,52 Z" fill="#F7F3F1"></path>
+            <path d="M0,78 C0,78 153,26 378.5,26 C604,26 836,78 1005,78 C1174,78 1440,26 1440,26 L1440,80 L0,80 L0,78 Z" fill="#FFFEF9"></path>
         </g>
     </g>
 </svg>
