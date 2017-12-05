@@ -139,11 +139,23 @@
             <datatype>INTEGER</datatype>
             <default>NULL</default><relation table="Taxref" row="id" />
         </row>
+        <row name="plumage" null="1" autoincrement="0">
+            <datatype>VARCHAR</datatype>
+            <default>NULL</default></row>
+        <row name="pattes" null="1" autoincrement="0">
+            <datatype>VARCHAR</datatype>
+            <default>NULL</default></row>
+        <row name="bec" null="1" autoincrement="0">
+            <datatype>VARCHAR</datatype>
+            <default>NULL</default></row>
+        <row name="formeBec" null="1" autoincrement="0">
+            <datatype>VARCHAR</datatype>
+            <default>NULL</default></row>
         <key type="PRIMARY" name="">
             <part>id</part>
         </key>
     </table>
-    <table x="347" y="28" name="Observation">
+    <table x="355" y="11" name="Observation">
         <row name="id" null="1" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
@@ -159,8 +171,17 @@
         <row name="updateAt" null="1" autoincrement="0">
             <datatype>DATE</datatype>
             <default>NULL</default></row>
+        <row name="observedAt" null="1" autoincrement="0">
+            <datatype>DATE</datatype>
+            <default>NULL</default></row>
         <row name="vote" null="0" autoincrement="0">
             <datatype>INTEGER</datatype>
+            <default>NULL</default></row>
+        <row name="qtyBirds" null="1" autoincrement="0">
+            <datatype>INTEGER</datatype>
+            <default>NULL</default></row>
+        <row name="description" null="1" autoincrement="0">
+            <datatype>MEDIUMTEXT</datatype>
             <default>NULL</default></row>
         <row name="picture" null="1" autoincrement="0">
             <datatype>VARCHAR(255)</datatype>
@@ -202,7 +223,7 @@
             <part>id</part>
         </key>
     </table>
-    <table x="350" y="301" name="CommentObs">
+    <table x="350" y="335" name="CommentObs">
         <row name="id" null="1" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
@@ -223,7 +244,7 @@
             <part>id</part>
         </key>
     </table>
-    <table x="197" y="273" name="Taxref">
+    <table x="201" y="332" name="Taxref">
         <row name="id" null="1" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>

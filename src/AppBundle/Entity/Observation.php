@@ -53,6 +53,11 @@ class Observation
      */
     private $updateAt;
 
+    /**
+     * @ORM\Column(name="observedAt", type="datetime")
+     */
+    private $observedAt;
+
 
     /**
      * @ORM\Column(type="integer")
@@ -72,18 +77,27 @@ class Observation
     private $bird;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $qtyBirds;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $description;
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="observations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-
-
 
     public function __construct()
     {
         $this->IsValidated = false;
         $this->updateAt = new \DateTime();
         $this->vote = 0;
+        $this->description = 'Pas de description...';
     }
 
     /**
@@ -257,12 +271,53 @@ class Observation
         $this->picture = $picture;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getObservedAt()
+    {
+        return $this->observedAt;
+    }
 
+    /**
+     * @param mixed $observedAt
+     */
+    public function setObservedAt($observedAt)
+    {
+        $this->observedAt = $observedAt;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getQtyBirds()
+    {
+        return $this->qtyBirds;
+    }
 
-
+    /**
+     * @param mixed $qtyBirds
+     */
+    public function setQtyBirds($qtyBirds)
+    {
+        $this->qtyBirds = $qtyBirds;
+    }
 
 }
 

@@ -4,16 +4,44 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/app/css/observation.css') }}">
+
+
 {% endblock %}
 
 {% block body %}
-    <div class="well" id="contain">
-        <h1>Observation</h1>
-        <p><a href="#">Ajouter une observation</a></p>
+<div class="container-fluid heading-page">
+    <h1 class="text-center">Observation</h1>
+    <p class="text-center">Accueil >> observation</p>
+</div>
+<img src="{{ asset('bundles/app/img/template/wave-driedwood.svg') }}" alt="vague" style="width: 100%">
+
+<section class="mt-5">
+    <div class="container-fluid">
+        <div class="heading">
+            <h2>C'est parti !</h2>
+            <span>Quel drôle d'oiseau avez-vous observé ?</span>
+        </div>
+
+        <div id="map">
+
+                <button data-target="#us11-dialog" data-toggle="modal">
+                    Choisissez les coordonées
+                </button>
+
+        </div>
+
     </div>
 
+</section>
 
 {% endblock %}
-
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/locationpicker.jquery.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/observation.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM-LWXFSraqzHfltfjrg0aIgHYdDp9EpI&callback=initMap&libraries=places">
+    </script>
+{% endblock %}
 
