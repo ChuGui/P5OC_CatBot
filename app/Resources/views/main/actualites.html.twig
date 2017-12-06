@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/actualites.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/actualites.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -35,7 +35,7 @@
           {% for actualite in actualites %}
               <div class="card p-0" style="width: 30rem;">
                 <div class="mb-4">
-                  <img class="card-img-top" src="{{ asset('bundles/app/img/'~ actualite.actualiteImage) }}" alt="image_actualite" >
+                  <img class="card-img-top" src="{{ asset('img/'~ actualite.actualiteImage) }}" alt="image_actualite" >
                 </div>
                 <div class="card-title text-center px-3 mb-0">
                   <p>{{ actualite.updateAt|localizeddate('full', 'none')|upper }}</p>
