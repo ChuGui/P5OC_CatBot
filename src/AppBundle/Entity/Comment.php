@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentRepository")
  */
-class Comment
+class Comment implements \JsonSerializable
 {
     /**
      * @var int
@@ -148,4 +148,8 @@ class Comment
     }
 
 
+    public function jsonSerialize()
+    {
+
+    }
 }

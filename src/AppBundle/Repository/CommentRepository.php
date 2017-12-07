@@ -16,11 +16,12 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
         $qb->orderBy('c.updateAt','DESC');
         return $qb->getQuery()->getResult();
     }
-    public function findByActualiteId($actualiteId)
+
+    public function findByActualiteId($id)
     {
         $qb = $this->createQueryBuilder('c');
         $qb
-            ->where('c.actualiteId = :actualiteId')->setParameter('actualiteId', $actualiteId)
+            ->where('c.actualite_id = :actualite_id')->setParameter('actualite_id', $id)
             ->orderBy('c.updateAt','DESC');
         return $qb->getQuery()->getResult();
     }
