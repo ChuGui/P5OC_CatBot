@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class BirdRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllByNameAsc()
+    {
+        $qb = $this->createQueryBuilder('b');
+        $qb->orderBy('b.name','ASC');
+        return $qb->getQuery()->getResult();
+    }
 }

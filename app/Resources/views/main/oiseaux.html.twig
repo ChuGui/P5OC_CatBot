@@ -1,0 +1,65 @@
+{% extends "base.html.twig"  %}
+
+{% block title %}Oiseaux{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/oiseaux.css') }}">
+
+
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid heading-page">
+    <h1 class="text-center">Observation</h1>
+    <p class="text-center">Accueil >> observation</p>
+</div>
+<img src="{{ asset('img/template/wave-driedwood.svg') }}" alt="vague" style="width: 100%">
+
+<section class="mt-5">
+    <div class="container-fluid">
+        <div class="heading">
+            <h2>Notre Bible !</h2>
+            <span>Trouvez vite les oiseaux proches de vous et apprenez à les connaître!</span>
+        </div>
+
+        <div id="map">
+        </div>
+
+        {# Liste des oiseaux dans la bdd #}
+        <div class="row justify-content-xl-center mt-3">
+            {% for bird in birds %}
+                {# Carte oiseau observé #}
+                <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4">
+                    <div class="p-2 nao-card mx-auto">
+                        <div class="d-flex flex-nowrap">
+                            <div class="bird-img-wrapper">
+                                <img src="{{ bird.picture }}"
+                                     class="bird-img">
+                            </div>
+                            <div class="col d-flex flex-column justify-content-between">
+                                <div class="d-flex flex-column align-self-start">
+                                    <h3 class="align-self-end text-left">{{ bird.name | capitalize }}</h3>
+                                    {% if brid.taxref is defined %}
+                                    <p class="align-self-start m-0">{{ bird.taxref.nomScientifique }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM-LWXFSraqzHfltfjrg0aIgHYdDp9EpI&callback=initMap">
+    </script>
+    <script src="{{ asset('js/oiseaux.js') }}"></script>
+{% endblock %}
+

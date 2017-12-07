@@ -60,12 +60,17 @@
         {#------Onglet---------#}
         {#----Récompenses------#}
         {#---------------------#}
+
         <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="container">
                 <div class="heading">
                     <h2>Récompenses</h2>
                     <span>Progressez et devenez un véritable maître dans l'observation des oiseaux</span>
                 </div>
+                {% for message in app.session.flashBag.get('success')  %}
+                    <div class="alert alert-success">{{ message }}</div>
+
+                {% endfor %}
                 <div class="d-flex flex-wrap align-items-center">
 
                 	{# Informations utilisateur #}
@@ -209,9 +214,9 @@
                         <div class="col">
                             <div class="col">
                                 {{ form_start(formChangePseudo) }}
-                                {{ form_row(formChangePseudo.username) }}
-                                <button type="submit" class="btn btn-primary text-uppercase" formnovalidate>Modifier
-                                </button>
+                                    {{ form_row(formChangePseudo.username) }}
+                                    <button type="submit" class="btn btn-primary text-uppercase" formnovalidate>Modifier
+                                    </button>
                                 {{ form_end(formChangePseudo) }}
                             </div>
                         </div>

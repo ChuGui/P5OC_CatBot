@@ -26,6 +26,13 @@
         </svg>
     </div>
 
+    {#------------#}
+    {#-FORMULAIRE-#}
+    {#------------#}
+	{% for message in app.session.flashBag.get('success')  %}
+		<div class="alert alert-success">{{ message }}</div>
+
+	{% endfor %}
 	<section class="mt-5">
 		<div class="container">
 			<div class="heading">
@@ -34,6 +41,41 @@
 Si vous ne trouvez pas l’information que vous souhaitiez, n’hésitez pas à nous contacter à l’aide de ce formulaire !</p>
 			</div>
 			<div class="row">
+				<div class="col-12 col-lg-6 mx-auto">
+                        {{ form_start(form) }}
+						<div class="form-group align-items-center">
+                            {{ form_row(form.subject, {
+								'attr' : {
+									'id': 'subject',
+									'placeholder' : 'Sujet *'
+								}
+							} ) }}
+						</div>
+						<div class="form-group align-items-center">
+                            {{ form_row(form.mail, {
+								'attr' : {
+									'id': 'mail',
+									'placeholder' : 'Email *'
+								}
+							}) }}
+						</div>
+						<div class="form-group align-items-start">
+                            {{ form_row(form.message, {
+								'attr' : {
+									'id': 'message',
+									'placeholder' : 'Message *'
+								}
+							}) }}
+						</div>
+
+						<div class="text-center">
+							<button role="submit" class="btn btn-primary mx-auto" href="#">ENVOYER</button>
+						</div>
+                        {{ form_end(form) }}
+					<h4 class="text-center mb-4">Contactez-nous !</h4>
+				</div>
+			</div>
+			{#<div class="row">
 				<div class="col-12 col-lg-6 mx-auto">
 					<h4 class="text-center mb-4">Contactez-nous !</h4>
 					<div class="form-group align-items-center">
@@ -49,7 +91,7 @@ Si vous ne trouvez pas l’information que vous souhaitiez, n’hésitez pas à 
 				        <button role="submit" class="btn btn-primary mx-auto" href="#">ENVOYER</button>
 				    </div>
 				</div>
-			</div>
+			</div>#}
 		</div>
 	</section>
 {% endblock %}

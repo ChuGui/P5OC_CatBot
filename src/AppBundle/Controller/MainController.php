@@ -10,6 +10,7 @@ use AppBundle\Form\ChangeEmailForm;
 use AppBundle\Form\ChangePasswordForm;
 use AppBundle\Form\ChangePseudoForm;
 use AppBundle\Form\CommentForm;
+use AppBundle\Form\ContactForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -147,23 +148,17 @@ class MainController extends Controller
         $formChangePassword = $this->createForm(ChangePasswordForm::class, $user);
         $formChangeEmail = $this->createForm(ChangeEmailForm::class, $user);
         $formChangeEmail->handleRequest($request);
-        if ($formChangeEmail->isValid()) {
-            $newEmail = $request->request->get('email');
-            $user = $this->getUser();
-            $user->setEmail($newEmail);
+        if ($formChangeEmail->isValid() && $formChangeEmail->isSubmitted()) {
             $em->persist($user);
             $em->flush();
             $this->addFlash('notice','Votre Email à bien été modifié :)');
             return $this->redirectToRoute('profile');
         }
         $formChangePseudo->handleRequest($request);
-        if($formChangePseudo->isValid()) {
-            $newPseudo = $request->request->get('username');
-            $user = $this->getUser();
-            $user->setPseudo($newPseudo);
+        if($formChangePseudo->isValid() && $formChangePseudo->isSubmitted()) {
             $em->persist($user);
             $em->flush();
-            $this->addFlash('notice','Votre Pseudo à bien été modifié :)');
+            $this->addFlash('success','Votre Pseudo à bien été modifié :)');
             return $this->redirectToRoute('profile');
         }
 
@@ -194,9 +189,25 @@ class MainController extends Controller
     /**
      * @Route("/contact", name="contact")
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('main/contact.html.twig');
+        $form = $this->createForm(ContactForm::class);
+        $form->handleRequest($request);
+
+        if($form->isValid() && $form->isSubmitted()) {
+            $naoContact = "gchurlet@gmail.com";
+            $userEmail = $form->getData()['mail'];
+            $subject = $form->getData()['subject'];
+            $content = $form->getData()['message'];
+            $sendConfirmationMail = $this->get('app.mail.send_contact_mail');
+            $sendConfirmationMail->sendContactMail($userEmail, $subject, $content, $naoContact);
+            $this->addFlash('success', "Félicitation votre email à bien été envoyé. Nous essaierons d'y répondre au plus vite");
+            return $this->redirectToRoute('contact');
+        }
+
+        return $this->render('main/contact.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
@@ -219,6 +230,16 @@ class MainController extends Controller
         return $this->render('main/faq.html.twig');
     }
 
+    /**
+     * @Route("/oiseaux", name="oiseaux")
+     */
+    public function oiseauxAction() {
+        $em = $this->getDoctrine()->getManager();
+        $birds = $em->getRepository('AppBundle:Bird')->findAllByNameAsc();
+        return $this->render('main/oiseaux.html.twig', [
+            'birds' => $birds
+        ]);
+    }
 
 
 }
