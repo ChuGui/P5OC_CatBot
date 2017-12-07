@@ -2,7 +2,8 @@
 
 {% block title %}Welcome!{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/home.css') }}">
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -36,7 +37,7 @@
             </div>
 
             <div class="media flex-wrap align-items-center justify-content-center my-3">
-                <img class="col-12 col-lg-4" src="{{ asset('bundles/app/img/laptop.svg') }}">
+                <img class="col-12 col-lg-4" src="{{ asset('img/laptop.svg') }}">
                 <div class="media-body col-12 col-lg-8">
                     <h3 class="mt-3 mt-md-0 text-center text-md-left">CRÉER UN COMPTE NAO</h3>
                     <p class="text-justify">Inscrivez-vous sur notre site, connectez-vous et profitez de l'ensemble des fonctionnalités proposées par l'association Nos Amis Les Animaux ! L'aventure comme ici et elle n'attend que vous !</p>
@@ -44,11 +45,11 @@
             </div>
 
             <div class="row justify-content-center">
-                <img class="col-sm-8 d-none d-md-block" src="{{ asset('bundles/app/img/home/path-1.svg') }}" alt="chemin">
+                <img class="col-sm-8 d-none d-md-block" src="{{ asset('img/home/path-1.svg') }}" alt="chemin">
             </div>
 
             <div class="media flex-wrap align-items-center justify-content-center my-3">
-                <img class="col-12 col-md-4 order-sm-2" src="{{ asset('bundles/app/img/boussole-camera.svg') }}">
+                <img class="col-12 col-md-4 order-sm-2" src="{{ asset('img/boussole-camera.svg') }}">
                 <div class="media-body col-12 col-md-8 order-sm-1">
                     <h3 class="mt-3 mt-md-0 text-center text-md-left">OBSERVEZ AUTOUR DE VOUS</h3>
                     <p class="text-justify">Utilisez l'application pour visualiser les oiseaux qui ont été observés autour de vous et tenter à votre tour de les retrouver ! Contemplez également les photos des autres utilisateurs et votez pour celles qui vous plaisent !</p>
@@ -56,11 +57,11 @@
             </div>
             
             <div class="row justify-content-center">
-                <img class="col-sm-8 d-none d-md-block" src="{{ asset('bundles/app/img/home/path-2.svg') }}" alt="chemin">
+                <img class="col-sm-8 d-none d-md-block" src="{{ asset('img/home/path-2.svg') }}" alt="chemin">
             </div>
 
             <div class="media flex-wrap align-items-center justify-content-center my-3">
-                <img class="col-12 col-md-4" src="{{ asset('bundles/app/img/notebooks.svg') }}">
+                <img class="col-12 col-md-4" src="{{ asset('img/notebooks.svg') }}">
                 <div class="media-body col-12 col-md-8">
                     <h3 class="mt-3 mt-md-0 text-center text-md-left">PARTAGEZ VOTRE EXPÉRIENCE</h3>
                     <p class="text-justify">Vous venez de prendre en photo un oiseau magnifique ? Partagez votre chez-d'oeuvre en saisissant votre observation depuis votre smartphone ou depuis chez vous et en permettant ainsi à la communauté d'en profiter !</p>
@@ -96,7 +97,7 @@
                     <p class="text-justify">Depuis une dizaine d’années la recherche a pu constater le fort impact de l’homme sur la vie animale, en particulier sur les oiseaux, pour qui la réduction de l’environnement naturel est fatale.</p>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <img src="{{ asset('bundles/app/img/protected_bird.png') }}" alt="hiboux_trop_choux" id="hiboux_trop_choux">
+                    <img src="{{ asset('img/protected_bird.png') }}" alt="hiboux_trop_choux" id="hiboux_trop_choux">
                 </div>
                 <div class="col-12 col-md-3 mr-auto mt-3 lt-md-0 text-center">
                     <h3>SOUTENEZ NOUS EN VOUS DIVERTISSANT</h3>

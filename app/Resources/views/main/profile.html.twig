@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -60,18 +60,23 @@
         {#------Onglet---------#}
         {#----Récompenses------#}
         {#---------------------#}
+
         <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="container">
                 <div class="heading">
                     <h2>Récompenses</h2>
                     <span>Progressez et devenez un véritable maître dans l'observation des oiseaux</span>
                 </div>
+                {% for message in app.session.flashBag.get('success')  %}
+                    <div class="alert alert-success">{{ message }}</div>
+
+                {% endfor %}
                 <div class="d-flex flex-wrap align-items-center">
 
                 	{# Informations utilisateur #}
                     <div class="col-12 col-md-6">
                         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-start">
-                            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="photo de profil"
+                            <img src="{{ asset('img/'~ user.profilePicture) }}" alt="photo de profil"
                                  class="rounded-circle" id="profileImg">
                             <div class="text-left mt-0 ml-3 mt-md-3">
                                 <h3 class="mb-2 mb-md-3">{{ user.username|capitalize }}</h3>
@@ -96,22 +101,22 @@
                     <h3 class="mb-3 text-center">Récompenses</h3>
                     <div class="d-flex flex-wrap justify-content-center">
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('bundles/app/img/recompense/reward1.png') }}" alt="récompense1">
+                        	<img class="recompense" src="{{ asset('img/recompense/reward1.png') }}" alt="récompense1">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('bundles/app/img/recompense/reward2.png') }}" alt="récompense2">
+                        	<img class="recompense" src="{{ asset('img/recompense/reward2.png') }}" alt="récompense2">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('bundles/app/img/recompense/reward3.png') }}" alt="récompense3">
+                        	<img class="recompense" src="{{ asset('img/recompense/reward3.png') }}" alt="récompense3">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('bundles/app/img/recompense/reward4.png') }}" alt="récompense4">
+                        	<img class="recompense" src="{{ asset('img/recompense/reward4.png') }}" alt="récompense4">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('bundles/app/img/recompense/reward5.png') }}" alt="récompense5">
+                        	<img class="recompense" src="{{ asset('img/recompense/reward5.png') }}" alt="récompense5">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('bundles/app/img/recompense/reward6.png') }}" alt="récompense6">
+                        	<img class="recompense" src="{{ asset('img/recompense/reward6.png') }}" alt="récompense6">
                         </div>
 
                     </div>
@@ -185,7 +190,7 @@
                 	    {# Modification Avatar #}
                 	    <div class="col-12 col-md-6">
                 	        <div class="d-flex flex-column align-items-center">
-                	            <img src="{{ asset('bundles/app/img/'~ user.profilePicture) }}" alt="photo de profil" class="rounded-circle" id="profileImg">
+                	            <img src="{{ asset('img/'~ user.profilePicture) }}" alt="photo de profil" class="rounded-circle" id="profileImg">
                 	            <div class="text-center mt-3">
                 	                <span>Changer la photo de profil</span>
                 	            </div>
@@ -202,16 +207,16 @@
                     <div class="row">
                         <div class="col">
                             <a href="#"><img class="profileImg"
-                                             src="{{ asset('bundles/app/img/'~ user.profilePicture) }}"></a>
+                                             src="{{ asset('img/'~ user.profilePicture) }}"></a>
                             <p><a href="#">Changer la photo de profil</a></p>
                         </div>
 
                         <div class="col">
                             <div class="col">
                                 {{ form_start(formChangePseudo) }}
-                                {{ form_row(formChangePseudo.username) }}
-                                <button type="submit" class="btn btn-primary text-uppercase" formnovalidate>Modifier
-                                </button>
+                                    {{ form_row(formChangePseudo.username) }}
+                                    <button type="submit" class="btn btn-primary text-uppercase" formnovalidate>Modifier
+                                    </button>
                                 {{ form_end(formChangePseudo) }}
                             </div>
                         </div>
@@ -322,11 +327,13 @@
                                         <div class="observationModalSection text-center">
                                             <h3>OBSERVATION</h3>
                                             <div class="col-12">
+
                                                 <div class="row align-items-center justify-content-start my-5">
                                                     <img src="{{ asset('bundles/app/img/'~waitingObservation.user.profilePicture) }}" alt="Photo de {{ waitingObservation.user.username }}" class="observation-avatar rounded-circle">
                                                     <div class="justify-content-start ml-3">
                                                         <p class="text-left mb-1 user-name">{{ waitingObservation.user.username|capitalize }}</p>
                                                         <span class="text-left time">{{ waitingObservation.updateAt|ago }}</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -441,7 +448,7 @@
 	                                    <div class="container-fluid observationModalSection text-center">
 	                                        <h3>OBSERVATION</h3>
 	                                        <div class="media">
-	                                            <img src="{{ asset('bundles/app/img/'~waitingObservation.user.profilePicture) }}"
+	                                            <img src="{{ asset('img/'~waitingObservation.user.profilePicture) }}"
 	                                                 alt="" class="d-flex mr-3 imgComment"
 	                                                 style="height: 50px; border-radius: 50px">
 	                                            <div class="medai-body">

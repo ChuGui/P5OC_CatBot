@@ -6,10 +6,11 @@ use AppBundle\AppBundle;
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
-use AppBundle\Form\ChangeEmailForm;
-use AppBundle\Form\ChangePasswordForm;
-use AppBundle\Form\ChangePseudoForm;
-use AppBundle\Form\CommentForm;
+use AppBundle\Form\ChangeEmailType;
+use AppBundle\Form\ChangePasswordType;
+use AppBundle\Form\ChangePseudoType;
+use AppBundle\Form\CommentType;
+use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -65,12 +66,12 @@ class MainController extends Controller
      */
     public function actualiteAction(Actualite $actualite, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
         $user = $actualite->getUser();
         $comments = $actualite->getComments();
         $comment = New Comment();
         $comment->setActualite($actualite);
-        $formComment = $this->createForm(CommentForm::class, $comment);
+
+        $formComment = $this->createForm(CommentType::class, $comment);
         $formComment->handleRequest($request);
 
         return $this->render('main/actualite.html.twig', array(
@@ -88,45 +89,22 @@ class MainController extends Controller
     public function addCommentAction(Request $request, $id)
     {
         $user = $this->getUser();
-
         if ($request->isXmlHttpRequest()) {
             if ($user === null) {
-                throw $this->createNotFoundException("Ce doit être une requete Xml");
-
+                throw $this->createNotFoundException("Aucun utilisateur n'est connecté");
             } else {
-
-                $comment = New Comment();
-                $form = $this->createForm(CommentForm::class, $comment);
-                $form->handleRequest();
-
-                if($form->isValid()){
-                    $em = $this->getDoctrine()->getManager();
-                    $repository = $em->getRepository("AppBundle:Actualite");
-                    $actualite = $repository->find($id);
-                    $comment->setUser($user);
-                    $comment->setActualite($actualite);
-                    $em->persist($comment);
-                    $em->flush();
-
-                    return new JsonResponse(array('message' => "Succes"), 200);
-                }
-
-                $response =  new JsonResponse(
-                    array(
-                    'message' => "Une erreur",
-                    'form' => $this->renderView('AppBundle:main:actualite.html.twig',
-                        array(
-                            'comment' => $comment,
-                            'form' => $form->CreateView(),
-                        ))), 400);
-                return $response;
+                $em = $this->getDoctrine()->getManager();
+                $comments = $em->getRepository("AppBundle:Comment")->findByActualite($id);
+                dump($comments);
+                dump(json_encode($comments));
+                return new JsonResponse(array('data' => json_encode($comments)));
             }
-
         } else {
 
-            throw $this->createNotFoundException("Ce n'est pas du XML");
+            return new Response("Erreur: Ce n'est pas une requête AJAX", 400);
         }
     }
+
 
     /**
      * @Route("/admin", name="admin")
@@ -143,27 +121,21 @@ class MainController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $formChangePseudo = $this->createForm(ChangePseudoForm::class, $user);
-        $formChangePassword = $this->createForm(ChangePasswordForm::class, $user);
-        $formChangeEmail = $this->createForm(ChangeEmailForm::class, $user);
+        $formChangePseudo = $this->createForm(ChangePseudoType::class, $user);
+        $formChangePassword = $this->createForm(ChangePasswordType::class, $user);
+        $formChangeEmail = $this->createForm(ChangeEmailType::class, $user);
         $formChangeEmail->handleRequest($request);
-        if ($formChangeEmail->isValid()) {
-            $newEmail = $request->request->get('email');
-            $user = $this->getUser();
-            $user->setEmail($newEmail);
+        if ($formChangeEmail->isValid() && $formChangeEmail->isSubmitted()) {
             $em->persist($user);
             $em->flush();
             $this->addFlash('notice','Votre Email à bien été modifié :)');
             return $this->redirectToRoute('profile');
         }
         $formChangePseudo->handleRequest($request);
-        if($formChangePseudo->isValid()) {
-            $newPseudo = $request->request->get('username');
-            $user = $this->getUser();
-            $user->setPseudo($newPseudo);
+        if($formChangePseudo->isValid() && $formChangePseudo->isSubmitted()) {
             $em->persist($user);
             $em->flush();
-            $this->addFlash('notice','Votre Pseudo à bien été modifié :)');
+            $this->addFlash('success','Votre Pseudo à bien été modifié :)');
             return $this->redirectToRoute('profile');
         }
 
@@ -194,9 +166,25 @@ class MainController extends Controller
     /**
      * @Route("/contact", name="contact")
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('main/contact.html.twig');
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
+
+        if($form->isValid() && $form->isSubmitted()) {
+            $naoContact = "gchurlet@gmail.com";
+            $userEmail = $form->getData()['mail'];
+            $subject = $form->getData()['subject'];
+            $content = $form->getData()['message'];
+            $sendConfirmationMail = $this->get('app.mail.send_contact_mail');
+            $sendConfirmationMail->sendContactMail($userEmail, $subject, $content, $naoContact);
+            $this->addFlash('success', "Félicitation votre email à bien été envoyé. Nous essaierons d'y répondre au plus vite");
+            return $this->redirectToRoute('contact');
+        }
+
+        return $this->render('main/contact.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
@@ -219,7 +207,16 @@ class MainController extends Controller
         return $this->render('main/faq.html.twig');
     }
 
-
+    /**
+     * @Route("/oiseaux", name="oiseaux")
+     */
+    public function oiseauxAction() {
+        $em = $this->getDoctrine()->getManager();
+        $birds = $em->getRepository('AppBundle:Bird')->findAllByNameAsc();
+        return $this->render('main/oiseaux.html.twig', [
+            'birds' => $birds
+        ]);
+    }
 
 }
 

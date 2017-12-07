@@ -3,7 +3,7 @@
 {% block title %}A Propos{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/apropos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/apropos.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -33,7 +33,7 @@
 				<span>Et pourquoi nous défendons la cause ornithologique.</span>
 			</div>
 			<div class="flex-wrap media align-items-center justify-content-center p-0">
-				<img class="col-12 col-md-4 rounded mr-md-4 p-0" src="{{ asset('bundles/app/img/amethyste.jpg') }}" alt="étourneau améthyste">
+				<img class="col-12 col-md-4 rounded mr-md-4 p-0" src="{{ asset('img/amethyste.jpg') }}" alt="étourneau améthyste">
 				<div class="media-body col-12 col-md-8 px-0">
 					<h3 class="mt-5 mt-md-0 text-center text-md-left">Présentation de l'association</h3>
 					<p class="text-justify">Nos amis les oiseaux (NAO) est une association de protection de l'environnement française fondée en 1983 ayant pour objectif « la protection des oiseaux et des écosystèmes dont ils dépendent et, en particulier, la faune et la flore qui y sont associées ». <br>
@@ -48,5 +48,5 @@ C’est grâce à l’engagement de chacun que nous pouvons mieux comprendre l�
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('bundles/app/js/apropos.js') }}"></script>
+    <script src="{{ asset('js/apropos.js') }}"></script>
 {% endblock %}

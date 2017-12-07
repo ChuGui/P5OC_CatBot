@@ -67,6 +67,11 @@ services:
         arguments: ['@mailer']
         public: true
 
+    app.mail.send_contact_mail:
+        class: AppBundle\Service\SendContactMail
+        arguments: ['@mailer']
+        public: true
+
     twig.extension.intl:
             class: Twig_Extensions_Extension_Intl
             tags:
