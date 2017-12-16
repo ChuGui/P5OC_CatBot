@@ -31,21 +31,21 @@
 	{#---------------------#}
     <div class="container">
         <ul class="nav nav-tabs" id="userTab" role="tablist">
-            <li class="text-center col nav-item">
+            <li class="text-center col-12 col-md nav-item">
                 <a class="nav-link active pb-3 d-flex align-items-end justify-content-center" id="profile-tab"
                    data-toggle="tab" href="#profile"
                    aria-selected="true">Récompenses</a>
             </li>
-            <li class="text-center col nav-item">
+            <li class="text-center col-12 col-md nav-item">
                 <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="observations-tab"
                    data-toggle="tab" href="#observations" aria-selected="false">Mes observations</a>
             </li>
-            <li class="text-center col nav-item">
+            <li class="text-center col-12 col-md nav-item">
                 <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="settings-tab"
                    data-toggle="tab" href="#settings" aria-selected="false">Paramètres</a>
             </li>
             {% if is_granted('ROLE_NATURALISTE') %}
-                <li class="text-center col nav-item">
+                <li class="text-center col-12 col-md nav-item">
                     <a class="nav-link pb-3 d-flex align-items-end justify-content-center" id="validations-tab"
                        data-toggle="tab" href="#validations" aria-selected="false">Validations</a>
                 </li>
