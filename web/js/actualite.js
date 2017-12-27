@@ -12,7 +12,7 @@ $(document).ready(function() {
             dataType: "application/json",
             data: { content: $content },
             success: function(data) {
-                console.log(JSON.stringify(data))
+                console.log(data)
             },
             error: function(){
 

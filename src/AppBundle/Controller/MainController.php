@@ -53,8 +53,7 @@ class MainController extends Controller
      */
     public function actualitesAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $actualites = $em->getRepository(Actualite::class)->findAll();
+        $actualites = $this->get('app.actualite_repository')->actualite()->findAll();
 
         return $this->render('main/actualites.html.twig', array(
             'actualites' => $actualites
@@ -96,8 +95,12 @@ class MainController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $comments = $em->getRepository("AppBundle:Comment")->findByActualite($id);
                 dump($comments);
-                dump(json_encode($comments));
-                return new JsonResponse(array('data' => json_encode($comments)));
+                $data = $this->get('serializer')->serialize($comments, 'json');
+                dump($data);
+                $response = new Response($data);
+                $response->headers->set('Content-Type', 'application/json');
+                dump($response);
+                return $response;
             }
         } else {
 
@@ -176,8 +179,7 @@ class MainController extends Controller
             $userEmail = $form->getData()['mail'];
             $subject = $form->getData()['subject'];
             $content = $form->getData()['message'];
-            $sendConfirmationMail = $this->get('app.mail.send_contact_mail');
-            $sendConfirmationMail->sendContactMail($userEmail, $subject, $content, $naoContact);
+            $this->get('app.mail.send_contact_mail')->sendContactMail($userEmail, $subject, $content, $naoContact);
             $this->addFlash('success', "Félicitation votre email à bien été envoyé. Nous essaierons d'y répondre au plus vite");
             return $this->redirectToRoute('contact');
         }

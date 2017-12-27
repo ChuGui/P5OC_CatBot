@@ -35,10 +35,6 @@ services:
     #         $someArgument: 'some_value'
 
 
-    import.csvtoarray:
-        class: AppBundle\Service\ConvertCsvToArray
-        public: true
-
     app.security.login_form_authenticator:
         class: AppBundle\Security\LoginFormAuthenticator
         autowire: true
@@ -72,6 +68,11 @@ services:
         arguments: ['@mailer']
         public: true
 
+    app.actualite_repository:
+        class: AppBundle\Service\ActualiteRepository
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
     twig.extension.intl:
             class: Twig_Extensions_Extension_Intl
             tags:
@@ -88,3 +89,4 @@ services:
                - "@translator.default"
            tags:
                - { name: twig.extension }
+
