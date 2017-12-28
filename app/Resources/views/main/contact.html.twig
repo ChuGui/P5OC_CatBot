@@ -42,40 +42,45 @@ Si vous ne trouvez pas l’information que vous souhaitiez, n’hésitez pas à 
 			</div>
 			<div class="row">
 				<div class="col-12 col-lg-6 mx-auto">
+					<h4 class="text-center mb-4">Contactez-nous !</h4>
                         {{ form_start(form) }}
-						<div class="form-group align-items-center">
+						<div class="align-items-center">
                             {{ form_row(form.subject, {
 								'attr' : {
 									'id': 'subject',
-									'placeholder' : 'Sujet *'
+									'placeholder' : 'Sujet *',
+									'class': 'form-control'
 								}
 							} ) }}
 						</div>
-						<div class="form-group align-items-center">
+						<div class="align-items-center">
                             {{ form_row(form.mail, {
 								'attr' : {
 									'id': 'mail',
-									'placeholder' : 'Email *'
+									'placeholder' : 'Email *',
+									'class': 'form-control'
 								}
 							}) }}
 						</div>
-						<div class="form-group align-items-start">
+						<div class="align-items-start">
                             {{ form_row(form.message, {
 								'attr' : {
 									'id': 'message',
-									'placeholder' : 'Message *'
+									'placeholder' : 'Message *',
+									'class': 'form-control',
+									'col': '30',
+									'rows': '10'
 								}
 							}) }}
 						</div>
-
 						<div class="text-center">
 							<button role="submit" class="btn btn-primary mx-auto" href="#">ENVOYER</button>
 						</div>
                         {{ form_end(form) }}
-					<h4 class="text-center mb-4">Contactez-nous !</h4>
 				</div>
 			</div>
 			{#<div class="row">
+				<h4 class="text-center mb-4">Contactez-nous !</h4>
 				<div class="col-12 col-lg-6 mx-auto">
 					<h4 class="text-center mb-4">Contactez-nous !</h4>
 					<div class="form-group align-items-center">
