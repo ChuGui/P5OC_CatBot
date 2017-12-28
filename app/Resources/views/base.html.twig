@@ -42,6 +42,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('contact') }}">CONTACT</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin') }}">ADMINISTRATION</a>
+                        </li>
+                    {% endif %}
                 </div>
             </ul>
             {% if is_granted('ROLE_USER') %}
@@ -60,6 +65,7 @@
                     <a class="btn btn-primary mx-1" href="{{ path('user_register') }}">INSCRIPTION</a>
                 </div>
             {% endif %}
+
         </nav>
         {# SVG DE NAVBAR #}
         <div class="navbar-svg d-flex flex-column align-items-center">

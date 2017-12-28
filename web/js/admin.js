@@ -1,12 +1,11 @@
 $(document).ready(function() {
+    console.log('fichier admin.js chargé');
+    $('#confirmDeleteUserBtn').on('click', function(e) {
 
-    $('#commentForm').on('submit', function(e) {
-        e.preventDefault();
-        var $form = $(e.currentTarget);
-
-        var $content = $form.find('input[name="content"]').val();
-
-        $.ajax({
+        var $confirmBtn = $(e.currentTarget);
+        var userId = $confirmBtn.data('userid');
+        console.log(userId);
+        /*$.ajax({
             url: $form.data('url'),
             type: "POST",
             dataType: "application/json",
@@ -18,7 +17,7 @@ $(document).ready(function() {
 
                 console.log('erreurData ');
             }
-        })
+        })*/
 
 
     });

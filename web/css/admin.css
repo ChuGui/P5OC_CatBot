@@ -1,0 +1,46 @@
+.imgUser {
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+}
+
+
+.users-display {
+    border-radius: 25px !important;
+    background: #FFFFFF;
+    border: 2px solid var(--lightest-brown);
+    margin-bottom: 0;
+    height: 600px;
+    max-height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.users {
+    min-height: 50px;
+}
+
+
+.users-display::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+  padding-right: 20px;
+  border-radius: 10px;
+}
+
+.users-display::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: var(--purple);
+}
+
+#searchUser .input-group {
+    margin-bottom: 0;
+}
+
+.fa-2x {
+    margin-left:  10px;
+    color: var(--brown);
+}
+
+
