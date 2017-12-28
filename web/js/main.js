@@ -11,4 +11,11 @@ $(document).ready(function(){
 		$('html, body').animate({scrollTop : 0},800);
 		return false;
 	});
+
+
+	// FLOATING LABELS
+	$( "input" ).focus(function() {
+		$( "input[placeholder], textarea[placeholder]" ).fadeOut();
+		$( "label" ).fadeIn(1000);
+	});
 });

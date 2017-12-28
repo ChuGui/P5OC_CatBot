@@ -22,6 +22,7 @@ function initMap() {
     });
 }
 
+
 function getCircle(magnitude) {
     return {
         path: google.maps.SymbolPath.CIRCLE,
@@ -36,6 +37,3 @@ function getCircle(magnitude) {
 function eqfeed_callback(results) {
     map.data.addGeoJson(results);
 }
-
-
-
