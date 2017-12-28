@@ -101,10 +101,10 @@
 
                                                 </i>
                                             </a>
-                                            <a href="#"><i class="fa fa-trash fa-2x" data-toggle="modal" data-target="#deleteUser" aria-hidden="true" data-userId="{{ user.id }}"></i></a>
+                                            <a href="#"><i class="fa fa-trash fa-2x" data-toggle="modal" data-target="#deleteUserModal" aria-hidden="true"></i></a>
 
                                             {#-----MODAL DELETE USER-----#}
-                                            <div class="modal" id="deleteUser">
+                                            <div class="modal" id="deleteUserModal">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -116,8 +116,8 @@
                                                                 <p>Vous êtes sur le point de supprimer définitivement {{ user.username }}</p>
                                                             </div>
                                                             <div class="modal-footer row">
-                                                                <button class="btn col-3" data-dismiss="modal">Annuler</button>
-                                                                <button class="btn col-3 ml-auto">Confirmer</button>
+                                                                <button class="btn btn-info col-3 close" style="background-color: grey" data-dismiss="modal">Annuler</button>
+                                                                <button class="btn col-3 ml-auto" type="submit" data-dismiss="modal" id="confirmDeleteUserBtn" data-userid="{{ user.id }}" >Confirmer</button>
 
                                                             </div>
                                                         </div>
