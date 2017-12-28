@@ -110,14 +110,6 @@ class MainController extends Controller
 
 
     /**
-     * @Route("/admin", name="admin")
-     */
-    public function adminAction()
-    {
-        return $this->render('NAOMainBundle:Main:admin.html.twig');
-    }
-
-    /**
      * @Route("/profile", name="profile")
      */
     public function profileAction(Request $request)

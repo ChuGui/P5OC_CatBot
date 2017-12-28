@@ -73,6 +73,11 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
         public: true
 
+    app.user_repository:
+            class: AppBundle\Service\UserRepository
+            arguments: ['@doctrine.orm.entity_manager']
+            public: true
+
     twig.extension.intl:
             class: Twig_Extensions_Extension_Intl
             tags:

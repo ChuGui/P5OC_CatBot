@@ -7,16 +7,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class FacebookController extends Controller
+class AdminController extends Controller
 {
     /**
-     * @Route("admin")
-     * @Method({"POST"})
+     * @Route("/admin", name="admin")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function adminAction()
     {
-        return $this->render('admin.html.twig');
+
+        $users = $this->get('app.user_repository')->findAllByNameASC();
+        return $this->render('main/admin.html.twig', array(
+            'users' => $users
+        ));
     }
 
 }

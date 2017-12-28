@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllByNameASC() {
+        $qb = $this->em->createQueryBuilder('u');
+        $qb->select('u')
+            ->from('user', 'u')
+            ->orderBy('u.name', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
 }
