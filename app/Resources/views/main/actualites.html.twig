@@ -41,7 +41,7 @@
                 <div class="card-title text-center px-3 mb-0">
                   <p>{{ actualite.updateAt|localizeddate('full', 'none')|upper }}</p>
                   <h3><a href="{{ path('actualite', {'id': actualite.id}) }}">{{ actualite.title|upper }}</a></h3></div>
-                <div class="card-body text-justify"><p>{{ actualite.content|truncate(100,false,'...') }}</p></div>
+                <div class="card-body text-justify"><p>{{ actualite.content|truncate(220,false,'...') }}</p></div>
               </div>
           {% endfor %}     
        </div>

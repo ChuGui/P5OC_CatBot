@@ -100,13 +100,23 @@ h6 {
   text-transform: uppercase;
 }
 
-p, span {
+p {
   font-size: 14px ;
   line-height: 22px;
 }
 
+span {
+  font-size: 10px;
+  line-height: 16px;
+}
+
 a {
   color: var(--purple);
+}
+
+a, a:hover {
+  outline: none;
+  text-decoration: none;
 }
 
 @media (min-width: 576px) {
@@ -117,6 +127,9 @@ a {
   h2 {
     font-size: 36px;
     line-height: 39px;
+  }
+  span {
+    font-size: 12px;
   }
 }
 
@@ -314,7 +327,7 @@ input {
   border-radius: 50px !important;
 }
 
-input[placeholder], [placeholder], *[placeholder], textarea[placeholder] {
+input[placeholder], [placeholder], *[placeholder]{
   margin-left: 30px;
 }
 
@@ -324,7 +337,8 @@ textarea {
 }
 
 textarea[placeholder] {
-  padding: 15px 12px;
+  padding: 15px 30px;
+  margin: 0;
 }
 
 .input-group-icon {
@@ -350,6 +364,8 @@ textarea[placeholder] {
 .form-control {
   background: none;
   border: none;
+  padding: 0;
+  font-size: 14px;
 }
 
 .form-group {
@@ -369,8 +385,8 @@ textarea[placeholder] {
 
 .scrollToTop {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 12px;
+  right: 12px;
   width: 48px;
   height: 48px;
   background: var(--pampas);
@@ -387,6 +403,12 @@ textarea[placeholder] {
   color: var(--purple);
 }
 
+@media (min-width: 576px){
+  .scrollToTop {
+    bottom: 30px;
+    right: 30px;
+  }
+}
 
 /* MES OBSERVATIONS */
 .nao-card{
@@ -472,11 +494,12 @@ textarea[placeholder] {
     }
     p {
       font-size: 12px ;
-      line-height: 16px;
+      line-height: 18px;
     }
 }
+
 /* MODAL */
-/*
+
 .close-wrap {
   width: 48px;
   height: 48px;
@@ -488,6 +511,12 @@ textarea[placeholder] {
 .close-button {
   font-size: 30px;
   color: var(--egg-shell);
+  background: none;
+  border: none;
+  outline: none;
+}
+.close-button:focus, .close-button::selection, .close-button:hover, .close-button:visited, .close-button:active {
+  outline: none;
 }
 
 .waitingObservationModal{
@@ -518,4 +547,8 @@ textarea[placeholder] {
 
 .user-name {
   font-weight: 700;
-}*/
+}
+
+
+
+

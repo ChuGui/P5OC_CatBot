@@ -1,9 +1,14 @@
 
 #profileImg {
+    height: 70px;
+    width: 70px;
+}
+@media (min-width: 576px){
+  #profileImg {
     height: 170px;
     width: 170px;
+  }
 }
-
 #userTab {
 
 }
