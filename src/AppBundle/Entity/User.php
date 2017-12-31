@@ -85,14 +85,14 @@ class User implements AdvancedUserInterface, \Serializable
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user", cascade={"remove"})
      * @ORM\OrderBy({"updateAt" = "DESC"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity="Observation", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Observation", mappedBy="user", cascade={"remove"})
      * @ORM\OrderBy({"updateAt" = "DESC"})
      * @ORM\JoinColumn(nullable=true)
      */

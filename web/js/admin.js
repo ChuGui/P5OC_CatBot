@@ -1,24 +1,26 @@
 $(document).ready(function() {
     console.log('fichier admin.js chargé');
-    $('#confirmDeleteUserBtn').on('click', function(e) {
 
-        var $confirmBtn = $(e.currentTarget);
-        var userId = $confirmBtn.data('userid');
-        console.log(userId);
-        /*$.ajax({
-            url: $form.data('url'),
-            type: "POST",
-            dataType: "application/json",
-            data: { content: $content },
-            success: function(data) {
-                console.log(data)
-            },
-            error: function(){
+    $('.delete-user').on('click', function (e) {
 
-                console.log('erreurData ');
-            }
-        })*/
+        var $trash = $(e.currentTarget);
+        var userId = $trash.data('userid');
+        var userElt = $('#user_' + userId);
+        console.log(userElt);
+        var url = $trash.data('url');
+        $('.confirmDeleteUserBtn').on('click', function (e) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function () {
+                    $(userElt).fadeOut(300, function(){$(this).remove();});
+                },
+                error: function () {
+                    console.log("Cet utilisateur n'existe pas.")
+                }
+            })
 
 
+        });
     });
 });

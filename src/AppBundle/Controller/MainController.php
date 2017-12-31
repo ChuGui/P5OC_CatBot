@@ -83,7 +83,7 @@ class MainController extends Controller
 
     /**
      * @Route("add/comment/{id}", requirements={"id" = "\d+"}, name="addComment")
-     * @Method({"POST"})
+     * @Method({"GET"})
      */
     public function addCommentAction(Request $request, $id)
     {
