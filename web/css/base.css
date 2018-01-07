@@ -184,7 +184,7 @@ button:focus {
 
 /* NAVBAR */
 .navbar {
-    height: 50px;
+    height: 70px;
     padding: 0 !important;
     background-color: var(--egg-shell) !important;
     position: relative;
@@ -193,8 +193,8 @@ button:focus {
 }
 
 .navbar-logo {
-    margin-top: -90px;
-    height: 90px;
+    margin-top: -65px;
+    height: 60px;
 }
 
 .navbar-brand {
@@ -203,6 +203,7 @@ button:focus {
   font-family: var(--hipsterish);
   position: relative;
   z-index: 1000;
+  margin-right: 0;
 }
 
 .navbar .btn{
@@ -212,11 +213,6 @@ button:focus {
   padding: 7px 12px;
 }
 
-@media (min-width: 768px) {
-  .navbar {
-      padding: 0 30px;
-  }
-
   .navbar-brand {
     font-size: 40px;
     line-height: 46px;
@@ -224,25 +220,47 @@ button:focus {
   }
 }
 
-.navbar-toggler{
-  border: none;
+.navbar-toggler {
+  border: none !important;
+}
+
+.navbar-light .navbar-toggler {
+  border-color: transparent !important;
 }
 
 .navbar-svg {
   position: relative;
   z-index: 998;
+  margin-top: -15px;
+}
+
+.navbar-svg svg {
+  height: 60px;
 }
 
 @media (min-width: 768px){
   .navbar {
+    padding: 0 30px;
     margin-bottom: 0;
+  }
+  .navbar-svg {
+    margin-top: 0px;
+  }
+
+  .navbar-svg svg {
+    height: 80px;
+  }
+
+  .navbar-logo {
+      margin-top: -90px;
+      height: 90px;
   }
 }
 
 #navbarSupportedContent {
   background: var(--egg-shell);
 }
-@media (min-width: 768px){
+@media (min-width: 992px){
   #navbarSupportedContent {
     background: transparent;
   }
@@ -252,7 +270,6 @@ button:focus {
 .heading-page {
   background-color: var(--pampas);
   min-height: 200px;
-  margin-top: -80px;
   padding-top: 100px;
   padding-bottom: 5px;
   position: relative;
