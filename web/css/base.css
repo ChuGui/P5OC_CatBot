@@ -462,7 +462,7 @@ label {
     margin: 0;
     color: var(--pampas); 
     text-align: center;
-    padding-left: 7px;
+    padding: 0;
 }
 
 @media (min-width: 1400px) {
@@ -493,11 +493,10 @@ label {
         font-size: 24px;
     }
     .heart-text {
-        font-size: 10px;
+        font-size: 10px !important;
         line-height: 12px;
-        padding-top: 2px;
-        padding-left: 0px;
-        padding-right: 0px;
+        padding: 0 0 0 7px;
+        margin-bottom: 2px;
     }
     .nao-card h3, .nao-card h3 > a {
       font-family: Raleway-Regular;

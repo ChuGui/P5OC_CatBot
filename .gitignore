@@ -16,3 +16,5 @@
 /vendor/
 /web/bundles/
 /.idea
+app/Resources/views/.DS_Store
+src/AppBundle/Resources/public/.DS_Store
