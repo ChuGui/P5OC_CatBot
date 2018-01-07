@@ -182,7 +182,7 @@ a, a:hover {
 .navbar {
     height: 50px;
     padding: 0 30px !important;
-    background: var(--var(--egg-shell));
+    background-color: var(--egg-shell) !important;
     position: relative;
     z-index: 999;
     margin-bottom: -30px;
@@ -201,8 +201,9 @@ a, a:hover {
   z-index: 1000;
 }
 
-.navbar .btn-primary {
+.navbar .btn{
   line-height: inherit;
+  width: 120px;
 }
 
 @media (min-width: 768px) {
@@ -226,6 +227,15 @@ a, a:hover {
 @media (min-width: 768px){
   .navbar {
     margin-bottom: 0;
+  }
+}
+
+#navbarSupportedContent {
+  background: var(--egg-shell);
+}
+@media (min-width: 768px){
+  #navbarSupportedContent {
+    background: transparent;
   }
 }
 
@@ -357,7 +367,10 @@ label {
 
 .input-group-icon {
     color: var(--lighter-egg-shell);
-    margin: -1px;
+}
+
+.fa-envelope {
+    padding-top: 10px;
 }
 
 .input-group, .form-group {
@@ -458,11 +471,12 @@ label {
 .heart-text { 
     font-family: var(--roboto);
     font-weight: 700;
-    font-size: 12px;
+    font-size: 12px !important;
     margin: 0;
     color: var(--pampas); 
     text-align: center;
-    padding: 0;
+    padding: 0 0 0 4px;
+    font-family: var(--roboto) !important;
 }
 
 @media (min-width: 1400px) {
@@ -571,6 +585,27 @@ label {
     color: #87888C ;
 }
 
+/* COMMENTS */
+.imgComment {
+    border-radius: 25px;
+    height: 40px;
+}
+
+.social-comment {
+    color: var(--purple);
+}
+
+.comm-display {
+    border-radius: 25px !important;
+    background: #FFFFFF;
+    border: 2px solid var(--lightest-brown);
+    margin-bottom: 0;
+    height: 200px;
+    max-height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .comm-display::-webkit-scrollbar { 
   width: 12px;
   background-color: #F5F5F5;
@@ -591,4 +626,8 @@ label {
 #addComment .input-group-icon {
     margin-left: -3px;
 }
+
+
+
+
 
