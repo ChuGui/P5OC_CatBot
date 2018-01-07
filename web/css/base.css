@@ -178,10 +178,14 @@ a, a:hover {
   padding-left: 24px !important;
 }
 
+button:focus {
+  outline: none;
+}
+
 /* NAVBAR */
 .navbar {
     height: 50px;
-    padding: 0 30px !important;
+    padding: 0 !important;
     background-color: var(--egg-shell) !important;
     position: relative;
     z-index: 999;
@@ -204,9 +208,15 @@ a, a:hover {
 .navbar .btn{
   line-height: inherit;
   width: 120px;
+  font-size: 12px;
+  padding: 7px 12px;
 }
 
 @media (min-width: 768px) {
+  .navbar {
+      padding: 0 30px;
+  }
+
   .navbar-brand {
     font-size: 40px;
     line-height: 46px;
@@ -214,9 +224,8 @@ a, a:hover {
   }
 }
 
-.navbar .btn{
-  font-size: 12px;
-  padding: 7px 12px;
+.navbar-toggler{
+  border: none;
 }
 
 .navbar-svg {
