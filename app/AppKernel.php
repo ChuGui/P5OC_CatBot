@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle(),
             new Knp\Bundle\TimeBundle\KnpTimeBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle()
 
         ];
 
