@@ -1,4 +1,3 @@
-//php bin/console asset:install --symlink
 jQuery(function($)
 {
     var date = new Date();

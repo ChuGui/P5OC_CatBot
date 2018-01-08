@@ -4,10 +4,9 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/observation.css') }}">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.structure.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.theme.min.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -82,6 +81,7 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/observation.js') }}"></script>
     <script src="{{ asset('js/datepicker.js') }}"></script>
 {% endblock %}
