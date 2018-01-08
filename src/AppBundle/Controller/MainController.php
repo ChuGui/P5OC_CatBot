@@ -83,7 +83,7 @@ class MainController extends Controller
 
     /**
      * @Route("add/comment/{id}", requirements={"id" = "\d+"}, name="addComment")
-     * @Method({"POST"})
+     * @Method({"GET"})
      */
     public function addCommentAction(Request $request, $id)
     {
@@ -159,7 +159,7 @@ class MainController extends Controller
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="contact", options={"expose" = true })
      */
     public function contactAction(Request $request)
     {

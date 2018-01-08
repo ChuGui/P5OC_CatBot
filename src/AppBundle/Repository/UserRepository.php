@@ -10,11 +10,19 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllByNameASC() {
-        $qb = $this->em->createQueryBuilder('u');
-        $qb->select('u')
-            ->from('user', 'u')
-            ->orderBy('u.name', 'ASC');
+    public function findAllByNameASCExceptAdmin() {
+            $qb = $this->createQueryBuilder('u');
+            $qb->where('u.username != :username')
+                ->orderBy('u.username','ASC')
+                ->setParameter("username", 'admin');
+            return $qb->getQuery()->getResult();
+    }
+
+    public function findAllUsernameStartingWith($username) {
+        $qb = $this->createQueryBuilder('u');
+        $qb->where('u.username LIKE :username')
+            ->setParameter('username', '%'.$username.'%');
         return $qb->getQuery()->getResult();
     }
+
 }
