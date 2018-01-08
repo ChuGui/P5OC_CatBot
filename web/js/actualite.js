@@ -6,6 +6,7 @@ $(document).ready(function() {
 
         var $content = $form.find('input[name="content"]').val();
 
+
         $.ajax({
             url: $form.data('url'),
             type: "POST",

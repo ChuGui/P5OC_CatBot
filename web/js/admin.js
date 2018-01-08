@@ -1,6 +1,7 @@
 $(document).ready(function() {
     console.log('fichier admin.js chargé');
 
+    /*Gestion des utilisateurs*/
     $('.delete-user').on('click', function (e) {
 
         var $trash = $(e.currentTarget);
@@ -23,4 +24,11 @@ $(document).ready(function() {
 
         });
     });
+
+
+
+
+
+
 });
+

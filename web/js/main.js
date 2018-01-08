@@ -13,9 +13,9 @@ $(document).ready(function(){
 	});
 
 
-	// FLOATING LABELS
+	/*// FLOATING LABELS
 	$( "input" ).focus(function() {
 		$( "input[placeholder], textarea[placeholder]" ).fadeOut();
 		$( "label" ).fadeIn(1000);
-	});
+	});*/
 });

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -24,6 +25,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Groups({"group1"})
      */
     private $id;
 
@@ -33,6 +35,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Length(min=3, minMessage="Votre pseudo doit comporter au moins 3 lettres")
      * @ORM\Column(type="string", unique=true)
+     * @Groups({"group1"})
      */
     private $username;
 
@@ -40,6 +43,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Email()
      * @ORM\Column(type="string", unique=true)
+     * @Groups({"group1"})
      */
     private $email;
 
@@ -61,6 +65,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string")
+     * @Groups({"group1"})
      */
     private $profilePicture;
 

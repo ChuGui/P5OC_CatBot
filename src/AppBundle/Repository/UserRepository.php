@@ -18,4 +18,11 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             return $qb->getQuery()->getResult();
     }
 
+    public function findAllUsernameStartingWith($username) {
+        $qb = $this->createQueryBuilder('u');
+        $qb->where('u.username LIKE :username')
+            ->setParameter('username', '%'.$username.'%');
+        return $qb->getQuery()->getResult();
+    }
+
 }

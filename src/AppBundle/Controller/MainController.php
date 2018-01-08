@@ -159,7 +159,7 @@ class MainController extends Controller
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="contact", options={"expose" = true })
      */
     public function contactAction(Request $request)
     {
