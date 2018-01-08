@@ -104,21 +104,26 @@
                                             <a href="#"><i class="fa fa-trash fa-2x" data-toggle="modal" data-target="#deleteUserModal" aria-hidden="true"></i></a>
 
                                             {#-----MODAL DELETE USER-----#}
-                                            <div class="modal" id="deleteUserModal">
+                                            <div class="modal modal-alert pt-5" id="deleteUserModal">
+                                                <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+                                                    <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
+                                                        &times;
+                                                    </button>
+                                                </div>
                                                 <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <div class="modal-title">
-                                                                <h5>Je suis un titre</h5>
-                                                                <button class="close" data-dismiss="modal">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
+                                                    <div class="modal-content col-10 col-md-8 col-lg-6 py-4 mx-auto">
+                                                        <div class="d-flex flex-column">
+                                                            <div class="modal-title heading row justify-content-center mb-3">
+                                                                <h2>Je suis un titre</h2>
                                                                 <p>Vous êtes sur le point de supprimer définitivement {{ user.username }}</p>
                                                             </div>
-                                                            <div class="modal-footer row">
-                                                                <button class="btn btn-info col-3 close" style="background-color: grey" data-dismiss="modal">Annuler</button>
-                                                                <button class="btn col-3 ml-auto" type="submit" data-dismiss="modal" id="confirmDeleteUserBtn" data-userid="{{ user.id }}" >Confirmer</button>
-
+                                                            <div class="text-center mx-auto">
+                                                                <i class="fa fa-user-times fa-5x mb-3"></i>
+                                                                <p>Cette action est irréversible !</p>
+                                                            </div>
+                                                            <div class="d-flex flex-column flex-sm-row justify-content-around mx-auto">
+                                                                <button class="btn btn-outline" data-dismiss="modal">Annuler</button>
+                                                                <button class="btn btn-primary ml-0 ml-sm-3 mt-3 mt-sm-0" type="submit" data-dismiss="modal" id="confirmDeleteUserBtn" data-userid="{{ user.id }}" >Confirmer</button>
                                                             </div>
                                                         </div>
                                                     </div>

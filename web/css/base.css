@@ -162,11 +162,15 @@ a, a:hover {
 
 .btn-primary {
     background: var(--purple);
+    height: 48px;
 }
 
 .btn-outline {
     border: 2px solid var(--purple);
     color: var(--purple);
+    background: transparent;
+    height: 48px;
+    line-height: normal;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
@@ -184,7 +188,7 @@ button:focus {
 
 /* NAVBAR */
 .navbar {
-    height: 70px;
+    height: 45px;
     padding: 0 !important;
     background-color: var(--egg-shell) !important;
     position: relative;
@@ -211,13 +215,17 @@ button:focus {
   width: 120px;
   font-size: 12px;
   padding: 7px 12px;
+  height: 36px;
+}
+.navbar .btn-primary{
+  padding-top: 9px;
 }
 
-  .navbar-brand {
-    font-size: 40px;
-    line-height: 46px;
-    padding-top: 15px;
-  }
+.navbar-brand {
+  font-size: 36px;
+  line-height: 36px;
+  padding-top: 5px;
+  padding-bottom: 0px;
 }
 
 .navbar-toggler {
@@ -226,6 +234,10 @@ button:focus {
 
 .navbar-light .navbar-toggler {
   border-color: transparent !important;
+}
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 0.5rem;
 }
 
 .navbar-svg {
@@ -242,6 +254,7 @@ button:focus {
   .navbar {
     padding: 0 30px;
     margin-bottom: 0;
+    height: 67px;
   }
   .navbar-svg {
     margin-top: 0px;
@@ -255,6 +268,11 @@ button:focus {
       margin-top: -90px;
       height: 90px;
   }
+  .navbar-brand {
+    font-size: 40px;
+    line-height: 46px;
+    padding-top: 15px;
+  }
 }
 
 #navbarSupportedContent {
@@ -263,6 +281,9 @@ button:focus {
 @media (min-width: 992px){
   #navbarSupportedContent {
     background: transparent;
+  }
+  .navbar-nav .nav-link {
+    padding: 0.2rem 0.5rem;
   }
 }
 
@@ -552,7 +573,7 @@ label {
     }
 }
 
-/* MODAL */
+/* MODAL OBSERVATION */
 
 .close-wrap {
   width: 48px;
@@ -609,6 +630,12 @@ label {
 
 .time {
     color: #87888C ;
+}
+
+
+/* MODAL ALERTE */
+.modal-alert .fa {
+  color: var(--purple) ;
 }
 
 /* COMMENTS */
