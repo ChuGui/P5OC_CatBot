@@ -257,6 +257,13 @@ button:focus {
   background: var(--egg-shell);
 }
 
+.visible-svg {
+  display: flex !important;
+}
+.hidden-svg {
+  display: none !important;
+}
+
 @media (min-width: 992px){
   #navbarSupportedContent {
     background: transparent;
@@ -690,8 +697,5 @@ label {
 #addComment .input-group-icon {
     margin-left: -3px;
 }
-
-
-
 
 

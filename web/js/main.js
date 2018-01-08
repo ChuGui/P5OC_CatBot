@@ -25,4 +25,11 @@ $(document).ready(function(){
 		$(this).prev().fadeOut(500);
 		$(this).attr('placeholder', floatingLabelValue);
 	});
+
+
+	// SVG WINGS FLAPPING
+	$( ".navbar-toggler" ).click(function() {
+		$( ".navbar-svg" ).toggleClass("visible-svg hidden-svg");
+	});
+
 });
