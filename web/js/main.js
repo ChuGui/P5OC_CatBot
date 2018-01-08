@@ -13,9 +13,16 @@ $(document).ready(function(){
 	});
 
 
-	/*// FLOATING LABELS
-	$( "input" ).focus(function() {
-		$( "input[placeholder], textarea[placeholder]" ).fadeOut();
-		$( "label" ).fadeIn(1000);
-	});*/
+	// FLOATING LABELS
+	$( "input[placeholder], textarea[placeholder]" ).focus(function() {
+		var floatingLabelValue = $(this).attr('placeholder');
+		$(this).removeAttr('placeholder');
+		$(this).prev().text(floatingLabelValue).fadeIn(500);
+	});
+
+	$( "input[placeholder], textarea[placeholder]" ).focusout(function() {
+		floatingLabelValue = $(this).prev().text();
+		$(this).prev().fadeOut(500);
+		$(this).attr('placeholder', floatingLabelValue);
+	});
 });

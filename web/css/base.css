@@ -61,7 +61,7 @@ h1 {
   font-family: Raleway-Extralight;
   font-size: 36px;
   color: var(--black);
-  letter-spacing: auto;
+  letter-spacing: normal;
   line-height: 40px;
   text-transform: uppercase;
 }
@@ -194,6 +194,9 @@ button:focus {
     position: relative;
     z-index: 999;
     margin-bottom: -30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 .navbar-logo {
@@ -243,47 +246,44 @@ button:focus {
 .navbar-svg {
   position: relative;
   z-index: 998;
-  margin-top: -15px;
+  margin-top: -10px;
 }
 
 .navbar-svg svg {
   height: 60px;
 }
 
-@media (min-width: 768px){
-  .navbar {
-    padding: 0 30px;
-    margin-bottom: 0;
-    height: 67px;
-  }
-  .navbar-svg {
-    margin-top: 0px;
-  }
-
-  .navbar-svg svg {
-    height: 80px;
-  }
-
-  .navbar-logo {
-      margin-top: -90px;
-      height: 90px;
-  }
-  .navbar-brand {
-    font-size: 40px;
-    line-height: 46px;
-    padding-top: 15px;
-  }
-}
-
 #navbarSupportedContent {
   background: var(--egg-shell);
 }
+
 @media (min-width: 992px){
   #navbarSupportedContent {
     background: transparent;
   }
   .navbar-nav .nav-link {
     padding: 0.2rem 0.5rem;
+  }
+  .navbar-logo {
+      margin-top: -90px;
+      height: 90px;
+  }  
+  .navbar {
+    padding: 0 30px;
+    margin-bottom: 0;
+    height: 67px;
+  }
+  .navbar-svg {
+    margin-top: 5px;
+  }
+
+  .navbar-svg svg {
+    height: 80px;
+  }
+  .navbar-brand {
+    font-size: 40px;
+    line-height: 46px;
+    padding-top: 15px;
   }
 }
 
@@ -330,10 +330,14 @@ button:focus {
   font-family: var(--hipsterish);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   #footer-title {
     font-size: 80px;
     line-height: 90px;
+  }
+  .heading-page {
+    /*min-height: 200px;*/
+    padding-top: 170px;
   }
 }
 
@@ -386,20 +390,27 @@ button:focus {
 input {
   height: 48px;
   border-radius: 50px !important;
+  padding-left: 30px !important;
+}
+
+input:focus, textarea:focus {
+  box-shadow: none !important;
 }
 
 input[placeholder], [placeholder], *[placeholder]{
-  margin-left: 30px;
+  padding-left: 30px;
 }
 
 textarea {
   resize: none;
-  border-radius: 50px !important;
+  border-radius: 25px !important;
+  padding-left: 30px !important;
 }
 
 textarea[placeholder] {
   padding: 15px 30px;
   margin: 0;
+  border-radius: 25px !important;
 }
 
 label {
@@ -409,7 +420,7 @@ label {
   margin-left: 30px;
   background: var(--off-white);
   height: 11px;
-  padding: 0 5px;
+  padding: 0 5px !important;
 }
 
 .input-group-icon {
