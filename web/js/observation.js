@@ -17,6 +17,4 @@ $(document).ready(function() {
     $('#location-dialog').on('shown.bs.modal', function () {
         $('#location').locationpicker('autosize');
     });
-
-
 });

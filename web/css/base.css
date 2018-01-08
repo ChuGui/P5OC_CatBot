@@ -178,19 +178,23 @@ a, a:hover {
   padding-left: 24px !important;
 }
 
+button:focus {
+  outline: none;
+}
+
 /* NAVBAR */
 .navbar {
-    height: 50px;
-    padding: 0 30px !important;
-    background: var(--var(--egg-shell));
+    height: 70px;
+    padding: 0 !important;
+    background-color: var(--egg-shell) !important;
     position: relative;
     z-index: 999;
     margin-bottom: -30px;
 }
 
 .navbar-logo {
-    margin-top: -90px;
-    height: 90px;
+    margin-top: -65px;
+    height: 60px;
 }
 
 .navbar-brand {
@@ -199,13 +203,16 @@ a, a:hover {
   font-family: var(--hipsterish);
   position: relative;
   z-index: 1000;
+  margin-right: 0;
 }
 
-.navbar .btn-primary {
+.navbar .btn{
   line-height: inherit;
+  width: 120px;
+  font-size: 12px;
+  padding: 7px 12px;
 }
 
-@media (min-width: 768px) {
   .navbar-brand {
     font-size: 40px;
     line-height: 46px;
@@ -213,19 +220,49 @@ a, a:hover {
   }
 }
 
-.navbar .btn{
-  font-size: 12px;
-  padding: 7px 12px;
+.navbar-toggler {
+  border: none !important;
+}
+
+.navbar-light .navbar-toggler {
+  border-color: transparent !important;
 }
 
 .navbar-svg {
   position: relative;
   z-index: 998;
+  margin-top: -15px;
+}
+
+.navbar-svg svg {
+  height: 60px;
 }
 
 @media (min-width: 768px){
   .navbar {
+    padding: 0 30px;
     margin-bottom: 0;
+  }
+  .navbar-svg {
+    margin-top: 0px;
+  }
+
+  .navbar-svg svg {
+    height: 80px;
+  }
+
+  .navbar-logo {
+      margin-top: -90px;
+      height: 90px;
+  }
+}
+
+#navbarSupportedContent {
+  background: var(--egg-shell);
+}
+@media (min-width: 992px){
+  #navbarSupportedContent {
+    background: transparent;
   }
 }
 
@@ -233,7 +270,6 @@ a, a:hover {
 .heading-page {
   background-color: var(--pampas);
   min-height: 200px;
-  margin-top: -80px;
   padding-top: 100px;
   padding-bottom: 5px;
   position: relative;
@@ -357,7 +393,10 @@ label {
 
 .input-group-icon {
     color: var(--lighter-egg-shell);
-    margin: -1px;
+}
+
+.fa-envelope {
+    padding-top: 10px;
 }
 
 .input-group, .form-group {
@@ -458,11 +497,12 @@ label {
 .heart-text { 
     font-family: var(--roboto);
     font-weight: 700;
-    font-size: 12px;
+    font-size: 12px !important;
     margin: 0;
     color: var(--pampas); 
     text-align: center;
-    padding-left: 7px;
+    padding: 0 0 0 4px;
+    font-family: var(--roboto) !important;
 }
 
 @media (min-width: 1400px) {
@@ -493,11 +533,10 @@ label {
         font-size: 24px;
     }
     .heart-text {
-        font-size: 10px;
+        font-size: 10px !important;
         line-height: 12px;
-        padding-top: 2px;
-        padding-left: 0px;
-        padding-right: 0px;
+        padding: 0 0 0 7px;
+        margin-bottom: 2px;
     }
     .nao-card h3, .nao-card h3 > a {
       font-family: Raleway-Regular;
@@ -572,6 +611,27 @@ label {
     color: #87888C ;
 }
 
+/* COMMENTS */
+.imgComment {
+    border-radius: 25px;
+    height: 40px;
+}
+
+.social-comment {
+    color: var(--purple);
+}
+
+.comm-display {
+    border-radius: 25px !important;
+    background: #FFFFFF;
+    border: 2px solid var(--lightest-brown);
+    margin-bottom: 0;
+    height: 200px;
+    max-height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .comm-display::-webkit-scrollbar { 
   width: 12px;
   background-color: #F5F5F5;
@@ -592,4 +652,8 @@ label {
 #addComment .input-group-icon {
     margin-left: -3px;
 }
+
+
+
+
 
