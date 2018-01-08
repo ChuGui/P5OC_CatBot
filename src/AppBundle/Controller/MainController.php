@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
 use AppBundle\Entity\Actualite;
+use AppBundle\Entity\Observation;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\ChangeEmailType;
@@ -11,6 +12,7 @@ use AppBundle\Form\ChangePasswordType;
 use AppBundle\Form\ChangePseudoType;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\ContactType;
+use AppBundle\Form\ObservationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -44,7 +46,13 @@ class MainController extends Controller
             $this->addFlash('notice', 'Vous devez-être connecté pour ajouter une observation.');
             return $this->redirectToRoute('security_login');
         }
-        return $this->render('main/observation.html.twig');
+        $observation = New Observation();
+        $formObservation = $this->createForm(ObservationType::class, $observation);
+        $formObservation->handleRequest($request);
+
+        return $this->render('main/observation.html.twig', array(
+            "formObservation" => $formObservation->createView()
+        ));
 
     }
 
@@ -211,6 +219,8 @@ class MainController extends Controller
             'birds' => $birds
         ]);
     }
+
+
 
 }
 

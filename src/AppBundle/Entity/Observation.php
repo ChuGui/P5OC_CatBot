@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -71,8 +71,12 @@ class Observation
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Bird", inversedBy="observations")
+     * @Assert\Valid()
+     * @Assert\Type(type="AppBundle\Entity\Bird")
+     * @Assert\NotNull(message="Il faut choisir un nom d'espèce")
+     * @ORM\ManyToOne(targetEntity="Bird", inversedBy="observations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     *
      */
     private $bird;
 
@@ -97,7 +101,6 @@ class Observation
         $this->IsValidated = false;
         $this->updateAt = new \DateTime();
         $this->vote = 0;
-        $this->description = 'Pas de description...';
     }
 
     /**
