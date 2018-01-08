@@ -4,6 +4,8 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/observation.css') }}">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 {% endblock %}
@@ -35,13 +37,43 @@
             <span>Quel drôle d'oiseau avez-vous observé ?</span>
         </div>
 
-        <div id="map">
+        <div class="row">
+            {#PARTIE - Saisir une observation#}
+            <div class="col">
+                <p class="text-center"><strong>Saisir une observation</strong></p>
 
-                <button data-target="#us11-dialog" data-toggle="modal">
-                    Choisissez les coordonées
-                </button>
+                {{ form_start(formObservation) }}
+                {{ form_row(formObservation.observedAt, {'attr' : {
+                    'placeholder' : "Jour de l'observation"
+                    }
+                }) }}
+                {{ form_row(formObservation.qtyBirds, {'attr' : {
+                    'placeholder' : "Nombre d'oiseaux observés"
+                    }
+                }) }}
+                {{ form_row(formObservation.picture, {'attr' : {
+                    'placeholder' : "Ajouter une photo"
+                    }
+                }) }}
+                {{ form_row(formObservation.description, {'attr' : {
+                    'placeholder' : "Ajouter une observation"
+                    }
+                }) }}
+                {{ form_row(formObservation.bird, {'attr' : {
+                    'placeholder' : "Ajouter le nom de l'espèce"
+                    }
+                }) }}
+                {{ form_end(formObservation) }}
 
+
+            </div>
+
+            {#PARTIE - J'ai besoin d'aide#}
+            <div class="col">
+                <p class="text-center"><strong>J'ai besoin d'aide !</strong></p>
+            </div>
         </div>
+
 
     </div>
 
@@ -50,11 +82,7 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/locationpicker.jquery.js') }}"></script>
     <script src="{{ asset('js/observation.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM-LWXFSraqzHfltfjrg0aIgHYdDp9EpI&callback=initMap&libraries=places">
-    </script>
+    <script src="{{ asset('js/datepicker.js') }}"></script>
 {% endblock %}
 
