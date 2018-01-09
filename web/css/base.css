@@ -199,6 +199,10 @@ button:focus {
     top: 0;
 }
 
+.nav-wrap {
+  height: calc(100vh - 135px);
+}
+
 .navbar-logo {
     margin-top: -65px;
     height: 60px;
@@ -233,6 +237,7 @@ button:focus {
 
 .navbar-toggler {
   border: none !important;
+  font-size: 30px;
 }
 
 .navbar-light .navbar-toggler {
@@ -257,9 +262,14 @@ button:focus {
   background: var(--egg-shell);
 }
 
+.flipped {
+  margin-top: -1px;
+}
+
 .visible-svg {
   display: flex !important;
 }
+
 .hidden-svg {
   display: none !important;
 }
@@ -283,9 +293,11 @@ button:focus {
   .navbar-svg {
     margin-top: 5px;
   }
-
   .navbar-svg svg {
     height: 80px;
+  }
+  .nav-wrap {
+    height: auto;
   }
   .navbar-brand {
     font-size: 40px;
