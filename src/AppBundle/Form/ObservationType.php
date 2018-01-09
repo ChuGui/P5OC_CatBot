@@ -7,6 +7,7 @@ use AppBundle\Entity\Observation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -31,9 +32,6 @@ class ObservationType extends AbstractType
             ->add('qtyBirds', IntegerType::class, array(
                 'label' => "Nombre d'oiseaux"
             ))
-            ->add('picture', TextType::class, array(
-                'label' => "Ajouter une photo"
-            ))
             ->add('description', TextareaType::class, array(
                 'label' => "Description libre"
             ))
@@ -42,6 +40,11 @@ class ObservationType extends AbstractType
                 'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => false
+            ))
+            ->add('imageFile', VichFileType::class, array(
+                'label' => 'Ajouter une photo',
+                'required' => false,
+                'allow_delete' => true
             ))
         ;
     }

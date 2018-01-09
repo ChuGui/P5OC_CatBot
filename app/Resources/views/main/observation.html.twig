@@ -37,8 +37,13 @@
         </div>
 
         <div class="row">
+
             {#PARTIE - Saisir une observation#}
             <div class="col">
+                {% for message in app.session.flashBag.get('success')  %}
+                    <div class="alert alert-success">{{ message }}</div>
+
+                {% endfor %}
                 <p class="text-center"><strong>Saisir une observation</strong></p>
 
                 {{ form_start(formObservation) }}
@@ -50,10 +55,6 @@
                     'placeholder' : "Nombre d'oiseaux observés"
                     }
                 }) }}
-                {{ form_row(formObservation.image, {'attr' : {
-                    'placeholder' : "Ajouter une photo"
-                    }
-                }) }}
                 {{ form_row(formObservation.description, {'attr' : {
                     'placeholder' : "Ajouter une observation"
                     }
@@ -62,6 +63,8 @@
                     'placeholder' : "Ajouter le nom de l'espèce"
                     }
                 }) }}
+                {{ form_row(formObservation.imageFile) }}
+                <button type="submit" class="btn btn-default">Envoyer</button>
                 {{ form_end(formObservation) }}
 
 

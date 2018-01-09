@@ -49,6 +49,16 @@ class MainController extends Controller
         $observation = New Observation();
         $formObservation = $this->createForm(ObservationType::class, $observation);
         $formObservation->handleRequest($request);
+        if($formObservation->isValid() && $formObservation->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $observation->setUser($this->getUser());
+            $observation->setLatitude(13513513.3521);
+            $observation->setLongitude(24133241.321321);
+            $observation->setIsValidated(false);
+            $em->persist($observation);
+            $em->flush();
+            $this->addFlash('notice', 'Félicitation votre observation à correctement été ajoutée. Elle sera étudiée par nos naturalistes');
+        }
 
         return $this->render('main/observation.html.twig', array(
             "formObservation" => $formObservation->createView()
