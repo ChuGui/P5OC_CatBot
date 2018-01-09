@@ -61,7 +61,7 @@ h1 {
   font-family: Raleway-Extralight;
   font-size: 36px;
   color: var(--black);
-  letter-spacing: auto;
+  letter-spacing: normal;
   line-height: 40px;
   text-transform: uppercase;
 }
@@ -194,6 +194,13 @@ button:focus {
     position: relative;
     z-index: 999;
     margin-bottom: -30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.nav-wrap {
+  height: calc(100vh - 135px);
 }
 
 .navbar-logo {
@@ -230,6 +237,7 @@ button:focus {
 
 .navbar-toggler {
   border: none !important;
+  font-size: 30px;
 }
 
 .navbar-light .navbar-toggler {
@@ -243,47 +251,64 @@ button:focus {
 .navbar-svg {
   position: relative;
   z-index: 998;
-  margin-top: -15px;
+  margin-top: -10px;
 }
 
 .navbar-svg svg {
   height: 60px;
 }
 
-@media (min-width: 768px){
-  .navbar {
-    padding: 0 30px;
-    margin-bottom: 0;
-    height: 67px;
-  }
-  .navbar-svg {
-    margin-top: 0px;
-  }
-
-  .navbar-svg svg {
-    height: 80px;
-  }
-
-  .navbar-logo {
-      margin-top: -90px;
-      height: 90px;
-  }
-  .navbar-brand {
-    font-size: 40px;
-    line-height: 46px;
-    padding-top: 15px;
-  }
-}
-
 #navbarSupportedContent {
   background: var(--egg-shell);
 }
+
+.flipped {
+  margin-top: -1px;
+}
+
+.visible-svg {
+  display: flex !important;
+}
+
+.hidden-svg {
+  display: none !important;
+}
+
 @media (min-width: 992px){
   #navbarSupportedContent {
     background: transparent;
   }
   .navbar-nav .nav-link {
     padding: 0.2rem 0.5rem;
+  }
+  .navbar-logo {
+      margin-top: -90px;
+      height: 90px;
+  }  
+  .navbar {
+    padding: 0 30px;
+    margin-bottom: 0;
+    height: 67px;
+  }
+  .navbar-svg {
+    margin-top: 5px;
+  }
+  .navbar-svg svg {
+    height: 80px;
+  }
+  .nav-wrap {
+    height: auto;
+  }
+  .navbar-brand {
+    font-size: 40px;
+    line-height: 46px;
+    padding-top: 15px;
+  }
+  .straight {
+    display: flex !important;
+  }
+  .flipped {
+    display: none !important;
   }
 }
 
@@ -330,10 +355,14 @@ button:focus {
   font-family: var(--hipsterish);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   #footer-title {
     font-size: 80px;
     line-height: 90px;
+  }
+  .heading-page {
+    /*min-height: 200px;*/
+    padding-top: 170px;
   }
 }
 
@@ -383,23 +412,42 @@ button:focus {
 }
 
 /* FORMULAIRE */
-input {
-  height: 48px;
+input, select {
+  height: 48px !important;
   border-radius: 50px !important;
+  padding-left: 30px !important;
 }
 
-input[placeholder], [placeholder], *[placeholder]{
-  margin-left: 30px;
+input:focus, textarea:focus, select:focus  {
+  box-shadow: none !important;
+}
+
+input[placeholder], select[placeholder], [placeholder], *[placeholder]{
+  padding-left: 30px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 textarea {
   resize: none;
-  border-radius: 50px !important;
+  border-radius: 25px !important;
+  padding-left: 30px !important;
 }
 
 textarea[placeholder] {
   padding: 15px 30px;
   margin: 0;
+  border-radius: 25px !important;
 }
 
 label {
@@ -409,7 +457,7 @@ label {
   margin-left: 30px;
   background: var(--off-white);
   height: 11px;
-  padding: 0 5px;
+  padding: 0 5px !important;
 }
 
 .input-group-icon {
@@ -434,6 +482,10 @@ label {
     background: var(--purple);
     border-radius: 25px !important;
     margin-right: 6px;
+}
+
+a.input-group-addon:hover {
+    background-color: var(--darker-purple);
 }
 
 .form-control {
@@ -679,8 +731,4 @@ label {
 #addComment .input-group-icon {
     margin-left: -3px;
 }
-
-
-
-
 

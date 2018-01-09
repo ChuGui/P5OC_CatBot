@@ -8,8 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: -200px;
-  margin-top: -80px;
+  margin-bottom: -100px;
 }
 
 #explication {
@@ -36,7 +35,7 @@
 }
 
 .home-heading {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 .home-title {
   color: var(--egg-shell);
