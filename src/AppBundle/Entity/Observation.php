@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
@@ -12,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="observation")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ObservationRepository")
- *
+ * @Vich\Uploadable
  */
 class Observation
 {
@@ -65,10 +67,16 @@ class Observation
     private $vote;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    private $picture;
+    private $image;
 
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @Assert\Valid()
@@ -259,19 +267,35 @@ class Observation
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPicture()
+    public function getImage()
     {
-        return $this->picture;
+        return $this->image;
     }
 
     /**
-     * @param mixed $picture
+     * @param string $image
      */
-    public function setPicture($picture)
+    public function setImage($image)
     {
-        $this->picture = $picture;
+        $this->image = $image;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File $imageFile
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
     }
 
     /**

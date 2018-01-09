@@ -109,3 +109,11 @@ knpu_oauth2_client:
             # route parameters to pass to your route, if needed
             redirect_params: {}
             graph_api_version: v2.3
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+            product_images:
+                uri_prefix: /images/products
+                upload_destination: '%kernel.root_dir%/../web/uploads/images/products'
+                namer: vich_uploader.namer_uniqid

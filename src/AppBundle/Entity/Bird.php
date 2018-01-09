@@ -5,12 +5,15 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Bird
  *
  * @ORM\Table(name="bird")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BirdRepository")
+ * @Vich\Uploadable
  */
 class Bird
 {
@@ -37,10 +40,6 @@ class Bird
      */
     private $url;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $picture;
 
     /**
      * @ORM\Column(type="text", nullable=true)
