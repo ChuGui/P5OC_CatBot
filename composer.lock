@@ -2000,16 +2000,16 @@
         },
         {
             "name": "knpuniversity/oauth2-client-bundle",
-            "version": "1.15.1",
+            "version": "1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/knpuniversity/oauth2-client-bundle.git",
-                "reference": "463e9d478bbda11cc50669d0f4a3aac49ef076e3"
+                "reference": "2649cf98d737199e06f3492b54db34dbd05c9b45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/knpuniversity/oauth2-client-bundle/zipball/463e9d478bbda11cc50669d0f4a3aac49ef076e3",
-                "reference": "463e9d478bbda11cc50669d0f4a3aac49ef076e3",
+                "url": "https://api.github.com/repos/knpuniversity/oauth2-client-bundle/zipball/2649cf98d737199e06f3492b54db34dbd05c9b45",
+                "reference": "2649cf98d737199e06f3492b54db34dbd05c9b45",
                 "shasum": ""
             },
             "require": {
@@ -2050,7 +2050,7 @@
                 "oauth",
                 "oauth2"
             ],
-            "time": "2017-12-25T17:51:35+00:00"
+            "time": "2018-01-08T15:18:14+00:00"
         },
         {
             "name": "league/oauth2-client",
@@ -2861,16 +2861,16 @@
         },
         {
             "name": "sensiolabs/security-checker",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/security-checker.git",
-                "reference": "387b6a3b723ba35588b33d5f8d14e28ed608bd30"
+                "reference": "d539ccba2b4dce515de04f16b7ed7ae5b9eeb434"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/387b6a3b723ba35588b33d5f8d14e28ed608bd30",
-                "reference": "387b6a3b723ba35588b33d5f8d14e28ed608bd30",
+                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/d539ccba2b4dce515de04f16b7ed7ae5b9eeb434",
+                "reference": "d539ccba2b4dce515de04f16b7ed7ae5b9eeb434",
                 "shasum": ""
             },
             "require": {
@@ -2902,7 +2902,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "time": "2017-10-29T18:48:08+00:00"
+            "time": "2018-01-11T05:54:03+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
