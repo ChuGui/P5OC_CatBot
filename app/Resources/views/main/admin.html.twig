@@ -45,13 +45,13 @@
             {#-------------------------------#}
             <div class="col m-3">
                 <h3 class="text-center">Gestion des utilisateurs</h3>
-                <div class="input-group align-items-center mb-3 ml-3">
+                <div class="input-group align-items-center mb-3">
                     <input type="text" class="form-control" id="searchUser" placeholder="Rechercher un utilisateur">
                     <a class="input-group-addon text-center" href="#searhUser"><i class="fa fa-search input-group-icon"></i></a>
                 </div>
                 <section id="userSection">
 
-                    <div class="container">
+                    <div class="container p-0">
 
                         <div class="flex-wrap flex-column users-display flex-nowrap p-0" id="userDisplay">
                             {% for user in users %}
@@ -154,7 +154,7 @@
                 <h3 class="text-center">Gestion des actualités</h3>
                 <section id="actualiteSection">
 
-                    <div class="container">
+                    <div class="container p-0">
 
                         <div class="flex-wrap flex-column actualites-display flex-nowrap p-0">
                             {% for actualite in actualites %}

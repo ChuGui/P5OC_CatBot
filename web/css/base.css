@@ -468,6 +468,10 @@ label {
     padding-top: 10px;
 }
 
+.fa-search {
+    padding-top: 10px;
+}
+
 .input-group, .form-group {
     border-radius: 25px !important;
     background: white;
@@ -711,17 +715,31 @@ a.input-group-addon:hover {
     overflow-x: hidden;
 }
 
-.comm-display::-webkit-scrollbar { 
-  width: 12px;
-  background-color: #F5F5F5;
-  padding-right: 20px;
-  border-radius: 10px;
+::-webkit-scrollbar {
+    width: 32px;
+    height: 18px;
+    -webkit-border-radius: 25px;
+    background-color: #F5F5F5;
+    background-clip: padding-box;
+    border: 10px solid rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    border: 10px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    -webkit-border-radius: 25px;
+    background-color: var(--purple);
+    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
 }
 
-.comm-display::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: var(--purple);
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
 }
 
 #addComment .input-group {
