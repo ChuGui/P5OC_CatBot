@@ -4,9 +4,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
 use AppBundle\Entity\Actualite;
+use AppBundle\Entity\Bird;
 use AppBundle\Entity\Observation;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
+use AppBundle\Form\BirdFilterType;
 use AppBundle\Form\ChangeEmailType;
 use AppBundle\Form\ChangePasswordType;
 use AppBundle\Form\ChangePseudoType;
@@ -59,9 +61,12 @@ class MainController extends Controller
             $em->flush();
             $this->addFlash('notice', 'Félicitation votre observation à correctement été ajoutée. Elle sera étudiée par nos naturalistes');
         }
+        $bird = new Bird();
+        $formBirdFilter = $this->createForm(BirdFilterType::class, $bird);
 
         return $this->render('main/observation.html.twig', array(
-            "formObservation" => $formObservation->createView()
+            "formObservation" => $formObservation->createView(),
+            "formBirdFilter" => $formBirdFilter->createView()
         ));
 
     }
@@ -134,6 +139,7 @@ class MainController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+
         $formChangePseudo = $this->createForm(ChangePseudoType::class, $user);
         $formChangePassword = $this->createForm(ChangePasswordType::class, $user);
         $formChangeEmail = $this->createForm(ChangeEmailType::class, $user);
