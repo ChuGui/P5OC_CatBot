@@ -37,6 +37,7 @@ class ObservationType extends AbstractType
             ))
             ->add('bird', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Bird',
+                'placeholder' => "Nom de l'espèce",
                 'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => false
