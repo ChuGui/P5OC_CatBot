@@ -7,6 +7,7 @@ use AppBundle\Entity\Observation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,6 +21,10 @@ class ObservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('lieuObservation', TextType::class, array(
+                'mapped' => false,
+                'label' => "Lieu de l'observation"
+            ))
             ->add('observedAt', DateType::class, array(
                 'label' => "Date de l'observation",
                 'widget' => "single_text",
@@ -43,10 +48,15 @@ class ObservationType extends AbstractType
                 'multiple' => false
             ))
             ->add('imageFile', VichFileType::class, array(
-                'label' => 'Ajouter une photo',
                 'required' => false,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'label' => 'ajouter image',
+                'label_attr' => array(
+                    'class' => 'ajouter_image'
+                )
             ))
+            ->add('latitude', HiddenType::class)
+            ->add('longitude', HiddenType::class)
         ;
     }
 

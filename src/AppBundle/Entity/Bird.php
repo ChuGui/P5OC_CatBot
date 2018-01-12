@@ -77,6 +77,13 @@ class Bird
      */
     private $formeBec;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $image;
+
+
+
     public function __construct()
     {
         $this->observations = new ArrayCollection();
