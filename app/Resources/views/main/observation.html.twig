@@ -73,6 +73,19 @@
             {#PARTIE - J'ai besoin d'aide#}
             <div class="col">
                 <p class="text-center"><strong>J'ai besoin d'aide !</strong></p>
+                {{ form_start(formBirdFilter) }}
+                <div class="row">
+                    <div class="col">
+                        {{ form_row(formBirdFilter.plumage) }}
+                        {{ form_row(formBirdFilter.pattes) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(formBirdFilter.couleurBec)}}
+                        {{ form_row(formBirdFilter.formeBec)}}
+                    </div>
+                </div>
+                {{ form_end(formBirdFilter) }}
+                <div class="selection"></div>
             </div>
         </div>
 
