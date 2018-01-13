@@ -326,6 +326,10 @@ button:focus {
   margin-bottom: 5px;
 }
 
+.heading-page a {
+  color: var(--black) !important;
+}
+
 .wave-svg {
   position: relative;
   z-index: 996;
@@ -370,6 +374,10 @@ button:focus {
   font-size: 14px;
   text-transform: none;
   color: var(--lighter-egg-shell);
+}
+
+#footerLinks li>a:hover {
+  color: var(--egg-shell);
 }
 
 #souscrire {
