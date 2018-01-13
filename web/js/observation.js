@@ -324,8 +324,10 @@ $(document).ready(function () {
                 map.addListener('click', function(e) {
 
                 })
+
                 var marker = new google.maps.Marker({
-                    map: map
+                    map: map,
+                    draggable: true
                 });
 
                 if (navigator.geolocation) {
@@ -349,8 +351,8 @@ $(document).ready(function () {
                 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                     infoWindow.setPosition(pos);
                     infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
+                        'Error: Le service de gécolocalisation à échoué.' :
+                        'Error: Votre navigateur ne supporte pas la géocalisation.');
                 }
 
             }
