@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+	// SCROLL TO TOP
 	$(window).scroll(function(){
 		if ($(this).scrollTop() > 100) {
 			$('.scrollToTop').fadeIn();
@@ -22,9 +24,10 @@ $(document).ready(function(){
 
 	$( "input[placeholder], textarea[placeholder], select[placeholder]" ).focusout(function() {
 		floatingLabelValue = $(this).prev().text();
-		$(this).prev().fadeOut(500);
-		$(this).fadeIn(500).delay(500).queue(function(next) { $(this).attr('placeholder', floatingLabelValue); next(); });
-
+		if( !$(this).val().length != 0 ) {
+	          $(this).prev().fadeOut(500);
+	          $(this).fadeIn(500).delay(500).queue(function(next) { $(this).attr('placeholder', floatingLabelValue); next(); });
+	    }
 
 		$(this).find('.img_first').fadeOut(300, function() {
 	        $(this).attr("src",$(this).attr("data-original-b")).delay(300);
