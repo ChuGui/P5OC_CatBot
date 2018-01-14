@@ -167,6 +167,7 @@ a:hover {
 .alert {
   border-radius: 50px;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 /* BOUTONS */
@@ -538,7 +539,7 @@ label {
     margin-right: 6px;
 }
 
-a.input-group-addon:hover {
+.input-group-addon:hover {
     background-color: var(--darker-purple);
 }
 
@@ -763,7 +764,6 @@ a.input-group-addon:hover {
 
 
 /* COMMENTS */
-
 .imgComment {
     border-radius: 25px;
     height: 40px;
@@ -784,7 +784,8 @@ a.input-group-addon:hover {
     overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
+.form-group ::-webkit-scrollbar,
+.comm-display::-webkit-scrollbar {
     width: 32px;
     height: 18px;
     -webkit-border-radius: 25px;
@@ -793,7 +794,8 @@ a.input-group-addon:hover {
     border: 10px solid rgba(0, 0, 0, 0);
 }
 
-::-webkit-scrollbar-thumb {
+.form-group ::-webkit-scrollbar-thumb,
+.comm-display::-webkit-scrollbar-thumb {
     height: 50px;
     border: 10px solid rgba(0, 0, 0, 0);
     background-clip: padding-box;
@@ -802,7 +804,8 @@ a.input-group-addon:hover {
     -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
 }
 
-::-webkit-scrollbar-button {
+.form-group ::-webkit-scrollbar-button,
+.comm-display::-webkit-scrollbar-button {
     width: 0;
     height: 0;
     display: none;
