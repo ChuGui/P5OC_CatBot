@@ -357,6 +357,10 @@ $(document).ready(function () {
                                 infowindow.setContent(results[1].formatted_address);
                                 infowindow.open(map, marker);
                                 $('#appbundle_observation_lieuObservation').val(results[1].formatted_address);
+                                /*Hydratation des champs hidden*/
+                                $('#appbundle_observation_latitude').val(latlng.lat());
+                                $('#appbundle_observation_longitude').val(latlng.lng());
+
                             } else {
                                 window.alert('No results found');
                             }
@@ -395,7 +399,10 @@ $(document).ready(function () {
             }
 
         });
-    });
+    }); /*FIN DE LA GOOGLE MAP*/
+
+    /*FILTRE SELECTION OISEAU*/
+
 });
 
 

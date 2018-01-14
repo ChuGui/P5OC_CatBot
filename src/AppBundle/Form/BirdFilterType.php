@@ -23,13 +23,29 @@ class BirdFilterType extends AbstractType
                 )
             ))
             ->add('pattes', ChoiceType::class,array(
-                'placeholder' => "Pattes"
+                'placeholder' => "Pattes",
+                'choices' => array (
+                    'jaunes' => 'jaunes',
+                    'noires'=> 'noires',
+                    'marrons' => 'marrons',
+                    'bleues' => 'bleues'
+                )
             ))
             ->add('couleurBec', ChoiceType::class,array(
-                'placeholder' => "Couleur du bec"
+                'placeholder' => "Couleur du bec",
+                'choices' => array (
+                    'jaune' => 'jaune',
+                    'noir'=> 'noir',
+                    'orange' => 'orange'
+    )
             ))
             ->add('formeBec', ChoiceType::class,array(
-                'placeholder' => "Forme du bec"
+                'placeholder' => "Forme du bec",
+                'choices' => array (
+                    'pointu' => 'pointu',
+                    'court' => 'court',
+                    'long' => 'long'
+                )
             ))
         ;
     }
