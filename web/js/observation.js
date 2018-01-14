@@ -14,10 +14,13 @@ $(document).ready(function () {
             height: 300,
             width: 600,
             show: {effect: "blind", duration: 800},
+            hide: {effect: "blind", duration: 800},
+            clickOutside: true,
+            clickOutsideTrigger: '#appbundle_observation_lieuObservation',
             open: function () {
                 var posistion = {lat: 46.221231201571015, lng: 2.9345673322677612}
                 var mapOptions = {
-                    center: posistion ,
+                    center: posistion,
                     zoom: 10,
                     styles: [
                         {
@@ -334,10 +337,36 @@ $(document).ready(function () {
                     draggable: true,
                     icon: '../img/marker.png'
                 });
-                marker.addListener('dragend', function(e){
-                    console.log("lat:" + e.latLng.lat() + ' long:' + e.latLng.lng() );
+
+                /*AFFICHER L'ADRESSE EN FONCTION DES COORDONNÉES CHOISIES PAR L'UTILISATEUR*/
+                marker.addListener('dragend', function (e) {
+                    var markerPosition = marker.getPosition();
+                    var geocoder = new google.maps.Geocoder;
+                    var infoWindow = new google.maps.InfoWindow;
+                    adress = geocodeLatLng(geocoder, map, infoWindow, markerPosition);
                 });
 
+                /*GEOCODER*/
+                function geocodeLatLng(geocoder, map, infowindow, markerPosition) {
+                    var latlng = markerPosition;
+                    geocoder.geocode({'location': latlng}, function (results, status) {
+                        if (status === 'OK') {
+                            if (results[1]) {
+                                infowindow.close(map, marker);
+                                map.setZoom(11);
+                                infowindow.setContent(results[1].formatted_address);
+                                infowindow.open(map, marker);
+                                $('#appbundle_observation_lieuObservation').val(results[1].formatted_address);
+                            } else {
+                                window.alert('No results found');
+                            }
+                        } else {
+                            window.alert('Geocoder failed due to: ' + status);
+                        }
+                    });
+                }
+
+                /*GÉOLOCALISATION*/
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
                         var pos = {
