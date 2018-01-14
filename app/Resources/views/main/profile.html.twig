@@ -142,9 +142,18 @@
 	                            <div class="p-2 nao-card mx-auto">
                                 	<div class="d-flex flex-nowrap">
                                         <div class="bird-img-wrapper">
-                                            <img src="{{ userObservation.user.profilePicture }}"
-                                                 alt="prise par {{ userObservation.user.username }}"
-                                                 class="bird-img">
+                                            {% if userObservation.image == null %}
+                                                <img src="{{ asset('img/anonymeBird.png') }}"
+                                                                           alt="prise par {{ userObservation.user.username }}"
+                                                                           class="bird-img">
+                                                {% else %}
+
+                                                    <img src="{{ asset(userObservation.image) }}"
+                                                         alt="prise par {{ userObservation.user.username }}"
+                                                         class="bird-img">
+
+                                            {% endif %}
+
                                         </div>
                                         <div class="col d-flex flex-column justify-content-between">
                                             <div class="align-self-end">
@@ -328,7 +337,7 @@
                                             <div class="col-12">
 
                                                 <div class="row align-items-center justify-content-start my-5">
-                                                    <img src="{{ asset('bundles/app/img/'~waitingObservation.user.profilePicture) }}" alt="Photo de {{ waitingObservation.user.username }}" class="observation-avatar rounded-circle">
+                                                    <img src="{{ asset('img/'~waitingObservation.user.profilePicture) }}" alt="Photo de {{ waitingObservation.user.username }}" class="observation-avatar rounded-circle">
                                                     <div class="justify-content-start ml-3">
                                                         <p class="text-left mb-1 user-name">{{ waitingObservation.user.username|capitalize }}</p>
                                                         <span class="text-left time">{{ waitingObservation.updateAt|ago }}</span>
@@ -339,7 +348,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-lg-6">
                                                     <div class="d-flex flex-wrap align-items-center justify-content-between">
-                                                        <img class="col-12 rounded p-0 mb-5" src="{{ waitingObservation.bird.picture }}" alt="image {{ waitingObservation.bird.name }}">
+                                                        <img class="col-12 rounded p-0 mb-5" src="{{ waitingObservation.bird.image }}" alt="image {{ waitingObservation.bird.name }}">
                                                         <div class="col-12 col-xl-6 p-0 pr-xl-3">
                                                             <div class="form-group p-0">
                                                                 <input type="text" id="family" name="family" required="required" placeholder="Famille" class="form-control" />
@@ -374,7 +383,7 @@
                                                     <div class="flex-wrap flex-column comm-display p-0 mb-4">
                                                         {# {% for comment in comments %} #}
                                                             <div class="d-flex flex-nowrap align-items-center comm m-3">
-                                                                <img src="{# {{ asset('bundles/app/img/'~comment.user.profilePicture) }} #}" alt="" class="comment-avatar rounded-circle">
+                                                                <img src="{# {{ asset('img/'~comment.user.profilePicture) }} #}" alt="" class="comment-avatar rounded-circle">
                                                                 <div class="col-12 pl-3">
                                                                     <div class="col-12 px-0">
                                                                         <p class="mb-1 font-weight-bold">{# {{ comment.user.username|capitalize }} #}</p>
