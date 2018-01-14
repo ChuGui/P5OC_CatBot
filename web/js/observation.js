@@ -1,8 +1,14 @@
 $(document).ready(function () {
     console.log('fichier observation.js chargé');
 
+
     /*Modal google map*/
     $('#appbundle_observation_lieuObservation').on('click', function () {
+
+        $("#dialog").position({
+            my: "center",
+            at: "center",
+        });
         $('#dialog').dialog({
             modal: true,
             height: 300,
@@ -321,13 +327,15 @@ $(document).ready(function () {
                 }
 
                 var map = new google.maps.Map($("#map")[0], mapOptions);
-                map.addListener('click', function(e) {
 
-                })
 
                 var marker = new google.maps.Marker({
                     map: map,
-                    draggable: true
+                    draggable: true,
+                    icon: '../img/marker.png'
+                });
+                marker.addListener('dragend', function(e){
+                    console.log("lat:" + e.latLng.lat() + ' long:' + e.latLng.lng() );
                 });
 
                 if (navigator.geolocation) {
