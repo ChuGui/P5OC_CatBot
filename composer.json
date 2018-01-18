@@ -22,7 +22,7 @@
         "friendsofsymfony/jsrouting-bundle": "^2.1",
         "hautelook/alice-bundle": "^1.3",
         "incenteev/composer-parameter-handler": "^2.0",
-        "jms/serializer-bundle": "^2.2",
+        "jms/serializer-bundle": "^2.3",
         "knplabs/knp-time-bundle": "^1.7",
         "knpuniversity/oauth2-client-bundle": "^1.15",
         "league/oauth2-facebook": "^1.4",

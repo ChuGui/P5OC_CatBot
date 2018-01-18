@@ -3,6 +3,16 @@
     width: 100%;
 }
 
+.bird-observation-display {
+    background: none;
+    margin-bottom: 0;
+    height: 250px;
+    max-height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: none;
+}
+
 
 
 

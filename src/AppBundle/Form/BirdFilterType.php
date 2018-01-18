@@ -16,14 +16,17 @@ class BirdFilterType extends AbstractType
 
             ->add('plumage', ChoiceType::class, array(
                 'placeholder' => "Plumage",
+                'attr' => array('class' =>'filter'),
                 "choices" => array(
                     'Jaune' => 'jaune',
                     'Vert' => 'vert',
                     'Rouge' => 'rouge'
-                )
+                ),
+
             ))
             ->add('pattes', ChoiceType::class,array(
                 'placeholder' => "Pattes",
+                'attr' => array('class' =>'filter'),
                 'choices' => array (
                     'jaunes' => 'jaunes',
                     'noires'=> 'noires',
@@ -33,6 +36,7 @@ class BirdFilterType extends AbstractType
             ))
             ->add('couleurBec', ChoiceType::class,array(
                 'placeholder' => "Couleur du bec",
+                'attr' => array('class' =>'filter'),
                 'choices' => array (
                     'jaune' => 'jaune',
                     'noir'=> 'noir',
@@ -41,6 +45,7 @@ class BirdFilterType extends AbstractType
             ))
             ->add('formeBec', ChoiceType::class,array(
                 'placeholder' => "Forme du bec",
+                'attr' => array('class' =>'filter'),
                 'choices' => array (
                     'pointu' => 'pointu',
                     'court' => 'court',

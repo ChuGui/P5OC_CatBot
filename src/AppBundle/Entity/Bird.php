@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Bird
@@ -23,6 +24,7 @@ class Bird
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"help_user"})
      */
     private $id;
 
@@ -30,12 +32,12 @@ class Bird
      * @var string
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank(message="Le nom de l'espèce est obligatoire")
+     * @Groups({"help_user"})
      */
     private $name;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
@@ -70,15 +72,16 @@ class Bird
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $couleurBec;
+    private $couleur_bec;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $formeBec;
+    private $forme_bec;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
+     * @Groups({"help_user"})
      */
     private $image;
 
@@ -148,21 +151,6 @@ class Bird
         return $this->url;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    /**
-     * @param mixed $picture
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-    }
 
     /**
      * @return ArrayCollection|Observation[]
@@ -249,15 +237,15 @@ class Bird
      */
     public function getCouleurBec()
     {
-        return $this->couleurBec;
+        return $this->couleur_bec;
     }
 
     /**
-     * @param mixed $couleurBec
+     * @param mixed $couleur_bec
      */
-    public function setCouleurBec($couleurBec)
+    public function setCouleurBec($couleur_bec)
     {
-        $this->couleurBec = $couleurBec;
+        $this->couleur_bec = $couleur_bec;
     }
 
     /**
@@ -265,16 +253,18 @@ class Bird
      */
     public function getFormeBec()
     {
-        return $this->formeBec;
+        return $this->forme_bec;
     }
 
     /**
-     * @param mixed $formeBec
+     * @param mixed $forme_bec
      */
-    public function setFormeBec($formeBec)
+    public function setFormeBec($forme_bec)
     {
-        $this->formeBec = $formeBec;
+        $this->forme_bec = $forme_bec;
     }
+
+
 
     /**
      * @return mixed

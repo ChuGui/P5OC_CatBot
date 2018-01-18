@@ -1,4 +1,4 @@
-{% extends "base.html.twig"  %}
+{% extends "base.html.twig" %}
 
 {% block title %}Observation{% endblock %}
 {% block stylesheets %}
@@ -10,104 +10,129 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid heading-page">
-    <h1 class="text-center">Observation</h1>
-    <p class="text-center"><a href="{{ path('homepage') }}">Accueil</a> >> <a href="{{ path('observation') }}">Observation</a></p>
-</div>
-<div class="wave-svg">
-    <svg width="100%" height="100%" viewBox="0 0 1430 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="wave-driedwood">
-                <g transform="translate(720.000000, 40.000000) scale(1, -1) translate(-720.000000, -40.000000) ">
-                    <g>
-                        <path d="M0,52 C0,52 153,1.46804748e-14 378.5,0 C604,0 836,52 1005,52 C1174,52 1440,0 1440,0 L1440,80 L0,80 L0,52 Z" fill="#E7E1DC"></path>
-                        <path d="M0,78 C0,78 153,26 378.5,26 C604,26 836,78 1005,78 C1174,78 1440,26 1440,26 L1440,80 L0,80 L0,78 Z" fill="#F7F3F1"></path>
+    <div class="container-fluid heading-page">
+        <h1 class="text-center">Observation</h1>
+        <p class="text-center"><a href="{{ path('homepage') }}">Accueil</a> >> <a href="{{ path('observation') }}">Observation</a>
+        </p>
+    </div>
+    <div class="wave-svg">
+        <svg width="100%" height="100%" viewBox="0 0 1430 80" version="1.1" xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="wave-driedwood">
+                    <g transform="translate(720.000000, 40.000000) scale(1, -1) translate(-720.000000, -40.000000) ">
+                        <g>
+                            <path d="M0,52 C0,52 153,1.46804748e-14 378.5,0 C604,0 836,52 1005,52 C1174,52 1440,0 1440,0 L1440,80 L0,80 L0,52 Z"
+                                  fill="#E7E1DC"></path>
+                            <path d="M0,78 C0,78 153,26 378.5,26 C604,26 836,78 1005,78 C1174,78 1440,26 1440,26 L1440,80 L0,80 L0,78 Z"
+                                  fill="#F7F3F1"></path>
+                        </g>
                     </g>
                 </g>
             </g>
-        </g>
-    </svg>
-</div>
-
-<section class="mt-5">
-    <div class="container-fluid">
-        <div class="heading">
-            <h2>C'est parti !</h2>
-            <span>Quel drôle d'oiseau avez-vous observé ?</span>
-        </div>
-
-        <div class="row">
-
-            {#PARTIE - Saisir une observation#}
-            <div class="col">
-                {% for message in app.session.flashBag.get('success')  %}
-                    <div class="alert alert-success">{{ message }}</div>
-
-                {% endfor %}
-                <p class="text-center"><strong>Saisir une observation</strong></p>
-
-                {{ form_start(formObservation) }}
-                {{ form_row(formObservation.lieuObservation, {"attr" : {
-                    'placeholder' : "Lieu de l'observation"
-                    }
-                }) }}
-                <div class="row">
-                    <div class="col">
-                        {{ form_row(formObservation.imageFile) }}
-                    </div>
-                    <div class="col">
-                        {{ form_row(formObservation.qtyBirds, {'attr' : {
-                            'placeholder' : "Nombre d'oiseaux observés"
-                        }
-                        }) }}
-                        {{ form_row(formObservation.observedAt, {'attr' : {
-                            'placeholder' : "Jour de l'observation"
-                        }
-                        }) }}
-                    </div>
-                </div>
-
-
-                {{ form_row(formObservation.bird, {'attr' : {
-                    'placeholder' : "Ajouter le nom de l'espèce"
-                    }
-                }) }}
-                {{ form_row(formObservation.description, {'attr' : {
-                    'placeholder' : "Description libre"
-                    }
-                }) }}
-
-                <button type="submit" class="btn btn-default">Envoyer</button>
-                {{ form_end(formObservation) }}
-
-
-            </div>
-
-            {#PARTIE - J'ai besoin d'aide#}
-            <div class="col">
-                <p class="text-center"><strong>J'ai besoin d'aide !</strong></p>
-                {{ form_start(formBirdFilter) }}
-                <div class="row">
-                    <div class="col">
-                        {{ form_row(formBirdFilter.plumage) }}
-                        {{ form_row(formBirdFilter.pattes) }}
-                    </div>
-                    <div class="col">
-                        {{ form_row(formBirdFilter.couleurBec)}}
-                        {{ form_row(formBirdFilter.formeBec)}}
-                    </div>
-                </div>
-                {{ form_end(formBirdFilter) }}
-                <div class="selection"></div>
-            </div>
-        </div>
-
-        <div id="dialog" title="Déplacez-moi !" style="display: none">
-            <div id="map"></div>
-        </div>
+        </svg>
     </div>
 
-</section>
+    <section class="mt-5">
+        <div class="container-fluid">
+            <div class="heading">
+                <h2>C'est parti !</h2>
+                <span>Quel drôle d'oiseau avez-vous observé ?</span>
+            </div>
+
+            <div class="row">
+
+                {#PARTIE - Saisir une observation#}
+                <div class="col">
+                    {% for message in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success">{{ message }}</div>
+
+                    {% endfor %}
+                    <p class="text-center"><strong>Saisir une observation</strong></p>
+
+                    {{ form_start(formObservation) }}
+                    {{ form_row(formObservation.lieuObservation, {"attr" : {
+                        'placeholder' : "Lieu de l'observation"
+                    }
+                    }) }}
+                    <div class="row">
+                        <div class="col">
+                            {{ form_row(formObservation.imageFile) }}
+                        </div>
+                        <div class="col">
+                            {{ form_row(formObservation.qtyBirds, {'attr' : {
+                                'placeholder' : "Nombre d'oiseaux observés"
+                            }
+                            }) }}
+                            {{ form_row(formObservation.observedAt, {'attr' : {
+                                'placeholder' : "Jour de l'observation"
+                            }
+                            }) }}
+                        </div>
+                    </div>
+
+
+                    {{ form_row(formObservation.bird, {'attr' : {
+                        'placeholder' : "Ajouter le nom de l'espèce"
+                    }
+                    }) }}
+                    {{ form_row(formObservation.description, {'attr' : {
+                        'placeholder' : "Description libre"
+                    }
+                    }) }}
+
+                    <button type="submit" class="btn btn-default">Envoyer</button>
+                    {{ form_end(formObservation) }}
+
+
+                </div>
+
+                {#PARTIE - J'ai besoin d'aide#}
+                <div class="col">
+                    <p class="text-center"><strong>J'ai besoin d'aide !</strong></p>
+                    {{ form_start(formBirdFilter) }}
+                    <div class="row">
+                        <div class="col">
+                            {{ form_row(formBirdFilter.plumage) }}
+                            {{ form_row(formBirdFilter.pattes) }}
+                        </div>
+                        <div class="col">
+                            {{ form_row(formBirdFilter.couleurBec) }}
+                            {{ form_row(formBirdFilter.formeBec) }}
+                        </div>
+                    </div>
+                    {{ form_end(formBirdFilter) }}
+
+                    {#AFFICHAGE DES OISEAUX TROUVÉS PAR LE FILTRE#}
+                    {#Voir observation.css#}
+                    <div class="flex-wrap flex-column bird-observation-display comm-display p-0">
+                        <div class="d-flex flex-nowrap align-items-center comm m-3">
+                            <img src="" alt="" class="searching_bird rounded-circle">
+                            <div class="col-12 pl-3">
+                                <div class="col-12 px-0">
+                                    <p class="mb-1 font-weight-bold result"></p>
+                                </div>
+                                <div class="col-12 px-0">
+                                    <p class="mb-0 text-left"></p>
+                                </div>
+                                <div class="col-12 px-0">
+                                    <span class="time"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            {#La GoogleMaps#}
+            <div id="dialog" title="Déplacez-moi !" style="display: none">
+                <div id="map"></div>
+            </div>
+        </div>
+
+    </section>
 
 {% endblock %}
 {% block javascripts %}
@@ -119,5 +144,7 @@
     <script src="{{ asset('js/jquery.ui.dialog-clickoutside.js') }}"></script>
     <script src="{{ asset('js/observation.js') }}"></script>
     <script src="{{ asset('js/datepicker.js') }}"></script>
+    <script src="{{ asset('js/filter.js') }}"></script>
+
 {% endblock %}
 

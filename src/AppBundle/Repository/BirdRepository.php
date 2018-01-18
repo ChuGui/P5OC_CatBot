@@ -16,4 +16,25 @@ class BirdRepository extends \Doctrine\ORM\EntityRepository
         $qb->orderBy('b.name','ASC');
         return $qb->getQuery()->getResult();
     }
+
+    public function searchBirds($plumage = NULL,  $couleur_bec = NULL, $pattes = NULL, $forme_bec = NULL)
+    {
+        $qb = $this->createQueryBuilder('b');
+
+        if ($plumage) {
+            $qb->andWhere("b.plumage = :plumage")->setParameter("plumage", $plumage);
+        };
+        if ($couleur_bec) {
+            $qb->andWhere("b.couleur_bec = :couleur_bec")->setParameter('couleur_bec', $couleur_bec);
+        };
+        if($pattes) {
+            $qb->andWhere("b.pattes = :pattes")->setParameter('pattes', $pattes);
+        };
+        if($forme_bec) {
+            $qb->andWhere("b.forme_bec = :forme_bec")->setParameter('forme_bec', $forme_bec);
+        };
+        $qb->orderBy('b.name','ASC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
