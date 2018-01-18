@@ -55,15 +55,17 @@ class BirdController extends Controller
             $forme_bec = $request->query->get('forme_bec');
             $em = $this->getDoctrine()->getManager();
             $birds = $em->getRepository('AppBundle:Bird')->searchBirds($plumage, $couleur_bec, $pattes, $forme_bec);
-            dump($birds);
+            if ($birds != null) {
+                $jsonContent = $this->get('jms_serializer')->serialize($birds,'json',SerializationContext::create()->setGroups(array('help_user')));
+                $response = new JsonResponse($jsonContent);
+                $response->headers->set('Content-Type', 'json');
+                return $response;
+            } else {
+                $response = new Response();
+                $response->setStatusCode('404');
+                return $response;
+            }
 
-            $serializer = $this->get('jms_serializer');
-            $jsonContent = $serializer->serialize($birds, 'json');
-            $response = new Response($jsonContent);
-            dump($jsonContent);
-
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
     }
     /**
      * @Route("/birds", name="bird_create")
