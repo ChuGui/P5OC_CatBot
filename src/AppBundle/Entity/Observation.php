@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use JMS\Serializer\Annotation\Groups;
 
 
 /**
@@ -24,6 +25,7 @@ class Observation
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"show_coordinates"})
      */
     private $id;
 
@@ -31,6 +33,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="latitude", type="float")
+     * @Groups({"show_coordinates"})
      */
     private $latitude;
 
@@ -38,6 +41,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="longitude", type="float")
+     * @Groups({"show_coordinates"})
      */
     private $longitude;
 
@@ -52,6 +56,7 @@ class Observation
      * @var \DateTime
      *
      * @ORM\Column(name="updateAt", type="datetime")
+     * @Groups({"show_coordinates"})
      */
     private $updateAt;
 
@@ -84,7 +89,7 @@ class Observation
      * @Assert\NotNull(message="Il faut choisir un nom d'espèce")
      * @ORM\ManyToOne(targetEntity="Bird", inversedBy="observations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
-     *
+     * @Groups({"show_coordinates"})
      */
     private $bird;
 

@@ -54,8 +54,6 @@ class MainController extends Controller
         if($formObservation->isValid() && $formObservation->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $observation->setUser($this->getUser());
-            $observation->setLatitude(13513513.3521);
-            $observation->setLongitude(24133241.321321);
             $observation->setIsValidated(false);
             $em->persist($observation);
             $em->flush();
@@ -231,8 +229,11 @@ class MainController extends Controller
     public function oiseauxAction() {
         $em = $this->getDoctrine()->getManager();
         $birds = $em->getRepository('AppBundle:Bird')->findAllByNameAsc();
+        $bird = new Bird();
+        $formBirdFilter = $this->createForm(BirdFilterType::class, $bird);
         return $this->render('main/oiseaux.html.twig', [
-            'birds' => $birds
+            'birds' => $birds,
+            'formBirdFilter' => $formBirdFilter->createView()
         ]);
     }
 

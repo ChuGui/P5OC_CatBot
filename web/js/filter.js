@@ -19,7 +19,6 @@ $(document).ready(function() {
                     $('#aidez-moi').append("<img src='../img/Loading_icon.gif'  alt='loading' height='100' width='100' class='ml-3 mt-3 searching'></img>");
             },
             success: function(response) {
-
                 $('.searching').hide('slow');
                 var birds = $.parseJSON(response);
                 $.each(birds, function(idx, bird) {

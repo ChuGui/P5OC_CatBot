@@ -30,4 +30,5 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
         $qb->where('o.isValidated = true')->orderBy('o.updateAt','DESC');
         return $qb->getQuery()->getResult();
     }
+
 }

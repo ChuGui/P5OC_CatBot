@@ -307,37 +307,41 @@ function initMap() {
                             }
                         ]
                     }
-                ]
-    });
+                ],
 
-    // Create a <script> tag and set the USGS URL as the source.
-    var script = document.createElement('script');
+        })
 
-    // This example uses a local copy of the GeoJSON stored at
-    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-    document.getElementsByTagName('head')[0].appendChild(script);
-
-    map.data.setStyle(function(feature) {
-        var magnitude = feature.getProperty('mag');
-        return {
-            icon: getCircle(magnitude)
-        };
-    });
 }
 
+$(document).ready(function() {
+    $.ajax({
+        url: Routing.generate('coordinates_show'),
+        type: "GET",
+        dataType: "json",
+        success: function(response) {
+            var coordinatesObservations = $.parseJSON(response);
+            $.each(coordinatesObservations, function (idx, observation) {
 
-function getCircle(magnitude) {
-    return {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: '#FFD366',
-        fillOpacity: .4,
-        scale: Math.pow(2, magnitude) / 2,
-        strokeColor: '#53389E',
-        strokeWeight: 2
-    };
-}
+                var latLng = new google.maps.LatLng(observation.latitude,observation.longitude);
 
-function eqfeed_callback(results) {
-    map.data.addGeoJson(results);
-}
+                var observationCircle = new google.maps.Circle({
+                    strokeColor: '#53399E',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#f8e2a9',
+                    fillOpacity: 0.5,
+                    map: map,
+                    center: latLng,
+                    radius: 10000,
+                    title: observation.bird.name
+                });
+                google.maps.event.addListener(observationCircle, "mouseover", function() {
+                    this.getMap().getDiv().setAttribute('title',this.get('title'));
+                })
+            })
+
+        },
+        error: function(xhr, status, error) {
+        }
+    })
+})

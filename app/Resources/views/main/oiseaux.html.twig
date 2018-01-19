@@ -33,6 +33,27 @@
             <span>Trouvez vite les oiseaux proches de vous et apprenez à les connaître!</span>
         </div>
 
+        <div class="d-flex flex-row justify-content-between row-hl">
+            {{ form_start(formBirdFilter) }}
+            <div class="item-h1">
+                <input type="search"><i class="fa fa-search form-control" aria-hidden="true"></i>
+            </div>
+            <div class="item-h1">
+                {{ form_row(formBirdFilter.plumage) }}
+            </div>
+            <div class="item-h1">
+                {{ form_row(formBirdFilter.formeBec) }}
+            </div>
+            <div class="item-h1">
+                {{ form_row(formBirdFilter.pattes) }}
+            </div>
+            <div class="item-h1">
+                {{ form_row(formBirdFilter.couleurBec) }}
+            </div>
+            {{ form_end(formBirdFilter) }}
+        </div>
+
+
         <div id="map" class="mb-4">
         </div>
 
@@ -44,7 +65,7 @@
                     <div class="p-2 nao-card mx-auto">
                         <div class="d-flex flex-nowrap align-items-center">
                             <div class="bird-img-wrapper">
-                                <img src="{ bird.picture }"
+                                <img src="{{  bird.image }}"
                                      class="bird-img">
                             </div>
                             <div class="col d-flex flex-column justify-content-between">

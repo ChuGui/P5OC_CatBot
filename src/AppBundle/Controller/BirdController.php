@@ -89,7 +89,7 @@ class BirdController extends Controller
     public function showBirdAction(Bird $bird) {
         $data = $this->get('jms_serializer')->serialize($bird, 'json', SerializationContext::create()->setGroups(array('help_user')));
         $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Content-Type', 'json');
         return $response;
     }
 
@@ -101,8 +101,23 @@ class BirdController extends Controller
         $birds = $this->getDoctrine()->getRepository('AppBundle:Bird')->findAll();
         $data = $this->get('jms_serializer')->serialize($birds, 'json', SerializationContext::create()->setGroups(array('help_user')));
         $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Content-Type', 'json');
         return $response;
     }
+
+    /**
+     * @Route("/coordinates", name="coordinates_show", options = {"expose"=true}))
+     * @Method({"GET"})
+     */
+    public function coordiantesShowAction() {
+
+            $coordinates = $this->getDoctrine()->getRepository('AppBundle:Observation')->findAllValidated();
+            $data = $this->get('jms_serializer')->serialize($coordinates, 'json', SerializationContext::create()->setGroups(array('show_coordinates')));
+            $response = new JsonResponse($data);
+            $response->headers->set('Content-Type', 'json');
+            return $response;
+    }
+
+
 
 }
