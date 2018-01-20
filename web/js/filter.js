@@ -22,8 +22,7 @@ $(document).ready(function() {
                 $('.searching').hide('slow');
                 var birds = $.parseJSON(response);
                 $.each(birds, function(idx, bird) {
-                    $("#aidez-moi").append('<div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 oiseaux">'
-                        +'<div class="p-2 nao-card mx-auto">'
+                    $("#aidez-moi").append('<div class="p-2 nao-card mx-auto mb-3">'
                         +'<div class="d-flex flex-nowrap align-items-center">'
                         +'<div class="bird-img-wrapper">'
                         +'<img src="'+ bird.image +'"class="bird-img">'
@@ -31,7 +30,6 @@ $(document).ready(function() {
                         +'<div class="col d-flex flex-column justify-content-between">'
                         +'<div class="d-flex flex-column align-self-start">'
                         +'<h3 class="align-self-end text-left bird-name">'+ bird.name +'</h3>'
-                        +'</div>'
                         +'</div>'
                         +'</div>'
                         +'</div>'

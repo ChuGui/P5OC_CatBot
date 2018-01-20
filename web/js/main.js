@@ -16,23 +16,19 @@ $(document).ready(function(){
 
 
 	// FLOATING LABELS
+	// Remplace les placeholders par les labels
 	$( "input[placeholder], textarea[placeholder], select[placeholder]" ).focus(function() {
-		var floatingLabelValue = $(this).attr('placeholder');
 		$(this).attr('placeholder', '');
-		$(this).prev().text(floatingLabelValue).fadeIn(500);
+		$(this).prev().fadeIn(500);
 	});
 
+	// Remplace les labels par les placeholders si le champ est vide
 	$( "input[placeholder], textarea[placeholder], select[placeholder]" ).focusout(function() {
 		floatingLabelValue = $(this).prev().text();
 		if( !$(this).val().length != 0 ) {
 	          $(this).prev().fadeOut(500);
 	          $(this).fadeIn(500).delay(500).queue(function(next) { $(this).attr('placeholder', floatingLabelValue); next(); });
-	    }
-
-		$(this).find('.img_first').fadeOut(300, function() {
-	        $(this).attr("src",$(this).attr("data-original-b")).delay(300);
-		    }).fadeIn(300);
-		    return false;		
+	    }	
 	});
 
 	$( "select[placeholder]" ).click(function() {

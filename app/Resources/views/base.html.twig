@@ -59,15 +59,15 @@
 
 
                     {% if is_granted('ROLE_USER') %}
-                        <div class="mx-auto col-12 col-lg-4 d-flex flex-column flex-lg-row justify-content-lg-end pb-5 pb-lg-0">
-                            <a class="mx-auto my-2 mx-lg-0 nav-link" href="{{ path('profile') }}">PROFIL</a>
-                            <a class="mx-auto my-2 mx-lg-0 nav-link btn btn-outline" href="{{ path('security_logout') }}">DÉCONNEXION</a>
+                        <div class="mx-auto col-12 col-lg-4 d-flex flex-column flex-lg-row justify-content-lg-end pb-lg-0">
+                            <a class="mx-auto mx-lg-0 nav-link" href="{{ path('profile') }}">PROFIL</a>
+                            <a class="mx-auto mx-lg-0 nav-link btn btn-outline" href="{{ path('security_logout') }}">DÉCONNEXION</a>
                         </div>
 
                     {% else %}
                         <div class="mx-auto col-12 col-lg-4 d-flex flex-column flex-lg-row justify-content-lg-end pb-5 pb-lg-0">
-                            <a class="mx-auto my-2 btn btn-outline mx-lg-1" href="{{ path('security_login') }}">CONNEXION</a>
-                            <a class="mx-auto my-2 btn btn-primary mx-lg-1" href="{{ path('user_register') }}">INSCRIPTION</a>
+                            <a class="mx-auto btn btn-outline mx-lg-1" href="{{ path('security_login') }}">CONNEXION</a>
+                            <a class="mx-auto btn btn-primary mx-lg-1" href="{{ path('user_register') }}">INSCRIPTION</a>
                         </div>
                     {% endif %}
                 </div>

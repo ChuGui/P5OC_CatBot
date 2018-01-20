@@ -33,30 +33,33 @@
             <span>Trouvez vite les oiseaux proches de vous et apprenez à les connaître!</span>
         </div>
 
-        <div class="row">
-
-            <div class="col">
+        <div class="row justify-content-xl-center mb-5 col-12 col-sm-10 col-lg-12 col-xxl-10 mx-auto px-0 mb-4">
+            {# <div class="col-12 col-sm-6 col-md-4">
                 <input type="search"><i class="fa fa-search form-control" aria-hidden="true"></i>
+            </div> #}
+            <div class="col-12 col-lg-4 mb-3">
+                <div class=" input-group align-items-center ">
+                    <input type="text" class="form-control" id="searchUser" placeholder="Rechercher un utilisateur">
+                    <a class="input-group-addon text-center" href="#searhUser"><i class="fa fa-search input-group-icon"></i></a>
+                </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-md-6 col-lg-2">
                 {{ form_start(formBirdFilter) }}
                 {{ form_row(formBirdFilter.plumage) }}
             </div>
-            <div class="col">
+            <div class="col-12 col-md-6 col-lg-2">
                 {{ form_row(formBirdFilter.formeBec) }}
             </div>
-            <div class="col">
+            <div class="col-12 col-md-6 col-lg-2">
                 {{ form_row(formBirdFilter.pattes) }}
             </div>
-            <div class="col">
+            <div class="col-12 col-md-6 col-lg-2">
                 {{ form_row(formBirdFilter.couleurBec) }}
                 {{ form_end(formBirdFilter) }}
             </div>
-
         </div>
 
-
-        <div id="map" class="mb-4">
+        <div id="map" class="mb-5 col-12 col-sm-10 col-lg-12 col-xxl-10 mx-auto px-0 mb-4">
         </div>
 
         {# Liste des oiseaux dans la bdd #}

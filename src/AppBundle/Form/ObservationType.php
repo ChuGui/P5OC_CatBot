@@ -41,6 +41,7 @@ class ObservationType extends AbstractType
                 'label' => "Description libre"
             ))
             ->add('bird', EntityType::class, array(
+                'label' => "Nom de l'espèce",
                 'class' => 'AppBundle\Entity\Bird',
                 'placeholder' => "Nom de l'espèce",
                 'choice_label' => 'name',
@@ -48,11 +49,13 @@ class ObservationType extends AbstractType
                 'multiple' => false
             ))
             ->add('imageFile', VichFileType::class, array(
+                'attr' => array(
+                    'class' => 'upload-image'),
                 'required' => false,
                 'allow_delete' => true,
-                'label' => 'ajouter image',
+                'label' => 'Ajouter une image',
                 'label_attr' => array(
-                    'class' => 'ajouter_image'
+                    'class' => 'label-image'
                 )
             ))
             ->add('latitude', HiddenType::class)

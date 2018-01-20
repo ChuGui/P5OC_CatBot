@@ -1,19 +1,15 @@
-#map {
-    height: 100%;
-    width: 100%;
-}
-
 .bird-observation-display {
+    position: relative;
     background: none;
-    margin-bottom: 0;
-    height: 250px;
-    max-height: 350px;
+    margin-bottom: 30px;
+    height: 408px;
+    max-height: none;
     overflow-y: scroll;
     overflow-x: hidden;
     border: none;
 }
 
-
-
-
+.upload-image {
+	min-height: 130px;
+}
 
