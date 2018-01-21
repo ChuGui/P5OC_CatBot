@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: -100px;
+  margin-bottom: -80px;
 }
 
 #explication {
@@ -39,11 +39,20 @@
 }
 .home-title {
   color: var(--egg-shell);
-  font-size: 60px;
-  line-height: 70px;
+  font-size: 40px;
+  line-height: 50px;
   font-family: var(--hipsterish);
 }
 
+@media (min-width: 576px) {
+  .banner {
+    margin-bottom: -140px;
+  }
+  .home-title {
+    font-size: 60px;
+    line-height: 70px;
+  }
+}
 @media (min-width: 768px) {
   .home-heading {
     margin-bottom: 160px;

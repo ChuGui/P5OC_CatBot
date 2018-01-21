@@ -159,7 +159,7 @@ a:hover {
 .nav-item {
     font-size: 12px;
     text-transform: uppercase;
-    line-height: 17px;
+    line-height: 12px;
     letter-spacing: 1px;
     display: inline-block;
 }
@@ -178,8 +178,16 @@ a:hover {
     border-radius: 50px;
     color: white;
     text-transform: uppercase;
+    font-size: 12px;
 }
-
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    border-radius: 50px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+}
 .btn-primary {
     background: var(--purple);
     height: 48px;
@@ -210,6 +218,11 @@ button:focus {
     outline: none;
 }
 
+@media (min-width: 576px) {
+    .btn {
+        font-size: 14px;
+    }
+}
 
 /* NAVBAR */
 
@@ -227,6 +240,8 @@ button:focus {
 
 .nav-wrap {
     height: calc(100vh - 135px);
+    position: relative;
+    z-index: 999;
 }
 
 .navbar-logo {
@@ -290,7 +305,7 @@ button:focus {
 }
 
 .flipped {
-    margin-top: -1px;
+    margin-top: -2px;
 }
 
 .visible-svg {
@@ -482,10 +497,14 @@ input[type=number]::-webkit-inner-spin-button {
     appearance: none;
 }
 
-select::-webkit-inner-spin-button {
+select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
 }
 
 textarea {
@@ -508,6 +527,7 @@ label {
     background: var(--off-white);
     height: 11px;
     padding: 0 5px !important;
+    color: #a9a9a9;
 }
 
 .input-group-icon {
@@ -690,7 +710,9 @@ label {
 
 
 /* MODAL OBSERVATION */
-
+.modal {
+    padding : 0 30px !important;
+}
 .close-wrap {
     width: 48px;
     height: 48px;
@@ -823,9 +845,6 @@ label {
     margin-left: -3px;
 }
 
-
-
-
 #appbundle_observation_imageFile input{
   display: none;
 }
@@ -834,4 +853,17 @@ label {
   cursor: pointer;
     color: #00b1ca;
     font-weight: bold;
+}
+
+.label-image {
+    background-image: url("../img/awards.jpg");
+}
+
+/* GOOGLE MAP */
+#map{
+    border-radius: 25px;
+    height: 400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }

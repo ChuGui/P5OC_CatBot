@@ -38,17 +38,17 @@
             <div class="heading">
                 <h2>C'est parti !</h2>
                 <span>Quel drôle d'oiseau avez-vous observé ?</span>
+                <label for="" class="label-image"></label>
             </div>
 
-            <div class="row">
+            <div class="row justify-content-center">
 
                 {#PARTIE - Saisir une observation#}
-                <div class="col">
+                <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4">
                     {% for message in app.session.flashBag.get('success') %}
                         <div class="alert alert-success">{{ message }}</div>
-
                     {% endfor %}
-                    <p class="text-center"><strong>Saisir une observation</strong></p>
+                    <h4 class="text-center mb-4">Saisir une observation</h4>
 
                     {{ form_start(formObservation) }}
                     {{ form_row(formObservation.lieuObservation, {"attr" : {
@@ -56,16 +56,16 @@
                     }
                     }) }}
                     <div class="row">
-                        <div class="col">
+                        <div class="col-12 col-sm-6">
                             {{ form_row(formObservation.imageFile) }}
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-sm-6">
                             {{ form_row(formObservation.qtyBirds, {'attr' : {
-                                'placeholder' : "Nombre d'oiseaux observés"
+                                'placeholder' : "Nombre d'oiseaux"
                             }
                             }) }}
                             {{ form_row(formObservation.observedAt, {'attr' : {
-                                'placeholder' : "Jour de l'observation"
+                                'placeholder' : "Date de l'observation"
                             }
                             }) }}
                         </div>
@@ -77,35 +77,52 @@
                     }
                     }) }}
                     {{ form_row(formObservation.description, {'attr' : {
-                        'placeholder' : "Description libre"
+                        'placeholder' : "Description libre",
+                        'col': '30',
+                        'rows': '10'
                     }
                     }) }}
-
-                    <button type="submit" class="btn btn-default">Envoyer</button>
-                    {{ form_end(formObservation) }}
-
-
                 </div>
 
                 {#PARTIE - J'ai besoin d'aide#}
-                <div class="col">
-                    <p class="text-center"><strong>J'ai besoin d'aide !</strong></p>
+                <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 help-me">
+                    <h4 class="text-center mb-4">J'ai besoin d'aide !</h4>
                     {{ form_start(formBirdFilter) }}
-                    <div class="row">
-                        <div class="col">
-                            {{ form_row(formBirdFilter.plumage) }}
-                            {{ form_row(formBirdFilter.pattes) }}
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-6">
+                            {{ form_row(formBirdFilter.plumage, {
+                                'label' : 'Plumage'
+                            }) }}
                         </div>
-                        <div class="col">
-                            {{ form_row(formBirdFilter.couleurBec) }}
-                            {{ form_row(formBirdFilter.formeBec) }}
+                        <div class="col-12 col-sm-6">
+                            {{ form_row(formBirdFilter.pattes, {
+                                'label' : 'Pattes'
+                            }) }}
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            {{ form_row(formBirdFilter.couleurBec, {
+                                'label' : 'Couleur du bec',
+                                'attr' : {
+                                    'placeholder' : 'Couleur du bec',
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            {{ form_row(formBirdFilter.formeBec, {
+                                'label' : 'Forme du bec',
+                                'attr' : {
+                                    'placeholder' : 'Forme du bec',
+                                    'class': 'form-control'
+                                }
+                            }) }}
                         </div>
                     </div>
                     {{ form_end(formBirdFilter) }}
 
                     {#AFFICHAGE DES OISEAUX TROUVÉS PAR LE FILTRE#}
                     {#Voir observation.css#}
-                    <div class="flex-wrap flex-column bird-observation-display comm-display p-0" id="aidez-moi">
+                    <div class="flex-wrap flex-column comm-display bird-observation-display p-0" id="aidez-moi">
                         {#<div class="d-flex flex-nowrap align-items-center comm m-3">
                             <img src="" alt="" class="searching_bird rounded-circle">
                             <div class="col-12 pl-3">
@@ -122,8 +139,10 @@
                         </div>#}
                     </div>
                 </div>
-
-
+                <div class="row col-12 ">
+                    <button type="submit" class="btn btn-primary mx-auto">Envoyer</button>
+                    {{ form_end(formObservation) }}
+                </div>
             </div>
 
             {#La GoogleMaps#}

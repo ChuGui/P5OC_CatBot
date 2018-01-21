@@ -15,6 +15,7 @@ class BirdFilterType extends AbstractType
     {
         $builder
             ->add('plumage', ChoiceType::class, array(
+                'label' => "Plumage",
                 'placeholder' => "Plumage",
                 'attr' => array('class' =>'filter'),
                 "choices" => array(
@@ -25,6 +26,7 @@ class BirdFilterType extends AbstractType
 
             ))
             ->add('pattes', ChoiceType::class,array(
+                'label' => "Pattes",
                 'placeholder' => "Pattes",
                 'attr' => array('class' =>'filter'),
                 'choices' => array (
@@ -35,6 +37,7 @@ class BirdFilterType extends AbstractType
                 )
             ))
             ->add('couleurBec', ChoiceType::class,array(
+                'label' => "Couleur du bec",
                 'placeholder' => "Couleur du bec",
                 'attr' => array('class' =>'filter'),
                 'choices' => array (
@@ -44,6 +47,7 @@ class BirdFilterType extends AbstractType
     )
             ))
             ->add('formeBec', ChoiceType::class,array(
+                'label' => "Forme du bec",
                 'placeholder' => "Forme du bec",
                 'attr' => array('class' =>'filter'),
                 'choices' => array (

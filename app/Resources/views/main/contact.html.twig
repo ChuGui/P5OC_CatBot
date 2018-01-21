@@ -46,6 +46,7 @@ Si vous ne trouvez pas l’information que vous souhaitiez, n’hésitez pas à 
                         {{ form_start(form) }}
 						<div class="align-items-center">
                             {{ form_row(form.subject, {
+                        		'label' : 'Sujet *',
 								'attr' : {
 									'id': 'subject',
 									'placeholder' : 'Sujet *',
@@ -55,6 +56,7 @@ Si vous ne trouvez pas l’information que vous souhaitiez, n’hésitez pas à 
 						</div>
 						<div class="align-items-center">
                             {{ form_row(form.mail, {
+                        		'label' : 'Email *',
 								'attr' : {
 									'id': 'mail',
 									'placeholder' : 'Email *',
@@ -64,6 +66,7 @@ Si vous ne trouvez pas l’information que vous souhaitiez, n’hésitez pas à 
 						</div>
 						<div class="align-items-start">
                             {{ form_row(form.message, {
+                        		'label' : 'Message *',
 								'attr' : {
 									'id': 'message',
 									'placeholder' : 'Message *',
