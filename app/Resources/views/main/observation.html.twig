@@ -48,7 +48,7 @@
                     {% for message in app.session.flashBag.get('success') %}
                         <div class="alert alert-success">{{ message }}</div>
                     {% endfor %}
-                    <p class="text-center"><strong>Saisir une observation</strong></p>
+                    <h4 class="text-center mb-4">Saisir une observation</h4>
 
                     {{ form_start(formObservation) }}
                     {{ form_row(formObservation.lieuObservation, {"attr" : {
@@ -86,7 +86,7 @@
 
                 {#PARTIE - J'ai besoin d'aide#}
                 <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 help-me">
-                    <p class="text-center"><strong>J'ai besoin d'aide !</strong></p>
+                    <h4 class="text-center mb-4">J'ai besoin d'aide !</h4>
                     {{ form_start(formBirdFilter) }}
                     <div class="row justify-content-center">
                         <div class="col-12 col-sm-6">
