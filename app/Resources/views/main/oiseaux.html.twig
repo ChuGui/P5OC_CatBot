@@ -27,7 +27,6 @@
                     </g>
                 </g>
             </g>
-<<<<<<< HEAD
         </svg>
     </div>
 
@@ -38,30 +37,33 @@
                 <span>Trouvez vite les oiseaux proches de vous et apprenez à les connaître!</span>
             </div>
 
-            <div class="row">
-
-                <div class="col">
+            <div class="row justify-content-xl-center mb-5 col-12 col-sm-10 col-lg-12 col-xxl-10 mx-auto px-0 mb-4">
+                {# <div class="col-12 col-sm-6 col-md-4">
                     <input type="search"><i class="fa fa-search form-control" aria-hidden="true"></i>
+                </div> #}
+                <div class="col-12 col-lg-4 mb-3">
+                    <div class=" input-group align-items-center ">
+                        <input type="text" class="form-control" id="searchUser" placeholder="Rechercher un utilisateur">
+                        <a class="input-group-addon text-center" href="#searhUser"><i class="fa fa-search input-group-icon"></i></a>
+                    </div>
                 </div>
-                <div class="col">
+                <div class="col-12 col-md-6 col-lg-2">
                     {{ form_start(formBirdFilter) }}
                     {{ form_row(formBirdFilter.plumage) }}
                 </div>
-                <div class="col">
+                <div class="col-12 col-md-6 col-lg-2">
                     {{ form_row(formBirdFilter.formeBec) }}
                 </div>
-                <div class="col">
+                <div class="col-12 col-md-6 col-lg-2">
                     {{ form_row(formBirdFilter.pattes) }}
                 </div>
-                <div class="col">
+                <div class="col-12 col-md-6 col-lg-2">
                     {{ form_row(formBirdFilter.couleurBec) }}
                     {{ form_end(formBirdFilter) }}
                 </div>
-
             </div>
 
-
-            <div id="map" class="mb-4">
+            <div id="map" class="mb-5 col-12 col-sm-10 col-lg-12 col-xxl-10 mx-auto px-0 mb-4">
             </div>
 
             {# Liste des oiseaux dans la bdd #}
@@ -105,53 +107,11 @@
                                                         <div class="col-8">
                                                             <h3>DESCRIPTION</h3>
                                                             <p>{{ bird.description }}</p>
-=======
-        </g>
-    </svg>
-</div>
-
-<section class="mt-5">
-    <div class="container-fluid">
-        <div class="heading">
-            <h2>Notre Bible !</h2>
-            <span>Trouvez vite les oiseaux proches de vous et apprenez à les connaître!</span>
-        </div>
-
-        <div class="row justify-content-xl-center mb-5 col-12 col-sm-10 col-lg-12 col-xxl-10 mx-auto px-0 mb-4">
-            {# <div class="col-12 col-sm-6 col-md-4">
-                <input type="search"><i class="fa fa-search form-control" aria-hidden="true"></i>
-            </div> #}
-            <div class="col-12 col-lg-4 mb-3">
-                <div class=" input-group align-items-center ">
-                    <input type="text" class="form-control" id="searchUser" placeholder="Rechercher un utilisateur">
-                    <a class="input-group-addon text-center" href="#searhUser"><i class="fa fa-search input-group-icon"></i></a>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-2">
-                {{ form_start(formBirdFilter) }}
-                {{ form_row(formBirdFilter.plumage) }}
-            </div>
-            <div class="col-12 col-md-6 col-lg-2">
-                {{ form_row(formBirdFilter.formeBec) }}
-            </div>
-            <div class="col-12 col-md-6 col-lg-2">
-                {{ form_row(formBirdFilter.pattes) }}
-            </div>
-            <div class="col-12 col-md-6 col-lg-2">
-                {{ form_row(formBirdFilter.couleurBec) }}
-                {{ form_end(formBirdFilter) }}
-            </div>
-        </div>
-
-        <div id="map" class="mb-5 col-12 col-sm-10 col-lg-12 col-xxl-10 mx-auto px-0 mb-4">
-        </div>
->>>>>>> e6af0cf95fbeeac763bafe5b781b7f77f80468b2
-
-
                                                                 {% for observation in bird.observations %}
                                                                     {% if loop.first %}
+                                                                        <h3>{{ "Dernière observation" | capitalize }}</h3>
                                                                     <h1>{{ observation.observedAt | date("d/m/y") }}</h1>
-                                                            {% endif %}
+                                                                    {% endif %}
                                                                     {% else %}
                                                                         <h3>Pas encore d'observation de cet oiseau</h3>
                                                                         <p><a href="{{ path('observation') }}">Soyez le premier à ajouter une observation de cette oiseau</a></p>
