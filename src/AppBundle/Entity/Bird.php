@@ -51,6 +51,7 @@ class Bird
 
     /**
      * @ORM\OneToMany(targetEntity="Observation", mappedBy="bird" )
+     * @ORM\OrderBy({"observedAt" = "DESC"})
      */
     private $observations;
 
