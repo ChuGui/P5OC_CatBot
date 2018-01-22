@@ -354,7 +354,7 @@ $(document).ready(function() {
             success: function(response) {
                 var coordinatesLastObservation = $.parseJSON(response);
                 var latLngLastObservation = new google.maps.LatLng(coordinatesLastObservation.latitude,coordinatesLastObservation.longitude);
-                map2 = new google.maps.Map(document.getElementById('map2'), {
+                map[lastObservationId] = new google.maps.Map(document.getElementById('map'+ lastObservationId), {
                         zoom: 6,
                         center: latLngLastObservation,
                         styles: [
@@ -671,7 +671,7 @@ $(document).ready(function() {
                         strokeWeight: 2,
                         fillColor: '#f8e2a9',
                         fillOpacity: 0.5,
-                        map: map2,
+                        map: map[lastObservationId],
                         center: latLngLastObservation,
                         radius: 10000,
                         /*title: observation.bird.name*/
