@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="col d-flex flex-column justify-content-between">
                                         <div class="d-flex flex-column align-self-start">
-                                            <h3 class="align-self-end text-left">{{ bird.name | capitalize }}</h3>
+                                            <h3 class="align-self-start text-left">{{ bird.name | capitalize }}</h3>
                                             {% if bird.taxref.nomScientifique is defined %}
                                                 <p class="align-self-start m-0">{{ bird.taxref.nomScientifique }}</p>
                                             {% endif %}
@@ -96,14 +96,14 @@
                     {#----MODALE---#}
                     {#-OBSERVATION-#}
                     {#-------------#}
-                    <div id="showDetailsModal{{ bird.id }}" class="modal fade mt-4 pb-5"
+                    <div id="showDetailsModal{{ bird.id }}" class="modal fade pb-5"
                          role="dialog">
                             <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
                                 <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
                                     &times;
                                 </button>
                             </div>
-                        <div class="modal-dialog bird-modal">
+                        <div class="modal-dialog bird-modal mx-auto">
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="heading mt-5">
@@ -111,7 +111,7 @@
                                     <span>{{ bird.taxref.nomScientifique }}</span>
                                 </div>
                                 <div class="modal-body py-0 mb-5">
-                                    <div class="flex-wrap media align-items-center justify-content-center">
+                                    <div class="flex-wrap media align-items-center justify-content-center px-0 px-md-3">
                                         <img class="col-12 col-md-4 rounded mr-md-4 p-0" src="{{ bird.image }}" alt="image {{ bird.name }}">
                                         <div class="media-body col-12 col-md-8 p-0">
                                             <h3 class="mt-5 mt-md-0 text-center text-md-left">DESCRIPTION</h3>
@@ -121,7 +121,7 @@
                                 </div>
 
                                 <div class="modal-footer pt-5 pb-4 text-center">
-                                    <div class="text-center col-12">
+                                    <div class="text-center col-12 px-0 px-md-3">
                                         {% for observation in bird.observations %}
                                             {% if loop.first %}
                                                 <h3>DERNIERE OBSERVATION</h3>
@@ -155,7 +155,7 @@
                                                             {% for comment in observation.comments %}
                                                                 <div class="d-flex flex-nowrap align-items-center comm m-3">
                                                                     <img src="{{ asset('img/'~comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
-                                                                    <div class="col-12 pl-3">
+                                                                    <div class="col-12 pl-3 text-left">
                                                                         <div class="col-12 px-0">
                                                                             <p class="mb-1 font-weight-bold">{{ comment.user.username|capitalize }}</p>
                                                                         </div>
