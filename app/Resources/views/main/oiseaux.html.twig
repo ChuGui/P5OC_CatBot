@@ -77,7 +77,7 @@
                                     <a href="#">
                                         <img src="{{ bird.image }}"
                                              class="bird-img" data-toggle="modal"
-                                             data-target="#showDetailsModal{{ bird.id }}" aria-hidden="true">
+                                             data-target="#showDetailsModal{{ bird.id }}" aria-hidden="true" data-lastObservationId="{% for observation in bird.observations %}{% if loop.first %}{{ observation.id }}{% endif %}{% endfor %}">
                                     </a>
                                 </div>
 
@@ -107,15 +107,7 @@
                                                         <div class="col-8">
                                                             <h3>DESCRIPTION</h3>
                                                             <p>{{ bird.description }}</p>
-                                                                {% for observation in bird.observations %}
-                                                                    {% if loop.first %}
-                                                                        <h3>{{ "Dernière observation" | capitalize }}</h3>
-                                                                    <h1>{{ observation.observedAt | date("d/m/y") }}</h1>
-                                                                    {% endif %}
-                                                                    {% else %}
-                                                                        <h3>Pas encore d'observation de cet oiseau</h3>
-                                                                        <p><a href="{{ path('observation') }}">Soyez le premier à ajouter une observation de cette oiseau</a></p>
-                                                                {% endfor %}
+
 
                                                         </div>
                                                     </div>
@@ -123,7 +115,40 @@
                                                 </div>
 
                                             </div>
+                                            <div class="last-observation" style="background-color: #DED5CD">
+                                                {% for observation in bird.observations %}
+                                                    {% if loop.first %}
+                                                        <h3 class="text-center">{{ "Dernière observation" | capitalize }}</h3>
+                                                        <div class="d-flex flex-row row-h1">
+                                                            <div class="ml-2 mr-4 item-h1"><img src="{{asset('img/') ~ observation.user.profilePicture }}" alt="{{ observation.user.username }}" class="user-avatar rounded-circle"></div>
+                                                            <div class="ml-4 item-h1">
+                                                                <p>{{ observation.user.username }} <br>
+                                                                    <span class="text-muted">{{ observation.observedAt |ago }}</span> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                {% if observation.image == null %}
+                                                                    <img src="{{ asset('img/anonymeBird.png') }}" class="rounded" style="width: 100%">
+                                                                    {% else %}
+                                                                        <img src="{{ asset(observation.image) }}" class="rounded" style="width: 100%">
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="col-6" id="googlemapsObservation{{ observation.id }}" data-observationId="{{ observation.id }}" >
+                                                                <div id="map2"></div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    {% endif %}
+                                                {% else %}
+                                                    <h3>Pas encore d'observation</h3>
+                                                    <p><a href="{{ path('observation') }}">Soyez le premier à ajouter une observation de cet oiseau</a></p>
+                                                {% endfor %}
+                                            </div>
+
                                         </div>
+
                                     </div>
                                 </div>
                                 {#-----END MODAL SHOW DETAILS-----#}

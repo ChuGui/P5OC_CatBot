@@ -585,6 +585,13 @@ label {
     object-fit: cover;
 }
 
+/*Ajouté par Guillaume pour oiseaux.html.twig*/
+.user-avatar {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+
 .scrollToTop {
     position: fixed;
     bottom: 12px;
@@ -863,6 +870,14 @@ label {
 #map{
     border-radius: 25px;
     height: 400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#map2{
+    border-radius: 25px;
+    height: 200px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;

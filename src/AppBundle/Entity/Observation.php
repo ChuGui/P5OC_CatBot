@@ -34,6 +34,7 @@ class Observation
      *
      * @ORM\Column(name="latitude", type="float")
      * @Groups({"show_coordinates"})
+     * @Groups({"coordinates"})
      */
     private $latitude;
 
@@ -42,6 +43,7 @@ class Observation
      *
      * @ORM\Column(name="longitude", type="float")
      * @Groups({"show_coordinates"})
+     * @Groups({"coordinates"})
      */
     private $longitude;
 
