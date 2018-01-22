@@ -53,9 +53,7 @@
         </ul>
     </div>
 
-
     <section class="mt-5 tab-content">
-
         {#---------------------#}
         {#------Onglet---------#}
         {#----Récompenses------#}
@@ -305,49 +303,49 @@
 				{# Liste des validations en attente #}
 	            <div class="row justify-content-xl-center">
 	                {% for waitingObservation in waitingObservations %}
-	                    <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4">
-	                        <div class="p-2 nao-card mx-auto">
-	                        	<div class="d-flex flex-nowrap">
-	                                <div class="bird-img-wrapper">
-	                                    <img src="{{ waitingObservation.image }}"
-	                                         alt="prise par {{ waitingObservation.user.username }}"
-	                                         class="bird-img">
-	                                </div>
-	                                <div class="col d-flex flex-column justify-content-between">
-	                                    <div class="align-self-end">
-	                                        <p class="text-muted">Observé il y
-	                                            a {{ waitingObservation.updateAt | ago }}</p>
-	                                    </div>
-	                                    <div class="d-flex flex-column align-self-start">
-	                                    	<a href="#" data-toggle="modal"
-	                                    	   data-target="#waitingObservationModal_{{ loop.index }}">
-	                                    	    <h3 class="align-self-end text-left">{{ waitingObservation.bird.name | capitalize }}</h3></a>
-	                                    	<p class="align-self-start m-0">{{ waitingObservation.user.username | capitalize }}</p>
-	                                    </div>
-	                                    <div class="align-self-end">
-											<span class="fa-stack fa">
-												<i class="fa fa-heart fa-stack-2x" aria-hidden="true"></i>
-												<strong class="fa fa-stack heart-text">{{ waitingObservation.vote }}</strong>
-											</span>
-	                                    </div>
-	                                </div>
-	                        	</div>
-	                        </div>
+                        <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4">
+                            <a href="#" data-toggle="modal"
+                                   data-target="#waitingObservationModal_{{ loop.index }}">
+    	                        <div class="p-2 nao-card mx-auto">
+    	                        	<div class="d-flex flex-nowrap">
+    	                                <div class="bird-img-wrapper">
+    	                                    <img src="{{ waitingObservation.image }}"
+    	                                         alt="prise par {{ waitingObservation.user.username }}"
+    	                                         class="bird-img">
+    	                                </div>
+    	                                <div class="col d-flex flex-column justify-content-between">
+    	                                    <div class="align-self-end">
+    	                                        <p class="text-muted">Observé il y
+    	                                            a {{ waitingObservation.updateAt | ago }}</p>
+    	                                    </div>
+    	                                    <div class="d-flex flex-column align-self-start">
+    	                                    	    <h3 class="align-self-end text-left">{{ waitingObservation.bird.name | capitalize }}</h3>
+    	                                    	<p class="align-self-start m-0">{{ waitingObservation.user.username | capitalize }}</p>
+    	                                    </div>
+    	                                    <div class="align-self-end">
+    											<span class="fa-stack fa">
+    												<i class="fa fa-heart fa-stack-2x" aria-hidden="true"></i>
+    												<strong class="fa fa-stack heart-text">{{ waitingObservation.vote }}</strong>
+    											</span>
+    	                                    </div>
+    	                                </div>
+    	                        	</div>
+    	                        </div>
+                            </a>
 	                    </div>
-
 
                         {#-------------#}
                         {#----MODALE---#}
                         {#-OBSERVATION-#}
                         {#-------------#}
-                        <div id="waitingObservationModal_{{ loop.index }}" class="modal fade pt-5"
+                        <div id="waitingObservationModal_{{ loop.index }}" class="modal fade mt-4"
                              role="dialog">
                                 <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
                                     <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
                                         &times;
                                     </button>
                                 </div>
-                            <div class="modal-dialog waitingObservationModal">
+                            <div class="modal-dialog bird-modal">
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="heading mt-5">
@@ -365,11 +363,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="modal-footer pt-5 observationModalSection text-center">
-                                        <div class="observationModalSection text-center">
+                                    <div class="modal-footer pt-5 text-center">
+                                        <div class="text-center col-12">
                                             <h3>OBSERVATION</h3>
                                             <div class="col-12">
-
                                                 <div class="row align-items-center justify-content-start my-5">
                                                     <img src="{{ asset('img/'~waitingObservation.user.profilePicture) }}" alt="Photo de {{ waitingObservation.user.username }}" class="observation-avatar rounded-circle">
                                                     <div class="justify-content-start ml-3">
@@ -407,7 +404,7 @@
                                                 </div>
                                                 <div class="col-12 col-lg-6">
                                                     {# Google Map #}
-                                                    <div class="goole-map col-12 rounded p-0 mb-5">
+                                                    <div class="col-12 rounded p-0 mb-5">
                                                         <div class="rounded" style="height: 350px; background-color: #999999"></div>
                                                     </div>
 

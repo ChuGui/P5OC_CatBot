@@ -744,7 +744,7 @@ label {
     outline: none;
 }
 
-.waitingObservationModal {
+.bird-modal {
     position: absolute;
     width: 80%;
     left: 50%;
