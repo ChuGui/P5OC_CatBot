@@ -106,6 +106,13 @@ class Observation
     private $description;
 
     /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="observation", cascade={"remove"})
+     * @ORM\OrderBy({"updateAt" = "DESC"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $comments;
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="observations")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -351,6 +358,21 @@ class Observation
     public function setQtyBirds($qtyBirds)
     {
         $this->qtyBirds = $qtyBirds;
+    }
+
+    /**
+     * @return ArrayCollection|Comment[]
+     */
+    public function getComments() {
+        return $this->comments;
+    }
+
+    /**
+     * @param mixed $comment
+     */
+    public function setComment(Comment $comment)
+    {
+        $this->comment = $comment;
     }
 
 }

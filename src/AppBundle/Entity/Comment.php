@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentRepository")
  */
-class Comment implements \JsonSerializable
+class Comment
 {
     /**
      * @var int
@@ -45,8 +45,14 @@ class Comment implements \JsonSerializable
     private $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $observation;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Actualite", inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $actualite;
 
@@ -147,9 +153,22 @@ class Comment implements \JsonSerializable
         $this->actualite = $actualite;
     }
 
-
-    public function jsonSerialize()
+    /**
+     * @return mixed
+     */
+    public function getObservation()
     {
-
+        return $this->observation;
     }
+
+    /**
+     * @param mixed $observation
+     */
+    public function setObservation($observation)
+    {
+        $this->observation = $observation;
+    }
+
+
+
 }

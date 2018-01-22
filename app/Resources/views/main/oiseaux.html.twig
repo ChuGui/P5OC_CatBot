@@ -107,20 +107,22 @@
                                                         <div class="col-8">
                                                             <h3>DESCRIPTION</h3>
                                                             <p>{{ bird.description }}</p>
-
-
                                                         </div>
                                                     </div>
-
                                                 </div>
-
                                             </div>
+
+                                            {#---------------------------#}
+                                            {#PARTIE DERNIERE OBSERVATION#}
+                                            {#---------------------------#}
                                             <div class="last-observation" style="background-color: #DED5CD">
                                                 {% for observation in bird.observations %}
                                                     {% if loop.first %}
                                                         <h3 class="text-center">{{ "Dernière observation" | capitalize }}</h3>
                                                         <div class="d-flex flex-row row-h1">
-                                                            <div class="ml-2 mr-4 item-h1"><img src="{{asset('img/') ~ observation.user.profilePicture }}" alt="{{ observation.user.username }}" class="user-avatar rounded-circle"></div>
+                                                            <div class="ml-2 mr-4 item-h1">
+                                                                <img src="{{asset('img/') ~ observation.user.profilePicture }}" alt="{{ observation.user.username }}" class="user-avatar rounded-circle">
+                                                            </div>
                                                             <div class="ml-4 item-h1">
                                                                 <p>{{ observation.user.username }} <br>
                                                                     <span class="text-muted">{{ observation.observedAt |ago }}</span> </p>
@@ -144,7 +146,44 @@
                                                             </div>
                                                         </div>
 
+                                                        {#-------------------#}
+                                                        {#PARTIE COMMENTAIRES#}
+                                                        {#-------------------#}
+                                                        <section id="commentSection">
+                                                            <div class="container">
 
+                                                                <div class="flex-wrap flex-column comm-display p-0">
+                                                                    {% for comment in observation.comments %}
+
+                                                                        <div class="d-flex flex-nowrap align-items-center comm m-3">
+                                                                            <img src="{{ asset('img/'~comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
+                                                                            <div class="col-12 pl-3">
+                                                                                <div class="col-12 px-0">
+                                                                                    <p class="mb-1 font-weight-bold">{{ comment.user.username|capitalize }}</p>
+
+                                                                                </div>
+                                                                                <div class="col-12 px-0">
+                                                                                    <p class="mb-0 text-left">{{ comment.content|capitalize }}</p>
+                                                                                </div>
+                                                                                <div class="col-12 px-0">
+                                                                                    <span class="time">{{ comment.updateAt|ago }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    {% endfor %}
+                                                                </div>
+
+                                                               {#FORMULAIRE COMMENT#}
+                                                                <div class="row mt-4 align-items-center">
+                                                                    <div class="col-12 col-lg-9" id="addComment" >
+                                                                        {% include 'form/commentFormObservation.html.twig' %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                        {#-----------------------#}
+                                                        {#FIN PARTIE COMMENTAIRES#}
+                                                        {#-----------------------#}
                                                     {% endif %}
                                                 {% else %}
                                                     <h3>Pas encore d'observation</h3>

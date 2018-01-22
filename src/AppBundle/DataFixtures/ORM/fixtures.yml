@@ -40,6 +40,17 @@ AppBundle\Entity\Comment:
         updateAt: <dateTimeBetween("-19 days", "now")>
         user: '@user_*'
         actualite: '@actualite_*'
+    comment_{21..40}:
+        content: <sentence($nbWords = 6, $variableNbWords = true)>
+        updateAt: <dateTimeBetween("-19 days", "now")>
+        user: '@user_*'
+        observation: '@observation_*'
+    comment_{41..60}:
+        content: <sentence($nbWords = 6, $variableNbWords = true)>
+        updateAt: <dateTimeBetween("-19 days", "now")>
+        user: '@user_*'
+        observation: '@observation_*'
+
 
 AppBundle\Entity\Observation:
     observation_{1..3}:

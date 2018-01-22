@@ -196,4 +196,14 @@ class Actualite
     public function getComments() {
         return $this->comments;
     }
+
+    /**
+     * @param mixed $comment
+     */
+    public function setComment(Comment $comment)
+    {
+        $this->comment = $comment;
+    }
+
+
 }
