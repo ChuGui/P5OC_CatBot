@@ -125,6 +125,7 @@ class Observation
         $this->updateAt = new \DateTime();
         $this->vote = 0;
         $this->usersVoted = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -277,7 +278,7 @@ class Observation
 
     public function removeUsersVoted(User $user)
     {
-        $this->usersVoted->remove($user);
+        $this->usersVoted->removeElement($user);
     }
 
     /**

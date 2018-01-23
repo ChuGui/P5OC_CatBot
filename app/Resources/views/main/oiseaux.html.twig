@@ -143,7 +143,7 @@
                                                                 <img class="col-12 rounded p-0 mb-5" src="{{ asset(observation.image) }}" alt="image {{ observation.bird.name }}"> <span class="fa-stack fa fa-2x mr-3">
                                                                 {#VOTE#}
                                                                 <i class="fa fa-heart fa-stack-2x voteJs" id="voteFor{{ observation.id }}" aria-hidden="true" data-observationId="{{ observation.id }}" data-userId="{{ user.id }}" ></i>
-                                                                <strong class="fa fa-stack heart-text voteJs" data-observationId="{{ observation.id }}" data-userId="{{ user.id }}">{{ observation.usersVoted|length }}</strong>
+                                                                <strong class="fa fa-stack heart-text voteJs heartJs" data-observationId="{{ observation.id }}" data-userId="{{ user.id }}">{{ observation.usersVoted|length }}</strong>
                                                             </span>
                                                             {% endif %}
                                                         </div>

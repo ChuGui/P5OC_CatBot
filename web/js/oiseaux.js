@@ -355,7 +355,7 @@ $(document).ready(function() {
                 var coordinatesLastObservation = $.parseJSON(response);
                 var latLngLastObservation = new google.maps.LatLng(coordinatesLastObservation.latitude,coordinatesLastObservation.longitude);
                 map[lastObservationId] = new google.maps.Map(document.getElementById('map'+ lastObservationId), {
-                        zoom: 6,
+                        zoom:9,
                         center: latLngLastObservation,
                         styles: [
                             {
@@ -694,16 +694,37 @@ $(document).ready(function() {
     $('.voteJs').on('click', function() {
         var userId = $(this).attr('data-userId');
         var observationId = $(this).attr('data-observationId');
+
         $.ajax({
             url: Routing.generate('vote'),
             data: {userId: userId, observationId: observationId},
             success: function(response) {
-                console.log(response)
+                $('.heartJs').text(response)
             },
             error: function(response) {
               console.log(response)
             }
         })
+    })
+    $('.commentFormObservation_JS').on('submit', function(e){
+        e.preventDefault();
+        var observationId = $(this).attr('data-observationId');
+        var commentInput = $('#contentObservation'+observationId);
+        var commentContent = commentInput.val();
+        $.ajax({
+            url: Routing.generate('comment_observation'),
+            data: {'observationId' : observationId, 'commentContent' : commentContent},
+            dataType: 'json',
+            success: function(response) {
+                commentInput.val('');
+                var commentJson = $.parseJSON(response);
+                console.log(commentJson);
+            },
+            error: function(response) {
+                commentInput.val('une erreur est survenue');
+            }
+        })
+
     })
 
 })

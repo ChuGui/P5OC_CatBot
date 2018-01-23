@@ -163,29 +163,4 @@ class BirdController extends Controller
             return new Response('Aucune observation avec cet ID', 404);
         }
     }
-
-    /**
-     * @Route("/vote", name="vote", options = {"expose"=true})
-     * @Method({"GET"})
-     */
-    public function voteAction(Request $request) {
-        $userId = $request->query->get('userId');
-        $observationId = $request->query->get('observationId');
-        $em = $this->getDoctrine()->getManager();
-        $observation = $em->getRepository('AppBundle:Observation')->find($observationId);
-        $userVoted = $em->getRepository('AppBundle:User')->find($userId);
-        if($observation == null){
-            return new Response("Pas d'observation avec cet id", 404);
-        }elseif($observation->getUsersVoted()->contains($userVoted)) {
-                $observation->removeUsersVoted($userVoted);
-                $em->flush();
-                return new Response('Le vote à bien été retiré', 200);
-        }else{
-                $observation->addUsersVoted($userVoted);
-                $em->persist($observation);
-                $em->flush();
-                return new Response('Le vote à bien été ajouté', 200);
-        }
-
-    }
 }

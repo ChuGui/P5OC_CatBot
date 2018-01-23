@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Comment
@@ -20,6 +21,7 @@ class Comment
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"comment_observation"})
      */
     private $id;
 
@@ -27,6 +29,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=255)
+     * @Groups({"comment_observation"})
      */
     private $content;
 
@@ -34,6 +37,7 @@ class Comment
      * @var \DateTime
      *
      * @ORM\Column(name="updateAt", type="datetime")
+     * @Groups({"comment_observation"})
      */
     private $updateAt;
 
@@ -41,17 +45,18 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"comment_observation"})
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="Observation", inversedBy="comments")
      * @ORM\JoinColumn(nullable=true)
      */
     private $observation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Actualite", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="Actualite", inversedBy="comments")
      * @ORM\JoinColumn(nullable=true)
      */
     private $actualite;
@@ -164,7 +169,7 @@ class Comment
     /**
      * @param mixed $observation
      */
-    public function setObservation($observation)
+    public function setObservation(Observation $observation)
     {
         $this->observation = $observation;
     }
