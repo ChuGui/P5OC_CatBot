@@ -424,6 +424,7 @@ button:focus {
 
 #footerLinks li>a:hover {
     color: var(--egg-shell);
+    transition: all 0.3s ease;
 }
 
 #souscrire {
@@ -561,6 +562,7 @@ label {
 
 .input-group-addon:hover {
     background-color: var(--darker-purple);
+    transition: all 0.3s ease;
 }
 
 .form-control {
@@ -612,6 +614,7 @@ label {
 .scrollToTop::selection {
     text-decoration: none;
     color: var(--purple);
+    transition: all 0.3s ease;
 }
 
 @media (min-width: 576px) {
@@ -627,7 +630,16 @@ label {
 .nao-card {
     background: var(--pampas);
     border-radius: 25px;
+    color: var(--black);
 }
+
+.nao-card:hover {
+    background: var(--lightest-brown);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+
+}
+
 
 .bird-img {
     height: 100%;
@@ -653,7 +665,34 @@ label {
     color: var(--purple);
 }
 
+.fa-heart:hover {
+    color: var(--darker-purple);
+    transition: all 0.3s ease;
+}
+
 .heart-text {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+    }
+    50% {
+        transform: scale(1.05);
+    }   
+    100% {
+        transform: scale(0.95);
+    }           
+}
+
+.nao-card .heart-text {
     font-family: var(--roboto);
     font-weight: 700;
     font-size: 12px !important;
@@ -662,6 +701,48 @@ label {
     text-align: center;
     padding: 0 0 0 4px;
     font-family: var(--roboto) !important;
+}
+.modal span.fa-stack {
+    position: absolute;
+    z-index: 1000;
+    font-size: 24px;
+    right: 12px;
+    top: 6px;
+    background: rgba(255, 254, 249, 0.5);
+    border-radius: 50px;
+    height: 60px;
+    width: 60px;
+    padding: 8px;
+}
+
+.fa-stack:hover {
+    
+    animation-name: pulse;
+    -webkit-animation-name: pulse;  
+    animation-duration: 1.5s;   
+    -webkit-animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.modal .heart-text {
+    margin-top: 0;
+    font-family: var(--roboto);
+    font-weight: 400;
+    font-size: 18px !important;
+    margin: auto;
+    color: var(--pampas);
+    text-align: center;
+    font-family: var(--roboto) !important;
+}
+
+.social-modal {
+    position: absolute;
+    bottom: 12px;
+}
+
+.social-modal i{
+    color: var(--purple);
 }
 
 @media (min-width: 1400px) {
@@ -718,7 +799,7 @@ label {
 
 /* MODAL OBSERVATION */
 .modal {
-    padding : 0 30px !important;
+    padding : 10px 10px !important;
 }
 .close-wrap {
     width: 48px;
@@ -744,9 +825,9 @@ label {
     outline: none;
 }
 
-.waitingObservationModal {
+.bird-modal {
     position: absolute;
-    width: 80%;
+    width: 90%;
     left: 50%;
     transform: translate(-50%, 0)!important;
     background-color: none;
@@ -767,6 +848,12 @@ label {
 @media (min-width: 576px) {
     .modal-dialog {
         max-width: inherit;
+    }
+    .modal {
+        padding : 30px 30px !important;
+    }
+    .bird-modal {
+        width: 80%;
     }
 }
 
