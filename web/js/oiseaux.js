@@ -343,7 +343,7 @@ $(document).ready(function() {
         }
     })
 
-    $('.bird-img').on('click', function(){
+    $('.oneBird').on('click', function(){
 
         var lastObservationId = $(this).attr('data-lastObservationId');
         $.ajax({

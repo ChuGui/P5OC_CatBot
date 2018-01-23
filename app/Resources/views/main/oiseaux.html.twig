@@ -70,9 +70,9 @@
             <div class="row justify-content-xl-center mt-3">
                 {% for bird in birds %}
                     {# Carte oiseau observé #}
-                    <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4">
+                    <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 oneBird" data-lastObservationId="{% for observation in bird.observations %}{% if loop.first %}{{ observation.id }}{% endif %}{% endfor %}">
                         <a href="#" data-toggle="modal"
-                               data-target="#showDetailsModal{{ bird.id }}" data-lastObservationId="{% for observation in bird.observations %}{% if loop.first %}{{ observation.id }}{% endif %}{% endfor %}">
+                               data-target="#showDetailsModal{{ bird.id }}" >
                             <div class="p-2 nao-card mx-auto">
                                 <div class="d-flex flex-nowrap align-items-center">
                                     <div class="bird-img-wrapper">
@@ -147,7 +147,12 @@
                                                     <div class="col-12 col-lg-6">
                                                         {# Google Map #}
                                                         <div id="googlemapsObservation{{ observation.id }}" data-observationId="{{ observation.id }}" class="col-12 rounded p-0 mb-5">
-                                                            <div id="map{{ observation.id }}" class="rounded" style="height: 350px"></div>
+                                                            <div id="map{{ observation.id }}" class="rounded" style="
+                                                            height: 350px;
+                                                             width: 100%;
+                                                             margin-left: auto;
+                                                             margin-right: auto;
+                                                             "></div>
                                                         </div>
 
                                                         {# AFFICHAGE COMMENTAIRES #}
