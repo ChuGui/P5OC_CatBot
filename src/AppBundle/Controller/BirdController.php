@@ -146,4 +146,22 @@ class BirdController extends Controller
         }
 
     }
+
+    /**
+     * @Route("/lastObservation", name="lastObservation", options = {"expose"=true}))
+     * @Method({"GET"})
+     */
+    public function lastObservationAction(Request $request)
+    {
+        $lastObservationBird = $this->getDoctrine()->getRepository('AppBundle:Bird')->findAllByNameAscWithLastObservation();
+        $data = $this->get('jms_serializer')->serialize($lastObservationBird, 'json', SerializationContext::create()->setGroups(array('lastObservation')));
+        if ($lastObservationBird) {
+            $response = new Response($data);
+            $response->headers->set('Content-Type', 'json');
+            return $response;
+        } else {
+            return new Response('Aucune observation avec cet ID', 404);
+        }
+
+    }
 }

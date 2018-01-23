@@ -231,9 +231,11 @@ class MainController extends Controller
         $birds = $em->getRepository('AppBundle:Bird')->findAllByNameAsc();
         $bird = new Bird();
         $formBirdFilter = $this->createForm(BirdFilterType::class, $bird);
+        $user = $this->getUser();
         return $this->render('main/oiseaux.html.twig', [
             'birds' => $birds,
-            'formBirdFilter' => $formBirdFilter->createView()
+            'formBirdFilter' => $formBirdFilter->createView(),
+            'user' => $user,
         ]);
     }
 

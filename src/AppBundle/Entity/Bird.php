@@ -34,6 +34,7 @@ class Bird
      * @Assert\NotBlank(message="Le nom de l'espèce est obligatoire")
      * @Groups({"help_user"})
      * @Groups({"show_coordinates"})
+     * @Groups({"lastObservation"})
      */
     private $name;
 

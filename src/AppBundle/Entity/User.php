@@ -115,6 +115,11 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $newsletter;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Observation", mappedBy="usersVoted")
+     * @ORM\JoinTable(name="observations_voted")
+     */
+    private $observationsVotedFor;
 
     /**
      * @ORM\Column(type="json_array")
@@ -131,7 +136,8 @@ class User implements AdvancedUserInterface, \Serializable
         $this->nbObservations=0;
         $this->comments = new ArrayCollection();
         $this->actualites = new ArrayCollection();
-        $this->obeservations = new ArrayCollection();
+        $this->observations = new ArrayCollection();
+        $this->observationsVotedFor = new ArrayCollection();
     }
     // needed by the security system
 
@@ -427,4 +433,16 @@ class User implements AdvancedUserInterface, \Serializable
     {
         $this->actualites = $actualites;
     }
+
+    /**
+     * @return ArrayCollection|Observation[]
+     */
+    public function getObservationsVotedFor()
+    {
+        return $this->observationVotedFor;
+    }
+
+
+
+
 }

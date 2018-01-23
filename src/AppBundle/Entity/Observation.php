@@ -26,6 +26,7 @@ class Observation
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Groups({"show_coordinates"})
+     * @Groups({"lastObservation"})
      */
     private $id;
 
@@ -66,12 +67,6 @@ class Observation
      * @ORM\Column(name="observedAt", type="datetime")
      */
     private $observedAt;
-
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $vote;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -118,11 +113,18 @@ class Observation
      */
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="observationsVotedFor")
+     * @ORM\JoinTable(name="users_voted")
+     */
+    private $usersVoted;
+
     public function __construct()
     {
         $this->IsValidated = false;
         $this->updateAt = new \DateTime();
         $this->vote = 0;
+        $this->usersVoted = new ArrayCollection();
     }
 
     /**
@@ -265,19 +267,25 @@ class Observation
     }
 
     /**
-     * @return mixed
+     * @param mixed $userVoted
      */
-    public function getVote()
+    public function addUsersVoted(User $user)
     {
-        return $this->vote;
+        $this->usersVoted[] = $user;
+    }
+
+
+    public function removeUsersVoted(User $user)
+    {
+        $this->usersVoted->remove($user);
     }
 
     /**
-     * @param mixed $vote
+     * @return ArrayCollection|User[]
      */
-    public function setVote($vote)
+    public function getUsersVoted()
     {
-        $this->vote = $vote;
+        return $this->usersVoted;
     }
 
     /**

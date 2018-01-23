@@ -37,4 +37,15 @@ class BirdRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findAllByNameAscWithLastObservation()
+    {
+        $qb = $this->createQueryBuilder('b');
+        $qb->orderBy('b.name','ASC')
+            ->leftJoin('b.observations', 'o')
+            ->andwhere('o.isValidated = :isValidated')
+            ->setParameter('isValidated', true)
+            ->orderBy('o.observedAt', 'DESC');
+        return $qb->getQuery()->getResult();
+    }
 }
