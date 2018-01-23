@@ -77,8 +77,6 @@ AppBundle\Entity\Observation:
         qtyBirds: <randomDigitNotNull()>
         observedAt: <dateTimeBetween("-40 days", "-20 days")>
 
-
-
 AppBundle\Entity\Bird:
      bird_{1..10}:
          name: <firstNameFemale()>

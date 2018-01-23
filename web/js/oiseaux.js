@@ -694,7 +694,16 @@ $(document).ready(function() {
     $('.voteJs').on('click', function() {
         var userId = $(this).attr('data-userId');
         var observationId = $(this).attr('data-observationId');
-        console.log('user' + userId + 'observation' + observationId);
+        $.ajax({
+            url: Routing.generate('vote'),
+            data: {userId: userId, observationId: observationId},
+            success: function(response) {
+                console.log(response)
+            },
+            error: function(response) {
+              console.log(response)
+            }
+        })
     })
 
 })
