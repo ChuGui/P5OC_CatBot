@@ -377,11 +377,11 @@ class Observation
     }
 
     /**
-     * @param mixed $comment
+     * @param mixed $comments
      */
-    public function setComment(Comment $comment)
+    public function setComments(Comment $comments)
     {
-        $this->comment = $comment;
+        $this->comments = $comments;
     }
 
 }

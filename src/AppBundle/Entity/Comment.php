@@ -145,6 +145,21 @@ class Comment
     /**
      * @return mixed
      */
+    public function getObservation()
+    {
+        return $this->observation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setObservation(Observation $observation)
+    {
+        $this->observation = $observation;
+    }
+    /**
+     * @return mixed
+     */
     public function getActualite()
     {
         return $this->actualite;
@@ -157,23 +172,5 @@ class Comment
     {
         $this->actualite = $actualite;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getObservation()
-    {
-        return $this->observation;
-    }
-
-    /**
-     * @param mixed $observation
-     */
-    public function setObservation(Observation $observation)
-    {
-        $this->observation = $observation;
-    }
-
-
 
 }

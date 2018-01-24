@@ -50,19 +50,30 @@ class ObservationController extends Controller
      */
     public function commentObservationAction(Request $request)
     {
-        $user = $this->getUser();
-        $commentContent = $request->query->get('commentContent');
-        $observationId = $request->query->get('observationId');
-        $em = $this->getDoctrine()->getManager();
-        $commentObservation = new Comment();
-        $observation = $em->getRepository('AppBundle:Observation')->find($observationId);
-        if ($observation == null || $user == null) {
-            return new Response("Pas d'observation avec cet id, ou l'utilisateur n'est pas connecté", 404);
-        } else {
-            $commentObservation->setContent($commentContent)->setUser($user)->setObservation($observation);
-            $em->flush();
-            $data = $this->get('jms_serializer')->serialize($commentObservation, 'json', SerializationContext::create()->setGroups(array('comment_observation')));
-            return new JsonResponse($commentObservation, 200);
+        {
+            if ($request->isXmlHttpRequest()) {
+                $commentContent = $request->query->get('commentContent');
+                $observationId = $request->query->get('observationId');
+                $em = $this->getDoctrine()->getManager();
+                $user = $this->getUser();
+                $commentObservation = new Comment();
+                $observation = $em->getRepository('AppBundle:Observation')->find($observationId);
+                if ($observation == null || $user == null) {
+                    return new Response("Pas d'observation avec cet id, ou l'utilisateur n'est pas connecté", 404);
+                } else {
+                    $commentObservation->setContent($commentContent);
+                    $commentObservation->setUser($user);
+                    $commentObservation->setObservation($observation);
+                    $em->persist($commentObservation);
+                    $em->flush();
+                    $comments = $observation->getComments();
+                    $data = $this->get('jms_serializer')->serialize($comments, 'json', SerializationContext::create()->setGroups(array('comment_observation')));
+                    return new JsonResponse($data, 200);
+                }
+            } else {
+                return $this->redirect($this->generateUrl('homepage'));
+            }
         }
+
     }
 }
