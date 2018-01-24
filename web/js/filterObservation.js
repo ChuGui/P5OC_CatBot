@@ -14,26 +14,29 @@ $(document).ready(function() {
             data:  {plumage : plumage, couleur_bec : couleur_bec, pattes: pattes, forme_bec: forme_bec},
             dataType: "json",
             beforeSend: function() {
-                    $(".oiseaux").hide('slow');
+                    $("#aidez-moi").empty();
                     $('.searching').hide('slow');
                     $('#aidez-moi').append("<img src='../img/Loading_icon.gif'  alt='loading' height='100' width='100' class='ml-3 mt-3 searching'></img>");
             },
             success: function(response) {
-                $('.searching').hide('slow');
+                $('#aidez-moi').empty();
                 var birds = $.parseJSON(response);
+                console.log(birds);
                 $.each(birds, function(idx, bird) {
-                    $("#aidez-moi").append('<div class="p-2 nao-card mx-auto mb-3">'
-                        +'<div class="d-flex flex-nowrap align-items-center">'
-                        +'<div class="bird-img-wrapper">'
-                        +'<img src="'+ bird.image +'"class="bird-img">'
-                        +'</div>'
-                        +'<div class="col d-flex flex-column justify-content-between">'
-                        +'<div class="d-flex flex-column align-self-start">'
-                        +'<h3 class="align-self-end text-left bird-name">'+ bird.name +'</h3>'
-                        +'</div>'
-                        +'</div>'
-                        +'</div>'
-                        +'</div>');
+                    console.log(bird);
+                    $("#aidez-moi").append(
+                            '<div class="p-2 nao-card mx-auto mb-3 oiseau-help">'
+                        +   '<div class="d-flex flex-nowrap align-items-center">'
+                        +   '<div class="bird-img-wrapper">'
+                        +   '<img src="'+ bird.image +'"class="bird-img">'
+                        +   '</div>'
+                        +   '<div class="col d-flex flex-column justify-content-between">'
+                        +   '<div class="d-flex flex-column align-self-start">'
+                        +   '<h3 class="align-self-end text-left bird-name">'+ bird.name +'</h3>'
+                        +   '</div>'
+                        +   '</div>'
+                        +   '</div>'
+                        +   '</div>');
                 });
             },
             error: function(xhr, status, error) {
