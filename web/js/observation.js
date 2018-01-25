@@ -1,7 +1,6 @@
 $(document).ready(function () {
     console.log('fichier observation.js chargé');
 
-
     /*Modal google map*/
     $('#appbundle_observation_lieuObservation').on('click', function () {
 

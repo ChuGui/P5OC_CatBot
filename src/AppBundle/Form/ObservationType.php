@@ -50,13 +50,10 @@ class ObservationType extends AbstractType
             ))
             ->add('imageFile', VichFileType::class, array(
                 'attr' => array(
-                    'class' => 'upload-image'),
+                    'class' => 'upload-image'
+                ),
                 'required' => false,
                 'allow_delete' => true,
-                'label' => 'Ajouter une image',
-                'label_attr' => array(
-                    'class' => 'label-image'
-                )
             ))
             ->add('latitude', HiddenType::class)
             ->add('longitude', HiddenType::class)

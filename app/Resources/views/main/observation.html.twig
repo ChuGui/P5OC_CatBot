@@ -70,8 +70,6 @@
                             }) }}
                         </div>
                     </div>
-
-
                     {{ form_row(formObservation.bird, {'attr' : {
                         'placeholder' : "Ajouter le nom de l'espèce"
                     }
@@ -82,6 +80,10 @@
                         'rows': '10'
                     }
                     }) }}
+                    <div class="row col-12 ">
+                        <button type="submit" class="btn btn-primary mx-auto">Envoyer</button>
+                        {{ form_end(formObservation) }}
+                    </div>
                 </div>
 
                 {#PARTIE - J'ai besoin d'aide#}
@@ -139,10 +141,7 @@
                         </div>#}
                     </div>
                 </div>
-                <div class="row col-12 ">
-                    <button type="submit" class="btn btn-primary mx-auto">Envoyer</button>
-                    {{ form_end(formObservation) }}
-                </div>
+
             </div>
 
             {#La GoogleMaps#}

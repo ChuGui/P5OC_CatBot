@@ -939,12 +939,9 @@ label {
     margin-left: -3px;
 }
 
-#appbundle_observation_imageFile input{
-  display: none;
-}
 
 #appbundle_observation_imageFile label {
-  cursor: pointer;
+    cursor: pointer;
     color: #00b1ca;
     font-weight: bold;
 }
@@ -961,4 +958,5 @@ label {
     margin-left: auto;
     margin-right: auto;
 }
+
 
