@@ -30,4 +30,11 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
         $qb->where('o.isValidated = true')->orderBy('o.updateAt','DESC');
         return $qb->getQuery()->getResult();
     }
+
+    public function findAllNoValidated()
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb->where('o.isValidated = false')->orderBy('o.updateAt','DESC');
+        return $qb->getQuery()->getResult();
+    }
 }

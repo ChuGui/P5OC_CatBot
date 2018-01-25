@@ -32,7 +32,7 @@ class Bird
      * @var string
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank(message="Le nom de l'espèce est obligatoire")
-     * @Groups({"help_user","show_coordinates","lastObservation"})
+     * @Groups({"help_user","show_coordinates","lastObservation", "show_coordinates_no_validates"})
      */
     private $name;
 

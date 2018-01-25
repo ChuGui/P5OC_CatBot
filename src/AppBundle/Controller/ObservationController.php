@@ -76,4 +76,18 @@ class ObservationController extends Controller
         }
 
     }
+
+    /**
+     * @Route("/coordinates_waiting_observations", name="coordinates_show_waiting_observations", options = {"expose"=true})
+     * @Method({"GET"})
+     */
+    public function coordinatesShowAction()
+    {
+
+        $coordinates = $this->getDoctrine()->getRepository('AppBundle:Observation')->findAllNoValidated();
+        $data = $this->get('jms_serializer')->serialize($coordinates, 'json', SerializationContext::create()->setGroups(array('show_coordinates_no_validates')));
+        $response = new JsonResponse($data);
+        $response->headers->set('Content-Type', 'json');
+        return $response;
+    }
 }

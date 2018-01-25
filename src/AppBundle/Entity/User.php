@@ -25,8 +25,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
-     * @Groups({"group1"})
-     * @Groups({"comment_observation"})
+     * @Groups({"group1", "comment_observation"})
      */
     private $id;
 
@@ -36,8 +35,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Length(min=3, minMessage="Votre pseudo doit comporter au moins 3 lettres")
      * @ORM\Column(type="string", unique=true)
-     * @Groups({"group1"})
-     * @Groups({"comment_observation"})
+     * @Groups({"group1","comment_observation", "show_coordinates_no_validates"})
      */
     private $username;
 
@@ -67,8 +65,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string")
-     * @Groups({"group1"})
-     * @Groups({"comment_observation"})
+     * @Groups({"group1","comment_observation"})
      */
     private $profilePicture;
 

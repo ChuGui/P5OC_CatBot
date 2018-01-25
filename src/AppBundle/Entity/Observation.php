@@ -25,8 +25,7 @@ class Observation
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"show_coordinates"})
-     * @Groups({"lastObservation"})
+     * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates"})
      */
     private $id;
 
@@ -34,8 +33,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="latitude", type="float")
-     * @Groups({"show_coordinates"})
-     * @Groups({"coordinates"})
+     * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates"})
      */
     private $latitude;
 
@@ -43,8 +41,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="longitude", type="float")
-     * @Groups({"show_coordinates"})
-     * @Groups({"coordinates"})
+     * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates"})
      */
     private $longitude;
 
@@ -86,7 +83,7 @@ class Observation
      * @Assert\NotNull(message="Il faut choisir un nom d'espèce")
      * @ORM\ManyToOne(targetEntity="Bird", inversedBy="observations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"show_coordinates"})
+     * @Groups({"show_coordinates", "show_coordinates_no_validates"})
      */
     private $bird;
 
@@ -109,7 +106,8 @@ class Observation
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="observations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false)2
+     * @Groups({"show_coordinates_no_validates"})
      */
     private $user;
 

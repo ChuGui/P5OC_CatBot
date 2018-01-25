@@ -158,13 +158,20 @@
                                                 a {{ userObservation.updateAt | ago }}</span>
                                         </div>
                                         <div class="d-flex flex-column align-self-start">
-                                        	<h3 class="align-self-start text-left">étourneau améthyste</h3>
+                                        	<h3 class="align-self-start text-left">{{ userObservation.bird.name }}</h3>
                                         	<p class="align-self-start m-0">{{ userObservation.user.username | capitalize }}</p>
+                                            <p>
+                                                {% if userObservation.isValidated == true %}
+                                                    <strong><span style="color: #aacd4e">Observation validée !</span></strong>
+                                                {% else %}<span style="color: coral"><strong>Observation en attende de validation...</strong></span>
+                                                {% endif %}
+                                            </p>
+
                                         </div>
                                         <div class="align-self-end">
 											<span class="fa-stack fa">
 												<i class="fa fa-heart fa-stack-2x" aria-hidden="true"></i>
-												<strong class="fa fa-stack heart-text">{{ userObservation.vote }}</strong>
+												<strong class="fa fa-stack heart-text">{{ userObservation.usersVoted|length }}</strong>
 											</span>
                                         </div>
                                     </div>
@@ -254,7 +261,7 @@
                         <div class="col-12 col-md-6">
                             <h4 class="text-center mb-4">Modifier votre mot de passe</h4>
                             <div class="col">
-                                {{ form_start(formChangePassword) }}
+                                {#{{ form_start(formChangePassword) }}
                                 {{ form_row(formChangePassword._password,{
                                     'label' : 'Ancien mot de passe',
                                     'attr' : {
@@ -276,7 +283,7 @@
                                 }) }}
                                 <button type="submit" class="btn btn-primary d-flex mx-auto" formnovalidate>MODIFIER
                                 </button>
-                                {{ form_end(formChangePassword) }}
+                                {{ form_end(formChangePassword) }}#}
                             </div>
                         </div>
                     </div>
@@ -297,13 +304,13 @@
 
 				{# Google Map #}
 	            <div class="mb-5 col-12 col-sm-10 col-lg-12 col-xxl-10 mx-auto px-0">
-	                <div class="rounded" style="height: 400px; background-color: #999999"></div>
+	                <div class="rounded" style="height: 400px;" id="map"></div>
 	            </div>
 
 				{# Liste des validations en attente #}
 	            <div class="row justify-content-xl-center">
 	                {% for waitingObservation in waitingObservations %}
-                        <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4">
+                        <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 oneBird">
                             <a href="#" data-toggle="modal"
                                    data-target="#waitingObservationModal_{{ loop.index }}">
     	                        <div class="p-2 nao-card mx-auto">
@@ -325,7 +332,7 @@
     	                                    <div class="align-self-end">
     											<span class="fa-stack fa">
     												<i class="fa fa-heart fa-stack-2x" aria-hidden="true"></i>
-    												<strong class="fa fa-stack heart-text">{{ waitingObservation.vote }}</strong>
+    												<strong class="fa fa-stack heart-text">{{ waitingObservation.usersVoted|length }}</strong>
     											</span>
     	                                    </div>
     	                                </div>
@@ -382,7 +389,7 @@
                                                         <div class="col-12 rounded p-0 mb-5">
                                                             <span class="fa-stack fa fa-2x">
                                                                 <i class="fa fa-heart fa-stack-2x" aria-hidden="true"></i>
-                                                                <strong class="fa fa-stack heart-text">{{ waitingObservation.vote }}</strong>
+                                                                <strong class="fa fa-stack heart-text">{{ waitingObservation.usersVoted|length }}</strong>
                                                             </span>
                                                             <img class="col-12 rounded p-0 mb-5" src="{{ waitingObservation.bird.image }}" alt="image {{ waitingObservation.bird.name }}">
                                                             <span class="social-modal">
@@ -395,22 +402,22 @@
                                                         </div>
                                                         <div class="col-12 col-xl-6 p-0 pr-xl-3">
                                                             <div class="form-group p-0">
-                                                                <input type="text" id="family" name="family" required="required" placeholder="Famille" class="form-control" />
+                                                                <input type="text" name="family" required="required" placeholder="Famille" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-xl-6 p-0">
                                                             <div class="form-group p-0">
-                                                                <input type="text" id="order" name="order" required="required" placeholder="Ordre" class="form-control" />
+                                                                <input type="text" name="order" required="required" placeholder="Ordre" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-xl-6 p-0 pr-xl-3">
                                                             <div class="form-group p-0">
-                                                                <input type="text" id="birdname" name="birdname" required="required" placeholder="Nom de l'éspèce" class="form-control" />
+                                                                <input type="text" name="birdname" required="required" placeholder="Nom de l'éspèce" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-xl-6 p-0">
                                                             <div class="form-group p-0">
-                                                                <input type="text" id="birdnumber" name="birdnumber" required="required" placeholder="Nombre d'oiseaux" class="form-control" />
+                                                                <input type="text" name="birdnumber" required="required" placeholder="Nombre d'oiseaux" class="form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -444,11 +451,11 @@
                                                     </div>
 
                                                     {# AJOUT COMMENTAIRE #}
-                                                    <div class="col-12 px-0" id="addComment" >
+                                                    <div class="col-12 px-0" id="addCommentObservation{{ waitingObservation.id }}" >
                                                         <div class="form_error"></div>
-                                                        <form name="appbundle_comment" method="POST" id="commentForm" class="d-flex flex-row justify-content-between" data-url="{# {{ path('addComment', {'id' : actualite.id} ) }} #}">
+                                                        <form name="appbundle_comment" method="POST" id="commentFormObservation{{ waitingObservation.id }}" class="d-flex flex-row justify-content-between" data-url="{# {{ path('addComment', {'id' : actualite.id} ) }} #}">
                                                             <div class="input-group align-items-center">
-                                                                <input type="text" id="content" name="content" required="required" placeholder="Ajouter un commentaire..." class="form-control" />
+                                                                <input type="text" id="commentContentObservation{{ waitingObservation.id }}" name="content" required="required" placeholder="Ajouter un commentaire..." class="form-control" />
                                                                 <button role="submit" class="input-group-addon text-center" href="#"><span class="fa fa-paper-plane input-group-icon"></span></button>
                                                             </div>
                                                         </form>
@@ -478,4 +485,13 @@
     </section>
 
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRCQ8TMWxrWoGPHoZX6556wOwkB4T-6wM&callback=initMap">
+    </script>
+    <script src="{{ asset('js/jquery-dateFormat.min.js') }}"></script>
+    <script src="{{ asset('js/profile.js') }}"></script>
 {% endblock %}
