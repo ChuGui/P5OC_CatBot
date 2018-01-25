@@ -10,16 +10,16 @@ $(document).ready(function () {
         });
         $('#dialog').dialog({
             modal: true,
-            height: 300,
+            height: 500,
             width: 600,
-            show: {effect: "blind", duration: 800},
-            hide: {effect: "blind", duration: 800},
+            show: {effect: "blind", duration: 400},
+            hide: {effect: "blind", duration: 400},
             clickOutside: true,
             clickOutsideTrigger: '#appbundle_observation_lieuObservation',
             open: function () {
-                var posistion = {lat: 46.221231201571015, lng: 2.9345673322677612}
+                var position = {lat: 46.221231201571015, lng: 2.9345673322677612}
                 var mapOptions = {
-                    center: posistion,
+                    center: position,
                     zoom: 10,
                     styles: [
                         {
@@ -336,6 +336,17 @@ $(document).ready(function () {
                     draggable: true,
                     icon: '../img/marker.png'
                 });
+
+                /*Click and move marker*/
+                google.maps.event.addListener(map, 'click', function(event) {
+                    marker.setPosition(event.latLng);
+                    var markerPosition = marker.getPosition();
+                    var geocoder = new google.maps.Geocoder;
+                    var infoWindow = new google.maps.InfoWindow;
+                    adress = geocodeLatLng(geocoder, map, infoWindow, markerPosition);
+                });
+
+
 
                 /*AFFICHER L'ADRESSE EN FONCTION DES COORDONNÉES CHOISIES PAR L'UTILISATEUR*/
                 marker.addListener('dragend', function (e) {
