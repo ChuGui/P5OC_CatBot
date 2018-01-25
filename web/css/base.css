@@ -959,4 +959,11 @@ label {
     margin-right: auto;
 }
 
+#appbundle_observation_imageFile{
+    background: url('../img/anonymeBird.png') no-repeat center fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+
+}
 
