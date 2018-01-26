@@ -6,6 +6,7 @@ use AppBundle\AppBundle;
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Bird;
 use AppBundle\Entity\Observation;
+use AppBundle\Entity\Taxref;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\BirdFilterType;
@@ -15,6 +16,7 @@ use AppBundle\Form\ChangePseudoType;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\ContactType;
 use AppBundle\Form\ObservationType;
+use AppBundle\Form\TaxrefType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -136,8 +138,10 @@ class MainController extends Controller
     public function profileAction(Request $request)
     {
         $user = $this->getUser();
+        $taxref = new Taxref();
         $em = $this->getDoctrine()->getManager();
 
+        $formTaxref = $this->createForm(TaxrefType::class, $taxref);
         $formChangePseudo = $this->createForm(ChangePseudoType::class, $user);
         $formChangePassword = $this->createForm(ChangePasswordType::class, $user);
         $formChangeEmail = $this->createForm(ChangeEmailType::class, $user);
@@ -160,7 +164,9 @@ class MainController extends Controller
         $waitingObservations = $em->getRepository("AppBundle:Observation")->findAllWaiting();
         $userObservations = $user->getObservations();
 
+
         return $this->render('main/profile.html.twig', array(
+            'formTaxref' => $formTaxref->createView(),
             'formChangePassword' => $formChangePassword->createView(),
             'formChangeEmail' => $formChangeEmail->createView(),
             'formChangePseudo' => $formChangePseudo->createView(),
