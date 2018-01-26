@@ -136,7 +136,9 @@ class BirdController extends Controller
             return new Response('Aucune observation pour cet oiseau', 404);
         }
         $coordinates = $this->getDoctrine()->getRepository('AppBundle:Observation')->find($observationId);
+
         $data = $this->get('jms_serializer')->serialize($coordinates, 'json', SerializationContext::create()->setGroups(array('coordinates')));
+        dump($data);
         if ($coordinates) {
             $response = new JsonResponse($data);
             $response->headers->set('Content-Type', 'json');

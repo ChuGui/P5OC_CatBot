@@ -33,7 +33,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="latitude", type="float")
-     * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates"})
+     * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates", "coordinates"})
      */
     private $latitude;
 
@@ -41,7 +41,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="longitude", type="float")
-     * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates"})
+     * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates", "coordinates"})
      */
     private $longitude;
 

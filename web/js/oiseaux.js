@@ -346,6 +346,7 @@ $(document).ready(function() {
     $('.oneBird').on('click', function(){
 
         var lastObservationId = $(this).attr('data-lastObservationId');
+        console.log(lastObservationId);
         $.ajax({
             url: Routing.generate('coordinate_show'),
             type: "GET",
