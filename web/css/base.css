@@ -552,6 +552,15 @@ label {
     min-height: 52px;
 }
 
+.input-group label {
+    margin-top: -29px;
+    z-index: 1000;
+}
+
+.modal .input-group label {
+    background-color: var(--pampas);
+}
+
 .input-group-addon {
     width: 36px;
     height: 36px;
