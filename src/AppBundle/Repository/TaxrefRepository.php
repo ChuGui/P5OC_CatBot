@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class TaxrefRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllByNameAsc()
+    {
+        $qb = $this->createQueryBuilder('t');
+        $qb->orderBy('t.nomScientifique','ASC');
+        return $qb->getQuery()->getResult();
+    }
 }

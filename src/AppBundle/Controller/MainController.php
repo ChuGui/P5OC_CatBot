@@ -138,10 +138,7 @@ class MainController extends Controller
     public function profileAction(Request $request)
     {
         $user = $this->getUser();
-        $taxref = new Taxref();
         $em = $this->getDoctrine()->getManager();
-
-        $formTaxref = $this->createForm(TaxrefType::class, $taxref);
         $formChangePseudo = $this->createForm(ChangePseudoType::class, $user);
         $formChangePassword = $this->createForm(ChangePasswordType::class, $user);
         $formChangeEmail = $this->createForm(ChangeEmailType::class, $user);
@@ -166,7 +163,6 @@ class MainController extends Controller
 
 
         return $this->render('main/profile.html.twig', array(
-            'formTaxref' => $formTaxref->createView(),
             'formChangePassword' => $formChangePassword->createView(),
             'formChangeEmail' => $formChangeEmail->createView(),
             'formChangePseudo' => $formChangePseudo->createView(),

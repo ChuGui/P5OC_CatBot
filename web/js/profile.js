@@ -339,18 +339,22 @@ $(document).ready(function() {
 
     $('.oneBird').on('click', function(){
 
-        var lastObservationId = $(this).attr('data-lastObservationId');
+        /*-------------------------------------------------------*/
+        /*-----RECUPÉRATION DES COORDONNÉE DE L'OBSERVATION------*/
+        /*-------------------------------------------------------*/
+
+        var waitingObservationId = $(this).attr('data-waitingObservationId');
         $.ajax({
             url: Routing.generate('coordinate_show'),
             type: "GET",
-            data: {id : lastObservationId},
+            data: {id : waitingObservationId},
             dataType: "json",
             success: function(response) {
-                var coordinatesLastObservation = $.parseJSON(response);
-                var latLngLastObservation = new google.maps.LatLng(coordinatesLastObservation.latitude,coordinatesLastObservation.longitude);
-                map[lastObservationId] = new google.maps.Map(document.getElementById('map'+ lastObservationId), {
+                var coordinatesWaitingObservation = $.parseJSON(response);
+                var latLngWaitingObservation = new google.maps.LatLng(coordinatesWaitingObservation.latitude,coordinatesWaitingObservation.longitude);
+                map[waitingObservationId] = new google.maps.Map(document.getElementById('mapObservation'+ waitingObservationId), {
                     zoom:9,
-                    center: latLngLastObservation,
+                    center: latLngWaitingObservation,
                     styles: [
                         {
                             "featureType": "administrative",
@@ -659,28 +663,45 @@ $(document).ready(function() {
 
                 })
 
-                var observationCircle2 = new google.maps.Circle({
-                    strokeColor: '#53399E',
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: '#f8e2a9',
-                    fillOpacity: 0.5,
-                    map: map[lastObservationId],
-                    center: latLngLastObservation,
-                    radius: 10000,
-                    /*title: observation.bird.name*/
-                });
                 /*google.maps.event.addListener(observationCircle, "mouseover", function() {
                     this.getMap().getDiv().setAttribute('title',this.get('title'));
                 })*/
 
+                var waitingObservationMarker = new google.maps.Marker({
+                    position: latLngWaitingObservation,
+                    map: map[waitingObservationId],
+                    icon: '../img/marker.png',
+                });
 
             },
             error: function(xhr, status, error) {
             }
         })
+        /*-------------------------------------------------------*/
+        /*-----RECUPÉRATION DES NOMS SCIENTIFIQUES DE TAXREF------*/
+        /*-------------------------------------------------------*/
+        $.ajax({
+                        url: Routing.generate('showScientificNames'),
+                        type: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            var scientificNames = $.parseJSON(response);
+                            $.each(scientificNames, function (idx, scientificName) {
+                                var name = scientificName.nom_scientifique;
+                                $('#nomScientifiqueSelect'+[waitingObservationId]).append(
+                                    '<option value = "'+ name +'">' + name + '</option>'
+                                )
+                            })
+                        },
+                        error: function(xhr, status, error) {
+                        }
+                })
 
     })
+
+
+
+
 
     /*---------------------*/
     /*----PARTIE VOTE------*/

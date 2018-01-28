@@ -308,7 +308,7 @@
 				{# Liste des validations en attente #}
 	            <div class="row justify-content-xl-center">
 	                {% for waitingObservation in waitingObservations %}
-                        <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 oneBird">
+                        <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 oneBird" data-waitingObservationId = {{ waitingObservation.id }}>
                             <a href="#" data-toggle="modal"
                                    data-target="#waitingObservationModal_{{ loop.index }}">
     	                        <div class="p-2 nao-card mx-auto">
@@ -389,18 +389,13 @@
                                                                 <strong class="fa fa-stack heart-text voteJs heartJs" data-observationId="{{ waitingObservation.id }}" data-userId="{{ user.id }}">{{ waitingObservation.usersVoted|length }}</strong>
                                                             </span>
                                                             <img class="col-12 rounded p-0 mb-5" src="{{ waitingObservation.image }}" alt="image {{ waitingObservation.bird.name }}">
-                                                            <span class="social-modal">
-                                                                <i class="fa fa-facebook fa-3x" aria-hidden="true"></i>
 
-                                                                <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
-
-                                                                <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
-                                                            </span>
                                                         </div>
                                                         <div class="col-12 col-xl-6 p-0 pr-xl-3">
-                                                            {{ form_start(formTaxref) }}
-                                                            {{ form_row(formTaxref.nomScientifique) }}
-                                                            {{ form_end(formTaxref) }}
+                                                            <label id='chooseScientificName' for='nomScientifique{{ waitingObservation.id }}'>Choisissez le nom scientifique</label>
+                                                            <select class="form-control" id='nomScientifiqueSelect{{ waitingObservation.id }}'  size="10">
+
+                                                            </select>
                                                         </div>
                                                         {#<div class="col-12 col-xl-6 p-0">
                                                             <div class="form-group p-0">
@@ -421,8 +416,10 @@
                                                 </div>
                                                 <div class="col-12 col-lg-6">
                                                     {# Google Map #}
-                                                    <div class="col-12 rounded p-0 mb-5">
-                                                        <div class="rounded" style="height: 350px; background-color: #999999" id="mapObservation{{ waitingObservation.id }}"></div>
+                                                    <div class="col-12 rounded p-0 mb-5" id="googlemapsObservation{{ waitingObservation.id }}" data-observationId="{{ waitingObservation.id }}">
+                                                        <div class="rounded" style="height: 350px; background-color: #999999" id="mapObservation{{ waitingObservation.id }}">
+
+                                                        </div>
                                                     </div>
 
 
