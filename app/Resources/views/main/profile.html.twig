@@ -78,7 +78,7 @@
                                  class="rounded-circle" id="profileImg">
                             <div class="text-left mt-0 ml-3 mt-md-3">
                                 <h3 class="mb-2 mb-md-3">{{ user.username|capitalize }}</h3>
-                                <span>Niveau X : {{ user.level | capitalize }}</span>
+                                <span>Niveau 12 : {{ user.level | capitalize }}</span>
                             </div>
                         </div>
                     </div>
@@ -160,15 +160,13 @@
                                         <div class="d-flex flex-column align-self-start">
                                         	<h3 class="align-self-start text-left">{{ userObservation.bird.name }}</h3>
                                         	<p class="align-self-start m-0">{{ userObservation.user.username | capitalize }}</p>
-                                            <p>
-                                                {% if userObservation.isValidated == true %}
-                                                    <strong><span style="color: #aacd4e">Observation validée !</span></strong>
-                                                {% else %}<span style="color: coral"><strong>Observation en attende de validation...</strong></span>
-                                                {% endif %}
-                                            </p>
 
                                         </div>
-                                        <div class="align-self-end">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            {% if userObservation.isValidated == true %}
+                                                <strong><span style="color: #aacd4e">Observation validée !</span></strong>
+                                            {% else %}<span style="color: coral"><strong>Attente de validation...</strong></span>
+                                            {% endif %}
 											<span class="fa-stack fa">
 												<i class="fa fa-heart fa-stack-2x" aria-hidden="true"></i>
 												<strong class="fa fa-stack heart-text">{{ userObservation.usersVoted|length }}</strong>

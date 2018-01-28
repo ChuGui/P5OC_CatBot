@@ -93,12 +93,20 @@
                     <div class="row justify-content-center">
                         <div class="col-12 col-sm-6">
                             {{ form_row(formBirdFilter.plumage, {
-                                'label' : 'Plumage'
+                                'label' : 'Plumage',
+                                'attr' : {
+                                    'placeholder' : 'Plumage',
+                                    'class': 'form-control'
+                                }
                             }) }}
                         </div>
                         <div class="col-12 col-sm-6">
                             {{ form_row(formBirdFilter.pattes, {
-                                'label' : 'Pattes'
+                                'label' : 'Pattes',
+                                'attr' : {
+                                    'placeholder' : 'Pattes',
+                                    'class': 'form-control'
+                                }
                             }) }}
                         </div>
                         <div class="col-12 col-sm-6">
