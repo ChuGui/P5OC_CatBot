@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Taxref
@@ -25,6 +26,7 @@ class Taxref
      * @var string
      *
      * @ORM\Column(name="nom_scientifique", type="string", length=255)
+     * @Groups({"scientificNames"})
      */
     private $nomScientifique;
 
