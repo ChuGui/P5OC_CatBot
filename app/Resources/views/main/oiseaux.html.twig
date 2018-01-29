@@ -167,8 +167,8 @@
                                                             {% else %}
                                                                 <img class="col-12 rounded p-0 mb-5" src="{{ asset(observation.image) }}" alt="image {{ observation.bird.name }}"> <span class="fa-stack fa fa-2x mr-3">
                                                                 {#VOTE#}
-                                                                <i class="fa fa-heart fa-stack-2x voteJs" id="voteFor{{ observation.id }}" aria-hidden="true" data-observationId="{{ observation.id }}" data-userId="{{ user.id }}" ></i>
-                                                                <strong class="fa fa-stack heart-text voteJs heartJs" data-observationId="{{ observation.id }}" data-userId="{{ user.id }}">{{ observation.usersVoted|length }}</strong>
+                                                                <i class="fa fa-heart fa-stack-2x voteJs" id="voteFor{{ observation.id }}" aria-hidden="true" data-observationId="{{ observation.id }}" data-userId="{% if user %}{{ user.id }}{% else %}none{% endif %}" ></i>
+                                                                <strong class="fa fa-stack heart-text voteJs heartJs" data-observationId="{{ observation.id }}" data-userId="{% if user %}{{ user.id }}{% else %}none{% endif %}">{{ observation.usersVoted|length }}</strong>
                                                             </span>
                                                             {% endif %}
                                                         </div>
@@ -205,9 +205,15 @@
                                                         </div>
 
                                                         {# AJOUT COMMENTAIRE #}
+                                                        {% if user %}
                                                         <div class="col-12 px-0" id="addComment" >
                                                             {% include 'form/commentFormObservation.html.twig' %}
                                                         </div>
+                                                            {% else %}
+                                                        <div class="col-12 px-0" id="connectez-vous" >
+                                                                <p><a href="{{ path('security_login') }}">Connectez-vous pour ajouter un commentaire</a></p>
+                                                        </div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             {% endif %}
