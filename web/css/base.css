@@ -992,7 +992,7 @@ label {
     background-repeat: no-repeat;
 }
 
-.observation-popup {
+.ui-dialog.observation-popup {
     z-index: 1001;
 }
 
