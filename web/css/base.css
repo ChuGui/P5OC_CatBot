@@ -696,10 +696,10 @@ label {
     }
     50% {
         transform: scale(1.05);
-    }   
+    }
     100% {
         transform: scale(0.95);
-    }           
+    }
 }
 
 .nao-card .heart-text {
@@ -766,8 +766,8 @@ label {
 
 .fa-stack:hover {
     animation-name: pulse;
-    -webkit-animation-name: pulse;  
-    animation-duration: 1.5s;   
+    -webkit-animation-name: pulse;
+    animation-duration: 1.5s;
     -webkit-animation-duration: 1.5s;
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
