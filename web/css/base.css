@@ -448,7 +448,8 @@ button:focus {
 }
 
 .heading span {
-    font-family: Raleway-Regular;
+    font-family: var(--raleway);
+    font-weight: 400;
     font-size: 12px;
     letter-spacing: 1px;
     line-height: 17px;
@@ -742,7 +743,8 @@ label {
     }
     .nao-card h3,
     .nao-card h3>a {
-        font-family: Raleway-Regular;
+        font-family: var(--raleway);
+        font-weight: 400;
         font-size: 14px;
         color: var(--black);
         letter-spacing: 1.5px;
