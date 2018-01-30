@@ -12,6 +12,7 @@ $(document).ready(function () {
             modal: true,
             height: 500,
             width: 600,
+            dialogClass: 'observation-popup',
             show: {effect: "blind", duration: 400},
             hide: {effect: "blind", duration: 400},
             clickOutside: true,
@@ -416,3 +417,4 @@ myStyle = [
         ]
     }
 ]
+
