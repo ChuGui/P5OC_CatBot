@@ -35,7 +35,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Length(min=3, minMessage="Votre pseudo doit comporter au moins 3 lettres")
      * @ORM\Column(type="string", unique=true)
-     * @Groups({"group1","comment_observation", "show_coordinates_no_validates"})
+     * @Groups({"group1","comment_observation", "show_coordinates_no_validates", "comment_actualite"})
      */
     private $username;
 
@@ -65,7 +65,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string")
-     * @Groups({"group1","comment_observation"})
+     * @Groups({"group1","comment_observation", "comment_actualite"})
      */
     private $profilePicture;
 
@@ -422,14 +422,14 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @return ArrayCollection|Actualite[]
      */
-    public function getActualite()
+    public function getActualites()
     {
         return $this->actualites;
     }
     /**
      * @param mixed $actualites
      */
-    public function setActualites(Observation $actualites)
+    public function setActualites(Actualite $actualites)
     {
         $this->actualites = $actualites;
     }
@@ -441,6 +441,16 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->observationVotedFor;
     }
+
+    /**
+     * @param mixed $actualites
+     */
+    public function setObservationsVotedFor(Observation $observationVotedFor)
+    {
+        $this->observationVotedFor = $observationVotedFor;
+    }
+
+
 
 
 

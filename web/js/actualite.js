@@ -2,22 +2,47 @@ $(document).ready(function() {
 
     $('#commentForm').on('submit', function(e) {
         e.preventDefault();
-        var $form = $(e.currentTarget);
-
-        var $content = $form.find('input[name="content"]').val();
-
+        var commentInput = $('#content');
+        var content = commentInput.val();
+        var actualiteId = $('#addComment').attr('data-actualiteId');
+        console.log(content);
+        console.log(actualiteId);
 
         $.ajax({
-            url: $form.data('url'),
-            type: "POST",
-            dataType: "application/json",
-            data: { content: $content },
-            success: function(data) {
-                console.log(data)
-            },
-            error: function(){
+            url: Routing.generate('add_comment_actualite'),
+            type: "GET",
+            data: {actualiteId : actualiteId, commentContent: content},
+            dataType: "json",
+            success: function(response) {
+                commentInput.val('');
+                $('#commentDisplay').empty();
+                var comments = $.parseJSON(response);
+                $.each(comments, function(idx, comment) {
+                    var content = comment.content;
+                    var userImage = comment.user.profile_picture;
+                    var username = comment.user.username;
+                    var updateAt = comment.update_at;
+                    var prettyDate = $.format.prettyDate(updateAt);
+                    $('#commentDisplay').append(
+                        '<div class="d-flex flex-nowrap align-items-center comm m-3">'
+                        +   '<img src="../img/'+ userImage +'" alt="" class="comment-avatar rounded-circle">'
+                        +   '<div class="col-12 pl-3 text-left">'
+                        +   '<div class="col-12 px-0">'
+                        +   '<p class="mb-1 font-weight-bold">' + username + '</p>'
+                        +   '</div>'
+                        +   '<div class="col-12 px-0">'
+                        +   '<p class="mb-0 text-left">' + content + '</p>'
+                        +   '</div>'
+                        +   '<div class="col-12 px-0">'
+                        +   '<span class="time">' + prettyDate + '</span>'
+                        +   '</div>'
+                        +   '</div>'
+                        +   '</div>'
+                    )
 
-                console.log('erreurData ');
+                })
+            },
+            error: function(xhr, status, error) {
             }
         })
 

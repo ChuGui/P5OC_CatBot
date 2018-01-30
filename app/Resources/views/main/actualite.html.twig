@@ -58,7 +58,7 @@
     <section id="commentSection">
         <div class="container">
 
-            <div class="flex-wrap flex-column comm-display p-0">
+            <div class="flex-wrap flex-column comm-display p-0" id="commentDisplay">
                 {% for comment in comments %}
 
                     <div class="d-flex flex-nowrap align-items-center comm m-3">
@@ -83,7 +83,7 @@
         {#FORMULAIRE COMMENT#}
         {#-------------------#}
             <div class="row mt-4 align-items-center">
-                <div class="col-12 col-lg-9" id="addComment" >
+                <div class="col-12 col-lg-9" id="addComment" data-actualiteId = {{ actualite.id }}>
                     {% include 'form/commentForm.html.twig' %}
                 </div>
                 <div class="col-12 col-lg-3 mt-4 mt-lg-0 social-comment d-flex justify-content-center justify-content-lg-end">
@@ -107,5 +107,6 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/jquery-dateFormat.min.js') }}"></script>
     <script src="{{ asset('js/actualite.js') }}"></script>
 {% endblock %}

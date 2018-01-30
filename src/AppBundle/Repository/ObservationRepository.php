@@ -31,6 +31,17 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findValidatedByBirdsId($birdsId)
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb
+            ->andWhere('o.isValidated = true')
+            ->andWhere('o.bird IN (:birdsId)')
+            ->setParameter('birdsId', $birdsId)
+            ->orderBy('o.updateAt','DESC');
+        return $qb->getQuery()->getResult();
+    }
+
     public function findAllNoValidated()
     {
         $qb = $this->createQueryBuilder('o');

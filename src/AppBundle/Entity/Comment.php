@@ -21,7 +21,7 @@ class Comment
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"comment_observation"})
+     * @Groups({"comment_observation","comment_actualite"})
      */
     private $id;
 
@@ -29,7 +29,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=255)
-     * @Groups({"comment_observation"})
+     * @Groups({"comment_observation","comment_actualite"})
      */
     private $content;
 
@@ -37,7 +37,7 @@ class Comment
      * @var \DateTime
      *
      * @ORM\Column(name="updateAt", type="datetime")
-     * @Groups({"comment_observation"})
+     * @Groups({"comment_observation", "comment_actualite"})
      */
     private $updateAt;
 
@@ -45,7 +45,7 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"comment_observation"})
+     * @Groups({"comment_observation", "comment_actualite"})
      */
     private $user;
 

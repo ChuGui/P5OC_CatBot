@@ -48,13 +48,13 @@
                         <a class="input-group-addon text-center" href="#searhBird"><i class="fa fa-search input-group-icon"></i></a>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-2">
+                <div class="col-12 col-md-6 col-lg-2 ">
                     {{ form_start(formBirdFilter) }}
                     {{ form_row(formBirdFilter.plumage, {
                         'label' : 'Plumage',
                         'attr' : {
                             'placeholder' : 'Plumage',
-                            'class': 'form-control'
+                            'class': 'form-control filter'
                         }
                     }) }}
                 </div>
@@ -63,7 +63,7 @@
                         'label' : 'Forme du bec',
                         'attr' : {
                             'placeholder' : 'Forme du bec',
-                            'class': 'form-control'
+                            'class': 'form-control filter'
                         }
                     }) }}
                 </div>
@@ -72,7 +72,7 @@
                         'label' : 'Pattes',
                         'attr' : {
                             'placeholder' : 'Pattes',
-                            'class': 'form-control'
+                            'class': 'form-control filter'
                         }
                     }) }}
                 </div>
@@ -81,7 +81,7 @@
                         'label' : 'Couleur du bec',
                         'attr' : {
                             'placeholder' : 'Couleur du bec',
-                            'class': 'form-control'
+                            'class': 'form-control filter'
                         }
                     }) }}
                     {{ form_end(formBirdFilter) }}
@@ -92,10 +92,10 @@
             </div>
 
             {# Liste des oiseaux dans la bdd #}
-            <div class="row justify-content-xl-center mt-3">
+            <div class="row justify-content-xl-center mt-3" id="birdDisplay">
                 {% for bird in birds %}
                     {# Carte oiseau observé #}
-                    <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 oneBird" data-lastObservationId="{% for observation in bird.observations %}{% if loop.first %}{{ observation.id }}{% endif %}{% endfor %}">
+                    <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 oneBird" data-lastObservationId="{% for observation in bird.observations %}{% if loop.first %}{{ observation.id }}{% endif %}{% endfor %}" data-plumage="{{ bird.plumage }}" data-formebec="{{ bird.formeBec }}" data-couleurbec="{{ bird.couleurBec }}" data-pattes="{{ bird.pattes }}" data-birdId="{{ bird.id }}" data-birdName="{{ bird.name }}">
                         <a href="#" data-toggle="modal"
                                data-target="#showDetailsModal{{ bird.id }}" >
                             <div class="p-2 nao-card mx-auto">
@@ -240,6 +240,7 @@
     </script>
     <script src="{{ asset('js/jquery-dateFormat.min.js') }}"></script>
     <script src="{{ asset('js/oiseaux.js') }}"></script>
+    <script src="{{ asset('js/filterOiseaux.js') }}"></script>
 {% endblock %}
 
 

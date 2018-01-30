@@ -54,8 +54,8 @@ AppBundle\Entity\Comment:
 
 AppBundle\Entity\Observation:
     observation_{1..3}:
-        latitude: <latitude($min = -90, $max = 90)>
-        longitude: <longitude($min = -180, $max = 180)>
+        latitude: <latitude($min = 44, $max = 50)>
+        longitude: <longitude($min = -4, $max = 7)>
         isValidated: <boolean($chanceOfGettingTrue = 50)>
         updateAt: <dateTimeBetween("-19 days", "now")>
         bird: '@bird_*'
@@ -66,8 +66,8 @@ AppBundle\Entity\Observation:
         observedAt: <dateTimeBetween("-40 days", "-20 days")>
 
     observation_{4..30}:
-        latitude: <latitude($min = -90, $max = 90)>
-        longitude: <longitude($min = -180, $max = 180)>
+        latitude: <latitude($min = 44, $max = 50)>
+        longitude: <longitude($min = -4, $max = 7)>
         isValidated: <boolean($chanceOfGettingTrue = 50)>
         updateAt: <dateTimeBetween("-19 days", "now")>
         bird: '@bird_*'

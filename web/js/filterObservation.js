@@ -48,7 +48,4 @@ $(document).ready(function() {
         })
     });
 
-    $('.oiseaux').on('click', 'div' , function(){
-        console.log('hello');
-    })
 });

@@ -111,14 +111,14 @@ class BirdController extends Controller
     }
 
     /**
-     * @Route("/coordinates", name="coordinates_show", options = {"expose"=true})
+     * @Route("/coordinates", name="observations_coordinates_show", options = {"expose"=true})
      * @Method({"GET"})
      */
     public function coordinatesShowAction()
     {
 
-        $coordinates = $this->getDoctrine()->getRepository('AppBundle:Observation')->findAllValidated();
-        $data = $this->get('jms_serializer')->serialize($coordinates, 'json', SerializationContext::create()->setGroups(array('show_coordinates')));
+        $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')->findAllValidated();
+        $data = $this->get('jms_serializer')->serialize($observations, 'json', SerializationContext::create()->setGroups(array('show_coordinates')));
         $response = new JsonResponse($data);
         $response->headers->set('Content-Type', 'json');
         return $response;
@@ -138,7 +138,6 @@ class BirdController extends Controller
         $coordinates = $this->getDoctrine()->getRepository('AppBundle:Observation')->find($observationId);
 
         $data = $this->get('jms_serializer')->serialize($coordinates, 'json', SerializationContext::create()->setGroups(array('coordinates')));
-        dump($data);
         if ($coordinates) {
             $response = new JsonResponse($data);
             $response->headers->set('Content-Type', 'json');
@@ -165,4 +164,6 @@ class BirdController extends Controller
             return new Response('Aucune observation avec cet ID', 404);
         }
     }
+
+    /**/
 }

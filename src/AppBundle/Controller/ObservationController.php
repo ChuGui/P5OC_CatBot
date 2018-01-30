@@ -22,25 +22,30 @@ class ObservationController extends Controller
      */
     public function voteAction(Request $request)
     {
-        $userId = $request->query->get('userId');
-        $observationId = $request->query->get('observationId');
-        $em = $this->getDoctrine()->getManager();
-        $observation = $em->getRepository('AppBundle:Observation')->find($observationId);
-        $userVoted = $em->getRepository('AppBundle:User')->find($userId);
-        if ($observation == null) {
-            return new Response("Pas d'observation avec cet id", 404);
-        } elseif ($observation->getUsersVoted()->contains($userVoted)) {
-            $observation->removeUsersVoted($userVoted);
-            $em->flush();
-            $nbVotes = count($observation->getUsersVoted());
-            return new Response($nbVotes, 200);
+        if ($request->isXmlHttpRequest()) {
+            $userId = $request->query->get('userId');
+            $observationId = $request->query->get('observationId');
+            $em = $this->getDoctrine()->getManager();
+            $observation = $em->getRepository('AppBundle:Observation')->find($observationId);
+            $userVoted = $em->getRepository('AppBundle:User')->find($userId);
+            if ($observation == null) {
+                return new Response("Pas d'observation avec cet id", 404);
+            } elseif ($observation->getUsersVoted()->contains($userVoted)) {
+                $observation->removeUsersVoted($userVoted);
+                $em->flush();
+                $nbVotes = count($observation->getUsersVoted());
+                return new Response($nbVotes, 200);
+            } else {
+                $observation->addUsersVoted($userVoted);
+                $em->persist($observation);
+                $em->flush();
+                $nbVotes = count($observation->getUsersVoted());
+                return new Response($nbVotes, 200);
+            }
         } else {
-            $observation->addUsersVoted($userVoted);
-            $em->persist($observation);
-            $em->flush();
-            $nbVotes = count($observation->getUsersVoted());
-            return new Response($nbVotes, 200);
+            return $this->redirect($this->generateUrl('homepage'));
         }
+
 
     }
 
@@ -81,13 +86,40 @@ class ObservationController extends Controller
      * @Route("/coordinates_waiting_observations", name="coordinates_show_waiting_observations", options = {"expose"=true})
      * @Method({"GET"})
      */
-    public function coordinatesShowAction()
+    public function coordinatesShowAction(Request $request)
     {
 
-        $coordinates = $this->getDoctrine()->getRepository('AppBundle:Observation')->findAllNoValidated();
-        $data = $this->get('jms_serializer')->serialize($coordinates, 'json', SerializationContext::create()->setGroups(array('show_coordinates_no_validates')));
-        $response = new JsonResponse($data);
-        $response->headers->set('Content-Type', 'json');
-        return $response;
+        if ($request->isXmlHttpRequest()) {
+            $coordinates = $this->getDoctrine()->getRepository('AppBundle:Observation')->findAllNoValidated();
+            $data = $this->get('jms_serializer')->serialize($coordinates, 'json', SerializationContext::create()->setGroups(array('show_coordinates_no_validates')));
+            $response = new JsonResponse($data);
+            $response->headers->set('Content-Type', 'json');
+            return $response;
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
+    }
+
+    /**
+     * @Route("/coordinates_id_observation", name="validated_observations_coordinates_show_id", options = {"expose"=true})
+     * @Method({"GET"})
+     */
+    public function coordinatesObservationIdAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $birdsId = $request->query->get('birdsId');
+            $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')->findValidatedByBirdsId($birdsId);
+            $observations = $this->get('jms_serializer')->serialize($observations, 'json', SerializationContext::create()->setGroups(array('show_coordinates')));
+            if ($observations) {
+                $response = new JsonResponse($observations);
+                $response->headers->set('Content-Type', 'json');
+                return $response;
+            } else {
+                return new Response('Aucune observation avec cet ID', 404);
+            }
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
     }
 }

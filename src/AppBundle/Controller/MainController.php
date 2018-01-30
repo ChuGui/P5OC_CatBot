@@ -104,33 +104,6 @@ class MainController extends Controller
         ));
     }
 
-    /**
-     * @Route("add/comment/{id}", requirements={"id" = "\d+"}, name="addComment")
-     * @Method({"GET"})
-     */
-    public function addCommentAction(Request $request, $id)
-    {
-        $user = $this->getUser();
-        if ($request->isXmlHttpRequest()) {
-            if ($user === null) {
-                throw $this->createNotFoundException("Aucun utilisateur n'est connecté");
-            } else {
-                $em = $this->getDoctrine()->getManager();
-                $comments = $em->getRepository("AppBundle:Comment")->findByActualite($id);
-                dump($comments);
-                $data = $this->get('serializer')->serialize($comments, 'json');
-                dump($data);
-                $response = new Response($data);
-                $response->headers->set('Content-Type', 'application/json');
-                dump($response);
-                return $response;
-            }
-        } else {
-
-            return new Response("Erreur: Ce n'est pas une requête AJAX", 400);
-        }
-    }
-
 
     /**
      * @Route("/profile", name="profile")
