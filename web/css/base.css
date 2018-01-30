@@ -992,3 +992,7 @@ label {
     background-repeat: no-repeat;
 }
 
+.observation-popup {
+    z-index: 1001;
+}
+
