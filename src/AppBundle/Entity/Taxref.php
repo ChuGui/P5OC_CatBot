@@ -66,6 +66,19 @@ class Taxref
     private $lastObservation;
 
     /**
+     * @ORM\OneToMany(targetEntity="Observation", mappedBy="taxref", cascade={"remove"})
+     * @ORM\OrderBy({"updateAt" = "DESC"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $observations;
+
+    public function __construct()
+    {
+        $this->observations = new ArrayCollection();
+    }
+
+
+    /**
      * Get id
      *
      * @return int
@@ -217,6 +230,21 @@ class Taxref
     public function getLastObservation()
     {
         return $this->lastObservation;
+    }
+
+    /**
+     * @return ArrayCollection|Comment[]
+     */
+    public function getComments() {
+        return $this->comments;
+    }
+
+    /**
+     * @param mixed $comments
+     */
+    public function setObservation(Observation $observation)
+    {
+        $this->observations = $observation;
     }
 }
 

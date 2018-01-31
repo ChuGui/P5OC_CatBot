@@ -31,7 +31,7 @@ class Observation
 
     /**
      * @var float
-     *
+     * @Assert\NotNull()
      * @ORM\Column(name="latitude", type="float")
      * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates", "coordinates"})
      */
@@ -39,7 +39,7 @@ class Observation
 
     /**
      * @var float
-     *
+     * @Assert\NotNull()
      * @ORM\Column(name="longitude", type="float")
      * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates", "coordinates"})
      */
@@ -62,6 +62,7 @@ class Observation
 
     /**
      * @ORM\Column(name="observedAt", type="datetime")
+     * @Assert\DateTime()
      */
     private $observedAt;
 
@@ -74,6 +75,10 @@ class Observation
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
      * @var File
+     * @Assert\File(
+     *     maxSize = "2M",
+     *     mimeTypes = {"image/jpeg", "image/png"}
+     * )
      */
     private $imageFile;
 
@@ -87,8 +92,17 @@ class Observation
      */
     private $bird;
 
+
+
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull()
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 10000,
+     *      minMessage = "minimum {{ limit }} oiseau",
+     *      maxMessage = "Maximum d'oiseaux : {{ limit }}"
+     * )
      */
     private $qtyBirds;
 
@@ -117,6 +131,12 @@ class Observation
      */
     private $usersVoted;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Taxref", inversedBy="observations")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $taxref;
+
     public function __construct()
     {
         $this->IsValidated = false;
@@ -124,6 +144,7 @@ class Observation
         $this->vote = 0;
         $this->usersVoted = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->image = "anonymeBird.png";
     }
 
     /**
@@ -255,6 +276,22 @@ class Observation
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param mixed $taxref
+     */
+    public function setTaxref(Taxref $taxref)
+    {
+        $this->taxref = $taxref;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaxref()
+    {
+        return $this->taxref;
     }
 
     /**

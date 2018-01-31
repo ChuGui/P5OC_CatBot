@@ -53,7 +53,6 @@ class ObservationType extends AbstractType
                     'class' => 'upload-image'
                 ),
                 'required' => false,
-                'allow_delete' => true,
             ))
             ->add('latitude', HiddenType::class)
             ->add('longitude', HiddenType::class)

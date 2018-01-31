@@ -31,9 +31,9 @@ class BirdFilterType extends AbstractType
                 'attr' => array('class' =>'filter'),
                 'choices' => array (
                     'jaunes' => 'jaunes',
-                    'noires'=> 'noires',
+                    'noir'=> 'noir',
                     'marrons' => 'marrons',
-                    'bleues' => 'bleues'
+                    'gris' => 'gris'
                 )
             ))
             ->add('couleurBec', ChoiceType::class,array(
