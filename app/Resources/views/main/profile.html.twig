@@ -74,7 +74,7 @@
                 	{# Informations utilisateur #}
                     <div class="col-12 col-md-6">
                         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-start">
-                            <img src="{{ asset('img/'~ user.profilePicture) }}" alt="photo de profil"
+                            <img src="{{ asset('img/profilePictures'~ user.profilePicture) }}" alt="photo de profil"
                                  class="rounded-circle" id="profileImg">
                             <div class="text-left mt-0 ml-3 mt-md-3">
                                 <h3 class="mb-2 mb-md-3">{{ user.username|capitalize }}</h3>
@@ -99,22 +99,22 @@
                     <h3 class="mb-3 text-center">Récompenses</h3>
                     <div class="d-flex flex-wrap justify-content-center">
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('img/recompense/reward1.png') }}" alt="récompense1">
+                        	<img class="recompense" src="{{ asset('img/elements/recompense/reward1.png') }}" alt="récompense1">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('img/recompense/reward2.png') }}" alt="récompense2">
+                        	<img class="recompense" src="{{ asset('img/elements/recompense/reward2.png') }}" alt="récompense2">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('img/recompense/reward3.png') }}" alt="récompense3">
+                        	<img class="recompense" src="{{ asset('img/elements/recompense/reward3.png') }}" alt="récompense3">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('img/recompense/reward4.png') }}" alt="récompense4">
+                        	<img class="recompense" src="{{ asset('img/elements/recompense/reward4.png') }}" alt="récompense4">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('img/recompense/reward5.png') }}" alt="récompense5">
+                        	<img class="recompense" src="{{ asset('img/elements/recompense/reward5.png') }}" alt="récompense5">
                         </div>
                         <div class="d-flex justify-content-center col-6 col-sm-4 col-lg-2 p-0 mb-4">
-                        	<img class="recompense" src="{{ asset('img/recompense/reward6.png') }}" alt="récompense6">
+                        	<img class="recompense" src="{{ asset('img/elements/recompense/reward6.png') }}" alt="récompense6">
                         </div>
 
                     </div>
@@ -141,12 +141,12 @@
                             	<div class="d-flex flex-nowrap">
                                     <div class="bird-img-wrapper">
                                         {% if userObservation.image == null %}
-                                            <img src="{{ asset('img/anonymeBird.png') }}"
+                                            <img src="{{ asset('img/observations/anonymeBird.png') }}"
                                                                        alt="prise par {{ userObservation.user.username }}"
                                                                        class="bird-img">
                                             {% else %}
 
-                                                <img src="{{ asset(userObservation.image) }}"
+                                                <img src="{{ asset('img/observations/'~userObservation.image) }}"
                                                      alt="prise par {{ userObservation.user.username }}"
                                                      class="bird-img">
                                         {% endif %}
@@ -201,7 +201,7 @@
                 	    {# FORMULAIRE DE CHANGEMENT D'AVATAR #}
                 	    <div class="col-12 col-md-6 mb-5">
                 	        <div class="d-flex flex-column align-items-center">
-                	            <img src="{{ asset('img/'~ user.profilePicture) }}" alt="photo de profil" class="rounded-circle" id="profileImg">
+                	            <img src="{{ asset('img/profilePictures'~ user.profilePicture) }}" alt="photo de profil" class="rounded-circle" id="profileImg">
                 	            <div class="text-center mt-3">
                 	                <span>Changer la photo de profil</span>
                 	            </div>
@@ -314,7 +314,7 @@
     	                        <div class="p-2 nao-card mx-auto">
     	                        	<div class="d-flex flex-nowrap">
     	                                <div class="bird-img-wrapper">
-    	                                    <img src="{{ waitingObservation.image }}"
+    	                                    <img src="img/observations/{{ waitingObservation.image }}"
     	                                         alt="prise par {{ waitingObservation.user.username }}"
     	                                         class="bird-img">
     	                                </div>
@@ -360,7 +360,12 @@
 
                                     <div class="modal-body py-0 mb-5">
                                         <div class="flex-wrap media align-items-center justify-content-center px-0 px-md-3">
-                                            <img class="col-12 col-md-4 rounded mr-md-4 p-0" src="{{ waitingObservation.bird.image }}" alt="image {{ waitingObservation.bird.name }}">
+                                            {% if waitingObservation.bird.image %}
+                                                <img class="col-12 col-md-4 rounded mr-md-4 p-0" src="{{asset('img/observations/'~waitingObservation.bird.image)  }}" alt="image {{ waitingObservation.bird.name }}">
+                                            {% else %}
+                                                <img class="col-12 col-md-4 rounded mr-md-4 p-0" src="{{asset('img/observations/anonymeBird.png')  }}" alt="image {{ waitingObservation.bird.name }}">
+                                            {% endif %}
+
                                             <div class="media-body col-12 col-md-8 p-0">
                                                 <h3 class="mt-5 mt-md-0 text-center text-md-left">DESCRIPTION</h3>
                                                 <p class="text-justify">{{ waitingObservation.bird.description }}</p>
@@ -373,13 +378,14 @@
                                             <h3>OBSERVATION</h3>
                                             <div class="col-12">
                                                 <div class="row align-items-center justify-content-start my-5">
-                                                    <img src="{{ asset('img/'~waitingObservation.user.profilePicture) }}" alt="Photo de {{ waitingObservation.user.username }}" class="observation-avatar rounded-circle">
+                                                    <img src="{{ asset('img/profilePictures/'~waitingObservation.user.profilePicture) }}" alt="Photo de {{ waitingObservation.user.username }}" class="observation-avatar rounded-circle">
                                                     <div class="justify-content-start ml-3">
                                                         <p class="text-left mb-1 user-name">{{ waitingObservation.user.username|capitalize }}</p>
                                                         <span class="text-left time">{{ waitingObservation.updateAt|ago }}</span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-12 col-lg-6">
                                                     <div class="d-flex flex-wrap align-items-center justify-content-between">
@@ -388,9 +394,13 @@
                                                                 <i class="fa fa-heart fa-stack-2x voteJs" id="voteFor{{ waitingObservation.id }}" aria-hidden="true" data-observationId="{{ waitingObservation.id }}" data-userId="{{ user.id }}"></i>
                                                                 <strong class="fa fa-stack heart-text voteJs heartJs" data-observationId="{{ waitingObservation.id }}" data-userId="{{ user.id }}">{{ waitingObservation.usersVoted|length }}</strong>
                                                             </span>
-                                                            <img class="col-12 rounded p-0 mb-5" src="{{ waitingObservation.image }}" alt="image {{ waitingObservation.bird.name }}">
-
+                                                            {% if waitingObservation.image %}
+                                                                <img class="col-12 rounded p-0 mb-5" src="{{asset('img/observations/'~waitingObservation.image)  }}" alt="image {{ waitingObservation.bird.name }}">
+                                                            {% else %}
+                                                                <img class="col-12 rounded p-0 mb-5" src="{{asset('img/observations/anonymeBird.png')  }}" alt="image {{ waitingObservation.bird.name }}">
+                                                            {% endif %}
                                                         </div>
+
                                                         <div class="col-12 col-xl-6 p-0 pr-xl-3">
                                                             <label id='chooseScientificName' for='nomScientifique{{ waitingObservation.id }}'>Choisissez le nom scientifique</label>
                                                             <select class="form-control" id='nomScientifiqueSelect{{ waitingObservation.id }}'  size="10">
@@ -428,7 +438,7 @@
                                                     <div class="flex-wrap flex-column comm-display p-0 mb-4" id="Js-observationCommentsDisplay{{ waitingObservation.id }}">
                                                         {% for comment in waitingObservation.comments %}
                                                             <div class="d-flex flex-nowrap align-items-center comm m-3">
-                                                                <img src="{{ asset('img/'~comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
+                                                                <img src="{{ asset('img/profilePictures'~comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
                                                                 <div class="col-12 pl-3 text-left">
                                                                     <div class="col-12 px-0">
                                                                         <p class="mb-1 font-weight-bold">{{ comment.user.username|capitalize }}</p>

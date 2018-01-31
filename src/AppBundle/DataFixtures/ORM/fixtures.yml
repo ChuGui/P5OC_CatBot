@@ -60,7 +60,7 @@ AppBundle\Entity\Observation:
         updateAt: <dateTimeBetween("-19 days", "now")>
         bird: '@bird_*'
         user: '@user_1'
-        image: <imageUrl($width = 640, $height = 480, 'cats')>
+        image: observation_<numberBetween($min = 1, $max = 10)>.jpg
         description: <sentence($nbWords = 20, $variableNbWords = true)>
         qtyBirds: <randomDigitNotNull()>
         observedAt: <dateTimeBetween("-40 days", "-20 days")>
@@ -72,7 +72,7 @@ AppBundle\Entity\Observation:
         updateAt: <dateTimeBetween("-19 days", "now")>
         bird: '@bird_*'
         user: '@user_*'
-        image: <imageUrl($width = 640, $height = 480, 'cats')>
+        image: observation_<numberBetween($min = 1, $max = 10)>.jpg
         description: <sentence($nbWords = 20, $variableNbWords = true)>
         qtyBirds: <randomDigitNotNull()>
         observedAt: <dateTimeBetween("-40 days", "-20 days")>
@@ -81,7 +81,7 @@ AppBundle\Entity\Bird:
      bird_{1..10}:
          name: <firstNameFemale()>
          url: <url()>
-         image: <imageUrl($width = 640, $height = 480, 'cats')>
+         image: oiseau_<numberBetween($min = 1, $max = 10)>.jpg
          description: <sentence($nbWords = 80, $variableNbWords = true)>
          pattes: 'gris'
          formeBec: 'pointu'
@@ -92,7 +92,7 @@ AppBundle\Entity\Bird:
      bird_{11..15}:
               name: <firstNameFemale()>
               url: <url()>
-              image: <imageUrl($width = 640, $height = 480, 'cats')>
+              image: oiseau_<numberBetween($min = 1, $max = 10)>.jpg
               description: <sentence($nbWords = 80, $variableNbWords = true)>
               pattes: 'noir'
               formeBec: 'long'
@@ -103,7 +103,7 @@ AppBundle\Entity\Bird:
      bird_{16..20}:
               name: <firstNameFemale()>
               url: <url()>
-              image: <imageUrl($width = 640, $height = 480, 'cats')>
+              image: oiseau_<numberBetween($min = 1, $max = 10)>.jpg
               description: <sentence($nbWords = 80, $variableNbWords = true)>
               pattes: 'marrons'
               formeBec: 'long'
