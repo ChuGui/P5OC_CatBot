@@ -28,7 +28,7 @@ $(document).ready(function() {
                             '<div class="p-2 nao-card mx-auto mb-3 oiseau-help">'
                         +   '<div class="d-flex flex-nowrap align-items-center">'
                         +   '<div class="bird-img-wrapper">'
-                        +   '<img src="'+ bird.image +'"class="bird-img">'
+                        +   '<img src="../img/birds/'+ bird.image +'"class="bird-img">'
                         +   '</div>'
                         +   '<div class="col d-flex flex-column justify-content-between">'
                         +   '<div class="d-flex flex-column align-self-start">'
