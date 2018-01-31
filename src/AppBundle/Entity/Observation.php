@@ -31,7 +31,6 @@ class Observation
 
     /**
      * @var float
-     * @Assert\NotNull()
      * @ORM\Column(name="latitude", type="float")
      * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates", "coordinates"})
      */
@@ -39,7 +38,6 @@ class Observation
 
     /**
      * @var float
-     * @Assert\NotNull()
      * @ORM\Column(name="longitude", type="float")
      * @Groups({"show_coordinates", "lastObservation", "show_coordinates_no_validates", "coordinates"})
      */
@@ -73,12 +71,13 @@ class Observation
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image", nullable=true)
      * @var File
      * @Assert\File(
      *     maxSize = "2M",
      *     mimeTypes = {"image/jpeg", "image/png"}
      * )
+     *
      */
     private $imageFile;
 
@@ -96,7 +95,7 @@ class Observation
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotNull()
+     * @Assert\NotBlank()
      * @Assert\Range(
      *      min = 1,
      *      max = 10000,

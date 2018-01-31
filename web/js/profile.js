@@ -27,7 +27,7 @@ function setMarkers() {
                 var observationMarker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    icon: '../img/marker.png',
+                    icon: '../img/elements/marker.png',
                     animation: google.maps.Animation.DROP,
                     title: "Observation de: " + observation.user.username + " . Oiseaux : " + observation.bird.name,
                 });
@@ -71,7 +71,7 @@ function getCoordoneesWaitingObservation() {
                 position: latLngWaitingObservation,
                 map: map[waitingObservationId],
                 animation: google.maps.Animation.DROP,
-                icon: '../img/marker.png',
+                icon: '../img/elements/marker.png',
             });
         },
         error: function (xhr, status, error) {
@@ -105,6 +105,9 @@ function vote(){
 
 $(document).on('click', '.heart', vote);
 
+/*-------------------------------------------------------*/
+/*---------------AJOUT DE COMMENTAIRES-------------------*/
+/*-------------------------------------------------------*/
 
 $('.commentFormObservation_JS').on('submit', function (e) {
     e.preventDefault();
@@ -149,33 +152,41 @@ $('.commentFormObservation_JS').on('submit', function (e) {
             commentInput.val('une erreur est survenue');
         }
     })
-
 })
 
 /*-------------------------------------------------------*/
 /*-----RECUPÉRATION DES NOMS SCIENTIFIQUES DE TAXREF-----*/
 /*-------------------------------------------------------*/
-/*$.ajax({
-    url: Routing.generate('showScientificNames'),
-    type: "GET",
-    dataType: "json",
-    success: function (response) {
-        var scientificNames = $.parseJSON(response);
-        $.each(scientificNames, function (idx, scientificName) {
-            var name = scientificName.nom_scientifique;
-            $('#nomScientifiqueSelect' + [waitingObservationId]).append(
-                '<option value = "' + name + '">' + name + '</option>'
-            )
-        })
-    },
-    error: function (xhr, status, error) {
-    }
-})
-
+function getScientificNames(){
+    var waitingObservationId = $(this).attr('data-waitingObservationId');
+    $.ajax({
+        url: Routing.generate('showScientificNames'),
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            var scientificNames = $.parseJSON(response);
+            $.each(scientificNames, function (idx, scientificName) {
+                var name = scientificName.nom_scientifique;
+                $('#nomScientifiqueSelect' + [waitingObservationId]).append(
+                    '<option value = "' + name + '">' + name + '</option>'
+                )
+            })
+        },
+        error: function (xhr, status, error) {
+        }
+    })
 }
+$(document).on('click', '.oneBird', getScientificNames);
 
-)*/
+/*-------------------------------------------------------*/
+/*-----VALIDATION DE L'OBSERVATION-----------------------*/
+/*-------------------------------------------------------*/
 
+
+
+/*-------------------------------------------------------*/
+/*-----STYLE DE LA GOOGLE MAP----------------------------*/
+/*-------------------------------------------------------*/
 myStyle = [
     {
         "featureType": "administrative",

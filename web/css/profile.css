@@ -84,3 +84,7 @@
     height: 100px;
     max-width: 100px;
 }
+
+select.form-control{
+    background-color: #FFFFFF;
+}
