@@ -1,6 +1,6 @@
 
 .banner {
-  background: linear-gradient(-225deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%), url("../img/bg_oiseau.jpg");
+  background: linear-gradient(-225deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%), url("../img/elements/bg_oiseau.jpg");
   color: white;
   text-align: center;
   height: 105vh;

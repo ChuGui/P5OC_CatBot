@@ -16,7 +16,7 @@ $(document).ready(function() {
             beforeSend: function() {
                     $("#aidez-moi").empty();
                     $('.searching').hide('slow');
-                    $('#aidez-moi').append("<img src='../img/Loading_icon.gif'  alt='loading' height='100' width='100' class='ml-3 mt-3 searching'></img>");
+                    $('#aidez-moi').append("<img src='../img/elements/Loading_icon.gif'  alt='loading' height='100' width='100' class='ml-3 mt-3 searching'></img>");
             },
             success: function(response) {
                 $('#aidez-moi').empty();
