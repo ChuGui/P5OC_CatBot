@@ -433,8 +433,15 @@
                                                         <div class="col-12 col-xl-6 p-0 pr-xl-3">
                                                             <div class="col-12 col-xl-6 p-0 pr-xl-3">
                                                                 <p><strong>Selectionnez son nom scientifique :</strong></p>
+
                                                                 <select class="form-control select-bird-name" id="nomScientifiqueSelect{{ waitingObservation.id }}" size="10">
                                                                     <option value="{{ waitingObservation.bird.taxref.nomScientifique }}">{{ waitingObservation.bird.taxref.nomScientifique }}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">Choisissez son nom scientifique</label>
+                                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                                    <option value="{{ waitingObservation.bird.taxref.id }}">{{ waitingObservation.bird.taxref.nomScientifique }}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
