@@ -122,4 +122,46 @@ class ObservationController extends Controller
             return $this->redirect($this->generateUrl('homepage'));
         }
     }
+
+    /**
+     * @Route("/delete_observation", name="delete_observation", options = {"expose"=true})
+     * @Method({"GET"})
+     */
+    public function deleteObservationAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $observationId = $request->query->get('observationId');
+            $observation = $em->getRepository('AppBundle:Observation')->find($observationId);
+            $em->remove($observation);
+            $em->flush();
+            return new Response('Observation supprimée avec succès', 200);
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+    }
+
+    /**
+ * @Route("/validate_observation", name="validate_observation", options = {"expose"=true})
+ * @Method({"GET"})
+ */
+    public function validateObservationAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $observationId = $request->query->get('observationId');
+            $taxrefId = $request->query->get('observationId');
+            $observation = $em->getRepository('AppBundle:Observation')->find($observationId);
+            $taxref = $em->getRepository('AppBundle:Taxref')->find($taxrefId);
+            $observation->setIsValidated(true);
+            $observation->setTaxref($taxref);
+            $em->persist($observation);
+            $em->flush();
+            return new Response('Observation valider avec succès', 200);
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+    }
+
+
 }

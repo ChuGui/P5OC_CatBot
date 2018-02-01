@@ -225,12 +225,14 @@
                             <h4 class="text-center mb-4">Modifier votre pseudo</h4>
                             <div class="row">
                                 <div class="col">
-                                    {{ form_start(formChangePseudo) }}
-                                    {{ form_row(formChangePseudo.username) }}
-                                    {{ form_end(formChangePseudo) }}
-                                    <button type="submit" class="btn btn-primary text-uppercase d-flex mx-auto"
-                                            formnovalidate>MODIFIER
+                                    {{ form_start(formChange) }}
+                                    {{ form_row(formChange.username) }}
+                                    {{ form_row(formChange.email) }}
+
+                                    <button type="submit" class="btn btn-primary text-uppercase d-flex mx-auto">
+                                        MODIFIER
                                     </button>
+                                    {{ form_end(formChange) }}
                                 </div>
                             </div>
                         </div>
@@ -240,8 +242,8 @@
 
                     <div class="row mt-5">
 
-                        {# FORMULAIRE DE CHANGEMENT D'EMAIL #}
-                        {# <div class="col-12 col-md-6">
+                        {# FORMULAIRE DE CHANGEMENT DE MOT DE PASSE #}
+                         <div class="col-12 col-md-6">
                             <h4 class="text-center mb-4">Modifier votre mot de passe</h4>
                             <div class="col">
                                 {{ form_start(formChangePassword) }}
@@ -268,37 +270,10 @@
                                 </button>
                                 {{ form_end(formChangePassword) }}
                             </div>
-                        </div> #}
 
-                        {# FORMULAIRE DE CHANGEMENT DE MOT DE PASSE #}
-                        <div class="col-12 col-md-6">
-                            <h4 class="text-center mb-4">Modifier votre mot de passe</h4>
-                            <div class="col">
-                                {#{{ form_start(formChangePassword) }}
-                                {{ form_row(formChangePassword._password,{
-                                    'label' : 'Ancien mot de passe',
-                                    'attr' : {
-                                        'placeholder' : "Ancien mot de passe"
-                                    },
-                                    'class' : ''
-                                }) }}
-                                {{ form_row(formChangePassword.plainPassword.first, {
-                                    'label' : 'Nouveau mot de passe',
-                                    'attr' : {
-                                        'placeholder' : "Nouveau mot de passe"
-                                    }
-                                }) }}
-                                {{ form_row(formChangePassword.plainPassword.second, {
-                                    'label' : 'Confirmez votre mot de passe',
-                                    'attr' : {
-                                        'placeholder' : "Confirmez votre mot de passe"
-                                    }
-                                }) }}
-                                <button type="submit" class="btn btn-primary d-flex mx-auto" formnovalidate>MODIFIER
-                                </button>
-                                {{ form_end(formChangePassword) }}#}
-                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -326,7 +301,7 @@
                         <div class="col-12 col-sm-10 col-lg-6 col-xxl-5 mx-auto mx-xl-0 mb-4 oneBird"
                              data-waitingObservationId= {{ waitingObservation.id }}>
                             <a href="#" data-toggle="modal"
-                               data-target="#waitingObservationModal_{{ loop.index }}">
+                               data-target="#waitingObservationModal_{{ waitingObservation.id }}">
                                 <div class="p-2 nao-card mx-auto">
                                     <div class="d-flex flex-nowrap">
                                         <div class="bird-img-wrapper">
@@ -359,7 +334,7 @@
                         {#----MODALE---#}
                         {#-OBSERVATION-#}
                         {#-------------#}
-                        <div id="waitingObservationModal_{{ loop.index }}" class="modal fade"
+                        <div id="waitingObservationModal_{{ waitingObservation.id }}" class="modal fade"
                              role="dialog">
                             <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
                                 <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
@@ -422,26 +397,19 @@
 
                                                         </div>
                                                         <div class="col-12 col-xl-6 p-0 pr-xl-3">
-                                                            <div class="col-6">
+                                                            <div class="col">
                                                                 <p><strong>Nombre d'oiseaux observés</strong> : {{ waitingObservation.qtyBirds }}</p>
                                                             </div>
-                                                            <div class="col-6">
+                                                            <div class="col">
                                                                 <p><strong>Description : </strong> {{ waitingObservation.description }}</p>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-12 col-xl-6 p-0 pr-xl-3">
-                                                            <div class="col-12 col-xl-6 p-0 pr-xl-3">
-                                                                <p><strong>Selectionnez son nom scientifique :</strong></p>
-
-                                                                <select class="form-control select-bird-name" id="nomScientifiqueSelect{{ waitingObservation.id }}" size="10">
-                                                                    <option value="{{ waitingObservation.bird.taxref.nomScientifique }}">{{ waitingObservation.bird.taxref.nomScientifique }}</option>
-                                                                </select>
-                                                            </div>
+                                                                <h4>Choisissez son nom scientifique</h4>
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">Choisissez son nom scientifique</label>
-                                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                                    <option value="{{ waitingObservation.bird.taxref.id }}">{{ waitingObservation.bird.taxref.nomScientifique }}</option>
+                                                                <select class="form-control" id="nomScientifiqueSelect{{ waitingObservation.id }}" data-observationId="{{ waitingObservation.id }}">
+                                                                    <option class="nsOption" value="{{ waitingObservation.bird.taxref.id }}">{{ waitingObservation.bird.taxref.nomScientifique }}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -495,65 +463,11 @@
                                             <div class="col-12 mt-4 p-0">
                                                 <div class="d-flex flex-wrap justify-content-around justify-content-sm-between align-items-center">
                                                     <a href="#"
-                                                       class="text-center btn btn-outline my-3 my-sm-0" id="refuser-observation-{{ waitingObservation.id }}" data-toggle="modal" data-target="#refusObservation{{ waitingObservation.id }}">Refuser</a>
-                                                    {#-----MODAL REFUSER -----#}
-                                                    <div class="modal modal-alert pt-5 px-1" id="refuserObservation{{ waitingObservation.id }}">
-                                                        <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
-                                                            <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
-                                                                &times;
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
-                                                                <div class="d-flex flex-column">
-                                                                    <div class="modal-title heading justify-content-center mb-3">
-                                                                        <h2>Refuser cette observation ?</h2>
-                                                                        <p>L'observation sera définitivement supprimée!</p>
+                                                       class="text-center btn btn-outline my-3 my-sm-0 refuser-JS" id="refuser-observation-{{ waitingObservation.id }}" data-observationId="{{ waitingObservation.id }}">Refuser</a>
 
-                                                                    </div>
-                                                                    <div class="text-center mx-auto">
-                                                                        <i class="fa fa-trash fa-5x mb-3"></i>
-                                                                        <p>Félicitation ! Et merci pour votre aide précieuse</p>
-                                                                    </div>
-                                                                    <div class="d-flex flex-column flex-sm-row justify-content-around mx-auto">
-                                                                        <button class="btn btn-outline" data-dismiss="modal">Annuler</button>
-                                                                        <button class="btn btn-primary ml-0 ml-sm-3 mt-3 mt-sm-0" type="submit" id="delete-observation-{{ waitingObservation.id }}">Confirmer</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {#-----FIN MODAL REFUSER-----#}
 
                                                     <a href="#"
-                                                       class="text-center btn btn-primary my-3 my-sm-0" id="valider-observation-{{ waitingObservation.id }}" data-toggle="modal" data-target="#validerObservation{{ waitingObservation.id }}">Valider</a>
-                                                    {#-----MODAL VALIDER -----#}
-                                                    <div class="modal modal-alert pt-5 px-1" id="validerObservation{{ waitingObservation.id }}">
-                                                        <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
-                                                            <button type="button" class="close-button text-center mb-1" data-dismiss="#validerObservation{{ waitingObservation.id }}">
-                                                                &times;
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
-                                                                <div class="d-flex flex-column">
-                                                                    <div class="modal-title heading justify-content-center mb-3">
-                                                                        <h2>Valider cette observation ?</h2>
-                                                                        <p>Vous êtes sur le point de valider une observation !</p>
-                                                                    </div>
-                                                                    <div class="text-center mx-auto">
-                                                                        <i class="fa fa-smile-o fa-5x mb-3"></i>
-                                                                        <p>Félicitation ! Et merci pour votre aide précieuse</p>
-                                                                    </div>
-                                                                    <div class="d-flex flex-column flex-sm-row justify-content-around mx-auto">
-                                                                        <button class="btn btn-outline" data-dismiss="modal">Annuler</button>
-                                                                        <button class="btn btn-primary ml-0 ml-sm-3 mt-3 mt-sm-0" type="submit" id="valider-observation-{{ waitingObservation.id }}">Confirmer</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {#-----FIN MODAL ACCEPTE-----#}
+                                                       class="text-center btn btn-primary my-3 my-sm-0 valider-JS" id="valider-observation-{{ waitingObservation.id }}" data-observationid="{{ waitingObservation.id }}">Valider</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -561,10 +475,137 @@
                                 </div>
                             </div>
                         </div>
+
+                        {#-----MODAL VALIDER -----#}
+                        <div class="modal modal-alert pt-5 px-1" id="validerObservation{{ waitingObservation.id }}">
+                            <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+                                <button type="button" class="close-button text-center mb-1" data-dismiss="#validerObservation{{ waitingObservation.id }} data-observationId="{{ waitingObservation.id }}">
+                                &times;
+                                </button>
+                            </div>
+                            <div class="modal-dialog">
+                                <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
+                                    <div class="d-flex flex-column">
+                                        <div class="modal-title heading justify-content-center mb-3">
+                                            <h2>Valider cette observation ?</h2>
+                                            <p>Vous êtes sur le point de valider une observation !</p>
+                                        </div>
+                                        <div class="text-center mx-auto">
+                                            <i class="fa fa-smile-o fa-5x mb-3"></i>
+                                            <p>Félicitation ! Et merci pour votre aide précieuse</p>
+                                        </div>
+                                        <div class="d-flex flex-column flex-sm-row justify-content-around mx-auto">
+                                            <button class="btn btn-outline" data-dismiss="modal">Annuler</button>
+                                            <button class="btn btn-primary ml-0 ml-sm-3 mt-3 mt-sm-0" type="submit" id="valider-observation-{{ waitingObservation.id }}">Confirmer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#-----FIN MODAL VALIDER-----#}
+                        {#-----MODAL REFUSER -----#}
+                        <div class="modal modal-alert pt-5 px-1" id="refuserObservation{{ waitingObservation.id }}">
+                            <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+                                <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
+                                    &times;
+                                </button>
+                            </div>
+                            <div class="modal-dialog">
+                                <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
+                                    <div class="d-flex flex-column">
+                                        <div class="modal-title heading justify-content-center mb-3">
+                                            <h2>Refuser cette observation ?</h2>
+                                            <p>L'observation sera définitivement supprimée!</p>
+                                        </div>
+                                        <div class="text-center mx-auto">
+                                            <i class="fa fa-trash fa-5x mb-3"></i>
+                                            <p>Félicitation ! Et merci pour votre aide précieuse</p>
+                                        </div>
+                                        <div class="d-flex flex-column flex-sm-row justify-content-around mx-auto">
+                                            <button class="btn btn-outline" data-dismiss="modal">Annuler</button>
+                                            <button class="btn btn-primary ml-0 ml-sm-3 mt-3 mt-sm-0 confirmerSupprimer-JS" type="submit" id="delete-observation-{{ waitingObservation.id }}" data-observationId="{{ waitingObservation.id }}">Confirmer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#-----FIN MODAL REFUSER-----#}
                     {% endfor %}
                 </div>
             </div>
         </div>
+        {#-----MODAL D'ERREUR -----#}
+        <div class="modal modal-alert pt-5 px-1" id="modal-error">
+            <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+                <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-dialog">
+                <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
+                    <div class="d-flex flex-column">
+                        <div class="modal-title heading justify-content-center mb-3">
+                            <h2>Une erreur est survenue</h2>
+                            <p>Si cette erreur persiste, veuillez contacter l'administration du site</p>
+                            <a href="{{ path('contact') }}">Envoyer un message</a>
+
+                        </div>
+                        <div class="text-center mx-auto">
+                            <i class="fa fa-exclamation-circle fa-5x mb-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#-----FIN MODAL ERREUR-----#}
+
+        {#-----MODAL DE SUCCESS DELETE-----#}
+        <div class="modal modal-alert pt-5 px-1" id="modal-success-delete">
+            <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+                <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-dialog">
+                <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
+                    <div class="d-flex flex-column">
+                        <div class="modal-title heading justify-content-center mb-3">
+                            <h2>Félécitation</h2>
+                            <p>L'observation à bien été supprimée</p>
+                        </div>
+                        <div class="text-center mx-auto">
+                            <i class="fa fa-smile fa-5x mb-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#-----FIN MODAL SUCCESS DELETE-----#}
+
+        {#-----MODAL DE SUCCESS VALIDATE-----#}
+        <div class="modal modal-alert pt-5 px-1" id="modal-success-validate">
+            <div class="close-wrap d-flex mx-auto align-items-center justify-content-center">
+                <button type="button" class="close-button text-center mb-1" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-dialog">
+                <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
+                    <div class="d-flex flex-column">
+                        <div class="modal-title heading justify-content-center mb-3">
+                            <h2>Félécitation</h2>
+                            <p>L'observation à bien été validée !</p>
+                            <p>Bonne continuation sur notre site !</p>
+                        </div>
+                        <div class="text-center mx-auto">
+                            <i class="fa fa-smile fa-5x mb-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#-----FIN MODAL SUCCESS VALIDATE-----#}
+
 
 
     </section>

@@ -1,5 +1,6 @@
 /*-------------------------------------------------------*/
 /*-----AJOUT DE LA GOOGLE MAP DANS VALIDATION------------*/
+
 /*-------------------------------------------------------*/
 function setUpGoogleMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -13,6 +14,7 @@ $(document).on('click', '#validations-tab', setUpGoogleMap)
 
 /*-------------------------------------------------------*/
 /*-----AJOUT DES MARKERS---------------------------------*/
+
 /*-------------------------------------------------------*/
 function setMarkers() {
     $.ajax({
@@ -47,6 +49,7 @@ $(document).on('click', '#validations-tab', setMarkers)
 
 /*-------------------------------------------------------*/
 /*-----RECUPÉRATION DES COORDONNÉE DE L'OBSERVATION------*/
+
 /*-------------------------------------------------------*/
 
 function getCoordoneesWaitingObservation() {
@@ -78,14 +81,16 @@ function getCoordoneesWaitingObservation() {
         }
     })
 }
+
 $(document).on('click', '.oneBird', getCoordoneesWaitingObservation);
 
 
 /*-------------------------------------------------------*/
 /*---------------VOTE POUR UNE OBSERVATION---------------*/
+
 /*-------------------------------------------------------*/
 
-function vote(){
+function vote() {
     $('.voteJs').on('click', function () {
         var userId = $(this).attr('data-userId');
         var observationId = $(this).attr('data-observationId');
@@ -157,7 +162,7 @@ $('.commentFormObservation_JS').on('submit', function (e) {
 /*-------------------------------------------------------*/
 /*-----RECUPÉRATION DES NOMS SCIENTIFIQUES DE TAXREF-----*/
 /*-------------------------------------------------------*/
-function getScientificNames(){
+function getScientificNames() {
     var waitingObservationId = $(this).attr('data-waitingObservationId');
     $.ajax({
         url: Routing.generate('showScientificNames'),
@@ -167,8 +172,9 @@ function getScientificNames(){
             var scientificNames = $.parseJSON(response);
             $.each(scientificNames, function (idx, scientificName) {
                 var name = scientificName.nom_scientifique;
+                var taxrefId = scientificName.id;
                 $('#nomScientifiqueSelect' + [waitingObservationId]).append(
-                    '<option value = "' + name + '">' + name + '</option>'
+                    '<option value = "' + taxrefId + '">' + name + '</option>'
                 )
             })
         },
@@ -176,11 +182,77 @@ function getScientificNames(){
         }
     })
 }
+
 $(document).on('click', '.oneBird', getScientificNames);
+
+/*-------------------------------------------------------*/
+/*----------REFUS DE L'OBSERVATION-----------------------*/
+/*-------------------------------------------------------*/
+
+function showModalRefuser() {
+    var observationId = $(this).attr('data-observationId');
+    $('#waitingObservationModal_' + observationId).modal('toggle');
+    $("#refuserObservation" + observationId).modal('toggle');
+}
+
+function confirmerSupprimer() {
+    var observationId = $(this).attr('data-observationId');
+
+    $.ajax({
+        url: Routing.generate('delete_observation'),
+        type: "GET",
+        data: {observationId: observationId},
+        success: function (response) {
+            console.log(response);
+            $("#refuserObservation" + observationId).modal('toggle');
+            $('.oneBird[data-waitingobservationid = ' + observationId + ' ]').hide('slow');
+            $('#modal-success-delete').modal('toggle');
+        },
+        error: function (xhr, status, error) {
+            $("#refuserObservation" + observationId).modal('toggle');
+            $("#modal-error").modal('toggle');
+        }
+    })
+};
+
+$(document).on('click', '.refuser-JS', showModalRefuser);
+$(document).on('click', '.confirmerSupprimer-JS', confirmerSupprimer);
+
+
 
 /*-------------------------------------------------------*/
 /*-----VALIDATION DE L'OBSERVATION-----------------------*/
 /*-------------------------------------------------------*/
+
+function showModalValider() {
+    var observationId = $(this).attr('data-observationid');
+    var taxrefId = $('#nomScientifiqueSelect'+observationId).find(':checked').val();
+    $.ajax({
+        url: Routing.generate('validate_observation'),
+        type: "GET",
+        data: {observationId: observationId, taxrefId: taxrefId},
+        success: function (response) {
+            $('#waitingObservationModal_' + observationId).modal('toggle');
+            $('#modal-success-validate').modal('toggle');
+            $('.oneBird[data-waitingobservationid = ' + observationId + ' ]').hide('slow');
+        },
+        error: function (xhr, status, error) {
+            $("#validerObservation" + observationId).modal('toggle');
+            $("#modal-error").modal('toggle');
+        }
+    })
+    /*$('#waitingObservationModal_' + observationId).modal('toggle');
+    $("#validerObservation" + observationId).modal('toggle');*/
+}
+
+$(document).on('click', '.valider-JS', showModalValider);
+
+
+/*-------------------------------------------------------*/
+/*--------MODIFIER SON PSEUDO----------------------------*/
+/*-------------------------------------------------------*/
+
+
 
 
 

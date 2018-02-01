@@ -10,9 +10,8 @@ use AppBundle\Entity\Taxref;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\BirdFilterType;
-use AppBundle\Form\ChangeEmailType;
 use AppBundle\Form\ChangePasswordType;
-use AppBundle\Form\ChangePseudoType;
+use AppBundle\Form\ChangeType;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\ContactType;
 use AppBundle\Form\ObservationType;
@@ -59,7 +58,8 @@ class MainController extends Controller
             $observation->setIsValidated(false);
             $em->persist($observation);
             $em->flush();
-            $this->addFlash('notice', 'Félicitation votre observation à correctement été ajoutée. Elle sera étudiée par nos naturalistes');
+            $this->addFlash('success', 'Félicitation votre observation à correctement été ajoutée. Elle sera étudiée par nos naturalistes');
+            return $this->redirectToRoute('observation');
         }
         $bird = new Bird();
         $formBirdFilter = $this->createForm(BirdFilterType::class, $bird);
@@ -112,21 +112,13 @@ class MainController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $formChangePseudo = $this->createForm(ChangePseudoType::class, $user);
+        $formChange = $this->createForm(ChangeType::class, $user);
         $formChangePassword = $this->createForm(ChangePasswordType::class, $user);
-        $formChangeEmail = $this->createForm(ChangeEmailType::class, $user);
-        $formChangeEmail->handleRequest($request);
-        if ($formChangeEmail->isValid() && $formChangeEmail->isSubmitted()) {
+        $formChange->handleRequest($request);
+        if($formChange->isValid() && $formChange->isSubmitted()) {
             $em->persist($user);
             $em->flush();
-            $this->addFlash('notice','Votre Email à bien été modifié :)');
-            return $this->redirectToRoute('profile');
-        }
-        $formChangePseudo->handleRequest($request);
-        if($formChangePseudo->isValid() && $formChangePseudo->isSubmitted()) {
-            $em->persist($user);
-            $em->flush();
-            $this->addFlash('success','Votre Pseudo à bien été modifié :)');
+            $this->addFlash('success','Votre profile  à bien été mis à jour :)');
             return $this->redirectToRoute('profile');
         }
 
@@ -137,8 +129,7 @@ class MainController extends Controller
 
         return $this->render('main/profile.html.twig', array(
             'formChangePassword' => $formChangePassword->createView(),
-            'formChangeEmail' => $formChangeEmail->createView(),
-            'formChangePseudo' => $formChangePseudo->createView(),
+            'formChange' => $formChange->createView(),
             'user' => $user,
             'userObservations' => $userObservations,
             'observations' => $observations,
