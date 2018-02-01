@@ -16,15 +16,15 @@
 input#appbundle_observation_imageFile_file {
     display: inline-block;
     width: 100%;
-    padding: 130px 0 0 0;
+    padding: 0 30px 0 0;
 	min-height: 100px;
     overflow: hidden;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background: url('../img/elements/addBirdImage.png') center center no-repeat;
+    background: url('../img/elements/addBirdImage.png') bottom center no-repeat;
     border-radius: 25px;
-    background-size: 90px;
+    background-size: 80px;
     height: 130px !important;
 }
 
