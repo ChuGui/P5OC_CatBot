@@ -381,14 +381,14 @@
                                                 <div class="col-12 col-lg-6">
                                                     <div class="d-flex flex-wrap align-items-center justify-content-between">
                                                         <div class="col-12 rounded p-0 mb-5">
-                                                            <span class="fa-stack fa fa-2x">
+                                                            <span class="fa-stack fa fa-2x voteJs" data-observationid="{{ waitingObservation.id }}" data-userid="{{ user.id }}">
                                                                 <i class="fa fa-heart fa-stack-2x voteJs"
                                                                    id="voteFor{{ waitingObservation.id }}"
                                                                    aria-hidden="true"
-                                                                   data-observationId="{{ waitingObservation.id }}"
+                                                                   data-observationid="{{ waitingObservation.id }}"
                                                                    data-userId="{{ user.id }}"></i>
                                                                 <strong class="fa fa-stack heart-text voteJs heartJs"
-                                                                        data-observationId="{{ waitingObservation.id }}"
+                                                                        data-observationid="{{ waitingObservation.id }}"
                                                                         data-userId="{{ user.id }}">{{ waitingObservation.usersVoted|length }}</strong>
                                                             </span>
                                                             <img class="col-12 rounded p-0 mb-5"
@@ -570,14 +570,11 @@
                 <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
                     <div class="d-flex flex-column">
                         <div class="modal-title heading justify-content-center mb-3">
-                            <h2>Félécitation</h2>
+                            <h2>Félicitations</h2>
                             <div class="text-center mx-auto">
                                 <i class="fa fa-smile-o fa-5x mb-3"></i>
                             </div>
                             <p>L'observation à bien été supprimée</p>
-                        </div>
-                        <div class="text-center mx-auto">
-                            <i class="fa fa-smile-o fa-5x mb-3"></i>
                         </div>
                     </div>
                 </div>
@@ -596,7 +593,7 @@
                 <div class="modal-content col-12 col-sm-10 col-md-8 col-xl-5 py-4 mx-auto">
                     <div class="d-flex flex-column">
                         <div class="modal-title heading justify-content-center mb-3">
-                            <h2>Félécitation</h2>
+                            <h2>Félicitations</h2>
                             <p>L'observation à bien été validée !</p>
                         <div class="text-center mx-auto">
                             <i class="fa fa-smile-o fa-5x mb-3"></i>

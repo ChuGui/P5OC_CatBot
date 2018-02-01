@@ -87,13 +87,13 @@ $(document).on('click', '.oneBird', getCoordoneesWaitingObservation);
 
 /*-------------------------------------------------------*/
 /*---------------VOTE POUR UNE OBSERVATION---------------*/
-
 /*-------------------------------------------------------*/
 
 function vote() {
-    $('.voteJs').on('click', function () {
-        var userId = $(this).attr('data-userId');
-        var observationId = $(this).attr('data-observationId');
+        var userId = $(this).attr('data-userid');
+        var observationId = $(this).attr('data-observationid');
+        console.log('user: ' + userId);
+        console.log('observationId' + observationId);
 
         $.ajax({
             url: Routing.generate('vote'),
@@ -105,10 +105,9 @@ function vote() {
                 console.log(response)
             }
         })
-    })
 }
 
-$(document).on('click', '.heart', vote);
+$(document).on('click', '.voteJs', vote);
 
 /*-------------------------------------------------------*/
 /*---------------AJOUT DE COMMENTAIRES-------------------*/
