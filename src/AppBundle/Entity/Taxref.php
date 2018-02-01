@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Taxref
@@ -67,7 +68,7 @@ class Taxref
     private $lastObservation;
 
     /**
-     * @ORM\OneToMany(targetEntity="Observation", mappedBy="taxref", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Observation", mappedBy="taxref")
      * @ORM\OrderBy({"updateAt" = "DESC"})
      * @ORM\JoinColumn(nullable=true)
      */
@@ -234,18 +235,18 @@ class Taxref
     }
 
     /**
-     * @return ArrayCollection|Comment[]
+     * @return ArrayCollection|Observation[]
      */
-    public function getComments() {
-        return $this->comments;
+    public function getObservations() {
+        return $this->observations;
     }
 
     /**
-     * @param mixed $comments
+     * @param mixed $observation
      */
     public function setObservation(Observation $observation)
     {
-        $this->observations = $observation;
+        $this->observation = $observation;
     }
 }
 
