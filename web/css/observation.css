@@ -16,7 +16,7 @@
 input#appbundle_observation_imageFile_file {
     display: inline-block;
     width: 100%;
-    padding: 120px 0 0 0;
+    padding: 130px 0 0 0;
 	min-height: 100px;
     overflow: hidden;
     -webkit-box-sizing: border-box;
@@ -24,5 +24,14 @@ input#appbundle_observation_imageFile_file {
     box-sizing: border-box;
     background: url('../img/elements/addBirdImage.png') center center no-repeat;
     border-radius: 25px;
+    background-size: 90px;
+    height: 130px !important;
 }
 
+#appbundle_observation_imageFile .form-group {
+    border-radius: 25px !important;
+    background: none;
+    border: none;
+    margin-bottom: 0;
+    min-height: 0;
+}
