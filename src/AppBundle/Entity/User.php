@@ -138,6 +138,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->actualites = new ArrayCollection();
         $this->observations = new ArrayCollection();
         $this->observationsVotedFor = new ArrayCollection();
+        $this->newsletter = false;
     }
     // needed by the security system
 
@@ -449,10 +450,4 @@ class User implements AdvancedUserInterface, \Serializable
     {
         $this->observationVotedFor = $observationVotedFor;
     }
-
-
-
-
-
-
 }
