@@ -572,6 +572,7 @@ label {
     background: var(--purple);
     border-radius: 25px !important;
     margin-right: 6px;
+    border: none;
 }
 
 .input-group-addon:hover {
