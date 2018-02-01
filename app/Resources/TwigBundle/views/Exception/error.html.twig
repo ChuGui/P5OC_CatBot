@@ -1,0 +1,12 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+    <h1>Il s'est passé une erreur</h1>
+
+    <p>
+        La reqûete éffectuée n'a pas fonctionnée.<a href="{{ path('homepage') }}">Retour à l'accueil</a>.
+    </p>
+    <p>
+        Si cette erreur persiste n'hésitez pas à nous contacter. <a href="{{ path('contact') }}"> Contactez-nous</a>.
+    </p>
+
+{% endblock %}
