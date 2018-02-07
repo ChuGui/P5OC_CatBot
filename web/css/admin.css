@@ -46,3 +46,8 @@
 .actualites {
     min-height: 50px;
 }
+
+.correspondPas{
+    display: none;
+}
+

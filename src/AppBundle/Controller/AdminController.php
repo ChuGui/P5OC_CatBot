@@ -54,14 +54,47 @@ class AdminController extends Controller
 
 
     /**
-     * @Route("/admin/delete_user/{id}", name="delete_user", requirements={"id" = "\d+"})
+     * @Route("/admin/delete_user", name="delete_user", options={"expose"=true})
+     * @Method("GET")
      */
-    public function deleteUserAction($id) {
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('AppBundle:User')->find($id);
-        $em->remove($user);
-        $em->flush();
-        return new Response("L'utilisateur a correctement été supprimée", 200);
+    public function deleteUserAction(Request $request) {
+
+       if ($request->isXmlHttpRequest()) {
+           $userId = $request->query->get('userId');
+           $em = $this->getDoctrine()->getManager();
+           $user = $em->getRepository('AppBundle:User')->find($userId);
+           if ($user) {
+               $em->remove($user);
+               $em->flush();
+               return new Response('Utilisateur bien supprimé', 200);
+           } else {
+               return new Response('Aucun utilisateur avec cet ID', 404);
+           }
+       } else {
+           return $this->redirect($this->generateUrl('homepage'));
+       }
+    }
+
+    /**
+     * @Route("/admin/delete_actualite", name="delete_actualite", options={"expose"=true})
+     * @Method("GET")
+     */
+    public function deleteActualiteAction(Request $request) {
+
+        if ($request->isXmlHttpRequest()) {
+            $actualiteId = $request->query->get('actualiteId');
+            $em = $this->getDoctrine()->getManager();
+            $actualite = $em->getRepository('AppBundle:Actualite')->find($actualiteId);
+            if ($actualite) {
+                $em->remove($actualite);
+                $em->flush();
+                return new Response('Actualité bien supprimée', 200);
+            } else {
+                return new Response('Aucune actualite avec cet ID', 404);
+            }
+        } else {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
     }
 
     /**
@@ -75,16 +108,6 @@ class AdminController extends Controller
         return new Response("L'utilisateur a correctement été supprimée", 200);
     }
 
-    /**
-     * @Route("/admin/delete_actualite/{id}", name="delete_actualite", requirements={"id" = "\d+"})
-     */
-    public function deleteActualiteAction($id) {
-        $em = $this->getDoctrine()->getManager();
-        $actualite = $em->getRepository('AppBundle:Actualite')->find($id);
-        $em->remove($actualite);
-        $em->flush();
-        return new Response("L'actualite à correctement été supprimée", 200);
-    }
 
     /**
      * @Route("/admin/user/{username}", options={"expose"=true}, name="show_user")
@@ -129,6 +152,7 @@ class AdminController extends Controller
 
         die($jsonContent);
     }
+
 
 
 
