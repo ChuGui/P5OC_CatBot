@@ -1,34 +1,68 @@
-$(document).ready(function() {
-    console.log('fichier admin.js chargé');
+/*-------------------------------------------------------*/
+/*---------------RECHERCHE UTILISATEUR-------------------*/
 
-    /*Gestion des utilisateurs*/
-    $('.delete-user').on('click', function (e) {
+/*-------------------------------------------------------*/
+function searchUserByName() {
+    var value = $('#searchUser').val().toLowerCase();
+    $('.oneUser').each(
+        function () {
+            var userName = $(this).attr('data-userName').toLowerCase();
+            var ok = userName.indexOf(value);
+            if (ok > -1) {
+                $(this).addClass("correspond");
+                $(this).removeClass("correspondPas");
+            } else {
+                $(this).addClass("correspondPas");
+                $(this).removeClass("correspond");
+            }
+        }
+    )
+}
 
-        var $trash = $(e.currentTarget);
-        var userId = $trash.data('userid');
-        var userElt = $('#user_' + userId);
-        console.log(userElt);
-        var url = $trash.data('url');
-        $('.confirmDeleteUserBtn').on('click', function (e) {
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function () {
-                    $(userElt).fadeOut(300, function(){$(this).remove();});
-                },
-                error: function () {
-                    console.log("Cet utilisateur n'existe pas.")
-                }
-            })
+$(document).on('keyup', '#searchUser', searchUserByName);
 
+/*----------------------------------------------------------*/
+/*----------------------------DELETE USER-------------------*/
+/*----------------------------------------------------------*/
 
-        });
-    });
+function deleteUser() {
+    var userId = $(this).attr('data-userId');
+    $.ajax({
+        url: Routing.generate('delete_user'),
+        data: {userId : userId},
+        type: "GET",
+        success: function (response) {
+            $("#user_" + userId).hide('slow');
+            $('#modal-success-delete').modal('toggle');
+        },
+        error: function (xhr, status, error) {
+            $("#modal-error").modal('toggle');
+        }
+    })
+}
 
+$(document).on('click', '.confirmDeleteUser-JS', deleteUser);
 
+/*----------------------------------------------------------*/
+/*-----------------------DELETE ACTUALITE-------------------*/
+/*----------------------------------------------------------*/
 
+function deleteActualite() {
+    var actualiteId = $(this).attr('data-actualiteId');
+    $.ajax({
+        url: Routing.generate('delete_actualite'),
+        data: {actualiteId : actualiteId},
+        type: "GET",
+        success: function (response) {
+            $("#actualite_" + actualiteId).hide('slow');
+            $('#modal-success-delete').modal('toggle');
+        },
+        error: function (xhr, status, error) {
+            $("#modal-error").modal('toggle');
+        }
+    })
+}
 
+$(document).on('click', '.confirmDeleteActualite-JS', deleteActualite);
 
-
-});
 
