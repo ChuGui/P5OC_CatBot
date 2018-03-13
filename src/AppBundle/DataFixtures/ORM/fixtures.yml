@@ -87,7 +87,6 @@ AppBundle\Entity\Bird:
          formeBec: 'pointu'
          plumage: 'rouge'
          couleurBec: 'jaune'
-         taxref: '@taxref_<numberBetween($min = 1, $max = 100)>'
 
      bird_{11..15}:
               name: <firstNameFemale()>
@@ -98,7 +97,6 @@ AppBundle\Entity\Bird:
               formeBec: 'long'
               plumage: 'jaune'
               couleurBec: 'noir'
-              taxref: '@taxref_<numberBetween($min = 101, $max = 200)>'
 
      bird_{16..20}:
               name: <firstNameFemale()>
@@ -109,17 +107,8 @@ AppBundle\Entity\Bird:
               formeBec: 'long'
               plumage: 'vert'
               couleurBec: 'noir'
-              taxref: '@taxref_<numberBetween($min = 201, $max = 300)>'
 
 
-AppBundle\Entity\Taxref:
-    taxref_{1..350}:
-        nomScientifique: '<firstName()> <lastName()>'
-        cdNom:  '<numberBetween($min = 1000, $max = 9999)>'
-        ordre: '<word()>'
-        famille: '<word()>'
-        firstObservation: <dateTimeBetween("-500 days", "-300 days")>
-        lastObservation: <dateTimeBetween("-200 days", "-10 days")>
 
 
 

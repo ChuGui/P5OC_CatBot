@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Groups;
 /**
  * Comment
  *
- * @ORM\Table(name="comment")
+ * @ORM\Table(name="ocp5_comment")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentRepository")
  */
 class Comment

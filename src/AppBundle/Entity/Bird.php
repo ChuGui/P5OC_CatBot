@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation\Groups;
 /**
  * Bird
  *
- * @ORM\Table(name="bird")
+ * @ORM\Table(name="ocp5_bird")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BirdRepository")
  * @Vich\Uploadable
  */

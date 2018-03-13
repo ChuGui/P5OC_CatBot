@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
- * @ORM\Table(name="user")
+ * @ORM\Table(name="ocp5_user")
  * @UniqueEntity(fields={"email"}, message="On dirait que vous avez déjà un compte! :)")
  * @UniqueEntity(fields={"username"}, message="Ce pseudo a déjà été choisi" )
  */
@@ -58,8 +58,12 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * A non-persisted field that's used to create the encoded password.
      * @Assert\NotBlank(groups={"Registration"})
-     *
-     * @var string
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 50,
+     *      minMessage = "Votre mot de passe doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre mot de passe est limité à 50 caractères"
+     * )
      */
     private $plainPassword;
 

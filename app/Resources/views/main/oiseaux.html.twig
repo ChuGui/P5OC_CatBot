@@ -133,7 +133,9 @@
                             <div class="modal-content">
                                 <div class="heading mt-5">
                                     <h2>{{ bird.name }}</h2>
+                                    {% if bird.taxref.nomScientifique is defined %}
                                     <span>{{ bird.taxref.nomScientifique }}</span>
+                                    {% endif %}
                                 </div>
                                 <div class="modal-body py-0 mb-5">
                                     <div class="flex-wrap media align-items-center justify-content-center px-0 px-md-3">

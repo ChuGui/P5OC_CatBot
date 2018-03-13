@@ -121,7 +121,6 @@ class MainController extends Controller
             $this->addFlash('success','Votre profile  à bien été mis à jour :)');
             return $this->redirectToRoute('profile');
         }
-
         $observations = $em->getRepository("AppBundle:Observation")->findAll();
         $waitingObservations = $em->getRepository("AppBundle:Observation")->findAllWaiting();
         $userObservations = $user->getObservations();
@@ -133,7 +132,7 @@ class MainController extends Controller
             'user' => $user,
             'userObservations' => $userObservations,
             'observations' => $observations,
-            'waitingObservations' => $waitingObservations
+            'waitingObservations' => $waitingObservations,
         ));
     }
 

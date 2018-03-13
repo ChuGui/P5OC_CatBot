@@ -346,7 +346,9 @@
                                 <div class="modal-content">
                                     <div class="heading mt-5">
                                         <h2>{{ waitingObservation.bird.name }}</h2>
+                                        {% if waitingObservation.bird.taxref.nomScientifique is defined %}
                                         <span>{{ waitingObservation.bird.taxref.nomScientifique }}</span>
+                                        {% endif %}
                                     </div>
 
                                     <div class="modal-body py-0 mb-5">
@@ -409,7 +411,9 @@
                                                                 <h4>Choisissez son nom scientifique</h4>
                                                             <div class="form-group">
                                                                 <select class="form-control" id="nomScientifiqueSelect{{ waitingObservation.id }}" data-observationId="{{ waitingObservation.id }}">
+                                                                    {% if waitingObservation.bird.taxref.id is defined %}
                                                                     <option class="nsOption" value="{{ waitingObservation.bird.taxref.id }}">{{ waitingObservation.bird.taxref.nomScientifique }}</option>
+                                                                    {% endif %}
                                                                 </select>
                                                             </div>
                                                         </div>

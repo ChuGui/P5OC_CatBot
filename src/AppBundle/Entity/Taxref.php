@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Taxref
  *
- * @ORM\Table(name="taxref")
+ * @ORM\Table(name="ocp5_taxref")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefRepository")
  */
 class Taxref

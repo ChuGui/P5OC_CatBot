@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation\Groups;
 /**
  * Observation
  *
- * @ORM\Table(name="observation")
+ * @ORM\Table(name="ocp5_observation")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ObservationRepository")
  * @Vich\Uploadable
  */
