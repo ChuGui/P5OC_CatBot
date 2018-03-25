@@ -17,11 +17,11 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle(),
             new Knp\Bundle\TimeBundle\KnpTimeBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

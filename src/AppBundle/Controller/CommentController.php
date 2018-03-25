@@ -14,7 +14,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Form\CategoryType;
 use JMS\Serializer\SerializationContext;
 
-
 class CommentController extends Controller
 {
     /**
