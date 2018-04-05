@@ -25,8 +25,6 @@ class TaxrefController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $scientificNames = $em->getRepository('AppBundle:Taxref')->findAllByNameAsc();
-
-
             $data = $this->get('jms_serializer')->serialize($scientificNames, 'json', SerializationContext::create()->setGroups(array('scientificNames')));
             if ($data) {
                 $response = new JsonResponse($data);
