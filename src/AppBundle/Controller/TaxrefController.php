@@ -20,11 +20,12 @@ class TaxrefController extends Controller
      * @Route("/showScientificNames", name="showScientificNames", options = {"expose"=true})
      * @Method({"GET"})
      */
-    public function coordinateShowAction(Request $request)
+    public function ShowScientifiqueNamesAction(Request $request)
     {
-        if ($request->isXmlHttpRequest()) {
+
             $em = $this->getDoctrine()->getManager();
             $scientificNames = $em->getRepository('AppBundle:Taxref')->findAllByNameAsc();
+
 
             $data = $this->get('jms_serializer')->serialize($scientificNames, 'json', SerializationContext::create()->setGroups(array('scientificNames')));
             if ($data) {
@@ -34,8 +35,6 @@ class TaxrefController extends Controller
             } else {
                 return new Response("une erreur s'est produite côté serveur", 404);
             }
-        } else {
-            throw new HttpException('404','Chemin incorect');
-        }
+
     }
 }

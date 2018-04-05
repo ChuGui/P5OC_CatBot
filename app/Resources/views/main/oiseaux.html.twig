@@ -154,7 +154,7 @@
                                                 <h3>DERNIERE OBSERVATION</h3>
                                                 <div class="col-12">
                                                     <div class="row align-items-center justify-content-start my-5">
-                                                        <img src="{{asset('img/profilePictures/'~ observation.user.profilePicture)  }}" alt="Photo de {{ observation.user.username }}" class="observation-avatar rounded-circle">
+                                                        <img src="{{asset(observation.user.profilePicture)  }}" alt="Photo de {{ observation.user.username }}" class="observation-avatar rounded-circle">
                                                         <div class="justify-content-start ml-3">
                                                             <p class="text-left mb-1 user-name">{{ observation.user.username|capitalize }}</p>
                                                             <span class="text-left time">{{ observation.observedAt |ago }}</span>
@@ -190,7 +190,7 @@
                                                         <div class="flex-wrap flex-column comm-display p-0 mb-4" id="Js-observationCommentsDisplay{{ observation.id }}">
                                                             {% for comment in observation.comments %}
                                                                 <div class="d-flex flex-nowrap align-items-center comm m-3">
-                                                                    <img src="{{ asset('img/profilePictures/'~comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
+                                                                    <img src="{{ asset(comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
                                                                     <div class="col-12 pl-3 text-left">
                                                                         <div class="col-12 px-0">
                                                                             <p class="mb-1 font-weight-bold">{{ comment.user.username|capitalize }}</p>

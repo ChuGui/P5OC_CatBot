@@ -126,7 +126,7 @@ class Observation
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="observationsVotedFor")
-     * @ORM\JoinTable(name="users_voted")
+     * @ORM\JoinTable(name="ocp5_user_voted")
      */
     private $usersVoted;
 

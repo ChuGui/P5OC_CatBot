@@ -42,11 +42,11 @@ services:
     app.security.my_facebook_authenticator:
                 class: AppBundle\Security\MyFacebookAuthenticator
                 autowire: true
-                # use autowiring, OR you can specify the argument manually
-                # arguments:
-                #     - '@oauth2.registry'
-                #     - '@doctrine.orm.entity_manager'
-                #     - '@router'
+                arguments:
+                    - '@oauth2.registry'
+                    - '@doctrine.orm.entity_manager'
+                    - '@router'
+
     app.doctrine.hash_password_listener:
         class: AppBundle\Doctrine\HashPasswordListener
         autowire: true

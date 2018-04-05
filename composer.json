@@ -26,6 +26,7 @@
         "knplabs/knp-time-bundle": "^1.7",
         "knpuniversity/oauth2-client-bundle": "^1.18",
         "league/oauth2-facebook": "^1.4",
+        "league/oauth2-google": "^2.0",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "symfony/monolog-bundle": "^3.1.0",

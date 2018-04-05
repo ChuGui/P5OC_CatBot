@@ -25,11 +25,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `taxref`
+-- Structure de la table `ocp5_taxref`
 --
 
-DROP TABLE IF EXISTS `taxref`;
-CREATE TABLE IF NOT EXISTS `taxref` (
+DROP TABLE IF EXISTS `ocp5_taxref`;
+CREATE TABLE IF NOT EXISTS `ocp5_taxref` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_scientifique` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cd_nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `taxref` (
 -- Déchargement des données de la table `taxref`
 --
 
-INSERT INTO `taxref` (`id`, `nom_scientifique`, `cd_nom`, `ordre`, `famille`, `first_observation`, `last_observation`) VALUES
+INSERT INTO `ocp5_taxref` (`id`, `nom_scientifique`, `cd_nom`, `ordre`, `famille`, `first_observation`, `last_observation`) VALUES
 (1, 'Accipiter gentilis arrigonii (Kleinschmidt, 1903)', '2894', 'Accipitriformes', 'Accipitridae', '01/12/1869', '21/09/1994'),
 (2, 'Accipiter gentilis (Linnaeus, 1758)', '2891', 'Accipitriformes', 'Accipitridae', '20/10/1902', '31/12/1912'),
 (3, 'Accipiter nisus (Linnaeus, 1758)', '2895', 'Accipitriformes', 'Accipitridae', '15/10/1837', '20/02/2002'),

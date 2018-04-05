@@ -120,10 +120,17 @@ class User implements AdvancedUserInterface, \Serializable
     private $newsletter;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Observation", mappedBy="usersVoted")
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    private $facebookId;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Observation", mappedBy="userVoted")
      * @ORM\JoinTable(name="observations_voted")
      */
     private $observationsVotedFor;
+
+
 
     /**
      * @ORM\Column(type="json_array")
@@ -135,7 +142,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
         $this->token = hash('sha512', uniqid());
         $this->roles = ['ROLE_USER'];
-        $this->profilePicture = 'anonyme.png';
+        $this->profilePicture = 'img/profilePictures/anonyme.png';
         $this->level= 'moineau';
         $this->nbObservations=0;
         $this->comments = new ArrayCollection();
@@ -149,6 +156,22 @@ class User implements AdvancedUserInterface, \Serializable
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param mixed $facebookId
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
     }
 
     /**

@@ -78,7 +78,7 @@
                     {# Informations utilisateur #}
                     <div class="col-12 col-md-6">
                         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-start">
-                            <img src="{{ asset('img/profilePictures/'~ user.profilePicture) }}" alt="photo de profil"
+                            <img src="{{ asset(user.profilePicture) }}" alt="photo de profil"
                                  class="rounded-circle" id="profileImg">
                             <div class="text-left mt-0 ml-3 mt-md-3">
                                 <h3 class="mb-2 mb-md-3">{{ user.username|capitalize }}</h3>
@@ -213,7 +213,7 @@
                         {# FORMULAIRE DE CHANGEMENT D'AVATAR #}
                         <div class="col-12 col-md-6 mb-5">
                             <div class="d-flex flex-column align-items-center">
-                                <img src="{{ asset('img/profilePictures/'~ user.profilePicture) }}"
+                                <img src="{{ asset(user.profilePicture) }}"
                                      alt="photo de profil" class="rounded-circle" id="profileImg">
                                 <div class="text-center mt-3">
                                     <span>Changer la photo de profil</span>
@@ -369,7 +369,7 @@
                                             <h3>OBSERVATION</h3>
                                             <div class="col-12">
                                                 <div class="row align-items-center justify-content-start my-5">
-                                                    <img src="{{ asset('img/profilePictures/'~waitingObservation.user.profilePicture) }}"
+                                                    <img src="{{ asset(waitingObservation.user.profilePicture) }}"
                                                          alt="Photo de {{ waitingObservation.user.username }}"
                                                          class="observation-avatar rounded-circle">
                                                     <div class="justify-content-start ml-3">
@@ -438,7 +438,7 @@
                                                          id="Js-observationCommentsDisplay{{ waitingObservation.id }}">
                                                         {% for comment in waitingObservation.comments %}
                                                             <div class="d-flex flex-nowrap align-items-center comm m-3">
-                                                                <img src="{{ asset('img/profilePictures/'~comment.user.profilePicture) }}"
+                                                                <img src="{{ asset(comment.user.profilePicture) }}"
                                                                      alt="" class="comment-avatar rounded-circle">
                                                                 <div class="col-12 pl-3 text-left">
                                                                     <div class="col-12 px-0">

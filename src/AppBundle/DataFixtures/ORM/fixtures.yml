@@ -3,7 +3,7 @@ AppBundle\Entity\User:
         username: admin
         email: admin@admin.com
         plainPassword: admin
-        profilePicture: admin.png
+        profilePicture: 'img/profilePictures/admin.png'
         level: condor
         newsletter: <boolean($chanceOfGettingTrue = 50)>
         roles: ['ROLE_ADMIN']
@@ -12,7 +12,7 @@ AppBundle\Entity\User:
         username: naturaliste<current()>
         email: naturaliste<current()>@gmail.com
         plainPassword: naturaliste
-        profilePicture: 'naturaliste<numberBetween($min = 1, $max = 4)>.jpg'
+        profilePicture: 'img/profilePictures/naturaliste<numberBetween($min = 1, $max = 4)>.jpg'
         level: aigle royal
         roles: ['ROLE_NATURALISTE']
         newsletter: <boolean($chanceOfGettingTrue = 50)>
@@ -21,7 +21,7 @@ AppBundle\Entity\User:
         username: <userName()>
         email: <email()>
         plainPassword: user
-        profilePicture: user<numberBetween($min = 1, $max = 10)>.jpg
+        profilePicture: 'img/profilePictures/user<numberBetween($min = 1, $max = 10)>.jpg'
         roles: ['ROLE_USER']
         level: moineau
         newsletter: <boolean($chanceOfGettingTrue = 50)>

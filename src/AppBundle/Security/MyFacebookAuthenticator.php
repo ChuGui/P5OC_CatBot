@@ -2,6 +2,7 @@
 
 namespace AppBundle\Security;
 
+use AppBundle\Entity\User;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Routing\RouterInterface;
@@ -9,8 +10,11 @@ use KnpU\OAuth2ClientBundle\Client\Provider\FacebookClient;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 class MyFacebookAuthenticator extends SocialAuthenticator
 {
     private $clientRegistry;
@@ -42,6 +46,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
 
         $email = $facebookUser->getEmail();
 
+
         // 1) have they logged in with Facebook before? Easy!
         $existingUser = $this->em->getRepository('AppBundle:User')
             ->findOneBy(['facebookId' => $facebookUser->getId()]);
@@ -52,13 +57,18 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         // 2) do we have a matching user by email?
         $user = $this->em->getRepository('AppBundle:User')
             ->findOneBy(['email' => $email]);
-
-        // 3) Maybe you just want to "register" them by creating
-        // a User object
-        $user->setFacebookId($facebookUser->getId());
-        $this->em->persist($user);
-        $this->em->flush();
-
+        if($user == null){
+            dump($facebookUser);
+            $user = new User();
+            $user->setFacebookId($facebookUser->getId());
+            $user->setProfilePicture($facebookUser->getPictureUrl());
+            $user->setUsername($facebookUser->getName());
+            $user->setEmail($facebookUser->getEmail());
+            $user->setPassword($facebookUser->getId());
+            $this->em->persist($user);
+            $this->em->flush();
+            return $user;
+        }
         return $user;
     }
 
@@ -72,6 +82,8 @@ class MyFacebookAuthenticator extends SocialAuthenticator
             ->getClient('facebook_main');
     }
 
+    use TargetPathTrait;
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         // if the user hits a secure page and start() was called, this was
@@ -79,7 +91,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         $targetPath = $this->getTargetPath($request->getSession(), $providerKey);
 
         if (!$targetPath) {
-            $targetPath = $this->router->generate('homepage');
+            $targetPath = $this->router->generate('observation');
         }
 
         return new RedirectResponse($targetPath);

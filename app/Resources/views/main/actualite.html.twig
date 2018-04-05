@@ -32,7 +32,7 @@
             {#----------------#}
 
             <div class="media align-items-center mb-3">
-                <img src="{{ asset('img/profilePictures/'~ user.profilePicture) }}" alt="Photo {{ user.username|capitalize }}" class="d-flex mr-3 profilePicture">
+                <img src="{{ asset(user.profilePicture) }}" alt="Photo {{ user.username|capitalize }}" class="d-flex mr-3 profilePicture">
                 <p class="font-weight-bold mb-0">{{ user.username|capitalize }}</p>
 
             </div>
@@ -62,7 +62,7 @@
                 {% for comment in comments %}
 
                     <div class="d-flex flex-nowrap align-items-center comm m-3">
-                        <img src="{{ asset('img/profilePictures/'~comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
+                        <img src="{{ asset(comment.user.profilePicture) }}" alt="" class="comment-avatar rounded-circle">
                         <div class="col-12 pl-3">
                             <div class="col-12 px-0">
                                 <p class="mb-1 font-weight-bold">{{ comment.user.username|capitalize }}</p>

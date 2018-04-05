@@ -57,7 +57,7 @@
                             {% for user in users %}
                                 <div class="row mb-2 oneUser correspond" id="user_{{ user.id }}" data-userId="{{ user.id }}" data-username="{{ user.username }}">
                                     <div class="col-3 col-sm-4 col-lg-2 ml-2">
-                                        <img src="{{ asset('img/profilePictures/'~user.profilePicture) }}" alt=""
+                                        <img src="{{ asset(user.profilePicture) }}" alt=""
                                              class="imgUser rounded-circle">
                                     </div>
                                     <div class="col-3 col-sm-4 col-lg-2 mr-3">

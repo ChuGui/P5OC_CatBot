@@ -102,6 +102,9 @@ $(document).ready(function() {
         }
 
     })
+    /*-----------------------------*/
+    /*----PARTIE COMMENTAIRES------*/
+    /*-----------------------------*/
     $('.commentFormObservation_JS').on('submit', function(e){
         e.preventDefault();
         var observationId = $(this).attr('data-observationId');
@@ -118,12 +121,13 @@ $(document).ready(function() {
                 $.each(comments, function(idx, comment) {
                     var content = comment.content;
                     var userImage = comment.user.profile_picture;
+                    console.log(userImage);
                     var username = comment.user.username;
                     var updateAt = comment.update_at;
                     var prettyDate = $.format.prettyDate(updateAt);
                     $('#Js-observationCommentsDisplay' + observationId).append(
                             '<div class="d-flex flex-nowrap align-items-center comm m-3">'
-                        +   '<img src="../img/'+ userImage +'" alt="" class="comment-avatar rounded-circle">'
+                        +   '<img src="' + userImage +'" alt="" class="comment-avatar rounded-circle">'
                         +   '<div class="col-12 pl-3 text-left">'
                         +   '<div class="col-12 px-0">'
                         +   '<p class="mb-1 font-weight-bold">' + username + '</p>'
